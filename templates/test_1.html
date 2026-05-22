@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Page</title>
+</head>
+
+<body>
+    <h1>Test Page</h1>
+    <p>Welcome to the test page.</p>
+    <form action="{{ url_for('hello') }}" method="GET">
+        <input type="text" name="x">
+        <button type="submit">go there</button>
+    </form>
+</body>
+
+</html>
