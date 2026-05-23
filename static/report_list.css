@@ -106,6 +106,24 @@
     grid-column: 1 / -1;
 }
 
+.detail-item-last-seen {
+    border-left-color: #f59e0b;
+    background: #fffbeb;
+}
+
+.detail-item-last-seen strong {
+    color: #b45309;
+}
+
+.last-seen-value {
+    background: rgba(245, 158, 11, 0.12);
+    color: #92400e;
+    padding: 4px 8px;
+    border-radius: 4px;
+    margin-left: 8px;
+    font-weight: 600;
+}
+
 .color-swatch {
     width: 32px;
     height: 32px;

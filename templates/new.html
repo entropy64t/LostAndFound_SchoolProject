@@ -59,6 +59,11 @@
             </fieldset>
 
             <label>
+                Last seen
+                <input type="datetime-local" name="last-seen" required>
+            </label>
+
+            <label>
                 Found at
                 <select name="locations">
                     {% for loc in location_list %}

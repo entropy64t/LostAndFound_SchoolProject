@@ -1,3 +1,5 @@
+from datetime import datetime, timezone
+
 from flask import Blueprint, render_template, request, redirect, url_for, abort
 from markupsafe import escape
 from enum import Enum
@@ -19,16 +21,26 @@ def new():
         report_type = request.form['report-type']
         item_type = request.form['item-type']
         item_color = request.form['item-color']
+        last_seen_str = request.form.get('last-seen')
         location_id = request.form['locations']
         report_content = request.form['report-content']
         author = current_user.id
-        
+
+        last_seen = None
+        if last_seen_str:
+            try:
+                last_seen = datetime.fromisoformat(last_seen_str)
+            except ValueError:
+                last_seen = None
+
         report = Report(
             author=author,
             title=title,
             report_type=report_type,
             category=int(item_type),
             colour=int(item_color),
+            creation_date=datetime.now(timezone.utc),
+            last_seen=last_seen,
             last_seen_location=int(location_id),
             description=report_content,
         )
@@ -99,7 +111,7 @@ def index():
     users = User.query.all()
     return render_template("index.html", users=users)
 
-def render_reports(query: Query, template: str):
+def render_reports(query: Query, template: str, view_all: bool = True):
     # Fetch lookup tables for display
     authors = {row['id']: row['email'] for row in db.session.execute(text("SELECT id, email FROM users")).mappings().all()}
     categories = {row['id']: row['name'] for row in db.session.execute(text("SELECT id, name FROM categories;")).mappings().all()}
@@ -135,6 +147,7 @@ def render_reports(query: Query, template: str):
         selected_item=selected_item,
         selected_type=selected_type,
         locations=locations,
+        view_all=view_all
     )
 
 @app.route("/all")
@@ -152,7 +165,7 @@ def all():
 @login_required
 def lost():
     query = Report.query.filter_by(report_type="lost")
-    return render_reports(query, "lost.html")
+    return render_reports(query, "lost.html", view_all=False)
 
 @app.route("/your_reports")
 @login_required
@@ -164,7 +177,7 @@ def your_reports():
 @login_required
 def found():
     query = Report.query.filter_by(report_type="found")
-    return render_reports(query, "found.html")
+    return render_reports(query, "found.html", view_all=False)
 
 @login_manager.user_loader
 def load_user(user_id: str):

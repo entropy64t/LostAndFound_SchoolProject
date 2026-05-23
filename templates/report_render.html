@@ -16,6 +16,7 @@
         </label>
         {% endfor %}
     </div>
+    {% if view_all %}
     <label>
         Report Type:
         <select name="type">
@@ -24,6 +25,7 @@
             <option value="found" {% if selected_type=='found' %}selected{% endif %}>Found</option>
         </select>
     </label>
+    {% endif %}
     <label>
         Item Type:
         <select name="category">
@@ -73,8 +75,9 @@
             {% endif %}
 
             {% if report.last_seen %}
-            <div class="detail-item">
-                <strong>Last Seen:</strong> {{ report.last_seen.strftime('%Y-%m-%d %H:%M') }}
+            <div class="detail-item-wide detail-item-last-seen">
+                <strong>Last Seen:</strong>
+                <span class="last-seen-value">{{ report.last_seen.strftime('%Y-%m-%d %H:%M') }}</span>
             </div>
             {% endif %}
 
