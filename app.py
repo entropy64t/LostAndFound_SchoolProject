@@ -15,22 +15,6 @@ login_manager.login_view = "login"
 # Database connection init
 app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:postgres0864!@localhost/LostAndFound" # TODO Update database hostname for production environment TODO store secrets separately
 db = SQLAlchemy(app);
-
-class ItemType(Enum):
-    UMBRELLA = "Umbrella"
-    COAT = "Coat / Jacket"
-    PHONE = "Phone"
-    OTHER = "Other"
-    
-class ItemColour(Enum):
-    BLACK = "black"
-    WHITE = "white"
-    BEIGE = "beige"
-    RED = "red"
-    BLUE = "royalblue"
-    GREEN = "green"
-    LIGHT_BLUE = "skyblue"
-    PINK = "pink"
     
 @app.route("/new", methods=["GET", "POST"])
 @login_required
@@ -45,10 +29,11 @@ def new():
         
         return redirect(url_for("index"))
 
-    location_db_query = text("SELECT * FROM locations;")
-    locations_from_db = db.session.execute(location_db_query)
-    locations_object = locations_from_db.mappings().all()
-    return render_template("new.html", item_types=ItemType, item_colors=ItemColour, location_list=locations_object)
+    locations_from_db = db.session.execute(text("SELECT * FROM locations;")).mappings().all();
+    colours_from_db = db.session.execute(text("SELECT * FROM colours;")).mappings().all();
+    categories_from_db = db.session.execute(text("SELECT * FROM categories;")).mappings().all();
+
+    return render_template("new.html", category_list=categories_from_db, colour_list=colours_from_db, location_list=locations_from_db)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

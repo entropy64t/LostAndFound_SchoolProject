@@ -20,11 +20,11 @@
 
             <fieldset class="item-type">
                 <legend>Item type {% include "required.html" %}</legend>
-                {% for item_type in item_types %}
+                {% for category in category_list %}
                 <div class="radio-row">
                     <label class="radio-option">
-                        <input type="radio" name="item-type" value="{{ item_type.value }}" required>
-                        <span>{{ item_type.value }}</span>
+                        <input type="radio" name="item-type" value="{{ category['id'] }}" required>
+                        <span>{{ category['name'] }}</span>
                     </label>
                 </div>
                 {% endfor %}
@@ -33,10 +33,10 @@
             <fieldset>
                 <legend>Item colour {% include "required.html" %}</legend>
                 <div class="color-picker">
-                    {% for color in item_colors %}
+                    {% for color in colour_list %}
                     <label class="color-option">
-                        <input type="radio" name="item-color" value="{{ color.value }}" required>
-                        <span class="color-circle" style="background: {{ color.value }};"></span>
+                        <input type="radio" name="item-color" value="{{ color['id'] }}" required>
+                        <span class="color-circle" style="background: {{ color['name'] }};"></span>
                     </label>
                     {% endfor %}
                 </div>
@@ -46,7 +46,7 @@
 		    Found at
 		    <select name="locations">
 			    {% for loc in location_list %}
-			    <option value="{{ loc['id'] }}">{{ loc['name'] }}</option>
+			    <option value="{{ loc['id'] }}">{{ loc['name'] }} (level {{ loc['buildinglevel'] }})</option>
 			    {% endfor %}
 		    </select>
 	    </label>

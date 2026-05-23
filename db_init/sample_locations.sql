@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict 7y5gHLh7y965H9nPr6opE75oBSmH3hsGoYks29QCf18C8o86OwDtdLrhRZLkD1c
+\restrict BlTsxHr7hgf9IAnX99KxJtJiktMqkW8MYo84TwY70IagL2T9QRZrWf7pvWEjbmJ
 
 -- Dumped from database version 16.14 (Ubuntu 16.14-0ubuntu0.24.04.1)
 -- Dumped by pg_dump version 16.14 (Ubuntu 16.14-0ubuntu0.24.04.1)
@@ -25,18 +25,19 @@ SET row_security = off;
 INSERT INTO public.locations (id, buildinglevel, name) VALUES (1, 2, '35');
 INSERT INTO public.locations (id, buildinglevel, name) VALUES (2, 1, '24');
 INSERT INTO public.locations (id, buildinglevel, name) VALUES (3, 1, '21');
+INSERT INTO public.locations (id, buildinglevel, name) VALUES (4, -1, 'inf1');
 
 
 --
 -- Name: locations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: bruno
 --
 
-SELECT pg_catalog.setval('public.locations_id_seq', 3, true);
+SELECT pg_catalog.setval('public.locations_id_seq', 4, true);
 
 
 --
 -- PostgreSQL database dump complete
 --
 
-\unrestrict 7y5gHLh7y965H9nPr6opE75oBSmH3hsGoYks29QCf18C8o86OwDtdLrhRZLkD1c
+\unrestrict BlTsxHr7hgf9IAnX99KxJtJiktMqkW8MYo84TwY70IagL2T9QRZrWf7pvWEjbmJ
 
