@@ -16,13 +16,7 @@
                 +
             </a></li>
 
-        {% if not current_user.is_authenticated %}
-        <li class="nav-right">
-            <a href="{{ url_for('login') }}" class="{% if request.endpoint == 'login' %}active{% endif %}">Login</a>
-            <a href="{{ url_for('create_account') }}"
-                class="{% if request.endpoint == 'create_account' %}active{% endif %}">Create Account</a>
-        </li>
-        {% else %}
+        {% if current_user.is_authenticated %}
         <li class="nav-right">
             <a href="{{ url_for('account') }}" class="{% if request.endpoint == 'account' %}active{% endif %}">{{
                 current_user.email }}</a>
