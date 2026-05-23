@@ -43,7 +43,7 @@ def login():
         user = find_by_username(username)
         if user is None:
             # user does not exist
-            return redirect(url_for("create_account", username=username))
+            return redirect(url_for("create_account", username=username, next=request.args.get("next")))
         if not user.check_password(password):
             return redirect(url_for("index"))
         login_user(user)
@@ -58,7 +58,7 @@ def login():
 @app.route('/logout', methods=['GET', 'POST'])
 def logout():
     logout_user()
-    return render_template("index.html")
+    return redirect(url_for("index"))
 
 @app.route("/create_account", methods=["GET", "POST"])
 def create_account():
@@ -79,22 +79,26 @@ def create_account():
     return render_template("create_account.html")
 
 @app.route("/account", methods=["GET", "POST"])
+@login_required
 def account():
-    return "nothing here"
+    return render_template("account.html");
 
 @app.route("/")
+@login_required
 def index():
     # TODO - pull from db
     
     return render_template("index.html", users=_USERS.values())
 
 @app.route("/lost")
+@login_required
 def lost():
     # TODO - pull from db
     
     return render_template("lost.html")
 
 @app.route("/found")
+@login_required
 def found():
     # TODO - pull from db
     

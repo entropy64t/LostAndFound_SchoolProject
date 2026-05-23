@@ -7,14 +7,12 @@
 </head>
 
 <body>
-    {% include "navbar.html" %}
-
     <div class="container">
         <h1>Create account</h1>
         <form class="content" id="create-post" method="post">
             <label id="title">
                 Username {% include "required.html" %}
-                <input type="text" name="username" value="{{ username or '' }}" required>
+                <input type="text" name="username" value="{{ request.args.get('username') or '' }}" required>
             </label>
             <label id="title">
                 Password {% include "required.html" %}
@@ -27,6 +25,7 @@
 
             <button type="submit">Login</button>
         </form>
+	<a href="/login">Login</a>
     </div>
 
 </body>

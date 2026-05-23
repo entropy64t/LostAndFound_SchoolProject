@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% include "common_head.html" %}
+    <title>My account - Lost&Found</title>
+</head>
+
+<body>
+    {% include "navbar.html" %}
+
+    <div class="container">
+        <h1>My account</h1>
+        <div class="content">
+		<h2>{{ current_user.username }}</h2>
+		<p>Manage your account here.</p>
+        </div>
+    </div>
+
+</body>
+
+</html>
