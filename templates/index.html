@@ -3,6 +3,7 @@
 
 <head>
     {% include "common_head.html" %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='auth.css') }}">
     <title>Lost&Found</title>
 </head>
 
@@ -12,15 +13,13 @@
     <div class="container">
         <h1>Lost&amp;Found</h1>
         <div class="content">
-            <h2>this will be a nicer index.html</h2>
+            <h2>Welcome to Lost&Found</h2>
             <p>Wybierz z menu aby zobaczyć przedmioty zgubione lub znalezione.</p>
 
-            {% for user in users %}
-            <div class="content">
-                Email: {{ user.email }} <br>
-                Password: {{ user.password_hash }} <br>
+            <div class="auth-buttons">
+                <a href="/login" class="btn-primary">Login</a>
+                <a href="/create_account" class="btn-secondary">Create Account</a>
             </div>
-            {% endfor %}
         </div>
     </div>
 

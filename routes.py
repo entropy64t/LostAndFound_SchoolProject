@@ -36,7 +36,7 @@ def new():
         db.session.add(report)
         db.session.commit()
         
-        return redirect(url_for("index"))
+        return redirect(url_for("all"))
 
     locations_from_db = db.session.execute(text("SELECT * FROM locations;")).mappings().all()
     colours_from_db = db.session.execute(text("SELECT * FROM colours;")).mappings().all()

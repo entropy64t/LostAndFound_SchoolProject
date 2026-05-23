@@ -1,0 +1,144 @@
+/* Authentication Pages Styles */
+
+.auth-wrapper {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 40px;
+    max-width: 400px;
+    margin: 40px auto;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.auth-wrapper h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 1.8em;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+    font-size: 0.95em;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 0.95em;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.btn-primary,
+.btn-secondary {
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 0.95em;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+    width: 100%;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-secondary {
+    background-color: #e9ecef;
+    color: #333;
+    border: 1px solid #dfe3e8;
+}
+
+.btn-secondary:hover {
+    background-color: #dee2e6;
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.auth-footer p {
+    color: #666;
+    margin: 0;
+    font-size: 0.95em;
+}
+
+.auth-footer a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Index Page Auth Buttons */
+.auth-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.auth-buttons .btn-primary,
+.auth-buttons .btn-secondary {
+    min-width: 150px;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .auth-wrapper {
+        padding: 24px;
+        margin: 20px;
+    }
+
+    .auth-wrapper h1 {
+        font-size: 1.5em;
+        margin-bottom: 24px;
+    }
+
+    .auth-buttons {
+        flex-direction: column;
+    }
+
+    .auth-buttons .btn-primary,
+    .auth-buttons .btn-secondary {
+        width: 100%;
+    }
+}

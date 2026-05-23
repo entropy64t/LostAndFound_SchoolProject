@@ -3,31 +3,41 @@
 
 <head>
     {% include "common_head.html" %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='auth.css') }}">
     <title>Create account</title>
 </head>
 
 <body>
+    {% include "navbar.html" %}
     <div class="container">
-        <h1>Create account</h1>
-        <form class="content" id="create-post" method="post">
-            <label id="title">
-                Email {% include "required.html" %}
-                <input type="email" name="email" value="{{ request.args.get('email') or '' }}" required>
-            </label>
-            <label id="title">
-                Password {% include "required.html" %}
-                <input type="password" name="password" required>
-            </label>
-            <label id="title">
-                Repeat Password {% include "required.html" %}
-                <input type="password" name="password-repeat" required>
-            </label>
-
-            <button type="submit">Create Account</button>
-        </form>
-        <a href="/login">Login</a>
+        <div class="auth-wrapper">
+            <h1>Create Account</h1>
+            <form class="auth-form" method="post">
+                <div class="form-group">
+                    <label>
+                        Email {% include "required.html" %}
+                        <input type="email" name="email" value="{{ request.args.get('email') or '' }}" required>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        Password {% include "required.html" %}
+                        <input type="password" name="password" required>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        Repeat Password {% include "required.html" %}
+                        <input type="password" name="password-repeat" required>
+                    </label>
+                </div>
+                <button type="submit" class="btn-primary">Create Account</button>
+            </form>
+            <div class="auth-footer">
+                <p>Already have an account? <a href="/login">Login</a></p>
+            </div>
+        </div>
     </div>
-
 </body>
 
 </html>
