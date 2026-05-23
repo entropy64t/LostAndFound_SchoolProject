@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% include "common_head.html" %}
+    <title>Login</title>
+</head>
+
+<body>
+    {% include "navbar.html" %}
+
+    <div class="container">
+        <h1>Login</h1>
+        <form class="content" id="create-post" method="post">
+            <label id="title">
+                Username {% include "required.html" %}
+                <input type="text" name="username" required>
+            </label>
+            <label id="title">
+                Password {% include "required.html" %}
+                <input type="password" name="password" required>
+            </label>
+
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% include "common_head.html" %}
+    <title>Create account</title>
+</head>
+
+<body>
+    {% include "navbar.html" %}
+
+    <div class="container">
+        <h1>Create account</h1>
+        <form class="content" id="create-post" method="post">
+            <label id="title">
+                Username {% include "required.html" %}
+                <input type="text" name="username" required>
+            </label>
+            <label id="title">
+                Password {% include "required.html" %}
+                <input type="password" name="password" required>
+            </label>
+            <label id="title">
+                Repeat Password {% include "required.html" %}
+                <input type="password" name="password-repeat" required>
+            </label>
+
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<nav>
+    <ul>
+        <li><a href="{{ url_for('index') }}" class="{% if request.endpoint == 'index' %}active{% endif %}">
+                All
+            </a></li>
+        <li><a href="{{ url_for('lost') }}" class="{% if request.endpoint == 'lost' %}active{% endif %}">
+                Lost
+            </a></li>
+        <li><a href="{{ url_for('found') }}" class="{% if request.endpoint == 'found' %}active{% endif %}">
+                Found
+            </a></li>
+        <li><a href="{{ url_for('new') }}" class="{% if request.endpoint == 'new' %}active{% endif %}">
+                +
+            </a></li>
+
+        {% if not current_user.is_authenticated %}
+        <li class="nav-right">
+            <a href="{{ url_for('login') }}" class="{% if request.endpoint == 'login' %}active{% endif %}">Login</a>
+            <a href="{{ url_for('create_account') }}"
+                class="{% if request.endpoint == 'create_account' %}active{% endif %}">Create Account</a>
+        </li>
+        {% else %}
+        <li class="nav-right">
+            <a href="{{ url_for('account') }}" class="{% if request.endpoint == 'account' %}active{% endif %}">{{
+                current_user.username }}</a>
+            <a href="{{ url_for('logout') }}" class="{% if request.endpoint == 'logout' %}active{% endif %}">Logout</a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>

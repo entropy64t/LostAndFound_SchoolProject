@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% include "common_head.html" %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='color_picker.css')}}">
+    <title>New Post</title>
+</head>
+
+<body>
+    {% include "navbar.html" %}
+
+    <div class="container">
+        <h1>New Post</h1>
+        <form class="content" id="create-post" method="post">
+            <label id="title">
+                Post title {% include "required.html" %}
+                <input type="text" name="title" required>
+            </label>
+
+            <fieldset class="item-type">
+                <legend>Item type {% include "required.html" %}</legend>
+                {% for item_type in item_types %}
+                <div class="radio-row">
+                    <label class="radio-option">
+                        <input type="radio" name="item-type" value="{{ item_type.value }}" required>
+                        <span>{{ item_type.value }}</span>
+                    </label>
+                </div>
+                {% endfor %}
+            </fieldset>
+
+            <fieldset>
+                <legend>Item colour {% include "required.html" %}</legend>
+                <div class="color-picker">
+                    {% for color in item_colors %}
+                    <label class="color-option">
+                        <input type="radio" name="item-color" value="{{ color.value }}" required>
+                        <span class="color-circle" style="background: {{ color.value }};"></span>
+                    </label>
+                    {% endfor %}
+                </div>
+            </fieldset>
+
+            <label>
+                Post content
+                <textarea class="form-textarea" name="post-content" rows="6" cols="40"></textarea>
+            </label>
+
+            <button type="submit">Create</button>
+        </form>
+    </div>
+
+</body>
+
+</html>

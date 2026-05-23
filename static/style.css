@@ -1,0 +1,202 @@
+/* Navigation Menu Styles */
+nav {
+    background-color: #2c3e50;
+    padding: 0;
+    margin: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+nav li {
+    margin: 0;
+}
+
+/* Group right-side links and push them to the right */
+nav ul .nav-right {
+    margin-left: auto;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+/* Make sure links inside the right group look consistent */
+nav ul .nav-right a {
+    display: inline-block;
+}
+
+nav a {
+    display: block;
+    padding: 15px 20px;
+    color: #ecf0f1;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-weight: 500;
+}
+
+nav a:hover {
+    background-color: #34495e;
+    color: #fff;
+}
+
+nav a.active {
+    background-color: #3498db;
+    color: #fff;
+}
+
+/* Page Layout */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    color: #2c3e50;
+    margin-top: 0;
+}
+
+h2 {
+    color: #3498db;
+}
+
+/* Content Styling */
+.content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Create Post Form */
+#create-post {
+    display: grid;
+    gap: 20px;
+}
+
+#create-post label {
+    display: block;
+    font-size: 0.95rem;
+    color: #34495e;
+    margin-bottom: 8px;
+}
+
+#create-post input[type="text"],
+#create-post input[type="password"],
+#create-post textarea,
+#create-post select {
+    width: 100%;
+    padding: 12px 14px;
+    margin-top: 8px;
+    border: 1px solid #dfe3e8;
+    border-radius: 6px;
+    background-color: #f7f9fb;
+    font-size: 1rem;
+    color: #2c3e50;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+}
+
+#create-post textarea.form-textarea {
+    resize: none;
+    min-height: 180px;
+}
+
+#create-post input[type="text"]:focus,
+#create-post textarea:focus,
+#create-post select:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.12);
+}
+
+#create-post fieldset {
+    border: 1px solid #dfe3e8;
+    border-radius: 8px;
+    padding: 20px;
+    background-color: #fbfcfd;
+}
+
+#create-post legend {
+    font-weight: 600;
+    color: #2c3e50;
+    padding: 0 8px;
+}
+
+#create-post fieldset div {
+    margin-bottom: 14px;
+}
+
+#create-post input[type="radio"] {
+    margin-right: 10px;
+}
+
+#create-post .item-type .radio-row {
+    margin-bottom: 0;
+}
+
+#create-post .item-type .radio-option {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    border: 1px solid #dfe3e8;
+    border-radius: 10px;
+    background-color: #ffffff;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+    cursor: pointer;
+}
+
+#create-post .item-type .radio-option:hover {
+    border-color: #3498db;
+    background-color: #eef6ff;
+}
+
+#create-post .item-type .radio-option input[type="radio"] {
+    margin: 0;
+    accent-color: #3498db;
+    width: 1rem;
+    height: 1rem;
+}
+
+#create-post .item-type .radio-option input[type="radio"]:checked+span {
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+#create-post button,
+#create-post input[type="submit"] {
+    align-self: start;
+    padding: 12px 22px;
+    border: none;
+    border-radius: 8px;
+    background-color: #3498db;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+#create-post button:hover,
+#create-post input[type="submit"]:hover {
+    background-color: #217dbb;
+    transform: translateY(-1px);
+}
+
+#create-post #title {
+    font-weight: bold;
+}
