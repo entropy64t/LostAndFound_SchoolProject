@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 
 <head>
     {% include "common_head.html" %}
     <link rel="stylesheet" href="{{ url_for('static', filename='report_list.css') }}">
-    <title>Found - Lost&Found</title>
+    <title>Lost&Found - All Items</title>
 </head>
 
 <body>
     {% include "navbar.html" %}
 
     <div class="container">
-        <h1>Found Items</h1>
+        <h1>All Items</h1>
         {% include "report_render.html" %}
     </div>
 

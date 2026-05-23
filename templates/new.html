@@ -4,19 +4,35 @@
 <head>
     {% include "common_head.html" %}
     <link rel="stylesheet" href="{{ url_for('static', filename='color_picker.css')}}">
-    <title>New Post</title>
+    <title>New Report</title>
 </head>
 
 <body>
     {% include "navbar.html" %}
 
     <div class="container">
-        <h1>New Post</h1>
+        <h1>New Report</h1>
         <form class="content" id="create-post" method="post">
             <label id="title">
-                Post title {% include "required.html" %}
+                Report title {% include "required.html" %}
                 <input type="text" name="title" required>
             </label>
+
+            <fieldset class="report-type">
+                <legend>Report type {% include "required.html" %}</legend>
+                <div class="radio-row">
+                    <label class="radio-option">
+                        <input type="radio" name="report-type" value="lost" required>
+                        <span>Lost</span>
+                    </label>
+                </div>
+                <div class="radio-row">
+                    <label class="radio-option">
+                        <input type="radio" name="report-type" value="found" required>
+                        <span>Found</span>
+                    </label>
+                </div>
+            </fieldset>
 
             <fieldset class="item-type">
                 <legend>Item type {% include "required.html" %}</legend>
@@ -42,18 +58,18 @@
                 </div>
             </fieldset>
 
-	    <label>
-		    Found at
-		    <select name="locations">
-			    {% for loc in location_list %}
-			    <option value="{{ loc['id'] }}">{{ loc['name'] }} (level {{ loc['buildinglevel'] }})</option>
-			    {% endfor %}
-		    </select>
-	    </label>
+            <label>
+                Found at
+                <select name="locations">
+                    {% for loc in location_list %}
+                    <option value="{{ loc['id'] }}">{{ loc['name'] }} (level {{ loc['building_level'] }})</option>
+                    {% endfor %}
+                </select>
+            </label>
 
             <label>
-                Post content
-                <textarea class="form-textarea" name="post-content" rows="6" cols="40"></textarea>
+                Additional content
+                <textarea class="form-textarea" name="report-content" rows="6" cols="40"></textarea>
             </label>
 
             <button type="submit">Create</button>

@@ -1,0 +1,113 @@
+<form class="report-filter" method="get">
+    <div class="filter-color-picker">
+        <span class="filter-label">Colour:</span>
+        <label class="filter-color-option">
+            <input type="radio" name="color" value="" {% if selected_colour is none %}checked{% endif %}>
+            <span class="filter-color-circle filter-color-circle-all"></span>
+            <span class="filter-color-name">All</span>
+        </label>
+        {% for colour_id, colour_data in colours.items() %}
+        <label class="filter-color-option">
+            <input type="radio" name="color" value="{{ colour_id }}" {% if selected_colour==colour_id %}checked{% endif
+                %}>
+            <span class="filter-color-circle" style="background-color: {{ colour_data['value'] }};"
+                title="{{ colour_data['name'] }}"></span>
+            <span class="filter-color-name">{{ colour_data['display_name'] }}</span>
+        </label>
+        {% endfor %}
+    </div>
+    <label>
+        Report Type:
+        <select name="type">
+            <option value="">All</option>
+            <option value="lost" {% if selected_type=='lost' %}selected{% endif %}>Lost</option>
+            <option value="found" {% if selected_type=='found' %}selected{% endif %}>Found</option>
+        </select>
+    </label>
+    <label>
+        Item Type:
+        <select name="category">
+            <option value="">All</option>
+            {% for item_id, item_name in categories.items() %}
+            <option value="{{ item_id }}" {% if selected_item==item_id %}selected{% endif %}>{{
+                item_name }}</option>
+            {% endfor %}
+        </select>
+    </label>
+    <button type="submit">Apply</button>
+</form>
+
+<div class="report-list">
+
+
+    {% for report in reports %}
+    <div class="report-card">
+        <div class="report-header">
+            <h2 class="report-title">{{ report.title }}</h2>
+            <span class="report-badge report-type-{{ report.report_type }}">{{ report.report_type.upper()
+                }}</span>
+        </div>
+
+        <div class="report-metadata">
+            <span class="meta-item"><strong>By:</strong> {{ authors[report.author] }}</span>
+            <span class="meta-item"><strong>Posted:</strong> {{ report.creation_date.strftime('%Y-%m-%d %H:%M')
+                if report.creation_date else 'N/A' }}</span>
+        </div>
+
+        <div class="report-details">
+            {% if report.category %}
+            <div class="detail-item">
+                <strong>Category:</strong> {{ categories.get(report.category, 'Unknown') }}
+            </div>
+            {% endif %}
+
+            {% if report.colour %}
+            <div class="detail-item">
+                <strong>Colour:</strong>
+                <div class="color-swatch"
+                    style="background-color: {{ colours.get(report.colour, {}).get('value', 'gray') }};"
+                    title="{{ colours.get(report.colour, {}).get('name', 'Unknown') }}"></div>
+            </div>
+            {% endif %}
+
+            {% if report.last_seen %}
+            <div class="detail-item">
+                <strong>Last Seen:</strong> {{ report.last_seen.strftime('%Y-%m-%d %H:%M') }}
+            </div>
+            {% endif %}
+
+            {% if report.last_seen_location %}
+            <div class="detail-item-wide">
+                <strong>Location:</strong>
+                {% if report.last_seen_location in locations %}
+                {{ locations[report.last_seen_location][1] }} (Level {{
+                locations[report.last_seen_location][0]}})
+                {% else %}
+                Unknown
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="report-description">
+            {% if report.description and report.description != "" %}
+            <p>{{ report.description }}</p>
+            {% else %}
+            <p class="no-description">No description provided</p>
+            {% endif %}
+        </div>
+
+        {% if report.image_urls %}
+        <div class="report-images">
+            {% for img_url in report.image_urls.split(',') %}
+            <img src="{{ img_url.strip() }}" alt="Item image" class="report-image">
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="report-footer">
+            <a href="#" class="btn-view">View Details</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>

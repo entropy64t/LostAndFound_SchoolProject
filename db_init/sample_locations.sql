@@ -22,10 +22,10 @@ SET row_security = off;
 -- Data for Name: locations; Type: TABLE DATA; Schema: public; Owner: bruno
 --
 
-INSERT INTO public.locations (id, buildinglevel, name) VALUES (1, 2, '35');
-INSERT INTO public.locations (id, buildinglevel, name) VALUES (2, 1, '24');
-INSERT INTO public.locations (id, buildinglevel, name) VALUES (3, 1, '21');
-INSERT INTO public.locations (id, buildinglevel, name) VALUES (4, -1, 'inf1');
+INSERT INTO public.locations (id, building_level, name) VALUES (1, 2, '35');
+INSERT INTO public.locations (id, building_level, name) VALUES (2, 1, '24');
+INSERT INTO public.locations (id, building_level, name) VALUES (3, 1, '21');
+INSERT INTO public.locations (id, building_level, name) VALUES (4, -1, 'inf1');
 
 
 --
