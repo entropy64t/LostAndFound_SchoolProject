@@ -154,6 +154,12 @@ def lost():
     query = Report.query.filter_by(report_type="lost")
     return render_reports(query, "lost.html")
 
+@app.route("/your_reports")
+@login_required
+def your_reports():
+    query = Report.query.filter_by(author=current_user.id)
+    return render_reports(query, "your_reports.html")
+
 @app.route("/found")
 @login_required
 def found():

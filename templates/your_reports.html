@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% include "common_head.html" %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='report_list.css') }}">
+    <title>{{ authors[current_user.id].removesuffix("@v-lo.krakow.pl") }}'s reports - Lost&Found</title>
+</head>
+
+<body>
+    {% include "navbar.html" %}
+
+    <div class="container">
+        <h1>{{ authors[current_user.id].removesuffix("@v-lo.krakow.pl") }}'s Reports</h1>
+        {% include "report_render.html" %}
+    </div>
+
+</body>
+
+</html>

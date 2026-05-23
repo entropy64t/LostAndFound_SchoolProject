@@ -12,6 +12,12 @@
         <li><a href="{{ url_for('found') }}" class="{% if request.endpoint == 'found' %}active{% endif %}">
                 Found
             </a></li>
+        {% if current_user.is_authenticated %}
+        <li><a href="{{ url_for('your_reports') }}"
+                class="{% if request.endpoint == 'your_reports' %}active{% endif %}">
+                Your Reports
+            </a></li>
+        {% endif %}
         <li><a href="{{ url_for('new') }}" class="{% if request.endpoint == 'new' %}active{% endif %}">
                 +
             </a></li>
