@@ -52,7 +52,7 @@ def login():
         user = find_by_email(email)
         if user is None:
             # user does not exist
-            return redirect(url_for("create_account", email=email))
+            return redirect(url_for("create_account", email=email, next=request.args.get("next")))
         if not user.check_password(password):
             return redirect(url_for("index"))
         login_user(user)
@@ -68,7 +68,7 @@ def login():
 @login_required
 def logout():
     logout_user()
-    return render_template("index.html")
+    return redirect(url_for("index"))
 
 @app.route("/create_account", methods=["GET", "POST"])
 def create_account():
@@ -91,7 +91,7 @@ def create_account():
 @app.route("/account", methods=["GET", "POST"])
 @login_required
 def account():
-    return "nothing here"
+    return render_template("account.html")
 
 @app.route("/")
 def index():
