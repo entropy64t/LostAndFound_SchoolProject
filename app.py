@@ -4,10 +4,17 @@ from enum import Enum
 from flask_login import LoginManager, login_required, login_user, logout_user
 from user import User, get_user, find_by_username, create_user, _USERS
 
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import text
+
 app = Flask(__name__)
 app.secret_key = "Bda4L_rbDg2nMbE0Z3ZALk-zK2ODy5eCXyAfTCObtjg"
 login_manager = LoginManager(app)
 login_manager.login_view = "login"
+
+# Database connection init
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:postgres0864!@localhost/LostAndFound" # TODO Update database hostname for production environment TODO store secrets separately
+db = SQLAlchemy(app);
 
 class ItemType(Enum):
     UMBRELLA = "Umbrella"
@@ -37,8 +44,11 @@ def new():
         # TODO - update db
         
         return redirect(url_for("index"))
-        
-    return render_template("new.html", item_types=ItemType, item_colors=ItemColour)
+
+    location_db_query = text("SELECT * FROM locations;")
+    locations_from_db = db.session.execute(location_db_query)
+    locations_object = locations_from_db.mappings().all()
+    return render_template("new.html", item_types=ItemType, item_colors=ItemColour, location_list=locations_object)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

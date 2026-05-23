@@ -42,6 +42,15 @@
                 </div>
             </fieldset>
 
+	    <label>
+		    Found at
+		    <select name="locations">
+			    {% for loc in location_list %}
+			    <option value="{{ loc['id'] }}">{{ loc['name'] }}</option>
+			    {% endfor %}
+		    </select>
+	    </label>
+
             <label>
                 Post content
                 <textarea class="form-textarea" name="post-content" rows="6" cols="40"></textarea>
