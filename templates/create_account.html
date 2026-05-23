@@ -11,8 +11,8 @@
         <h1>Create account</h1>
         <form class="content" id="create-post" method="post">
             <label id="title">
-                Username {% include "required.html" %}
-                <input type="text" name="username" value="{{ request.args.get('username') or '' }}" required>
+                Email {% include "required.html" %}
+                <input type="email" name="email" value="{{ request.args.get('email') or '' }}" required>
             </label>
             <label id="title">
                 Password {% include "required.html" %}
@@ -23,9 +23,9 @@
                 <input type="password" name="password-repeat" required>
             </label>
 
-            <button type="submit">Login</button>
+            <button type="submit">Create Account</button>
         </form>
-	<a href="/login">Login</a>
+        <a href="/login">Login</a>
     </div>
 
 </body>

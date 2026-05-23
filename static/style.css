@@ -96,6 +96,7 @@ h2 {
 
 #create-post input[type="text"],
 #create-post input[type="password"],
+#create-post input[type="email"],
 #create-post textarea,
 #create-post select {
     width: 100%;
