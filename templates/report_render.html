@@ -49,7 +49,9 @@
         </div>
 
         <div class="report-metadata">
-            <span class="meta-item"><strong>By:</strong> {{ authors[report.author] }}</span>
+            <span class="meta-item"><strong>By:</strong>
+                {{ authors[report.author].removesuffix("@v-lo.krakow.pl")}}</span> {# remove the domain suffix from
+            domain v-lo.krakow.pl #}
             <span class="meta-item"><strong>Posted:</strong> {{ report.creation_date.strftime('%Y-%m-%d %H:%M')
                 if report.creation_date else 'N/A' }}</span>
         </div>
