@@ -13,7 +13,7 @@ login_manager = LoginManager(app)
 login_manager.login_view = "login"
 
 # Database connection init
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:postgres0864!@localhost/LostAndFound" # TODO Update database hostname for production environment TODO store secrets separately
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:postgres291830@localhost/LostAndFound" # TODO Update database hostname for production environment TODO store secrets separately
 db = SQLAlchemy(app);
     
 @app.route("/new", methods=["GET", "POST"])
