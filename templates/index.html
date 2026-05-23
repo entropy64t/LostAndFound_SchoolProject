@@ -14,6 +14,13 @@
         <div class="content">
             <h2>Witaj!</h2>
             <p>Wybierz z menu aby zobaczyć przedmioty zgubione lub znalezione.</p>
+
+            {% for user in users %}
+            <div class="content">
+                Username: {{ user.username }} <br>
+                Password: {{ user.password_hash }} <br>
+            </div>
+            {% endfor %}
         </div>
     </div>
 

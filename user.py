@@ -46,7 +46,7 @@ def get_user(user_id: str):
 	return _USERS.get(str(user_id))
 
 
-def find_by_username(username: str):
+def find_by_username(username: str) -> User | None:
 	for u in _USERS.values():
 		if u.username == username:
 			return u

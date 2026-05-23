@@ -14,7 +14,7 @@
         <form class="content" id="create-post" method="post">
             <label id="title">
                 Username {% include "required.html" %}
-                <input type="text" name="username" required>
+                <input type="text" name="username" value="{{ username or '' }}" required>
             </label>
             <label id="title">
                 Password {% include "required.html" %}

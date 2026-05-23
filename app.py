@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, abort
 from markupsafe import escape
 from enum import Enum
 from flask_login import LoginManager, login_required, login_user, logout_user
-from user import User, get_user, find_by_username, create_user
+from user import User, get_user, find_by_username, create_user, _USERS
 
 app = Flask(__name__)
 app.secret_key = "Bda4L_rbDg2nMbE0Z3ZALk-zK2ODy5eCXyAfTCObtjg"
@@ -46,6 +46,11 @@ def login():
         username = request.form["username"]
         password = request.form["password"]
         user = find_by_username(username)
+        if user is None:
+            # user does not exist
+            return redirect(url_for("create_account", username=username))
+        if not user.check_password(password):
+            return redirect(url_for("index"))
         login_user(user)
 
         next = request.args.get("next")
@@ -86,7 +91,7 @@ def account():
 def index():
     # TODO - pull from db
     
-    return render_template("index.html")
+    return render_template("index.html", users=_USERS.values())
 
 @app.route("/lost")
 def lost():
