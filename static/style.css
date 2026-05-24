@@ -22,7 +22,6 @@ nav li {
 nav ul .nav-right {
     margin-left: auto;
     display: flex;
-    gap: 8px;
     align-items: center;
 }
 

@@ -14,6 +14,7 @@ psql -d LostAndFound -f db_init/db_init.sql
 psql -d LostAndFound -f db_init/sample_colours.sql
 psql -d LostAndFound -f db_init/sample_locations.sql
 psql -d LostAndFound -f db_init/sample_categories.sql
+psql -d LostAndFound -f db_init/sample_grades.sql
 
 EOF
 

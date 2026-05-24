@@ -10,7 +10,7 @@ from sqlalchemy import text
 from sqlalchemy.orm import Query
 
 from app import app, db, login_manager
-from models import Report
+from models import Report, Grade, get_grade
 from user import User, get_user, find_by_email, create_user
 
 @app.route("/new", methods=["GET", "POST"])
@@ -88,9 +88,13 @@ def create_account():
         email = request.form["email"]
         password = request.form["password"]
         password_repeat = request.form["password-repeat"]
+        if request.form["grade"] == "":
+            grade = None
+        else:
+            grade = request.form["grade"]
         if password != password_repeat:
-            return render_template("create_account.html")
-        user = create_user(email, password)
+            return redirect(url_for("create_account", msg="pwdnomatch", email=email, grade=request.form["grade"]))
+        user = create_user(email, password, grade)
         login_user(user)
 
         next = request.args.get("next")
@@ -98,12 +102,29 @@ def create_account():
         #    return abort(400)
 
         return redirect(next or url_for("index"))
-    return render_template("create_account.html")
+    
+    grades_from_db = db.session.execute(text("SELECT * FROM grades;")).mappings().all()
+    return render_template("create_account.html", grade_list=grades_from_db)
 
 @app.route("/account", methods=["GET", "POST"])
 @login_required
 def account():
-    return render_template("account.html")
+    if request.method == "POST":
+        new_grade = request.form["grade"]
+        if new_grade == "":
+            current_user.grade = None
+        else:
+            current_user.grade = new_grade
+        db.session.commit()
+        return redirect(url_for("account"))
+
+    user_grade = get_grade(current_user.grade)
+    if user_grade != None:
+        grade_name = user_grade.name
+    else:
+        grade_name = "not set"
+    grades_from_db = db.session.execute(text("SELECT * FROM grades;")).mappings().all()
+    return render_template("account.html", grade_id=current_user.grade, grade_name=grade_name, grade_list=grades_from_db)
 
 @app.route("/")
 def index():

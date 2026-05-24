@@ -9,14 +9,18 @@ DROP TABLE IF EXISTS colours;
 DROP TABLE IF EXISTS categories;
 DROP TYPE IF EXISTS reportType;
 
+CREATE TABLE grades (
+	id serial PRIMARY KEY,
+	name text
+);
+
 CREATE TABLE users (
 	id serial PRIMARY KEY,
 	email citext UNIQUE NOT NULL,
 	password text NOT NULL,
-	password_salt text NOT NULL,
 	otp text,
-	otp_salt text,
-	account_verified boolean NOT NULL
+	account_verified boolean NOT NULL,
+	grade integer REFERENCES grades(id)
 );
 
 CREATE TABLE locations (

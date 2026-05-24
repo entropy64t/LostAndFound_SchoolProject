@@ -31,7 +31,25 @@
                         <input type="password" name="password-repeat" required>
                     </label>
                 </div>
+		<div class="form-group">
+			<label>
+				Grade (can be changed later)<br>
+				<select name="grade">
+				<option value="">-- Select --</option>
+				{% for elm in grade_list %}
+				{% if elm['id'] | string == request.args.get('grade') | string %}
+				<option selected="selected" value="{{ elm['id'] }}">{{ elm['name'] }}</option>
+				{% else %}
+				<option value="{{ elm['id'] }}">{{ elm['name'] }}</option>
+				{% endif %}
+				{% endfor %}
+				</select>
+			</label>
+		</div>
                 <button type="submit" class="btn-primary">Create Account</button>
+		{% if request.args.get("msg") == "pwdnomatch" %}
+		    <p class="auth-fail-message">Passwords don't match</p>
+	        {% endif %}
             </form>
             <div class="auth-footer">
                 <p>Already have an account? <a href="/login">Login</a></p>

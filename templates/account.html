@@ -1,22 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    {% include "common_head.html" %}
-    <title>My account - Lost&Found</title>
-</head>
+    <head>
+	{% include "common_head.html" %}
+	<title>My account - Lost&Found</title>
+    </head>
 
-<body>
-    {% include "navbar.html" %}
+    <body>
+	{% include "navbar.html" %}
 
-    <div class="container">
-        <h1>My account</h1>
-        <div class="content">
+	<div class="container">
+	    <h1>My account</h1>
+	    <div class="content">
 		<h2>{{ current_user.username }}</h2>
 		<p>Manage your account here.</p>
-        </div>
-    </div>
+		<p>Grade: {{ grade_name }}</p>
+		<form method="post">
+		    <div class="form-group">
+			<label>
+			    Change:<br>
+			    <select name="grade">
+				<option value="">-- Select --</option>
+				{% for grade in grade_list %}
+				{% if grade['id'] == grade_id %}
+				<option selected="selected" value="{{ grade['id'] }}">{{ grade['name'] }}</option>
+				{% else %}
+				<option value="{{ grade['id'] }}">{{ grade['name'] }}</option>
+				{% endif %}
+				{% endfor %}
+			    </select>
+			</label>
+		    </div>
+		    <button type="submit" class="btn-primary">Change</button>
+		</form>
+	    </div>
+	</div>
 
-</body>
+    </body>
 
 </html>

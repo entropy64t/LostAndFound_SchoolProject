@@ -26,3 +26,13 @@ class Report(db.Model):
     item_owner = db.Column(db.Integer)
     
     pickup_location = db.Column(db.Integer)
+
+class Grade(db.Model):
+    __tablename__ = "grades"
+
+    id = db.Column(db.Integer, primary_key=True)
+
+    name = db.Column(db.String())
+
+def get_grade(grade_id: int) -> Grade:
+    return Grade.query.get(grade_id)
