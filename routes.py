@@ -66,7 +66,7 @@ def login():
             # user does not exist
             return redirect(url_for("create_account", email=email, next=request.args.get("next")))
         if not user.check_password(password):
-            return redirect(url_for("index"))
+            return redirect(url_for("login", email=email, msg="wrongpwd"))
         login_user(user)
 
         next = request.args.get("next")

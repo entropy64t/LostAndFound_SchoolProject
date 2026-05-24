@@ -142,3 +142,7 @@
         width: 100%;
     }
 }
+
+.auth-fail-message {
+	color: red;
+}
