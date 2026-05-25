@@ -9,6 +9,8 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import text
 from sqlalchemy.orm import Query
 
+from urllib.parse import urlparse
+
 from app import app, db, login_manager
 from models import Report, Grade, get_grade
 from user import User, get_user, find_by_email, create_user
@@ -66,12 +68,13 @@ def login():
             # user does not exist
             return redirect(url_for("create_account", email=email, next=request.args.get("next")))
         if not user.check_password(password):
-            return redirect(url_for("login", email=email, msg="wrongpwd"))
+            return redirect(url_for("login", email=email, msg="wrongpwd", next=request.args.get("next")))
         login_user(user)
 
         next = request.args.get("next")
-        #if not url_has_allowed_host_and_scheme(next, request.host):
-        #    return abort(400)
+        if next:
+            if urlparse(next).netloc:
+                return abort(400)
 
         return redirect(next or url_for("index"))
     return render_template("login.html")
@@ -94,13 +97,17 @@ def create_account():
         else:
             grade = request.form["grade"]
         if password != password_repeat:
-            return redirect(url_for("create_account", msg="pwdnomatch", email=email, grade=request.form["grade"], display_name=display_name))
+            return redirect(url_for("create_account", msg="pwdnomatch", email=email, grade=request.form["grade"], display_name=display_name, next=request.args.get("next")))
+
+        if find_by_email(email) != None:
+            return redirect(url_for("create_account", msg="existent", email=email, grade=request.form["grade"], display_name=display_name, next=request.args.get("next")))
         user = create_user(email, display_name, password, grade)
         login_user(user)
 
         next = request.args.get("next")
-        #if not url_has_allowed_host_and_scheme(next, request.host):
-        #    return abort(400)
+        if next:
+            if urlparse(next).netloc:
+                return abort(400)
 
         return redirect(next or url_for("index"))
     
@@ -155,6 +162,7 @@ def account():
     # TODO Separate page for account deletion?
 
 @app.route("/")
+@login_required
 def index():
     # Pull all users from database
     users = User.query.all()

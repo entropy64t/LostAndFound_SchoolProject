@@ -8,8 +8,8 @@
 </head>
 
 <body>
-    {% include "navbar.html" %}
     <div class="container">
+        <h1>Lost&amp;Found</h1>
         <div class="auth-wrapper">
             <h1>Create Account</h1>
             <form class="auth-form" method="post">
@@ -55,10 +55,12 @@
                 <button type="submit" class="btn-primary">Create Account</button>
 		{% if request.args.get("msg") == "pwdnomatch" %}
 		    <p class="auth-fail-message">Passwords don't match</p>
+		{% elif request.args.get("msg") == "existent" %}
+		    <p class="auth-fail-message">An account with that e-mail address already exists</p>
 	        {% endif %}
             </form>
             <div class="auth-footer">
-                <p>Already have an account? <a href="/login">Login</a></p>
+		    <p>Already have an account? <a href="{{ url_for('login', email=email, next=request.args.get('next')) }}">Login</a></p>
             </div>
         </div>
     </div>
