@@ -13,6 +13,12 @@
         <div class="auth-wrapper">
             <h1>Create Account</h1>
             <form class="auth-form" method="post">
+		<div class="form-group">
+		    <label>
+		        Name {% include "required.html" %}
+			<input type="text" name="display_name" value="{{ request.args.get('display_name') or '' }}" required>
+		    </label>
+		</div>
                 <div class="form-group">
                     <label>
                         Email {% include "required.html" %}

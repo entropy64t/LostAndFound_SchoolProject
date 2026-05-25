@@ -86,6 +86,7 @@ def logout():
 def create_account():
     if request.method == "POST":
         email = request.form["email"]
+        display_name = request.form["display_name"]
         password = request.form["password"]
         password_repeat = request.form["password-repeat"]
         if request.form["grade"] == "":
@@ -93,8 +94,8 @@ def create_account():
         else:
             grade = request.form["grade"]
         if password != password_repeat:
-            return redirect(url_for("create_account", msg="pwdnomatch", email=email, grade=request.form["grade"]))
-        user = create_user(email, password, grade)
+            return redirect(url_for("create_account", msg="pwdnomatch", email=email, grade=request.form["grade"], display_name=display_name))
+        user = create_user(email, display_name, password, grade)
         login_user(user)
 
         next = request.args.get("next")
@@ -115,7 +116,32 @@ def account():
             current_user.grade = None
         else:
             current_user.grade = new_grade
+        new_name = request.form["display_name"]
+        current_user.display_name = new_name
         db.session.commit()
+
+        new_password = request.form["new_password"]
+        if new_password != "":
+            new_password_repeat = request.form["new_password-repeat"]
+            if new_password == new_password_repeat:
+                old_password = request.form["password"]
+                if current_user.check_password(old_password):
+                    current_user.set_password(new_password)
+                    db.session.commit()
+                else:
+                    return redirect(url_for("account", msg="wrongpwd"))
+            else:
+                return redirect(url_for("account", msg="pwdnomatch"))
+
+        new_email = request.form["new_email"]
+        if new_email != "":
+            new_email_repeat = request.form["new_email-repeat"]
+            if new_email == new_email_repeat:
+                current_user.email = new_email
+                db.session.commit()
+            else:
+                return redirect(url_for("account", email_msg="emailnomatch"))
+    
         return redirect(url_for("account"))
 
     user_grade = get_grade(current_user.grade)
@@ -126,6 +152,8 @@ def account():
     grades_from_db = db.session.execute(text("SELECT * FROM grades;")).mappings().all()
     return render_template("account.html", grade_id=current_user.grade, grade_name=grade_name, grade_list=grades_from_db)
 
+    # TODO Separate page for account deletion?
+
 @app.route("/")
 def index():
     # Pull all users from database
@@ -134,7 +162,7 @@ def index():
 
 def render_reports(query: Query, template: str, view_all: bool = True):
     # Fetch lookup tables for display
-    authors = {row['id']: row['email'] for row in db.session.execute(text("SELECT id, email FROM users")).mappings().all()}
+    authors = {row['id']: row['display_name'] for row in db.session.execute(text("SELECT id, display_name FROM users")).mappings().all()}
     categories = {row['id']: row['name'] for row in db.session.execute(text("SELECT id, name FROM categories;")).mappings().all()}
     colours = {
         row['id']: {

@@ -7,6 +7,7 @@ DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS locations;
 DROP TABLE IF EXISTS colours;
 DROP TABLE IF EXISTS categories;
+DROP TABLE IF EXISTS grades;
 DROP TYPE IF EXISTS reportType;
 
 CREATE TABLE grades (
@@ -17,6 +18,7 @@ CREATE TABLE grades (
 CREATE TABLE users (
 	id serial PRIMARY KEY,
 	email citext UNIQUE NOT NULL,
+	display_name text NOT NULL,
 	password text NOT NULL,
 	otp text,
 	account_verified boolean NOT NULL,

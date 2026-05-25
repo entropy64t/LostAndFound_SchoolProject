@@ -14,6 +14,7 @@ class User(UserMixin, db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(255), unique=True, nullable=False)
+    display_name = db.Column(db.String(255), nullable=False)
     password = db.Column(db.String(255), nullable=False)
     otp = db.Column(db.String(255))
     account_verified = db.Column(db.Boolean, nullable=False, default=False)
@@ -48,9 +49,9 @@ def find_by_email(email: str) -> User | None:
 	return User.query.filter_by(email=email).first()
 
 
-def create_user(email: str, password: str, grade: str) -> User:
+def create_user(email: str, display_name: str, password: str, grade: str) -> User:
 	"""Create a new user with email and password."""
-	user = User(email=email, account_verified=False, grade=grade)
+	user = User(email=email, display_name=display_name, account_verified=False, grade=grade)
 	user.set_password(password)
 	db.session.add(user)
 	db.session.commit()
