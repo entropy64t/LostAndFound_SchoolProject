@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-26 19:03+0200\n"
-"PO-Revision-Date: 2026-05-26 19:03+0200\n"
+"POT-Creation-Date: 2026-05-26 19:16+0200\n"
+"PO-Revision-Date: 2026-05-26 19:16+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: pl\n"
 "Language-Team: pl <LL@li.org>\n"
@@ -27,11 +27,11 @@ msgstr "Strona Główna"
 msgid "All"
 msgstr "Wszystko"
 
-#: templates/navbar.html:11
+#: templates/navbar.html:11 templates/new.html:26
 msgid "Lost"
 msgstr "Zgubione"
 
-#: templates/navbar.html:14
+#: templates/navbar.html:14 templates/new.html:32
 msgid "Found"
 msgstr "Znalezione"
 
@@ -43,7 +43,56 @@ msgstr "Twoje Zgłoszenia"
 msgid "Verify account"
 msgstr "Weryfikacja Konta"
 
-#: templates/navbar.html:37
+#: templates/navbar.html:38
 msgid "Logout"
 msgstr "Wyloguj się"
 
+#: templates/new.html:7 templates/new.html:14
+msgid "New Report"
+msgstr "Nowe Zgłoszenie"
+
+#: templates/new.html:17
+msgid "Report title"
+msgstr "Tytuł Zgłoszenia"
+
+#: templates/new.html:22
+msgid "Report type"
+msgstr "Rodzaj"
+
+#: templates/new.html:38
+msgid "Item type"
+msgstr "Zgubiony przedmiot"
+
+#: templates/new.html:50
+msgid "Item colour"
+msgstr "Kolor"
+
+#: templates/new.html:62
+msgid "Last seen"
+msgstr "Ostatnio widziane"
+
+#: templates/new.html:67
+msgid "Found at"
+msgstr "Widziane w"
+
+#: templates/new.html:70
+msgid "level"
+msgstr "piętro"
+
+#: templates/new.html:77
+msgid "Additional content"
+msgstr "Dodatkowe informacje"
+
+#: templates/new.html:81
+msgid "Create"
+msgstr "Utwórz"
+
+#: templates/new.html:item types
+msgid "Umbrella"
+msgstr "Parasol"
+msgid "Coat / Jacket"
+msgstr "Kurtka"
+msgid "Phone"
+msgstr "Telefon"
+msgid "Other"
+msgstr "Inne"

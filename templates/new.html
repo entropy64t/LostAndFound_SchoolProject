@@ -4,50 +4,50 @@
 <head>
     {% include "common_head.html" %}
     <link rel="stylesheet" href="{{ url_for('static', filename='color_picker.css')}}">
-    <title>New Report</title>
+    <title>{{ lang("New Report") }}</title>
 </head>
 
 <body>
     {% include "navbar.html" %}
 
     <div class="container">
-        <h1>New Report</h1>
+        <h1>{{ lang("New Report") }}</h1>
         <form class="content" id="create-post" method="post">
             <label id="title">
-                Report title {% include "required.html" %}
+                {{ lang("Report title") }} {% include "required.html" %}
                 <input type="text" name="title" required>
             </label>
 
             <fieldset class="report-type">
-                <legend>Report type {% include "required.html" %}</legend>
+                <legend>{{ lang("Report type") }} {% include "required.html" %}</legend>
                 <div class="radio-row">
                     <label class="radio-option">
                         <input type="radio" name="report-type" value="lost" required>
-                        <span>Lost</span>
+                        <span>{{ lang("Lost") }}</span>
                     </label>
                 </div>
                 <div class="radio-row">
                     <label class="radio-option">
                         <input type="radio" name="report-type" value="found" required>
-                        <span>Found</span>
+                        <span>{{ lang("Found") }}</span>
                     </label>
                 </div>
             </fieldset>
 
             <fieldset class="item-type">
-                <legend>Item type {% include "required.html" %}</legend>
+                <legend>{{ lang("Item type") }} {% include "required.html" %}</legend>
                 {% for category in category_list %}
                 <div class="radio-row">
                     <label class="radio-option">
                         <input type="radio" name="item-type" value="{{ category['id'] }}" required>
-                        <span>{{ category['name'] }}</span>
+                        <span>{{ lang(category['name']) }}</span>
                     </label>
                 </div>
                 {% endfor %}
             </fieldset>
 
             <fieldset>
-                <legend>Item colour {% include "required.html" %}</legend>
+                <legend>{{ lang("Item colour") }} {% include "required.html" %}</legend>
                 <div class="color-picker">
                     {% for color in colour_list %}
                     <label class="color-option">
@@ -59,25 +59,26 @@
             </fieldset>
 
             <label>
-                Last seen
+                {{ lang("Last seen") }}
                 <input type="datetime-local" name="last-seen" required>
             </label>
 
             <label>
-                Found at
+                {{ lang("Found at") }}
                 <select name="locations">
                     {% for loc in location_list %}
-                    <option value="{{ loc['id'] }}">{{ loc['name'] }} (level {{ loc['building_level'] }})</option>
+                    <option value="{{ loc['id'] }}">{{ loc['name'] }} ({{ lang("level") }} {{ loc['building_level'] }})
+                    </option>
                     {% endfor %}
                 </select>
             </label>
 
             <label>
-                Additional content
+                {{ lang("Additional content") }}
                 <textarea class="form-textarea" name="report-content" rows="6" cols="40"></textarea>
             </label>
 
-            <button type="submit">Create</button>
+            <button type="submit">{{ lang("Create") }}</button>
         </form>
     </div>
 
