@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-26 19:35+0200\n"
+"POT-Creation-Date: 2026-05-26 19:48+0200\n"
 "PO-Revision-Date: 2026-05-26 19:16+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: pl\n"
@@ -18,6 +18,18 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
+
+#: templates/all.html:14
+msgid "All Items"
+msgstr "Wszystkie Przedmioty"
+
+#: templates/found.html:14
+msgid "Found Items"
+msgstr "Znalezione Przedmioty"
+
+#: templates/lost.html:14
+msgid "Lost Items"
+msgstr "Zgubione Przedmioty"
 
 #: templates/navbar.html:5
 msgid "Home"
@@ -60,17 +72,17 @@ msgstr "Tytuł Zgłoszenia"
 
 #: templates/new.html:22 templates/report_render.html:21
 msgid "Report type"
-msgstr "Rodzaj"
+msgstr "Kategoria"
 
 #: templates/new.html:38 templates/report_render.html:30
 msgid "Item type"
-msgstr "Zgubiony przedmiot"
+msgstr "Rodzaj Przedmiotu"
 
 #: templates/new.html:50
 msgid "Item colour"
 msgstr "Kolor"
 
-#: templates/new.html:62 templates/report_render.html:80
+#: templates/new.html:62 templates/report_render.html:81
 msgid "Last seen"
 msgstr "Ostatnio widziane"
 
@@ -78,7 +90,7 @@ msgstr "Ostatnio widziane"
 msgid "Found at"
 msgstr "Widziane w"
 
-#: templates/new.html:70 templates/report_render.html:89
+#: templates/new.html:70 templates/report_render.html:90
 msgid "level"
 msgstr "piętro"
 
@@ -90,7 +102,7 @@ msgstr "Dodatkowe informacje"
 msgid "Create"
 msgstr "Utwórz"
 
-#: templates/report_render.html:3 templates/report_render.html:71
+#: templates/report_render.html:3 templates/report_render.html:72
 msgid "Colour"
 msgstr "Kolor"
 
@@ -98,35 +110,36 @@ msgstr "Kolor"
 msgid "Apply"
 msgstr "Zatwierdź"
 
-#: templates/report_render.html:54
+#: templates/report_render.html:55
 msgid "By"
 msgstr "Przez"
 
-#: templates/report_render.html:57
+#: templates/report_render.html:58
 msgid "Posted"
 msgstr "Utworzono"
 
-#: templates/report_render.html:65
+#: templates/report_render.html:66
 msgid "Category"
 msgstr "Przedmiot"
 
-#: templates/report_render.html:87
+#: templates/report_render.html:88
 msgid "Location"
 msgstr "Sala"
 
-#: templates/report_render.html:92
+#: templates/report_render.html:93
 msgid "Unknown"
 msgstr "Nieokreślone"
 
-#: templates/report_render.html:102
+#: templates/report_render.html:103
 msgid "No description provided"
 msgstr "Brak dodatkowych informacji"
 
-#: templates/report_render.html:109
+#: templates/report_render.html:110
+#, fuzzy
 msgid "Item image"
 msgstr "zdjęcie"
 
-#: templates/report_render.html:115
+#: templates/report_render.html:116
 msgid "View Details"
 msgstr "Więcej"
 
@@ -141,9 +154,6 @@ msgstr "Telefon"
 
 msgid "Other"
 msgstr "Inne"
-
-msgid "Report Type"
-msgstr "Rodzaj"
 
 msgid "Black"
 msgstr "Czarny"
@@ -168,3 +178,4 @@ msgstr "Błękitny"
 
 msgid "Pink"
 msgstr "Różowy"
+
