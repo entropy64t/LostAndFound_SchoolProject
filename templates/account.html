@@ -16,6 +16,7 @@
 		<p>Manage your account here.</p>
 		<p>E-mail address: {{ current_user.email }}</p>
 		<p>Grade: {{ grade_name }}</p>
+		<p>Account verified: {% if current_user.account_verified %}true{% else %}false{% endif %}</p>
 
 		<h3>Update personal data</h3>
 		<form method="post">

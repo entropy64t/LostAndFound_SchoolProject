@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    {% include "common_head.html" %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='auth.css') }}">
+    <title>Lost&Found</title>
+</head>
+
+<body>
+    {% include "navbar.html" %}
+
+    <div class="container">
+        <div class="auth-wrapper">
+            <h1>Verify your account</h1>
+            <p>To access any kind of lost and found functionality, you must verify your account.</p>
+            <form class="auth-form" method="post">
+                <div class="form-group">
+                    <label>
+                        Verification e-mail{% include "required.html" %}
+			<input type="email" name="verif_mail" value="{{ prefill }}" required>
+			This address is used only used to verify your account and must be in the (v-lo.krakow.pl) domain.
+                    </label>
+                </div>
+                <button type="submit" class="btn-primary">Login</button>
+                {% if request.args.get("msg") == "wrongdomain" %}
+		    <p class="auth-fail-message">The entered e-mail address isn't in the appropriate domain.</p>
+		{% endif %}
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>

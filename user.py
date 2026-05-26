@@ -4,6 +4,8 @@ from app import db
 
 from models import Grade
 
+from datetime import datetime, timezone
+
 
 class User(UserMixin, db.Model):
     """User model backed by SQLAlchemy database.
@@ -17,6 +19,7 @@ class User(UserMixin, db.Model):
     display_name = db.Column(db.String(255), nullable=False)
     password = db.Column(db.String(255), nullable=False)
     otp = db.Column(db.String(255))
+    otp_creation = db.Column(db.DateTime(timezone=True))
     account_verified = db.Column(db.Boolean, nullable=False, default=False)
     grade = db.Column(db.Integer)
 
@@ -29,6 +32,17 @@ class User(UserMixin, db.Model):
         if not self.password:
             return False
         return check_password_hash(self.password, password)
+
+    def set_otp(self, otp: str) -> None:
+        self.otp = generate_password_hash(otp, method="scrypt", salt_length=16)
+        self.otp_creation = datetime.now(timezone.utc)
+
+    def check_otp(self, otp: str) -> bool:
+        if (datetime.now(timezone.utc) - self.otp_creation).total_seconds() // 60 > 30:
+            return False
+        if not self.otp:
+            return False
+        return check_password_hash(self.otp, otp)
 
     def is_active(self) -> bool:
         """User is active if account is verified (used by flask-login)."""

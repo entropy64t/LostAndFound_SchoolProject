@@ -1,5 +1,6 @@
 <nav>
     <ul>
+        {% if current_user.is_authenticated and current_user.account_verified %}
         <li><a href="{{ url_for('index') }}" class="{% if request.endpoint == 'index' %}active{% endif %}">
                 Home
             </a></li>
@@ -12,15 +13,20 @@
         <li><a href="{{ url_for('found') }}" class="{% if request.endpoint == 'found' %}active{% endif %}">
                 Found
             </a></li>
-        {% if current_user.is_authenticated %}
         <li><a href="{{ url_for('your_reports') }}"
                 class="{% if request.endpoint == 'your_reports' %}active{% endif %}">
                 Your Reports
             </a></li>
-        {% endif %}
         <li><a href="{{ url_for('new') }}" class="{% if request.endpoint == 'new' %}active{% endif %}">
                 +
-            </a></li>
+	    </a></li>
+        {% endif %}
+	{% if current_user.is_authenticated and not current_user.account_verified %}
+	<li><a href="{{ url_for('verify_account') }}"
+	       class="{% if request.endpoint == 'verify_account' %}active{% endif %}">
+			Verify account
+		</a></li>
+	{% endif %}
 
         {% if current_user.is_authenticated %}
         <li class="nav-right">

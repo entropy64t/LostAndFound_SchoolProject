@@ -10,15 +10,22 @@ from sqlalchemy import text
 from sqlalchemy.orm import Query
 
 from urllib.parse import urlparse
+import secrets
+import string
 
 from app import app, db, login_manager
 from models import Report, Grade, get_grade
 from user import User, get_user, find_by_email, create_user
 
+from verification import send_message_email, verify_domain
+
 @app.route("/new", methods=["GET", "POST"])
 @login_required
-def new():
+def new(): # TODO make sure the user is logged in and verified - also for POST request
     if request.method == "POST":
+        if not current_user.account_verified or not current_user.is_authenticated:
+            return redirect(url_for("index"))
+
         title = request.form['title']
         report_type = request.form['report-type']
         item_type = request.form['item-type']
@@ -52,6 +59,8 @@ def new():
         
         return redirect(url_for("all"))
 
+    if not current_user.account_verified or not current_user.is_authenticated:
+        return redirect(url_for("index"))
     locations_from_db = db.session.execute(text("SELECT * FROM locations;")).mappings().all()
     colours_from_db = db.session.execute(text("SELECT * FROM colours;")).mappings().all()
     categories_from_db = db.session.execute(text("SELECT * FROM categories;")).mappings().all()
@@ -114,6 +123,42 @@ def create_account():
     grades_from_db = db.session.execute(text("SELECT * FROM grades;")).mappings().all()
     return render_template("create_account.html", grade_list=grades_from_db)
 
+@app.route("/verification/", methods=["GET", "POST"])
+@login_required
+def verify_account():
+    if request.method == "POST":
+        receiver_address = request.form["verif_mail"]
+        if not verify_domain(receiver_address):
+            return redirect(url_for("verify_account", msg="wrongdomain"))
+        otp_plaintext = ""
+        for i in range(6): # OTP length
+            otp_plaintext += secrets.choice(string.digits)
+        current_user.set_otp(otp_plaintext)
+        db.session.commit()
+        send_message_email(receiver_address, otp_plaintext, current_user.email, current_user.display_name)
+        return redirect(url_for("check_verification"))
+
+
+    if verify_domain(current_user.email):
+        prefill = current_user.email
+    else:
+        prefill = ""
+    return render_template("verification/index.html", prefill=prefill)
+
+@app.route("/verification/check", methods=["GET", "POST"])
+@login_required
+def check_verification():
+    if request.method == "POST":
+        received_otp = request.form["otp"]
+        if not current_user.check_otp(received_otp):
+            return redirect(url_for("check_verification", msg="wrongotp"))
+
+        current_user.account_verified = True
+        db.session.commit()
+        return redirect(url_for("index"))
+
+    return render_template("verification/check.html")
+
 @app.route("/account", methods=["GET", "POST"])
 @login_required
 def account():
@@ -168,7 +213,10 @@ def index():
     users = User.query.all()
     return render_template("index.html", users=users)
 
-def render_reports(query: Query, template: str, view_all: bool = True):
+def render_reports(query: Query, template: str, view_all: bool = True): # TODO make sure the user is logged in and verified - also for POST request
+    if not current_user.account_verified or not current_user.is_authenticated:
+        return redirect(url_for("index"))
+
     # Fetch lookup tables for display
     authors = {row['id']: row['display_name'] for row in db.session.execute(text("SELECT id, display_name FROM users")).mappings().all()}
     categories = {row['id']: row['name'] for row in db.session.execute(text("SELECT id, name FROM categories;")).mappings().all()}
