@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-26 19:16+0200\n"
+"POT-Creation-Date: 2026-05-26 19:35+0200\n"
 "PO-Revision-Date: 2026-05-26 19:16+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: pl\n"
@@ -23,15 +23,18 @@ msgstr ""
 msgid "Home"
 msgstr "Strona Główna"
 
-#: templates/navbar.html:8
+#: templates/navbar.html:8 templates/report_render.html:7
+#: templates/report_render.html:23 templates/report_render.html:32
 msgid "All"
 msgstr "Wszystko"
 
 #: templates/navbar.html:11 templates/new.html:26
+#: templates/report_render.html:24
 msgid "Lost"
 msgstr "Zgubione"
 
 #: templates/navbar.html:14 templates/new.html:32
+#: templates/report_render.html:25
 msgid "Found"
 msgstr "Znalezione"
 
@@ -55,11 +58,11 @@ msgstr "Nowe Zgłoszenie"
 msgid "Report title"
 msgstr "Tytuł Zgłoszenia"
 
-#: templates/new.html:22
+#: templates/new.html:22 templates/report_render.html:21
 msgid "Report type"
 msgstr "Rodzaj"
 
-#: templates/new.html:38
+#: templates/new.html:38 templates/report_render.html:30
 msgid "Item type"
 msgstr "Zgubiony przedmiot"
 
@@ -67,7 +70,7 @@ msgstr "Zgubiony przedmiot"
 msgid "Item colour"
 msgstr "Kolor"
 
-#: templates/new.html:62
+#: templates/new.html:62 templates/report_render.html:80
 msgid "Last seen"
 msgstr "Ostatnio widziane"
 
@@ -75,7 +78,7 @@ msgstr "Ostatnio widziane"
 msgid "Found at"
 msgstr "Widziane w"
 
-#: templates/new.html:70
+#: templates/new.html:70 templates/report_render.html:89
 msgid "level"
 msgstr "piętro"
 
@@ -87,12 +90,81 @@ msgstr "Dodatkowe informacje"
 msgid "Create"
 msgstr "Utwórz"
 
-#: templates/new.html:item types
+#: templates/report_render.html:3 templates/report_render.html:71
+msgid "Colour"
+msgstr "Kolor"
+
+#: templates/report_render.html:39
+msgid "Apply"
+msgstr "Zatwierdź"
+
+#: templates/report_render.html:54
+msgid "By"
+msgstr "Przez"
+
+#: templates/report_render.html:57
+msgid "Posted"
+msgstr "Utworzono"
+
+#: templates/report_render.html:65
+msgid "Category"
+msgstr "Przedmiot"
+
+#: templates/report_render.html:87
+msgid "Location"
+msgstr "Sala"
+
+#: templates/report_render.html:92
+msgid "Unknown"
+msgstr "Nieokreślone"
+
+#: templates/report_render.html:102
+msgid "No description provided"
+msgstr "Brak dodatkowych informacji"
+
+#: templates/report_render.html:109
+msgid "Item image"
+msgstr "zdjęcie"
+
+#: templates/report_render.html:115
+msgid "View Details"
+msgstr "Więcej"
+
 msgid "Umbrella"
 msgstr "Parasol"
+
 msgid "Coat / Jacket"
 msgstr "Kurtka"
+
 msgid "Phone"
 msgstr "Telefon"
+
 msgid "Other"
 msgstr "Inne"
+
+msgid "Report Type"
+msgstr "Rodzaj"
+
+msgid "Black"
+msgstr "Czarny"
+
+msgid "White"
+msgstr "Biały"
+
+msgid "Beige"
+msgstr "Beżowy"
+
+msgid "Red"
+msgstr "Czerwony"
+
+msgid "Blue"
+msgstr "Niebieski"
+
+msgid "Green"
+msgstr "Zielony"
+
+msgid "Sky Blue"
+msgstr "Błękitny"
+
+msgid "Pink"
+msgstr "Różowy"
