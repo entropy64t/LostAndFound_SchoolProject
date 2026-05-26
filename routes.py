@@ -1,6 +1,6 @@
 from datetime import datetime, timezone
 
-from flask import Blueprint, render_template, request, redirect, url_for, abort
+from flask import Blueprint, render_template, request, redirect, url_for, abort, session
 from markupsafe import escape
 from enum import Enum
 from flask_login import LoginManager, login_required, login_user, logout_user, current_user
@@ -13,11 +13,13 @@ from urllib.parse import urlparse
 import secrets
 import string
 
-from app import app, db, login_manager
+from app import app, db, login_manager, babel
 from models import Report, Grade, get_grade
 from user import User, get_user, find_by_email, create_user
 
 from verification import send_message_email, verify_domain
+
+from flask_babel import gettext as lang
 
 @app.route("/new", methods=["GET", "POST"])
 @login_required
@@ -212,6 +214,14 @@ def index():
     # Pull all users from database
     users = User.query.all()
     return render_template("index.html", users=users)
+
+@app.route('/setlang/<lang>')
+def set_language(lang):
+    if lang in app.config['BABEL_SUPPORTED_LOCALES']:
+        session['lang'] = lang
+
+    # stay on current page
+    return redirect(request.referrer or url_for('home'))
 
 def render_reports(query: Query, template: str, view_all: bool = True): # TODO make sure the user is logged in and verified - also for POST request
     if not current_user.account_verified or not current_user.is_authenticated:

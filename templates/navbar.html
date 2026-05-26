@@ -2,38 +2,47 @@
     <ul>
         {% if current_user.is_authenticated and current_user.account_verified %}
         <li><a href="{{ url_for('index') }}" class="{% if request.endpoint == 'index' %}active{% endif %}">
-                Home
+                {{ lang("Home") }}
             </a></li>
         <li><a href="{{ url_for('all') }}" class="{% if request.endpoint == 'all' %}active{% endif %}">
-                All
+                {{ lang("All") }}
             </a></li>
         <li><a href="{{ url_for('lost') }}" class="{% if request.endpoint == 'lost' %}active{% endif %}">
-                Lost
+                {{ lang("Lost") }}
             </a></li>
         <li><a href="{{ url_for('found') }}" class="{% if request.endpoint == 'found' %}active{% endif %}">
-                Found
+                {{ lang("Found") }}
             </a></li>
         <li><a href="{{ url_for('your_reports') }}"
                 class="{% if request.endpoint == 'your_reports' %}active{% endif %}">
-                Your Reports
+                {{ lang("Your Reports") }}
             </a></li>
         <li><a href="{{ url_for('new') }}" class="{% if request.endpoint == 'new' %}active{% endif %}">
                 +
-	    </a></li>
+            </a></li>
         {% endif %}
-	{% if current_user.is_authenticated and not current_user.account_verified %}
-	<li><a href="{{ url_for('verify_account') }}"
-	       class="{% if request.endpoint == 'verify_account' %}active{% endif %}">
-			Verify account
-		</a></li>
-	{% endif %}
 
-        {% if current_user.is_authenticated %}
+        {% if current_user.is_authenticated and not current_user.account_verified %}
+        <li><a href="{{ url_for('verify_account') }}"
+                class="{% if request.endpoint == 'verify_account' %}active{% endif %}">
+                {{ lang("Verify account") }}
+            </a></li>
+        {% endif %}
+
+
         <li class="nav-right">
+            {% if current_user.is_authenticated %}
             <a href="{{ url_for('account') }}" class="{% if request.endpoint == 'account' %}active{% endif %}">{{
                 current_user.display_name }}</a>
-            <a href="{{ url_for('logout') }}" class="{% if request.endpoint == 'logout' %}active{% endif %}">Logout</a>
+            <a href="{{ url_for('logout') }}" class="{% if request.endpoint == 'logout' %}active{% endif %}"> {{
+                lang("Logout") }}</a>
+            {% endif %}
+            {% if session.get('lang') == 'pl' %}
+            <a href="{{ url_for('set_language', lang='en') }}">English</a>
+            {% else %}
+            <a href="{{ url_for('set_language', lang='pl') }}">Polski</a>
+            {% endif %}
         </li>
-        {% endif %}
+
     </ul>
 </nav>
