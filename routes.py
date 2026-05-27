@@ -98,7 +98,7 @@ def reset_password():
         if user != None:
             otp_plaintext = ""
             for i in range(16): # OTP length
-                otp_plaintext += secrets.choice(string.digits)
+                otp_plaintext += secrets.choice(string.digits + string.ascii_letters)
             pw_reset_url = url_for("check_pwreset", otp=otp_plaintext, email=receiver_address, _external=True)
             user.set_pwreset(otp_plaintext)
             db.session.commit()
@@ -242,9 +242,20 @@ def account():
     else:
         grade_name = "not set"
     grades_from_db = db.session.execute(text("SELECT * FROM grades;")).mappings().all()
-    return render_template("account.html", grade_id=current_user.grade, grade_name=grade_name, grade_list=grades_from_db)
+    return render_template("account/index.html", grade_id=current_user.grade, grade_name=grade_name, grade_list=grades_from_db)
 
-    # TODO Separate page for account deletion?
+@app.route("/account/delete", methods=['GET', 'POST'])
+@login_required
+def delete_account():
+    if request.method == "POST":
+        password = request.form["password"]
+        if not current_user.check_password(password):
+            return redirect(url_for("delete_account", msg="wrongpwd"))
+        db.session.delete(current_user)
+        db.session.commit()
+        return redirect(url_for("index"))
+
+    return render_template("account/delete.html")
 
 @app.route("/")
 @login_required
