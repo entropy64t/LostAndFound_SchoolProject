@@ -20,6 +20,8 @@ class User(UserMixin, db.Model):
     password = db.Column(db.String(255), nullable=False)
     otp = db.Column(db.String(255))
     otp_creation = db.Column(db.DateTime(timezone=True))
+    pwreset = db.Column(db.String(255))
+    pwreset_creation = db.Column(db.DateTime(timezone=True))
     account_verified = db.Column(db.Boolean, nullable=False, default=False)
     grade = db.Column(db.Integer)
 
@@ -43,6 +45,17 @@ class User(UserMixin, db.Model):
         if not self.otp:
             return False
         return check_password_hash(self.otp, otp)
+
+    def set_pwreset(self, otp: str) -> None:
+        self.pwreset = generate_password_hash(otp, method="scrypt", salt_length=16)
+        self.pwreset_creation = datetime.now(timezone.utc)
+    
+    def check_pwreset(self, otp: str) -> None:
+        if (datetime.now(timezone.utc) - self.pwreset_creation).total_seconds() // 60 > 30:
+            return False
+        if not self.pwreset:
+            return False
+        return check_password_hash(self.pwreset, otp)
 
     def is_active(self) -> bool:
         """User is active if account is verified (used by flask-login)."""

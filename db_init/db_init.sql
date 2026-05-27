@@ -22,6 +22,8 @@ CREATE TABLE users (
 	password text NOT NULL,
 	otp text,
 	otp_creation timestamptz,
+	pwreset text,
+	pwreset_creation timestamptz,
 	account_verified boolean NOT NULL,
 	grade integer REFERENCES grades(id)
 );

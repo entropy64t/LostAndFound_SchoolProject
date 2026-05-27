@@ -17,7 +17,7 @@ from app import app, db, login_manager, babel
 from models import Report, Grade, get_grade
 from user import User, get_user, find_by_email, create_user
 
-from verification import send_message_email, verify_domain
+from verification import send_message_email, send_pwreset, verify_domain
 
 from flask_babel import gettext as lang
 
@@ -89,6 +89,44 @@ def login():
 
         return redirect(next or url_for("index"))
     return render_template("login.html")
+
+@app.route('/reset', methods=['GET', 'POST'])
+def reset_password():
+    if request.method == "POST":
+        receiver_address = request.form["email"]
+        user = find_by_email(receiver_address)
+        if user != None:
+            otp_plaintext = ""
+            for i in range(16): # OTP length
+                otp_plaintext += secrets.choice(string.digits)
+            pw_reset_url = url_for("check_pwreset", otp=otp_plaintext, email=receiver_address, _external=True)
+            user.set_pwreset(otp_plaintext)
+            db.session.commit()
+            send_pwreset(receiver_address, pw_reset_url)
+        return redirect(url_for("reset_password", msg="sent"))
+
+    return render_template("pwreset/index.html")
+
+@app.route('/reset/link', methods=['GET', 'POST'])
+def check_pwreset():
+    if request.method == "POST":
+        email = request.args.get("email")
+        otp = request.args.get("otp")
+        password = request.form["password"]
+        password_repeat = request.form["password-repeat"]
+        if password != password_repeat:
+            return redirect(url_for("check_pwreset", msg="pwdnomatch", email=email, otp=otp))
+        user = find_by_email(email)
+        if user == None:
+            return redirect(url_for("reset_password"))
+        if not user.check_pwreset(otp):
+            return redirect(url_for("reset_password", msg="wrongotp"))
+        user.set_password(password)
+        db.session.commit()
+        login_user(user)
+        return redirect(url_for("index"))
+
+    return render_template("pwreset/check.html")
 
 @app.route('/logout', methods=['GET', 'POST'])
 @login_required

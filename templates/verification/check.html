@@ -4,7 +4,7 @@
 <head>
     {% include "common_head.html" %}
     <link rel="stylesheet" href="{{ url_for('static', filename='auth.css') }}">
-    <title>Lost&Found</title>
+    <title>Account verification</title>
 </head>
 
 <body>
@@ -20,7 +20,7 @@
                        	Verification code
 			<input type="text" name="otp" required>
                 </div>
-                <button type="submit" class="btn-primary">Login</button>
+                <button type="submit" class="btn-primary">Submit</button>
                 {% if request.args.get("msg") == "wrongotp" %}
 		    <p class="auth-fail-message">The entered code is incorrect or it has expired.</p>
 		{% endif %}
