@@ -27,6 +27,9 @@ class Report(db.Model):
     
     pickup_location = db.Column(db.Integer)
 
+def get_report(report_id: int) -> Report:
+    return Report.query.get(report_id)
+
 class Grade(db.Model):
     __tablename__ = "grades"
 
@@ -36,3 +39,39 @@ class Grade(db.Model):
 
 def get_grade(grade_id: int) -> Grade:
     return Grade.query.get(grade_id)
+
+class Category(db.Model):
+    __tablename__ = "categories"
+
+    id = db.Column(db.Integer, primary_key=True)
+    
+    name = db.Column(db.String())
+
+def get_category(category_id: int) -> Category:
+    return Category.query.get(category_id)
+
+class Colour(db.Model):
+    __tablename__ = "colours"
+
+    id = db.Column(db.Integer, primary_key=True)
+
+    name = db.Column(db.String())
+    display_name = db.Column(db.String())
+    colour_value = db.Column(db.Integer)
+
+def get_colour(colour_id: int) -> Colour:
+    return Colour.query.get(colour_id)
+
+class Location(db.Model):
+    __tablename__ = "locations"
+
+    id = db.Column(db.Integer, primary_key=True)
+
+    building_level = db.Column(db.Integer)
+    name = db.Column(db.String())
+
+    def location_string(self) -> str:
+        return self.name + " (level " + str(self.building_level) + ")"
+
+def get_location(location_id: int) -> Location:
+    return Location.query.get(location_id)

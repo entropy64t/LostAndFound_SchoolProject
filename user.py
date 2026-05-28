@@ -2,7 +2,7 @@ from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from app import db
 
-from models import Grade
+from models import Grade, get_grade
 
 from datetime import datetime, timezone
 
@@ -20,6 +20,8 @@ class User(UserMixin, db.Model):
     password = db.Column(db.String(255), nullable=False)
     otp = db.Column(db.String(255))
     otp_creation = db.Column(db.DateTime(timezone=True))
+    pwreset = db.Column(db.String(255))
+    pwreset_creation = db.Column(db.DateTime(timezone=True))
     account_verified = db.Column(db.Boolean, nullable=False, default=False)
     grade = db.Column(db.Integer)
 
@@ -44,6 +46,17 @@ class User(UserMixin, db.Model):
             return False
         return check_password_hash(self.otp, otp)
 
+    def set_pwreset(self, otp: str) -> None:
+        self.pwreset = generate_password_hash(otp, method="scrypt", salt_length=16)
+        self.pwreset_creation = datetime.now(timezone.utc)
+    
+    def check_pwreset(self, otp: str) -> None:
+        if (datetime.now(timezone.utc) - self.pwreset_creation).total_seconds() // 60 > 30:
+            return False
+        if not self.pwreset:
+            return False
+        return check_password_hash(self.pwreset, otp)
+
     def is_active(self) -> bool:
         """User is active if account is verified (used by flask-login)."""
         return bool(self.account_verified)
@@ -51,6 +64,13 @@ class User(UserMixin, db.Model):
     def get_id(self) -> str:
         """Return user ID as string (required by flask-login)."""
         return str(self.id)
+
+    def public_name(self) -> str: # Username + grade string for use in publicly visible report pages
+        out = str(self.display_name)
+        gr = get_grade(self.grade)
+        if gr != None:
+            out += " (" + gr.name + ")"
+        return out
 
 
 def get_user(user_id: int) -> User | None:

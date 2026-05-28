@@ -6,13 +6,13 @@
             <span class="filter-color-circle filter-color-circle-all"></span>
             <span class="filter-color-name">{{ lang("All") }}</span>
         </label>
-        {% for colour_id, colour_data in colours.items() %}
+        {% for colour in colours %}
         <label class="filter-color-option">
-            <input type="radio" name="color" value="{{ colour_id }}" {% if selected_colour==colour_id %}checked{% endif
+            <input type="radio" name="color" value="{{ colour.id }}" {% if selected_colour==colour.id %}checked{% endif
                 %}>
-            <span class="filter-color-circle" style="background-color: {{ colour_data['value'] }};"
-                title="{{ colour_data['name'] }}"></span>
-            <span class="filter-color-name">{{ lang(colour_data['display_name']) }}</span>
+            <span class="filter-color-circle" style="background-color: {{ colour.name }};"
+                title="{{ colour.display_name }}"></span>
+            <span class="filter-color-name">{{ lang(colour.display_name) }}</span>
         </label>
         {% endfor %}
     </div>
@@ -30,9 +30,9 @@
         {{ lang("Item type") }}:
         <select name="category">
             <option value="">{{ lang("All") }}</option>
-            {% for item_id, item_name in categories.items() %}
+            {% for category in categories %}
             <option value="{{ item_id }}" {% if selected_item==item_id %}selected{% endif %}>{{
-                lang(item_name) }}</option>
+                lang(category.name) }}</option>
             {% endfor %}
         </select>
     </label>
@@ -63,7 +63,7 @@
         <div class="report-details">
             {% if report.category %}
             <div class="detail-item">
-                <strong>{{ lang("Category") }}:</strong> {{ lang(categories.get(report.category, 'Unknown')) }}
+                <strong>{{ lang("Category") }}:</strong> {{ lang(get_category(report.category).name) }}
             </div>
             {% endif %}
 
@@ -71,8 +71,8 @@
             <div class="detail-item">
                 <strong>{{ lang("Colour") }}:</strong>
                 <div class="color-swatch"
-                    style="background-color: {{ colours.get(report.colour, {}).get('value', 'gray') }};"
-                    title="{{ colours.get(report.colour, {}).get('name', 'Unknown') }}"></div>
+                    style="background-color: {{ get_colour(report.colour) }};"
+                    title="{{ get_colour(report.colour).display_name }}"></div>
             </div>
             {% endif %}
 
@@ -113,7 +113,7 @@
         {% endif %}
 
         <div class="report-footer">
-            <a href="#" class="btn-view">{{ lang("View Details") }}</a>
+	<a href="/report/{{ report.id }}" class="btn-view">{{ lang("View Details") }}</a>
         </div>
     </div>
     {% endfor %}

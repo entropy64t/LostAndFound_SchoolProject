@@ -22,6 +22,8 @@ CREATE TABLE users (
 	password text NOT NULL,
 	otp text,
 	otp_creation timestamptz,
+	pwreset text,
+	pwreset_creation timestamptz,
 	account_verified boolean NOT NULL,
 	grade integer REFERENCES grades(id)
 );
@@ -49,7 +51,7 @@ CREATE TYPE reportType AS ENUM ('lost', 'found');
 CREATE TABLE reports (
 	id serial PRIMARY KEY,
 	creation_date timestamptz,
-	author integer REFERENCES users(id),
+	author integer REFERENCES users(id) ON DELETE CASCADE,
 	type reportType NOT NULL,
 
 	category integer REFERENCES categories(id),
@@ -60,7 +62,7 @@ CREATE TABLE reports (
 
 	last_seen timestamptz,
 	last_seen_location integer REFERENCES locations(id),
-	item_owner integer REFERENCES users(id),
+	item_owner integer REFERENCES users(id) ON DELETE SET NULL,
 	pickup_location integer REFERENCES locations(id)
 );
 

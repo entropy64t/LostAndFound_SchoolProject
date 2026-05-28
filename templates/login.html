@@ -9,7 +9,7 @@
 
 <body>
     <div class="container">
-        <h1>Lost&amp;Found</h1>
+    <h1><a class="heading-a" href="{{ url_for('index') }}">Lost&amp;Found</a></h1>
         <div class="auth-wrapper">
             <h1>Login</h1>
             <form class="auth-form" method="post">
@@ -32,6 +32,7 @@
             </form>
             <div class="auth-footer">
 		    <p>Don't have an account? <a href="{{ url_for('create_account', email=email, next=request.args.get('next')) }}">Create one</a></p>
+		    <p>Forgot your password? <a href="{{ url_for('reset_password') }}">Reset it</a></p>
             </div>
         </div>
     </div>

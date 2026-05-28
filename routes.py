@@ -14,10 +14,10 @@ import secrets
 import string
 
 from app import app, db, login_manager, babel
-from models import Report, Grade, get_grade
+from models import Report, get_report, Grade, get_grade, Category, get_category, Colour, get_colour, Location, get_location
 from user import User, get_user, find_by_email, create_user
 
-from verification import send_message_email, verify_domain
+from verification import send_message_email, send_pwreset, verify_domain
 
 from flask_babel import gettext as lang
 
@@ -64,8 +64,8 @@ def new(): # TODO make sure the user is logged in and verified - also for POST r
     if not current_user.account_verified or not current_user.is_authenticated:
         return redirect(url_for("index"))
     locations_from_db = db.session.execute(text("SELECT * FROM locations;")).mappings().all()
-    colours_from_db = db.session.execute(text("SELECT * FROM colours;")).mappings().all()
-    categories_from_db = db.session.execute(text("SELECT * FROM categories;")).mappings().all()
+    colours_from_db = Colour.query.all()
+    categories_from_db = Category.query.all()
 
     return render_template("new.html", category_list=categories_from_db, colour_list=colours_from_db, location_list=locations_from_db)
 
@@ -89,6 +89,44 @@ def login():
 
         return redirect(next or url_for("index"))
     return render_template("login.html")
+
+@app.route('/reset', methods=['GET', 'POST'])
+def reset_password():
+    if request.method == "POST":
+        receiver_address = request.form["email"]
+        user = find_by_email(receiver_address)
+        if user != None:
+            otp_plaintext = ""
+            for i in range(16): # OTP length
+                otp_plaintext += secrets.choice(string.digits + string.ascii_letters)
+            pw_reset_url = url_for("check_pwreset", otp=otp_plaintext, email=receiver_address, _external=True)
+            user.set_pwreset(otp_plaintext)
+            db.session.commit()
+            send_pwreset(receiver_address, pw_reset_url)
+        return redirect(url_for("reset_password", msg="sent"))
+
+    return render_template("pwreset/index.html")
+
+@app.route('/reset/link', methods=['GET', 'POST'])
+def check_pwreset():
+    if request.method == "POST":
+        email = request.args.get("email")
+        otp = request.args.get("otp")
+        password = request.form["password"]
+        password_repeat = request.form["password-repeat"]
+        if password != password_repeat:
+            return redirect(url_for("check_pwreset", msg="pwdnomatch", email=email, otp=otp))
+        user = find_by_email(email)
+        if user == None:
+            return redirect(url_for("reset_password"))
+        if not user.check_pwreset(otp):
+            return redirect(url_for("reset_password", msg="wrongotp"))
+        user.set_password(password)
+        db.session.commit()
+        login_user(user)
+        return redirect(url_for("index"))
+
+    return render_template("pwreset/check.html")
 
 @app.route('/logout', methods=['GET', 'POST'])
 @login_required
@@ -204,9 +242,20 @@ def account():
     else:
         grade_name = "not set"
     grades_from_db = db.session.execute(text("SELECT * FROM grades;")).mappings().all()
-    return render_template("account.html", grade_id=current_user.grade, grade_name=grade_name, grade_list=grades_from_db)
+    return render_template("account/index.html", grade_id=current_user.grade, grade_name=grade_name, grade_list=grades_from_db)
 
-    # TODO Separate page for account deletion?
+@app.route("/account/delete", methods=['GET', 'POST'])
+@login_required
+def delete_account():
+    if request.method == "POST":
+        password = request.form["password"]
+        if not current_user.check_password(password):
+            return redirect(url_for("delete_account", msg="wrongpwd"))
+        db.session.delete(current_user)
+        db.session.commit()
+        return redirect(url_for("index"))
+
+    return render_template("account/delete.html")
 
 @app.route("/")
 @login_required
@@ -228,16 +277,9 @@ def render_reports(query: Query, template: str, view_all: bool = True): # TODO m
         return redirect(url_for("index"))
 
     # Fetch lookup tables for display
-    authors = {row['id']: row['display_name'] for row in db.session.execute(text("SELECT id, display_name FROM users")).mappings().all()}
-    categories = {row['id']: row['name'] for row in db.session.execute(text("SELECT id, name FROM categories;")).mappings().all()}
-    colours = {
-        row['id']: {
-            'name': row['name'],
-            'display_name': row['display_name'],
-            'value': row.get('colour_value') or row['name']
-        }
-        for row in db.session.execute(text("SELECT id, name, display_name, colour_value FROM colours;")).mappings().all()
-    }
+    authors = {u.id: u.public_name() for u in User.query.all()}
+    categories = Category.query.all()
+    colours = Colour.query.all()
     locations = {row['id']: (row['building_level'], row['name']) for row in db.session.execute(text("SELECT id, name, building_level FROM locations;")).mappings().all()}
     
     selected_colour = request.args.get('color', type=int)
@@ -262,7 +304,10 @@ def render_reports(query: Query, template: str, view_all: bool = True): # TODO m
         selected_item=selected_item,
         selected_type=selected_type,
         locations=locations,
-        view_all=view_all
+        view_all=view_all,
+        get_category=get_category,
+        get_colour=get_colour,
+        get_location=get_location
     )
 
 @app.route("/all")
@@ -293,6 +338,49 @@ def your_reports():
 def found():
     query = Report.query.filter_by(report_type="found")
     return render_reports(query, "found.html", view_all=False)
+
+@app.route("/report/<report_id>")
+@login_required
+def report_details(report_id):
+    report = get_report(report_id)
+
+    title = report.title
+
+    report_type = report.report_type
+    author = get_user(report.author).public_name()
+    creation_date = report.creation_date.strftime('%Y-%m-%d %H:%M')
+
+    category = get_category(report.category).name
+    colour = get_colour(report.colour).display_name
+    description = report.description
+    
+    # TODO Images
+    
+    last_seen = report.last_seen.strftime('%Y-%m-%d %H:%M')
+    last_seen_location = get_location(report.last_seen_location).location_string()
+
+    item_owner = ""
+    pickup_location = ""
+    if report_type == "found":
+        if report.item_owner:
+            item_owner = get_user(report.item_owner).public_name()
+        if report.pickup_location:
+            pickup_location = get_location(report.pickup_location).location_string
+    
+    return render_template("report/index.html", report_type=report_type, title=title, created=creation_date, author=author, category=category, colour=colour, description=description, last_seen=last_seen, last_seen_location=last_seen_location, item_owner=item_owner, pickup_location=pickup_location, author_object=get_user(report.author), report_id=report_id,
+                           get_category=get_category, get_colour=get_colour, get_location=get_location)
+
+@app.route("/report/<report_id>/delete", methods=['GET', 'POST'])
+@login_required
+def delete_report(report_id):
+    if request.method == "POST":
+        report = get_report(report_id)
+        if get_user(report.author) != current_user:
+            return redirect(url_for("report_details", report_id=report_id))
+        db.session.delete(report)
+        db.session.commit()
+        return redirect(url_for("index"))
+    return redirect(url_for("report_details", report_id=report_id))
 
 @login_manager.user_loader
 def load_user(user_id: str):

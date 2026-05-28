@@ -6,10 +6,10 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='report_list.css') }}">
     <title>
         {% if session.get('lang') == 'pl' %}
-        Zgłoszenia użytkownika {{ authors[current_user.id].removesuffix("@v-lo.krakow.pl") }} {# TODO fix to use
+        Zgłoszenia użytkownika {{ current_user.display_name }} {# TODO fix to use
         username#}
         {% else %}
-        {{ authors[current_user.id].removesuffix("@v-lo.krakow.pl") }}'s Reports {# TODO fix to use username#}
+        {{ current_user.display_name }}'s Reports {# TODO fix to use username#}
         {% endif %} - Lost&Found</title>
 </head>
 
@@ -19,10 +19,10 @@
     <div class="container">
         <h1>
             {% if session.get('lang') == 'pl' %}
-            Zgłoszenia użytkownika {{ authors[current_user.id].removesuffix("@v-lo.krakow.pl") }} {# TODO fix to use
+            Zgłoszenia użytkownika {{ current_user.display_name }} {# TODO fix to use
             username#}
             {% else %}
-            {{ authors[current_user.id].removesuffix("@v-lo.krakow.pl") }}'s Reports {# TODO fix to use username#}
+            {{ current_user.display_name }}'s Reports {# TODO fix to use username#}
             {% endif %}
         </h1>
         {% include "report_render.html" %}
