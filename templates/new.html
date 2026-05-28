@@ -12,7 +12,9 @@
 
     <div class="container">
         <h1>{{ lang("New Report") }}</h1>
+
         <form class="content" id="create-post" method="post">
+
             <label id="title">
                 {{ lang("Report title") }} {% include "required.html" %}
                 <input type="text" name="title" required>
@@ -20,12 +22,14 @@
 
             <fieldset class="report-type">
                 <legend>{{ lang("Report type") }} {% include "required.html" %}</legend>
+
                 <div class="radio-row">
                     <label class="radio-option">
                         <input type="radio" name="report-type" value="lost" required>
                         <span>{{ lang("Lost") }}</span>
                     </label>
                 </div>
+
                 <div class="radio-row">
                     <label class="radio-option">
                         <input type="radio" name="report-type" value="found" required>
@@ -36,6 +40,7 @@
 
             <fieldset class="item-type">
                 <legend>{{ lang("Item type") }} {% include "required.html" %}</legend>
+
                 {% for category in category_list %}
                 <div class="radio-row">
                     <label class="radio-option">
@@ -48,6 +53,7 @@
 
             <fieldset>
                 <legend>{{ lang("Item colour") }} {% include "required.html" %}</legend>
+
                 <div class="color-picker">
                     {% for color in colour_list %}
                     <label class="color-option">
@@ -58,16 +64,19 @@
                 </div>
             </fieldset>
 
-            <label>
-                {{ lang("Last seen") }}
+            <!-- Dynamic datetime label -->
+            <label id="datetime-label">
+                {{ lang("Last seen at") }}
                 <input type="datetime-local" name="last-seen" required>
             </label>
 
-            <label>
-                {{ lang("Found at") }}
+            <!-- Dynamic location label -->
+            <label id="location-label">
+                {{ lang("Lost in") }}
                 <select name="locations">
                     {% for loc in location_list %}
-                    <option value="{{ loc['id'] }}">{{ loc['name'] }} ({{ lang("level") }} {{ loc['building_level'] }})
+                    <option value="{{ loc['id'] }}">
+                        {{ loc['name'] }} ({{ lang("level") }} {{ loc['building_level'] }})
                     </option>
                     {% endfor %}
                 </select>
@@ -79,8 +88,38 @@
             </label>
 
             <button type="submit">{{ lang("Create") }}</button>
+
         </form>
     </div>
+
+    <script>
+        const reportTypeInputs = document.querySelectorAll('input[name="report-type"]');
+
+        const datetimeLabel = document.getElementById('datetime-label');
+        const locationLabel = document.getElementById('location-label');
+
+        function updateLabels() {
+            const selected = document.querySelector('input[name="report-type"]:checked');
+
+            if (!selected) return;
+
+            if (selected.value === 'lost') {
+                datetimeLabel.childNodes[0].textContent = '{{ lang("Last seen at") }} ';
+                locationLabel.childNodes[0].textContent = '{{ lang("Lost in") }} ';
+            }
+
+            if (selected.value === 'found') {
+                datetimeLabel.childNodes[0].textContent = '{{ lang("Found at") }} ';
+                locationLabel.childNodes[0].textContent = '{{ lang("Found in") }} ';
+            }
+        }
+
+        reportTypeInputs.forEach(input => {
+            input.addEventListener('change', updateLabels);
+        });
+
+        updateLabels();
+    </script>
 
 </body>
 
