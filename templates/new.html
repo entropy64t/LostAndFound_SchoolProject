@@ -39,8 +39,8 @@
                 {% for category in category_list %}
                 <div class="radio-row">
                     <label class="radio-option">
-                        <input type="radio" name="item-type" value="{{ category['id'] }}" required>
-                        <span>{{ lang(category['name']) }}</span>
+                        <input type="radio" name="item-type" value="{{ category.id }}" required>
+                        <span>{{ lang(category.name) }}</span>
                     </label>
                 </div>
                 {% endfor %}
@@ -51,8 +51,8 @@
                 <div class="color-picker">
                     {% for color in colour_list %}
                     <label class="color-option">
-                        <input type="radio" name="item-color" value="{{ color['id'] }}" required>
-                        <span class="color-circle" style="background: {{ color['name'] }};"></span>
+                        <input type="radio" name="item-color" value="{{ color.id }}" required>
+                        <span class="color-circle" style="background: {{ color.name }};"></span>
                     </label>
                     {% endfor %}
                 </div>

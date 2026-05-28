@@ -201,3 +201,7 @@ h2 {
 #create-post #title {
     font-weight: bold;
 }
+
+.description {
+	white-space: pre-wrap;
+}

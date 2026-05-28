@@ -14,7 +14,7 @@ import secrets
 import string
 
 from app import app, db, login_manager, babel
-from models import Report, Grade, get_grade
+from models import Report, Grade, get_grade, Category, get_category, Colour, get_colour, Location, get_location
 from user import User, get_user, find_by_email, create_user
 
 from verification import send_message_email, send_pwreset, verify_domain
@@ -64,8 +64,8 @@ def new(): # TODO make sure the user is logged in and verified - also for POST r
     if not current_user.account_verified or not current_user.is_authenticated:
         return redirect(url_for("index"))
     locations_from_db = db.session.execute(text("SELECT * FROM locations;")).mappings().all()
-    colours_from_db = db.session.execute(text("SELECT * FROM colours;")).mappings().all()
-    categories_from_db = db.session.execute(text("SELECT * FROM categories;")).mappings().all()
+    colours_from_db = Colour.query.all()
+    categories_from_db = Category.query.all()
 
     return render_template("new.html", category_list=categories_from_db, colour_list=colours_from_db, location_list=locations_from_db)
 
@@ -278,15 +278,8 @@ def render_reports(query: Query, template: str, view_all: bool = True): # TODO m
 
     # Fetch lookup tables for display
     authors = {u.id: u.public_name() for u in User.query.all()}
-    categories = {row['id']: row['name'] for row in db.session.execute(text("SELECT id, name FROM categories;")).mappings().all()}
-    colours = {
-        row['id']: {
-            'name': row['name'],
-            'display_name': row['display_name'],
-            'value': row.get('colour_value') or row['name']
-        }
-        for row in db.session.execute(text("SELECT id, name, display_name, colour_value FROM colours;")).mappings().all()
-    }
+    categories = Category.query.all()
+    colours = Colour.query.all()
     locations = {row['id']: (row['building_level'], row['name']) for row in db.session.execute(text("SELECT id, name, building_level FROM locations;")).mappings().all()}
     
     selected_colour = request.args.get('color', type=int)
@@ -311,7 +304,10 @@ def render_reports(query: Query, template: str, view_all: bool = True): # TODO m
         selected_item=selected_item,
         selected_type=selected_type,
         locations=locations,
-        view_all=view_all
+        view_all=view_all,
+        get_category=get_category,
+        get_colour=get_colour,
+        get_location=get_location
     )
 
 @app.route("/all")
@@ -342,6 +338,37 @@ def your_reports():
 def found():
     query = Report.query.filter_by(report_type="found")
     return render_reports(query, "found.html", view_all=False)
+
+@app.route("/report/<report_id>")
+@login_required
+def report_details(report_id):
+    report = Report.query.get(report_id)
+
+    title = report.title
+
+    report_type = report.report_type
+    author = get_user(report.author).public_name()
+    creation_date = report.creation_date.strftime('%Y-%m-%d %H:%M')
+
+    category = get_category(report.category).name
+    colour = get_colour(report.colour).display_name
+    description = report.description
+    
+    # TODO Images
+    
+    last_seen = report.last_seen.strftime('%Y-%m-%d %H:%M')
+    last_seen_location = get_location(report.last_seen_location).location_string()
+
+    item_owner = ""
+    pickup_location = ""
+    if report_type == "found":
+        if report.item_owner:
+            item_owner = get_user(report.item_owner).public_name()
+        if report.pickup_location:
+            pickup_location = get_location(report.pickup_location).location_string
+    
+    return render_template("report.html", report_type=report_type, title=title, created=creation_date, author = author, category=category, colour=colour, description=description, last_seen=last_seen, last_seen_location=last_seen_location, item_owner=item_owner, pickup_location=pickup_location,
+                           get_category=get_category, get_colour=get_colour, get_location=get_location)
 
 @login_manager.user_loader
 def load_user(user_id: str):

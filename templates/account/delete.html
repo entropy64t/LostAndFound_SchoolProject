@@ -18,7 +18,7 @@
 		    <div class="form-group">
 		        <label>
 				Enter your password to delete your account {% include "required.html" %}<br>
-			    <input type="password" placeholder="Password" name="password">
+			    <input type="password" placeholder="Password" name="password" required>
 			</label>
 		    {% if request.args.get("msg") == "wrongpwd" %}
 		    	<p class="auth-fail-message">Wrong password</p>
