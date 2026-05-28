@@ -205,3 +205,7 @@ h2 {
 .description {
 	white-space: pre-wrap;
 }
+
+.heading-a {
+	color: black;
+}

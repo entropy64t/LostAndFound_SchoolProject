@@ -14,7 +14,7 @@ import secrets
 import string
 
 from app import app, db, login_manager, babel
-from models import Report, Grade, get_grade, Category, get_category, Colour, get_colour, Location, get_location
+from models import Report, get_report, Grade, get_grade, Category, get_category, Colour, get_colour, Location, get_location
 from user import User, get_user, find_by_email, create_user
 
 from verification import send_message_email, send_pwreset, verify_domain
@@ -342,7 +342,7 @@ def found():
 @app.route("/report/<report_id>")
 @login_required
 def report_details(report_id):
-    report = Report.query.get(report_id)
+    report = get_report(report_id)
 
     title = report.title
 
@@ -367,8 +367,20 @@ def report_details(report_id):
         if report.pickup_location:
             pickup_location = get_location(report.pickup_location).location_string
     
-    return render_template("report.html", report_type=report_type, title=title, created=creation_date, author = author, category=category, colour=colour, description=description, last_seen=last_seen, last_seen_location=last_seen_location, item_owner=item_owner, pickup_location=pickup_location,
+    return render_template("report/index.html", report_type=report_type, title=title, created=creation_date, author=author, category=category, colour=colour, description=description, last_seen=last_seen, last_seen_location=last_seen_location, item_owner=item_owner, pickup_location=pickup_location, author_object=get_user(report.author), report_id=report_id,
                            get_category=get_category, get_colour=get_colour, get_location=get_location)
+
+@app.route("/report/<report_id>/delete", methods=['GET', 'POST'])
+@login_required
+def delete_report(report_id):
+    if request.method == "POST":
+        report = get_report(report_id)
+        if get_user(report.author) != current_user:
+            return redirect(url_for("report_details", report_id=report_id))
+        db.session.delete(report)
+        db.session.commit()
+        return redirect(url_for("index"))
+    return redirect(url_for("report_details", report_id=report_id))
 
 @login_manager.user_loader
 def load_user(user_id: str):

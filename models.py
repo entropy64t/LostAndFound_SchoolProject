@@ -27,6 +27,9 @@ class Report(db.Model):
     
     pickup_location = db.Column(db.Integer)
 
+def get_report(report_id: int) -> Report:
+    return Report.query.get(report_id)
+
 class Grade(db.Model):
     __tablename__ = "grades"
 
