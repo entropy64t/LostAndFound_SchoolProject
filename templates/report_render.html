@@ -70,8 +70,7 @@
             {% if report.colour %}
             <div class="detail-item">
                 <strong>{{ lang("Colour") }}:</strong>
-                <div class="color-swatch"
-                    style="background-color: {{ get_colour(report.colour) }};"
+                <div class="color-swatch" style="background-color: {{ get_colour(report.colour) }};"
                     title="{{ get_colour(report.colour).display_name }}"></div>
             </div>
             {% endif %}
@@ -104,6 +103,7 @@
             {% endif %}
         </div>
 
+        {#
         {% if report.image_urls %}
         <div class="report-images">
             {% for img_url in report.image_urls.split(',') %}
@@ -111,9 +111,10 @@
             {% endfor %}
         </div>
         {% endif %}
+        #}
 
         <div class="report-footer">
-	<a href="/report/{{ report.id }}" class="btn-view">{{ lang("View Details") }}</a>
+            <a href="/report/{{ report.id }}" class="btn-view">{{ lang("View Details") }}</a>
         </div>
     </div>
     {% endfor %}
