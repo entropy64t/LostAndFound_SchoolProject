@@ -32,7 +32,7 @@ def new(): # TODO make sure the user is logged in and verified - also for POST r
         report_type = request.form['report-type']
         item_type = request.form['item-type']
         item_color = request.form['item-color']
-        last_seen_str = request.form.get('last-seen')
+        last_seen_str = request.form['last-seen']
         location_id = request.form['locations']
         report_content = request.form['report-content']
         author = current_user.id
@@ -343,12 +343,14 @@ def found():
 @login_required
 def report_details(report_id):
     report = get_report(report_id)
+    print(report)
 
     title = report.title
 
     report_type = report.report_type
     author = get_user(report.author).public_name()
-    creation_date = report.creation_date.strftime('%Y-%m-%d %H:%M')
+
+    creation_date = report.creation_date.strftime('%B %d, %Y at %H:%M')
 
     category = get_category(report.category).name
     colour = get_colour(report.colour).display_name
@@ -356,7 +358,10 @@ def report_details(report_id):
     
     # TODO Images
     
-    last_seen = report.last_seen.strftime('%Y-%m-%d %H:%M')
+    last_seen_dt: datetime = report.last_seen
+    last_seen = ""
+    if report.last_seen:
+        last_seen = last_seen_dt.strftime('%B %d, %Y at %H:%M')
     last_seen_location = get_location(report.last_seen_location).location_string()
 
     item_owner = ""

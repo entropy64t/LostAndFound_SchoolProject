@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-26 20:03+0200\n"
+"POT-Creation-Date: 2026-05-28 21:50+0200\n"
 "PO-Revision-Date: 2026-05-26 19:16+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: pl\n"
@@ -18,30 +18,6 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
-
-#: templates/account.html:13
-msgid "My account"
-msgstr "Moje Konto"
-
-#: templates/account.html:16
-msgid "Manage your account here."
-msgstr "Zarządzaj kontem"
-
-#: templates/account.html:17
-msgid "E-mail address"
-msgstr "Adres e-mail"
-
-#: templates/account.html:18
-msgid "Grade"
-msgstr "Klasa"
-
-#: templates/account.html:21
-msgid "Account Verified"
-msgstr "Konto zweryfikowane"
-
-#: templates/account.html:23
-msgid "Account NOT Verified"
-msgstr "Konto NIE zweryfikowane"
 
 #: templates/all.html:14
 msgid "All Items"
@@ -64,12 +40,12 @@ msgstr "Strona Główna"
 msgid "All"
 msgstr "Wszystko"
 
-#: templates/navbar.html:11 templates/new.html:26
+#: templates/navbar.html:11 templates/new.html:29
 #: templates/report_render.html:24
 msgid "Lost"
 msgstr "Zgubione"
 
-#: templates/navbar.html:14 templates/new.html:32
+#: templates/navbar.html:14 templates/new.html:36
 #: templates/report_render.html:25
 msgid "Found"
 msgstr "Znalezione"
@@ -90,41 +66,49 @@ msgstr "Wyloguj się"
 msgid "New Report"
 msgstr "Nowe Zgłoszenie"
 
-#: templates/new.html:17
+#: templates/new.html:19
 msgid "Report title"
 msgstr "Tytuł Zgłoszenia"
 
-#: templates/new.html:22 templates/report_render.html:21
+#: templates/new.html:24 templates/report_render.html:21
 msgid "Report type"
 msgstr "Kategoria"
 
-#: templates/new.html:38 templates/report_render.html:30
+#: templates/new.html:42 templates/report_render.html:30
 msgid "Item type"
 msgstr "Rodzaj Przedmiotu"
 
-#: templates/new.html:50
+#: templates/new.html:55
 msgid "Item colour"
 msgstr "Kolor"
 
-#: templates/new.html:62 templates/report_render.html:81
-msgid "Last seen"
+#: templates/new.html:69 templates/new.html:107
+msgid "Last seen at"
 msgstr "Ostatnio widziane"
 
-#: templates/new.html:67
-msgid "Found at"
-msgstr "Widziane w"
+#: templates/new.html:75 templates/new.html:108
+msgid "Lost in"
+msgstr "Zgubione w"
 
-#: templates/new.html:70 templates/report_render.html:90
+#: templates/new.html:79 templates/report_render.html:89
 msgid "level"
 msgstr "piętro"
 
-#: templates/new.html:77
+#: templates/new.html:86
 msgid "Additional content"
 msgstr "Dodatkowe informacje"
 
-#: templates/new.html:81
+#: templates/new.html:90
 msgid "Create"
 msgstr "Utwórz"
+
+#: templates/new.html:112
+msgid "Found at"
+msgstr "Widziane w"
+
+#: templates/new.html:113
+msgid "Found in"
+msgstr "Znalezione w"
 
 #: templates/report_render.html:3 templates/report_render.html:72
 msgid "Colour"
@@ -146,26 +130,104 @@ msgstr "Utworzono"
 msgid "Category"
 msgstr "Przedmiot"
 
-#: templates/report_render.html:88
+#: templates/report_render.html:80
+msgid "Last seen"
+msgstr "Ostatnio widziane"
+
+#: templates/report_render.html:87
 msgid "Location"
 msgstr "Sala"
 
-#: templates/report_render.html:93
+#: templates/report_render.html:92
 msgid "Unknown"
 msgstr "Nieokreślone"
 
-#: templates/report_render.html:103
+#: templates/report_render.html:102
 msgid "No description provided"
 msgstr "Brak dodatkowych informacji"
 
-#: templates/report_render.html:110
-#, fuzzy
-msgid "Item image"
-msgstr "zdjęcie"
-
-#: templates/report_render.html:116
+#: templates/report_render.html:117
 msgid "View Details"
 msgstr "Więcej"
+
+#: templates/account/index.html:13
+msgid "My account"
+msgstr "Moje Konto"
+
+#: templates/account/index.html:16
+msgid "Manage your account here."
+msgstr "Zarządzaj kontem"
+
+#: templates/account/index.html:17
+msgid "E-mail address"
+msgstr "Adres e-mail"
+
+#: templates/account/index.html:18
+msgid "Grade"
+msgstr "Klasa"
+
+#: templates/account/index.html:21
+msgid "Account Verified"
+msgstr "Konto zweryfikowane"
+
+#: templates/account/index.html:23
+msgid "Account NOT Verified"
+msgstr "Konto NIE zweryfikowane"
+
+#: templates/account/index.html:27
+msgid "Update personal data"
+msgstr "Zmień dane konta"
+
+#: templates/account/index.html:31
+msgid "Change name"
+msgstr "Zmień nazwę użytkownika"
+
+#: templates/account/index.html:38
+msgid "Change grade"
+msgstr "Zmień klasę"
+
+#: templates/account/index.html:54
+msgid "Change password"
+msgstr "Zmień hasło"
+
+#: templates/account/index.html:55
+msgid "New password"
+msgstr "Nowe hasło"
+
+#: templates/account/index.html:56
+msgid "Repeat new password"
+msgstr "Powtórz nowe hasło"
+
+#: templates/account/index.html:58
+msgid "Old password"
+msgstr "Hasło"
+
+#: templates/account/index.html:61
+msgid "Passwords don't match"
+msgstr "Podane hasła są różne"
+
+#: templates/account/index.html:63
+msgid "Wrong old password"
+msgstr "Nieprawidłowe hasło"
+
+#: templates/account/index.html:69
+msgid "Change e-mail (this will be your new login)"
+msgstr "Zmień e-mail (to będzie Twój nowy login)"
+
+#: templates/account/index.html:74
+msgid "Emails don't match"
+msgstr "E-maile są różne"
+
+#: templates/account/index.html:78
+msgid "Change"
+msgstr "Zmień"
+
+#: templates/account/index.html:81
+msgid "Delete account"
+msgstr "Usuwanie konta"
+
+msgid "Item image"
+msgstr "zdjęcie"
 
 msgid "Umbrella"
 msgstr "Parasol"

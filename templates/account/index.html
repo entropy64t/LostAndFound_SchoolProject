@@ -13,9 +13,9 @@
         <h1>{{ lang("My account") }}</h1>
         <div class="content">
             <h2>{{ current_user.display_name }}</h2>
-            <p>{{ lang("Manage your account here.") }}</p>
-            <p>{{ lang("E-mail address") }}: {{ current_user.email }}</p>
-            <p>{{ lang("Grade") }}: {{ grade_name }}</p>
+            <p><strong>{{ lang("Manage your account here.") }}</strong></p>
+            <p><strong>{{ lang("E-mail address") }}:</strong> {{ current_user.email }}</p>
+            <p><strong>{{ lang("Grade") }}:</strong> {{ grade_name }}</p>
             <p>
                 {% if current_user.account_verified %}
                 <span style="color: green;">&#10004; {{ lang("Account Verified") }}</span>
@@ -24,18 +24,18 @@
                 {% endif %}
             </p>
 
-            <h3>Update personal data</h3>
+            <h3>{{ lang("Update personal data") }}</h3>
             <form method="post">
                 <div class="form-group">
                     <label>
-                        Change name:<br>
+                        {{ lang("Change name") }}:<br>
                         <input type="text" name="display_name" value="{{ current_user.display_name }}" required>
                     </label>
                 </div>
                 <br><br>
                 <div class="form-group">
                     <label>
-                        Change grade:<br>
+                        {{ lang("Change grade") }}:<br>
                         <select name="grade">
                             <option value="">-- Select --</option>
                             {% for grade in grade_list %}
@@ -51,33 +51,34 @@
                 <br><br>
                 <div class="form-group">
                     <label>
-                        Change password:<br>
-                        <input type="password" placeholder="New password" name="new_password">
-                        <input type="password" placeholder="Repeat new password" name="new_password-repeat">
-                        <input type="password" placeholder="Old password" name="password">
+                        {{ lang("Change password") }}:<br>
+                        <input type="password" placeholder="{{ lang('New password') }}" name="new_password">
+                        <input type="password" placeholder="{{ lang('Repeat new password') }}"
+                            name="new_password-repeat">
+                        <input type="password" placeholder="{{ lang('Old password') }}" name="password">
                     </label>
                     {% if request.args.get("msg") == "pwdnomatch" %}
-                    <p class="auth-fail-message">Passwords don't match</p>
+                    <p class="auth-fail-message">{{ lang("Passwords don't match") }}</p>
                     {% elif request.args.get("msg") == "wrongpwd" %}
-                    <p class="auth-fail-message">Wrong old password</p>
+                    <p class="auth-fail-message">{{ lang("Wrong old password") }}</p>
                     {% endif %}
                 </div>
                 <br><br>
                 <div class="form-group">
                     <label>
-                        Change email: (this will be your new login)<br>
+                        {{ lang("Change e-mail (this will be your new login)") }}:<br>
                         <input type="email" placeholder="New email" name="new_email">
                         <input type="email" placeholder="Repeat new email" name="new_email-repeat">
                     </label>
                     {% if request.args.get("email_msg") == "emailnomatch" %}
-                    <p class="auth-fail-message">Emails don't match</p>
+                    <p class="auth-fail-message">{{ lang("Emails don't match") }}</p>
                     {% endif %}
                 </div>
                 <br><br>
-                <button type="submit" class="btn-primary">Change</button>
+                <button type="submit" class="btn-primary">{{ lang("Change") }}</button>
             </form>
             <br><br>
-            <a href="/account/delete">Delete account</a>
+            <a href="/account/delete">{{ lang("Delete account") }}</a>
         </div>
     </div>
 

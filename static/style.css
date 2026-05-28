@@ -98,7 +98,12 @@ h2 {
 #create-post input[type="email"],
 #create-post input[type="datetime-local"],
 #create-post textarea,
-#create-post select {
+#create-post select,
+.content input[type="text"],
+.content input[type="password"],
+.content input[type="email"],
+.content input[type="datetime-local"],
+.content select {
     width: 100%;
     padding: 12px 14px;
     margin-top: 8px;
@@ -179,7 +184,9 @@ h2 {
 }
 
 #create-post button,
-#create-post input[type="submit"] {
+#create-post input[type="submit"],
+.content button,
+.content input[type="submit"] {
     align-self: start;
     padding: 12px 22px;
     border: none;
@@ -203,9 +210,9 @@ h2 {
 }
 
 .description {
-	white-space: pre-wrap;
+    white-space: pre-wrap;
 }
 
 .heading-a {
-	color: black;
+    color: black;
 }
