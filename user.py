@@ -2,7 +2,7 @@ from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from app import db
 
-from models import Grade
+from models import Grade, get_grade
 
 from datetime import datetime, timezone
 
@@ -64,6 +64,13 @@ class User(UserMixin, db.Model):
     def get_id(self) -> str:
         """Return user ID as string (required by flask-login)."""
         return str(self.id)
+
+    def public_name(self) -> str: # Username + grade string for use in publicly visible report pages
+        out = str(self.display_name)
+        gr = get_grade(self.grade)
+        if gr != None:
+            out += " (" + gr.name + ")"
+        return out
 
 
 def get_user(user_id: int) -> User | None:

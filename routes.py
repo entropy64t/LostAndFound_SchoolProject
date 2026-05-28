@@ -277,7 +277,7 @@ def render_reports(query: Query, template: str, view_all: bool = True): # TODO m
         return redirect(url_for("index"))
 
     # Fetch lookup tables for display
-    authors = {row['id']: row['display_name'] for row in db.session.execute(text("SELECT id, display_name FROM users")).mappings().all()}
+    authors = {u.id: u.public_name() for u in User.query.all()}
     categories = {row['id']: row['name'] for row in db.session.execute(text("SELECT id, name FROM categories;")).mappings().all()}
     colours = {
         row['id']: {
