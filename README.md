@@ -1,11 +1,9 @@
 # LostAndFound
-## Postgres database setup
-- ```$ sudo -u postgres -i```
-- - ```$ psql```
-- - - ```ALTER USER postgres WITH PASSWORD 'postgres291830';```
-- - - ```\q```
-- ```$ createdb LostAndFound```
-- ```$ psql -d LostAndFound -f db_init/db_init.sql```
-- ```$ psql -d LostAndFound -f db_init/sample_colours.sql```
-- ```$ psql -d LostAndFound -f db_init/sample_locations.sql```
-- ```$ psql -d LostAndFound -f db_init/sample_categories.sql```
+
+## Setup
+ - create a venv and install requirements.txt
+ - Postgres database setup in `useful_cmds/db_setup.sh`
+ - Create a `server_secrets.py` file from the template
+   - `sender_email` an email
+   - `sender_password` password (for gmail generated in `My account > Security&sign-in > 2FA > App passwords`)
+ - setup babel (`useful_cmds/babel_init.sh`) and compile messages.po (`$> pybabel compile -d translations`)
