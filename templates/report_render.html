@@ -1,3 +1,5 @@
+{% if filter %}
+
 <form class="report-filter" method="get">
     <div class="filter-color-picker">
         <span class="filter-label">{{ lang("Colour") }}:</span>
@@ -39,6 +41,8 @@
     <button type="submit">{{ lang("Apply") }}</button>
 </form>
 
+{% endif %}
+
 <div class="report-list">
 
 
@@ -58,6 +62,10 @@
             <span class="meta-item"><strong>{{ lang("Posted") }}:</strong> {{ report.creation_date.strftime('%Y-%m-%d
                 %H:%M')
                 if report.creation_date else 'N/A' }}</span>
+            {% if scores%}
+            <span class="meta-item"><strong>{{ lang("Score") }}:</strong>
+                {{ scores[report]}}</span>
+            {% endif %}
         </div>
 
         <div class="report-details">
@@ -70,7 +78,8 @@
             {% if report.colour %}
             <div class="detail-item">
                 <strong>{{ lang("Colour") }}:</strong>
-                <div class="color-swatch" style="background-color: {{ get_colour(report.colour) }};"
+                <div class="color-swatch"
+                    style="background-color: {{ get_colour(report.colour).colour_value or get_colour(report.colour).name }};"
                     title="{{ get_colour(report.colour).display_name }}"></div>
             </div>
             {% endif %}

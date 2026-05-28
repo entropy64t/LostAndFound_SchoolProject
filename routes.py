@@ -21,6 +21,8 @@ from verification import send_message_email, send_pwreset, verify_domain
 
 from flask_babel import gettext as lang
 
+from scoring import sort_by_score
+
 @app.route("/new", methods=["GET", "POST"])
 @login_required
 def new(): # TODO make sure the user is logged in and verified - also for POST request
@@ -307,7 +309,8 @@ def render_reports(query: Query, template: str, view_all: bool = True): # TODO m
         view_all=view_all,
         get_category=get_category,
         get_colour=get_colour,
-        get_location=get_location
+        get_location=get_location,
+        filter=True
     )
 
 @app.route("/all")
@@ -371,9 +374,34 @@ def report_details(report_id):
             item_owner = get_user(report.item_owner).public_name()
         if report.pickup_location:
             pickup_location = get_location(report.pickup_location).location_string
+            
+    all_reports = Report.query.all()
+    authors = {u.id: u.public_name() for u in User.query.all()}
+    locations = {row['id']: (row['building_level'], row['name']) for row in db.session.execute(text("SELECT id, name, building_level FROM locations;")).mappings().all()}
+    score_pairs = sort_by_score(report, all_reports)
     
-    return render_template("report/index.html", report_type=report_type, title=title, created=creation_date, author=author, category=category, colour=colour, description=description, last_seen=last_seen, last_seen_location=last_seen_location, item_owner=item_owner, pickup_location=pickup_location, author_object=get_user(report.author), report_id=report_id,
-                           get_category=get_category, get_colour=get_colour, get_location=get_location)
+    return render_template("report/index.html", 
+                           report_type=report_type, 
+                           title=title, 
+                           created=creation_date, 
+                           author=author,
+                           category=category, 
+                           colour=colour, 
+                           description=description, 
+                           last_seen=last_seen, 
+                           last_seen_location=last_seen_location, 
+                           item_owner=item_owner, 
+                           pickup_location=pickup_location, 
+                           author_object=get_user(report.author), 
+                           report_id=report_id,
+                           reports=[pair[0] for pair in score_pairs],
+                           authors=authors,
+                           locations=locations,
+                           filter=False,
+                           scores={pair[0]: int(round(pair[1] * 100, 0)) for pair in score_pairs},
+                           get_category=get_category, 
+                           get_colour=get_colour, 
+                           get_location=get_location)
 
 @app.route("/report/<report_id>/delete", methods=['GET', 'POST'])
 @login_required
