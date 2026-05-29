@@ -264,7 +264,7 @@ def delete_account():
 def index():
     if not current_user.account_verified:
         return redirect(url_for("verify_account"))
-    return render_template("index.html", users=users)
+    return render_template("index.html")
 
 @app.route('/setlang/<lang>')
 def set_language(lang):
