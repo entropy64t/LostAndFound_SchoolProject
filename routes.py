@@ -262,8 +262,8 @@ def delete_account():
 @app.route("/")
 @login_required
 def index():
-    # Pull all users from database
-    users = User.query.all()
+    if not current_user.account_verified:
+        return redirect(url_for("verify_account"))
     return render_template("index.html", users=users)
 
 @app.route('/setlang/<lang>')

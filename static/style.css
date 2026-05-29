@@ -186,7 +186,8 @@ h2 {
 #create-post button,
 #create-post input[type="submit"],
 .content button,
-.content input[type="submit"] {
+.content input[type="submit"],
+.btn-primary {
     align-self: start;
     padding: 12px 22px;
     border: none;
@@ -197,6 +198,23 @@ h2 {
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.2s ease, transform 0.2s ease;
+    text-decoration: none;
+    margin: 5px;
+}
+
+.dangerous {
+	align-self: start;
+	padding: 12px 22px;
+	border: none;
+	border-radius: 8px;
+	background-color: #db2528 !important;
+	color: white;
+	font-size: 1rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background-color 0.2s ease, transform 0.2s ease;
+	text-decoration: none;
+	margin: 5px;
 }
 
 #create-post button:hover,
