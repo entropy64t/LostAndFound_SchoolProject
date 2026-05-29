@@ -6,7 +6,7 @@ from enum import Enum
 from flask_login import LoginManager, login_required, login_user, logout_user, current_user
 
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import text
+from sqlalchemy import text, select
 from sqlalchemy.orm import Query
 
 from urllib.parse import urlparse
@@ -57,6 +57,12 @@ def new(): # TODO make sure the user is logged in and verified - also for POST r
             last_seen_location=int(location_id),
             description=report_content,
         )
+
+        if report_type != "lost":
+            item_owner = request.form['item_owner']
+            pickup_location = request.form['pickup_location']
+            report.item_owner = item_owner
+            report.pickup_location = pickup_location
         
         db.session.add(report)
         db.session.commit()
@@ -68,8 +74,9 @@ def new(): # TODO make sure the user is logged in and verified - also for POST r
     locations_from_db = db.session.execute(text("SELECT * FROM locations;")).mappings().all()
     colours_from_db = Colour.query.all()
     categories_from_db = Category.query.all()
-
-    return render_template("new.html", category_list=categories_from_db, colour_list=colours_from_db, location_list=locations_from_db)
+    verified_users = db.session.scalars(select(User).filter_by(account_verified=True).order_by(User.grade)).all()
+    
+    return render_template("new.html", category_list=categories_from_db, colour_list=colours_from_db, location_list=locations_from_db, user_list=verified_users)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -373,7 +380,7 @@ def report_details(report_id):
         if report.item_owner:
             item_owner = get_user(report.item_owner).public_name()
         if report.pickup_location:
-            pickup_location = get_location(report.pickup_location).location_string
+            pickup_location = get_location(report.pickup_location).location_string()
             
     all_reports = Report.query.all()
     authors = {u.id: u.public_name() for u in User.query.all()}

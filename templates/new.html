@@ -74,6 +74,29 @@
             <label id="location-label">
                 {{ lang("Lost in") }}
                 <select name="locations">
+					<option value="" selected>-- Select --</option>
+                    {% for loc in location_list %}
+                    <option value="{{ loc['id'] }}">
+                        {{ loc['name'] }} ({{ lang("level") }} {{ loc['building_level'] }})
+                    </option>
+                    {% endfor %}
+                </select>
+            </label>
+			
+            <label class="found-only">
+				Suspected owner
+				<select name="item_owner">
+                    <option value="" selected>-- Select --</option>
+                    {% for user in user_list %}
+                    <option value="{{ user.id }}">{{ user.public_name() }}</option>
+                    {% endfor %}
+                </select>
+			</label>
+
+            <label class="found-only">
+                Retrieve found item at
+                <select name="pickup_location">
+                    <option value="" selected>-- Select --</option>
                     {% for loc in location_list %}
                     <option value="{{ loc['id'] }}">
                         {{ loc['name'] }} ({{ lang("level") }} {{ loc['building_level'] }})
@@ -93,6 +116,17 @@
     </div>
 
     <script>
+        function changeVisibility(state) {
+            var foundOnly = document.getElementsByClassName("found-only");
+            for (let i = 0; i < foundOnly.length; i++) {
+                if (state) {
+                    foundOnly[i].style.display = "block";
+                } else {
+                    foundOnly[i].style.display = "none";
+                }
+            }
+        }
+
         const reportTypeInputs = document.querySelectorAll('input[name="report-type"]');
 
         const datetimeLabel = document.getElementById('datetime-label');
@@ -106,19 +140,25 @@
             if (selected.value === 'lost') {
                 datetimeLabel.childNodes[0].textContent = '{{ lang("Last seen at") }} ';
                 locationLabel.childNodes[0].textContent = '{{ lang("Lost in") }} ';
+
+				// Hide additional fields
+                changeVisibility(false);
             }
 
             if (selected.value === 'found') {
                 datetimeLabel.childNodes[0].textContent = '{{ lang("Found at") }} ';
                 locationLabel.childNodes[0].textContent = '{{ lang("Found in") }} ';
+
+				// Show additional fields
+                changeVisibility(true);
             }
         }
+            
+            reportTypeInputs.forEach(input => {
+                input.addEventListener('change', updateLabels);
+            });
 
-        reportTypeInputs.forEach(input => {
-            input.addEventListener('change', updateLabels);
-        });
-
-        updateLabels();
+            updateLabels();
     </script>
 
 </body>
