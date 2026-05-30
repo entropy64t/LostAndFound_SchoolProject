@@ -1,0 +1,3 @@
+templates/account/*.html
+templates/verification/*.html
+templates/report/*.html
