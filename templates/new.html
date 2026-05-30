@@ -76,8 +76,8 @@
                 <select name="locations">
 					<option value="" selected>-- Select --</option>
                     {% for loc in location_list %}
-                    <option value="{{ loc['id'] }}">
-                        {{ loc['name'] }} ({{ lang("level") }} {{ loc['building_level'] }})
+                    <option value="{{ loc.id }}">
+                        {{ loc.location_string() }}
                     </option>
                     {% endfor %}
                 </select>
@@ -135,9 +135,9 @@
         function updateLabels() {
             const selected = document.querySelector('input[name="report-type"]:checked');
 
-            if (!selected) return;
+            if (!selected) {changeVisibility(false); return;};
 
-            if (selected.value === 'lost') {
+            if (selected.value === 'lost' || selected.value === "") {
                 datetimeLabel.childNodes[0].textContent = '{{ lang("Last seen at") }} ';
                 locationLabel.childNodes[0].textContent = '{{ lang("Lost in") }} ';
 

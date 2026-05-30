@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    {% include "common_head.html" %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='color_picker.css')}}">
+    <title>Lost&Found - edit {{ title }}</title>
+</head>
+
+<body>
+    {% include "navbar.html" %}
+
+    <div class="container">
+        <h1>Edit report</h1>
+        <form class="content" id="create-post" method="post">
+            <p>{% if report_type == "lost" %}Lost{% else %}Found{% endif %} by {{ author }}, posted {{ created }}</p>
+            <label id="title">
+                {{ lang("Report title") }} {% include "required.html" %}
+                <input value="{{ title }}" type="text" name="title" required>
+            </label>
+
+            <fieldset class="item-type">
+                <legend>{{ lang("Item type") }} {% include "required.html" %}</legend>
+
+                {% for cat in category_list %}
+                <div class="radio-row">
+                    <label class="radio-option">
+                        <input type="radio" name="item-type" value="{{ cat.id }}" required {% if category  == cat.id %}checked{% endif %}>
+                        <span>{{ lang(cat.name) }}</span>
+                    </label>
+                </div>
+                {% endfor %}
+            </fieldset>
+
+            <fieldset>
+                <legend>{{ lang("Item colour") }} {% include "required.html" %}</legend>
+
+                <div class="color-picker">
+                    {% for clr in colour_list %}
+                    <label class="color-option">
+                        <input type="radio" name="item-color" value="{{ clr.id }}" required {% if colour == clr.id %}checked{% endif %}>
+                        <span class="color-circle" style="background: {{ clr.name }};"></span>
+                    </label>
+                    {% endfor %}
+                </div>
+            </fieldset>
+
+            <!-- Dynamic datetime label -->
+            <label id="datetime-label">
+                {% if report_type == "lost" %}{{ lang("Last seen at") }}{% else %}{{ lang("Found at") }}{% endif %}
+                <input value="{{ last_seen }}" type="datetime-local" name="last-seen">
+            </label>
+            
+            <!-- Dynamic location label -->
+            <label id="location-label">
+                {% if report_type == "lost" %}{{ lang("Lost in") }}{% else %}{{ lang("Found in") }}{% endif %}
+                <select name="locations">
+					<option value="" selected>-- Select --</option>
+                    {% for loc in location_list %}
+                    <option value="{{ loc.id }}" {% if last_seen_location == loc.id %} selected {% endif %}>
+                        {{ loc.location_string() }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </label>
+           
+            {% if report_type != "lost" %}
+            <label>
+				Suspected owner
+				<select name="item_owner">
+                    <option value="" selected>-- Select --</option>
+                    {% for user in user_list %}
+                    <option value="{{ user.id }}">{{ user.public_name() }}</option>
+                    {% endfor %}
+                </select>
+			</label>
+
+            <label>
+                Retrieve found item at
+                <select name="pickup_location">
+                    <option value="" selected>-- Select --</option>
+                    {% for loc in location_list %}
+                    <option value="{{ loc['id'] }}">
+                        {{ loc['name'] }} ({{ lang("level") }} {{ loc['building_level'] }})
+                    </option>
+                    {% endfor %}
+                </select>
+            </label>
+            {% endif %}
+            
+            <label>
+                {{ lang("Additional content") }}
+                <textarea class="form-textarea" name="report-content" rows="6" cols="40"></textarea>
+            </label>
+
+            <br><br>
+            <button class="confirm btn-primary" type="submit">Save</button>
+            <a style="width: fit-content;" class="btn-primary" href="{{ url_for('report_details', report_id=report_id) }}">Back</a>
+        </form>
+    </div>
+
+    <div class="container">
+        {% include "report_render.html" %}
+    </div>
+
+</body>
+
+</html>

@@ -50,19 +50,21 @@ def new(): # TODO make sure the user is logged in and verified - also for POST r
             author=author,
             title=title,
             report_type=report_type,
-            category=int(item_type),
-            colour=int(item_color),
+            category=item_type if item_type else None,
+            colour=item_color if item_color else None,
             creation_date=datetime.now(timezone.utc),
             last_seen=last_seen,
-            last_seen_location=int(location_id),
+            last_seen_location=location_id if location_id else None,
             description=report_content,
         )
 
         if report_type != "lost":
             item_owner = request.form['item_owner']
             pickup_location = request.form['pickup_location']
-            report.item_owner = item_owner
-            report.pickup_location = pickup_location
+            if item_owner:
+                report.item_owner = item_owner
+            if pickup_location:
+                report.pickup_location = pickup_location
         
         db.session.add(report)
         db.session.commit()
@@ -71,7 +73,7 @@ def new(): # TODO make sure the user is logged in and verified - also for POST r
 
     if not current_user.account_verified or not current_user.is_authenticated:
         return redirect(url_for("index"))
-    locations_from_db = db.session.execute(text("SELECT * FROM locations;")).mappings().all()
+    locations_from_db = Location.query.all()
     colours_from_db = Colour.query.all()
     categories_from_db = Category.query.all()
     verified_users = db.session.scalars(select(User).filter_by(account_verified=True).order_by(User.grade)).all()
@@ -289,7 +291,7 @@ def render_reports(query: Query, template: str, view_all: bool = True): # TODO m
     authors = {u.id: u.public_name() for u in User.query.all()}
     categories = Category.query.all()
     colours = Colour.query.all()
-    locations = {row['id']: (row['building_level'], row['name']) for row in db.session.execute(text("SELECT id, name, building_level FROM locations;")).mappings().all()}
+    locations = {l.id: l.location_string() for l in Location.query.all()} # XXX translation of 'level' will need to be moved to models.py/location_string()
     
     selected_colour = request.args.get('color', type=int)
     selected_item = request.args.get('category', type=int)
@@ -384,7 +386,7 @@ def report_details(report_id):
             
     all_reports = Report.query.all()
     authors = {u.id: u.public_name() for u in User.query.all()}
-    locations = {row['id']: (row['building_level'], row['name']) for row in db.session.execute(text("SELECT id, name, building_level FROM locations;")).mappings().all()}
+    locations = {l.id: l.location_string() for l in Location.query.all()} # XXX translation of 'level' will need to be moved to models.py/location_string()
     score_pairs = sort_by_score(report, all_reports)
     
     return render_template("report/index.html", 
@@ -409,6 +411,78 @@ def report_details(report_id):
                            get_category=get_category, 
                            get_colour=get_colour, 
                            get_location=get_location)
+
+@app.route("/report/<report_id>/edit", methods=['GET', 'POST'])
+@login_required
+def edit_report(report_id):
+    report = get_report(report_id)
+    
+    if request.method == "POST":
+        if not current_user.account_verified or not current_user.is_authenticated or get_user(report.author) != current_user:
+            return redirect(url_for("index"))
+        
+        title = request.form['title']
+        item_type = request.form['item-type']
+        item_color = request.form['item-color']
+        last_seen_str = request.form['last-seen']
+        location_id = request.form['locations']
+        report_content = request.form['report-content']
+
+        last_seen = None
+        if last_seen_str:
+            try:
+                last_seen = datetime.fromisoformat(last_seen_str)
+            except ValueError:
+                last_seen = None
+
+        report.title = title
+        report.category = item_type if item_type else None
+        report.colour = item_color if item_color else None
+        report.last_seen = last_seen
+        report.last_seen_location = location_id if location_id else None
+        report.description = report_content
+        
+        if report.report_type != "lost":
+            item_owner = request.form['item_owner']
+            pickup_location = request.form['pickup_location']
+            if item_owner:
+                report.item_owner = item_owner
+            if pickup_location:
+                report.pickup_location = pickup_location
+
+        db.session.commit()
+
+        return redirect(url_for("report_details", report_id=report_id))
+
+    if get_user(report.author) != current_user:
+        return redirect(url_for("report_details", report_id=report_id))
+
+    title = report.title
+
+    report_type = report.report_type
+    author = get_user(report.author).public_name()
+
+    creation_date = report.creation_date.strftime('%B %d, %Y at %H:%M')
+
+    category = get_category(report.category).id
+    colour = get_colour(report.colour).id
+    description = report.description
+    
+    last_seen_dt: datetime = report.last_seen
+    last_seen = ""
+    if report.last_seen:
+        last_seen = last_seen_dt.strftime("%Y-%m-%dT%H:%M")
+    last_seen_location = get_location(report.last_seen_location).id
+   
+    # Get option lists from db
+    locations_from_db = Location.query.all()
+    colours_from_db = Colour.query.all()
+    categories_from_db = Category.query.all()
+    verified_users = db.session.scalars(select(User).filter_by(account_verified=True).order_by(User.grade)).all()
+
+    return render_template("report/edit.html", report_id=report_id, title=title, report_type=report_type, author=author, created=creation_date, category=category, colour=colour, description=description,
+                           last_seen=last_seen, last_seen_location=last_seen_location,
+                           category_list=categories_from_db, colour_list=colours_from_db, location_list=locations_from_db, user_list=verified_users)
 
 @app.route("/report/<report_id>/delete", methods=['GET', 'POST'])
 @login_required

@@ -14,7 +14,7 @@
         <h1>Report details</h1>
         <div class="content">
             <h2>{{ title }}</h2>
-            <p>{% if report_type == "lost" %}Lost{% else %}Found{% endif %} by {{ author }} at {{ created }}</p>
+            <p>{% if report_type == "lost" %}Lost{% else %}Found{% endif %} by {{ author }}, posted {{ created }}</p>
             <p>Category: {{ category }}<br>Colour: {{ colour }}<br>Description:<br><span class="description">{{
                     description }}</span></p>
             <p>Last seen: {{ last_seen }} at {{ last_seen_location }}</p>
@@ -23,8 +23,9 @@
 
             {% if author_object == current_user %}
             <br><br>
-            <form method="post" action="{{ url_for('delete_report', report_id=report_id) }}">
-                <button type="submit">Delete report</button>
+            <a class="btn-primary" style="display: inline;" href="{{ url_for('edit_report', report_id=report_id) }}">Edit report</a>
+            <form style="display: inline;" method="post" action="{{ url_for('delete_report', report_id=report_id) }}">
+                <button class="dangerous btn-primary" type="submit">Delete report</button>
             </form>
             {% endif %}
         </div>
