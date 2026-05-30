@@ -474,6 +474,12 @@ def edit_report(report_id):
         last_seen = last_seen_dt.strftime("%Y-%m-%dT%H:%M")
     last_seen_location = get_location(report.last_seen_location).id if report.last_seen_location else "not set"
    
+    item_owner = ""
+    pickup_location = ""
+    if report_type != "lost":
+        item_owner = report.item_owner
+        pickup_location = report.pickup_location
+   
     # Get option lists from db
     locations_from_db = Location.query.all()
     colours_from_db = Colour.query.all()
@@ -481,7 +487,7 @@ def edit_report(report_id):
     verified_users = db.session.scalars(select(User).filter_by(account_verified=True).order_by(User.grade)).all()
 
     return render_template("report/edit.html", report_id=report_id, title=title, report_type=report_type, author=author, created=creation_date, category=category, colour=colour, description=description,
-                           last_seen=last_seen, last_seen_location=last_seen_location,
+                           last_seen=last_seen, last_seen_location=last_seen_location, item_owner=item_owner, pickup_location=pickup_location,
                            category_list=categories_from_db, colour_list=colours_from_db, location_list=locations_from_db, user_list=verified_users)
 
 @app.route("/report/<report_id>/delete", methods=['GET', 'POST'])

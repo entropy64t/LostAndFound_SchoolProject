@@ -247,8 +247,8 @@ msgstr "Podane hasła są różne"
 msgid "Wrong old password"
 msgstr "Nieprawidłowe hasło"
 
-#: templates/account/index.html:65
-msgid "Change e-mail (this will be your new login)"
+#: templates/account/index.html:69
+msgid "Change e-mail (this will become your new login)"
 msgstr "Zmień e-mail (to będzie Twój nowy login)"
 
 #: templates/account/index.html:70
