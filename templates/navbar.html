@@ -37,11 +37,6 @@
             <a href="{{ url_for('logout') }}" class="{% if request.endpoint == 'logout' %}active{% endif %}"> {{
                 lang("Logout") }}</a>
             {% endif %}
-            {% if session.get('lang') == 'pl' %}
-            <a href="{{ url_for('set_language', lang='en') }}">English</a>
-            {% else %}
-            <a href="{{ url_for('set_language', lang='pl') }}">Polski</a>
-            {% endif %}
         </li>
 
     </ul>

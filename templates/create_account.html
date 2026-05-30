@@ -4,66 +4,72 @@
 <head>
     {% include "common_head.html" %}
     <link rel="stylesheet" href="{{ url_for('static', filename='auth.css') }}">
-    <title>Create account</title>
+    <title>{{ lang("Create account") }}</title>
 </head>
 
 <body>
     <div class="container">
         <h1><a class="heading-a" href="{{ url_for('index') }}">Lost&amp;Found</a></h1>
         <div class="auth-wrapper">
-            <h1>Create Account</h1>
+            <h1>{{ lang("Create account") }}</h1>
             <form class="auth-form" method="post">
-		<div class="form-group">
-		    <label>
-		        Name {% include "required.html" %}
-			<input type="text" name="display_name" value="{{ request.args.get('display_name') or '' }}" required>
-		    </label>
-		</div>
                 <div class="form-group">
                     <label>
-                        Email {% include "required.html" %}
+                        {{ lang("Name") }} {% include "required.html" %}
+                        <input type="text" name="display_name" value="{{ request.args.get('display_name') or '' }}"
+                            required>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        {{ lang("Email") }} {% include "required.html" %}
                         <input type="email" name="email" value="{{ request.args.get('email') or '' }}" required>
                     </label>
                 </div>
                 <div class="form-group">
                     <label>
-                        Password {% include "required.html" %}
+                        {{ lang("Password") }} {% include "required.html" %}
                         <input type="password" name="password" required>
                     </label>
                 </div>
                 <div class="form-group">
                     <label>
-                        Repeat Password {% include "required.html" %}
+                        {{ lang("Repeat Password") }} {% include "required.html" %}
                         <input type="password" name="password-repeat" required>
                     </label>
                 </div>
-		<div class="form-group">
-			<label>
-				Grade (can be changed later)<br>
-				<select name="grade">
-				<option value="">-- Select --</option>
-				{% for elm in grade_list %}
-				{% if elm['id'] | string == request.args.get('grade') | string %}
-				<option selected="selected" value="{{ elm['id'] }}">{{ elm['name'] }}</option>
-				{% else %}
-				<option value="{{ elm['id'] }}">{{ elm['name'] }}</option>
-				{% endif %}
-				{% endfor %}
-				</select>
-			</label>
-		</div>
-                <button type="submit" class="btn-primary">Create Account</button>
-		{% if request.args.get("msg") == "pwdnomatch" %}
-		    <p class="auth-fail-message">Passwords don't match</p>
-		{% elif request.args.get("msg") == "existent" %}
-		    <p class="auth-fail-message">An account with that e-mail address already exists</p>
-	        {% endif %}
+                <div class="form-group">
+                    <label>
+                        {{ lang("Grade") }} ({{ lang("can be changed later") }})<br>
+                        <select name="grade">
+                            <option value="">-- Select --</option>
+                            {% for elm in grade_list %}
+                            {% if elm['id'] | string == request.args.get('grade') | string %}
+                            <option selected="selected" value="{{ elm['id'] }}">{{ elm['name'] }}</option>
+                            {% else %}
+                            <option value="{{ elm['id'] }}">{{ elm['name'] }}</option>
+                            {% endif %}
+                            {% endfor %}
+                        </select>
+                    </label>
+                </div>
+                <button type="submit" class="btn-primary">{{ lang("Create account") }}</button>
+                {% if request.args.get("msg") == "pwdnomatch" %}
+                <p class="auth-fail-message">{{ lang("Passwords don't match") }}</p>
+                {% elif request.args.get("msg") == "existent" %}
+                <p class="auth-fail-message">{{ lang("An account with that e-mail address already exists") }}</p>
+                {% endif %}
             </form>
             <div class="auth-footer">
-		    <p>Already have an account? <a href="{{ url_for('login', email=email, next=request.args.get('next')) }}">Login</a></p>
+                <p>{{ lang("Already have an account") }}? <a
+                        href="{{ url_for('login', email=email, next=request.args.get('next')) }}">{{ lang("Login")
+                        }}</a></p>
             </div>
         </div>
+
+
     </div>
+    {% include "footer.html" %}
 </body>
 
 </html>

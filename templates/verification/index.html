@@ -18,17 +18,18 @@
                 <div class="form-group">
                     <label>
                         Verification e-mail{% include "required.html" %}
-			<input type="email" name="verif_mail" value="{{ prefill }}" required>
-			This address is only used to verify your account and must be in the (v-lo.krakow.pl) domain.
+                        <input type="email" name="verif_mail" value="{{ prefill }}" required>
+                        This address is only used to verify your account and must be in the (v-lo.krakow.pl) domain.
                     </label>
                 </div>
                 <button type="submit" class="btn-primary">Verify</button>
                 {% if request.args.get("msg") == "wrongdomain" %}
-		    <p class="auth-fail-message">The entered e-mail address isn't in the appropriate domain.</p>
-		{% endif %}
+                <p class="auth-fail-message">The entered e-mail address isn't in the appropriate domain.</p>
+                {% endif %}
             </form>
         </div>
     </div>
+    {% include "footer.html" %}
 
 </body>
 

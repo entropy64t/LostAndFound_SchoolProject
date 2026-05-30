@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-30 14:58+0200\n"
+"POT-Creation-Date: 2026-05-30 15:04+0200\n"
 "PO-Revision-Date: 2026-05-26 19:16+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: pl\n"
@@ -23,21 +23,55 @@ msgstr ""
 msgid "All Items"
 msgstr "Wszystkie Przedmioty"
 
-#: templates/found.html:14
-msgid "Found Items"
-msgstr "Znalezione Przedmioty"
+#: templates/create_account.html:7 templates/create_account.html:14
+#: templates/create_account.html:56
+msgid "Create account"
+msgstr "Utwórz konto"
 
-#: templates/login.html:7 templates/login.html:14 templates/login.html:28
-msgid "Login"
-msgstr "Logowanie"
+#: templates/create_account.html:18
+msgid "Name"
+msgstr "Imię"
 
-#: templates/login.html:18
+#: templates/create_account.html:25 templates/login.html:18
 msgid "Email"
 msgstr "Adres e-mail"
 
-#: templates/login.html:24
+#: templates/create_account.html:31 templates/login.html:24
 msgid "Password"
 msgstr "Hasło"
+
+#: templates/create_account.html:37
+msgid "Repeat Password"
+msgstr "Powtórz hasło"
+
+#: templates/account/index.html:18 templates/create_account.html:43
+msgid "Grade"
+msgstr "Klasa"
+
+#: templates/create_account.html:43
+msgid "can be changed later"
+msgstr "może zostać zmieniona później"
+
+#: templates/account/index.html:57 templates/create_account.html:58
+msgid "Passwords don't match"
+msgstr "Podane hasła różnią się"
+
+#: templates/create_account.html:60
+msgid "An account with that e-mail address already exists"
+msgstr "Konto z tym adresem e-mail już istnieje"
+
+#: templates/create_account.html:64
+msgid "Already have an account"
+msgstr "Posiadasz już konto"
+
+#: templates/create_account.html:65 templates/login.html:7
+#: templates/login.html:14 templates/login.html:28
+msgid "Login"
+msgstr "Logowanie"
+
+#: templates/found.html:14
+msgid "Found Items"
+msgstr "Znalezione Przedmioty"
 
 #: templates/login.html:30
 msgid "Wrong password"
@@ -123,7 +157,7 @@ msgstr "Ostatnio widziane"
 msgid "Lost in"
 msgstr "Zgubione w"
 
-#: templates/new.html:102 templates/report/edit.html:84
+#: templates/new.html:102
 msgid "level"
 msgstr "piętro"
 
@@ -199,10 +233,6 @@ msgstr "Zarządzaj kontem"
 msgid "E-mail address"
 msgstr "Adres e-mail"
 
-#: templates/account/index.html:18
-msgid "Grade"
-msgstr "Klasa"
-
 #: templates/account/index.html:21
 msgid "Account Verified"
 msgstr "Konto zweryfikowane"
@@ -239,15 +269,11 @@ msgstr "Powtórz nowe hasło"
 msgid "Old password"
 msgstr "Hasło"
 
-#: templates/account/index.html:57
-msgid "Passwords don't match"
-msgstr "Podane hasła są różne"
-
 #: templates/account/index.html:59
 msgid "Wrong old password"
 msgstr "Nieprawidłowe hasło"
 
-#: templates/account/index.html:69
+#: templates/account/index.html:65
 msgid "Change e-mail (this will become your new login)"
 msgstr "Zmień e-mail (to będzie Twój nowy login)"
 

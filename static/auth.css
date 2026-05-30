@@ -22,6 +22,19 @@
     flex-direction: column;
 }
 
+.auth-form select {
+    width: 100%;
+    padding: 12px 14px;
+    margin-top: 8px;
+    border: 1px solid #dfe3e8;
+    border-radius: 6px;
+    background-color: #f7f9fb;
+    font-size: 1rem;
+    color: #2c3e50;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+}
+
 .form-group {
     margin-bottom: 20px;
 }
@@ -144,5 +157,5 @@
 }
 
 .auth-fail-message {
-	color: red;
+    color: red;
 }

@@ -74,7 +74,7 @@
             <label id="location-label">
                 {{ lang("Lost in") }}
                 <select name="locations">
-					<option value="" selected>-- Select --</option>
+                    <option value="" selected>-- Select --</option>
                     {% for loc in location_list %}
                     <option value="{{ loc.id }}">
                         {{ loc.location_string() }}
@@ -82,16 +82,16 @@
                     {% endfor %}
                 </select>
             </label>
-			
+
             <label class="found-only">
-				Suspected owner
-				<select name="item_owner">
+                Suspected owner
+                <select name="item_owner">
                     <option value="" selected>-- Select --</option>
                     {% for user in user_list %}
                     <option value="{{ user.id }}">{{ user.public_name() }}</option>
                     {% endfor %}
                 </select>
-			</label>
+            </label>
 
             <label class="found-only">
                 Retrieve found item at
@@ -115,6 +115,8 @@
         </form>
     </div>
 
+    {% include "footer.html" %}
+
     <script>
         function changeVisibility(state) {
             var foundOnly = document.getElementsByClassName("found-only");
@@ -135,13 +137,13 @@
         function updateLabels() {
             const selected = document.querySelector('input[name="report-type"]:checked');
 
-            if (!selected) {changeVisibility(false); return;};
+            if (!selected) { changeVisibility(false); return; };
 
             if (selected.value === 'lost' || selected.value === "") {
                 datetimeLabel.childNodes[0].textContent = '{{ lang("Last seen at") }} ';
                 locationLabel.childNodes[0].textContent = '{{ lang("Lost in") }} ';
 
-				// Hide additional fields
+                // Hide additional fields
                 changeVisibility(false);
             }
 
@@ -149,16 +151,16 @@
                 datetimeLabel.childNodes[0].textContent = '{{ lang("Found at") }} ';
                 locationLabel.childNodes[0].textContent = '{{ lang("Found in") }} ';
 
-				// Show additional fields
+                // Show additional fields
                 changeVisibility(true);
             }
         }
-            
-            reportTypeInputs.forEach(input => {
-                input.addEventListener('change', updateLabels);
-            });
 
-            updateLabels();
+        reportTypeInputs.forEach(input => {
+            input.addEventListener('change', updateLabels);
+        });
+
+        updateLabels();
     </script>
 
 </body>

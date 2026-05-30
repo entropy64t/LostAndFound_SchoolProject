@@ -1,35 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-	{% include "common_head.html" %}
-	<title>My account - Lost&Found</title>
-    </head>
+<head>
+    {% include "common_head.html" %}
+    <title>My account - Lost&Found</title>
+</head>
 
-    <body>
-	{% include "navbar.html" %}
+<body>
+    {% include "navbar.html" %}
 
-	<div class="container">
-	    <h1>Delete account</h1>
-	    <div class="content">
-		<h2>Are you sure you want to delete your account?</h2>
-		<p>This action is permanent and deletes all reports you have created.</p>
-		<form method="post">
-		    <div class="form-group">
-		        <label>
-				Enter your password to delete your account {% include "required.html" %}<br>
-			    <input type="password" placeholder="Password" name="password" required>
-			</label>
-		    {% if request.args.get("msg") == "wrongpwd" %}
-		    	<p class="auth-fail-message">Wrong password</p>
-		    {% endif %}
-		    </div>
-		    <br>
-		    <a class="btn-primary" href="{{ url_for('account') }}">Back</a><button type="submit" class="dangerous btn-primary">Delete account</button>
-		</form>
-	    </div>
-	</div>
+    <div class="container">
+        <h1>Delete account</h1>
+        <div class="content">
+            <h2>Are you sure you want to delete your account?</h2>
+            <p>This action is permanent and deletes all reports you have created.</p>
+            <form method="post">
+                <div class="form-group">
+                    <label>
+                        Enter your password to delete your account {% include "required.html" %}<br>
+                        <input type="password" placeholder="Password" name="password" required>
+                    </label>
+                    {% if request.args.get("msg") == "wrongpwd" %}
+                    <p class="auth-fail-message">Wrong password</p>
+                    {% endif %}
+                </div>
+                <br>
+                <a class="btn-primary" href="{{ url_for('account') }}">Back</a><button type="submit"
+                    class="dangerous btn-primary">Delete account</button>
+            </form>
+        </div>
+    </div>
+    {% include "footer.html" %}
 
-    </body>
+</body>
 
 </html>

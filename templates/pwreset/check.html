@@ -26,15 +26,17 @@
                     </label>
                 </div>
                 <button type="submit" class="btn-primary">Reset password</button>
-		{% if request.args.get("msg") == "pwdnomatch" %}
-		    <p class="auth-fail-message">Passwords don't match</p>
-		{% endif %}
+                {% if request.args.get("msg") == "pwdnomatch" %}
+                <p class="auth-fail-message">Passwords don't match</p>
+                {% endif %}
             </form>
             <div class="auth-footer">
-		    <p><a href="{{ url_for('login') }}">Return to login</a></p>
+                <p><a href="{{ url_for('login') }}">Return to login</a></p>
             </div>
         </div>
     </div>
+
+    {% include "footer.html" %}
 </body>
 
 </html>

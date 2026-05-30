@@ -39,7 +39,8 @@
                         <select name="grade">
                             <option value="" {% if not grade_id %}selected{% endif %}>-- Select --</option>
                             {% for grade in grade_list %}
-                            <option {% if grade['id'] == grade_id %}selected{% endif %} value="{{ grade['id'] }}">{{ grade['name'] }}</option>
+                            <option {% if grade['id']==grade_id %}selected{% endif %} value="{{ grade['id'] }}">{{
+                                grade['name'] }}</option>
                             {% endfor %}
                         </select>
                     </label>
@@ -74,9 +75,10 @@
                 <button type="submit" class="btn-primary">{{ lang("Change") }}</button>
             </form>
             <br><br>
-	    <a class="dangerous btn-primary" href="/account/delete">{{ lang("Delete account") }}</a>
+            <a class="dangerous btn-primary" href="/account/delete">{{ lang("Delete account") }}</a>
         </div>
     </div>
+    {% include "footer.html" %}
 
 </body>
 

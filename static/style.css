@@ -55,6 +55,17 @@ body {
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f8f9fa;
+    height: 100%;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .container {
@@ -203,7 +214,7 @@ h2 {
 }
 
 .dangerous {
-	background-color: #db2528 !important;
+    background-color: #db2528 !important;
 }
 
 .confirm {
@@ -226,4 +237,35 @@ h2 {
 
 .heading-a {
     color: black;
+}
+
+footer {
+    margin-top: auto;
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+footer a {
+    color: #ecf0f1;
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    font-weight: 500;
+}
+
+footer a:hover {
+    background-color: #34495e;
+    color: #ffffff;
+}
+
+footer a.active {
+    background-color: #3498db;
+    color: #ffffff;
 }
