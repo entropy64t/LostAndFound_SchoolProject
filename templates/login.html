@@ -4,35 +4,39 @@
 <head>
     {% include "common_head.html" %}
     <link rel="stylesheet" href="{{ url_for('static', filename='auth.css') }}">
-    <title>Login</title>
+    <title>{{ lang("Login") }}</title>
 </head>
 
 <body>
     <div class="container">
-    <h1><a class="heading-a" href="{{ url_for('index') }}">Lost&amp;Found</a></h1>
+        <h1><a class="heading-a" href="{{ url_for('index') }}">Lost&amp;Found</a></h1>
         <div class="auth-wrapper">
-            <h1>Login</h1>
+            <h1>{{ lang("Login") }}</h1>
             <form class="auth-form" method="post">
                 <div class="form-group">
                     <label>
-                        Email {% include "required.html" %}
-			<input type="email" name="email" value="{{ request.args.get('email') or '' }}" required>
+                        {{ lang("Email") }} {% include "required.html" %}
+                        <input type="email" name="email" value="{{ request.args.get('email') or '' }}" required>
                     </label>
                 </div>
                 <div class="form-group">
                     <label>
-                        Password {% include "required.html" %}
+                        {{ lang("Password") }} {% include "required.html" %}
                         <input type="password" name="password" required>
                     </label>
                 </div>
-                <button type="submit" class="btn-primary">Login</button>
+                <button type="submit" class="btn-primary">{{ lang("Login") }}</button>
                 {% if request.args.get("msg") == "wrongpwd" %}
-		    <p class="auth-fail-message">Wrong password</p>
-		{% endif %}
+                <p class="auth-fail-message">{{ lang("Wrong password") }}</p>
+                {% endif %}
             </form>
             <div class="auth-footer">
-		    <p>Don't have an account? <a href="{{ url_for('create_account', email=email, next=request.args.get('next')) }}">Create one</a></p>
-		    <p>Forgot your password? <a href="{{ url_for('reset_password') }}">Reset it</a></p>
+                <p>{{ lang("Don't have an account") }}?
+                    <a href="{{ url_for('create_account', email=email, next=request.args.get('next')) }}">{{
+                        lang("Create one") }}</a>
+                </p>
+                <p>{{ lang("Forgot your password") }}? <a href="{{ url_for('reset_password') }}">{{ lang("Reset it")
+                        }}</a></p>
             </div>
         </div>
     </div>

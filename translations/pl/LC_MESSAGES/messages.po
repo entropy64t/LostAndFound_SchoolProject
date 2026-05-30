@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-28 21:50+0200\n"
+"POT-Creation-Date: 2026-05-30 14:58+0200\n"
 "PO-Revision-Date: 2026-05-26 19:16+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: pl\n"
@@ -27,6 +27,38 @@ msgstr "Wszystkie Przedmioty"
 msgid "Found Items"
 msgstr "Znalezione Przedmioty"
 
+#: templates/login.html:7 templates/login.html:14 templates/login.html:28
+msgid "Login"
+msgstr "Logowanie"
+
+#: templates/login.html:18
+msgid "Email"
+msgstr "Adres e-mail"
+
+#: templates/login.html:24
+msgid "Password"
+msgstr "Hasło"
+
+#: templates/login.html:30
+msgid "Wrong password"
+msgstr "Nieprawidłowe hasło"
+
+#: templates/login.html:34
+msgid "Don't have an account"
+msgstr "Nie posiadasz konta"
+
+#: templates/login.html:36
+msgid "Create one"
+msgstr "Utwórz je"
+
+#: templates/login.html:38
+msgid "Forgot your password"
+msgstr "Zapomniał*ś hasła"
+
+#: templates/login.html:38
+msgid "Reset it"
+msgstr "Zresetuj je"
+
 #: templates/lost.html:14
 msgid "Lost Items"
 msgstr "Zgubione Przedmioty"
@@ -35,18 +67,18 @@ msgstr "Zgubione Przedmioty"
 msgid "Home"
 msgstr "Strona Główna"
 
-#: templates/navbar.html:8 templates/report_render.html:7
-#: templates/report_render.html:23 templates/report_render.html:32
+#: templates/navbar.html:8 templates/report_render.html:9
+#: templates/report_render.html:25 templates/report_render.html:34
 msgid "All"
 msgstr "Wszystko"
 
 #: templates/navbar.html:11 templates/new.html:29
-#: templates/report_render.html:24
+#: templates/report_render.html:26
 msgid "Lost"
 msgstr "Zgubione"
 
 #: templates/navbar.html:14 templates/new.html:36
-#: templates/report_render.html:25
+#: templates/report_render.html:27
 msgid "Found"
 msgstr "Znalezione"
 
@@ -66,87 +98,92 @@ msgstr "Wyloguj się"
 msgid "New Report"
 msgstr "Nowe Zgłoszenie"
 
-#: templates/new.html:19
+#: templates/new.html:19 templates/report/edit.html:18
 msgid "Report title"
 msgstr "Tytuł Zgłoszenia"
 
-#: templates/new.html:24 templates/report_render.html:21
+#: templates/new.html:24 templates/report_render.html:23
 msgid "Report type"
 msgstr "Kategoria"
 
-#: templates/new.html:42 templates/report_render.html:30
+#: templates/new.html:42 templates/report/edit.html:23
+#: templates/report_render.html:32
 msgid "Item type"
 msgstr "Rodzaj Przedmiotu"
 
-#: templates/new.html:55
+#: templates/new.html:55 templates/report/edit.html:36
 msgid "Item colour"
 msgstr "Kolor"
 
-#: templates/new.html:69 templates/new.html:107
+#: templates/new.html:69 templates/new.html:141 templates/report/edit.html:50
 msgid "Last seen at"
 msgstr "Ostatnio widziane"
 
-#: templates/new.html:75 templates/new.html:108
+#: templates/new.html:75 templates/new.html:142 templates/report/edit.html:56
 msgid "Lost in"
 msgstr "Zgubione w"
 
-#: templates/new.html:79 templates/report_render.html:89
+#: templates/new.html:102 templates/report/edit.html:84
 msgid "level"
 msgstr "piętro"
 
-#: templates/new.html:86
+#: templates/new.html:109 templates/report/edit.html:92
 msgid "Additional content"
 msgstr "Dodatkowe informacje"
 
-#: templates/new.html:90
+#: templates/new.html:113
 msgid "Create"
 msgstr "Utwórz"
 
-#: templates/new.html:112
+#: templates/new.html:149 templates/report/edit.html:50
 msgid "Found at"
 msgstr "Widziane w"
 
-#: templates/new.html:113
+#: templates/new.html:150 templates/report/edit.html:56
 msgid "Found in"
 msgstr "Znalezione w"
 
-#: templates/report_render.html:3 templates/report_render.html:72
+#: templates/report_render.html:5 templates/report_render.html:80
 msgid "Colour"
 msgstr "Kolor"
 
-#: templates/report_render.html:39
+#: templates/report_render.html:41
 msgid "Apply"
 msgstr "Zatwierdź"
 
-#: templates/report_render.html:55
+#: templates/report_render.html:59
 msgid "By"
 msgstr "Przez"
 
-#: templates/report_render.html:58
+#: templates/report_render.html:62
 msgid "Posted"
 msgstr "Utworzono"
 
 #: templates/report_render.html:66
+msgid "Score"
+msgstr "Punkty"
+
+#: templates/report_render.html:74
 msgid "Category"
 msgstr "Przedmiot"
 
-#: templates/report_render.html:80
+#: templates/report_render.html:89
 msgid "Last seen"
 msgstr "Ostatnio widziane"
 
-#: templates/report_render.html:87
+#: templates/report_render.html:96
 msgid "Location"
 msgstr "Sala"
 
-#: templates/report_render.html:92
+#: templates/report_render.html:100
 msgid "Unknown"
 msgstr "Nieokreślone"
 
-#: templates/report_render.html:102
+#: templates/report_render.html:110
 msgid "No description provided"
 msgstr "Brak dodatkowych informacji"
 
-#: templates/report_render.html:117
+#: templates/report_render.html:125
 msgid "View Details"
 msgstr "Więcej"
 
@@ -186,43 +223,43 @@ msgstr "Zmień nazwę użytkownika"
 msgid "Change grade"
 msgstr "Zmień klasę"
 
-#: templates/account/index.html:54
+#: templates/account/index.html:50
 msgid "Change password"
 msgstr "Zmień hasło"
 
-#: templates/account/index.html:55
+#: templates/account/index.html:51
 msgid "New password"
 msgstr "Nowe hasło"
 
-#: templates/account/index.html:56
+#: templates/account/index.html:52
 msgid "Repeat new password"
 msgstr "Powtórz nowe hasło"
 
-#: templates/account/index.html:58
+#: templates/account/index.html:54
 msgid "Old password"
 msgstr "Hasło"
 
-#: templates/account/index.html:61
+#: templates/account/index.html:57
 msgid "Passwords don't match"
 msgstr "Podane hasła są różne"
 
-#: templates/account/index.html:63
+#: templates/account/index.html:59
 msgid "Wrong old password"
 msgstr "Nieprawidłowe hasło"
 
-#: templates/account/index.html:69
+#: templates/account/index.html:65
 msgid "Change e-mail (this will be your new login)"
 msgstr "Zmień e-mail (to będzie Twój nowy login)"
 
-#: templates/account/index.html:74
+#: templates/account/index.html:70
 msgid "Emails don't match"
 msgstr "E-maile są różne"
 
-#: templates/account/index.html:78
+#: templates/account/index.html:74
 msgid "Change"
 msgstr "Zmień"
 
-#: templates/account/index.html:81
+#: templates/account/index.html:77
 msgid "Delete account"
 msgstr "Usuwanie konta"
 
