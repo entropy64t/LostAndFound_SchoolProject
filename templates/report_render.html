@@ -80,7 +80,7 @@
                 <strong>{{ lang("Colour") }}:</strong>
                 <div class="color-swatch"
                     style="background-color: {{ get_colour(report.colour).colour_value or get_colour(report.colour).name }};"
-                    title="{{ get_colour(report.colour).display_name }}"></div>
+                    title="{{ lang(get_colour(report.colour).display_name) }}"></div>
             </div>
             {% endif %}
 
@@ -103,6 +103,7 @@
             {% endif %}
         </div>
 
+        {#
         <div class="report-description">
             {% if report.description and report.description != "" %}
             <p>{{ report.description }}</p>
@@ -110,6 +111,7 @@
             <p class="no-description">{{ lang("No description provided") }}</p>
             {% endif %}
         </div>
+        #}
 
         {#
         {% if report.image_urls %}

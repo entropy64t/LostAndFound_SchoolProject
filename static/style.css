@@ -269,3 +269,9 @@ footer a.active {
     background-color: #3498db;
     color: #ffffff;
 }
+
+nav,
+footer,
+.container {
+    width: 100%;
+}

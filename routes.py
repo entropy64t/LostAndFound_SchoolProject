@@ -366,6 +366,7 @@ def report_details(report_id):
 
     category = get_category(report.category).name if report.category else "not set"
     colour = get_colour(report.colour).display_name if report.colour else "not set"
+    colour_value = get_colour(report.colour).colour_value or  get_colour(report.colour).name
     description = report.description
     
     # TODO Images
@@ -396,6 +397,7 @@ def report_details(report_id):
                            author=author,
                            category=category, 
                            colour=colour, 
+                           colour_value=colour_value,
                            description=description, 
                            last_seen=last_seen, 
                            last_seen_location=last_seen_location, 
