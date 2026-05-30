@@ -360,21 +360,21 @@ def report_details(report_id):
     title = report.title
 
     report_type = report.report_type
-    author = get_user(report.author).public_name()
+    author = get_user(report.author).public_name() if report.author else "not set"
 
     creation_date = report.creation_date.strftime('%B %d, %Y at %H:%M')
 
-    category = get_category(report.category).name
-    colour = get_colour(report.colour).display_name
+    category = get_category(report.category).name if report.category else "not set"
+    colour = get_colour(report.colour).display_name if report.colour else "not set"
     description = report.description
     
     # TODO Images
     
     last_seen_dt: datetime = report.last_seen
     last_seen = ""
-    if report.last_seen:
+    if last_seen_dt:
         last_seen = last_seen_dt.strftime('%B %d, %Y at %H:%M')
-    last_seen_location = get_location(report.last_seen_location).location_string()
+    last_seen_location = get_location(report.last_seen_location).location_string() if report.last_seen_location else "not set"
 
     item_owner = ""
     pickup_location = ""
@@ -460,19 +460,19 @@ def edit_report(report_id):
     title = report.title
 
     report_type = report.report_type
-    author = get_user(report.author).public_name()
+    author = get_user(report.author).public_name() if report.author else "not set"
 
     creation_date = report.creation_date.strftime('%B %d, %Y at %H:%M')
 
-    category = get_category(report.category).id
-    colour = get_colour(report.colour).id
+    category = get_category(report.category).id if report.category else "not set"
+    colour = get_colour(report.colour).id if report.colour else "not set"
     description = report.description
     
     last_seen_dt: datetime = report.last_seen
     last_seen = ""
-    if report.last_seen:
+    if last_seen_dt:
         last_seen = last_seen_dt.strftime("%Y-%m-%dT%H:%M")
-    last_seen_location = get_location(report.last_seen_location).id
+    last_seen_location = get_location(report.last_seen_location).id if report.last_seen_location else "not set"
    
     # Get option lists from db
     locations_from_db = Location.query.all()

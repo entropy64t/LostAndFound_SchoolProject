@@ -33,7 +33,7 @@
         <select name="category">
             <option value="">{{ lang("All") }}</option>
             {% for category in categories %}
-            <option value="{{ item_id }}" {% if selected_item==item_id %}selected{% endif %}>{{
+            <option value="{{ category.id }}" {% if selected_item==category.id %}selected{% endif %}>{{
                 lang(category.name) }}</option>
             {% endfor %}
         </select>
