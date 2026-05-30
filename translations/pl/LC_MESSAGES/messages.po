@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-30 15:04+0200\n"
+"POT-Creation-Date: 2026-05-30 15:42+0200\n"
 "PO-Revision-Date: 2026-05-26 19:16+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: pl\n"
@@ -33,6 +33,7 @@ msgid "Name"
 msgstr "Imię"
 
 #: templates/create_account.html:25 templates/login.html:18
+#: templates/pwreset/index.html:18
 msgid "Email"
 msgstr "Adres e-mail"
 
@@ -52,7 +53,8 @@ msgstr "Klasa"
 msgid "can be changed later"
 msgstr "może zostać zmieniona później"
 
-#: templates/account/index.html:57 templates/create_account.html:58
+#: templates/account/index.html:58 templates/create_account.html:58
+#: templates/pwreset/check.html:30
 msgid "Passwords don't match"
 msgstr "Podane hasła różnią się"
 
@@ -145,15 +147,15 @@ msgstr "Kategoria"
 msgid "Item type"
 msgstr "Rodzaj Przedmiotu"
 
-#: templates/new.html:55 templates/report/edit.html:36
+#: templates/new.html:55 templates/report/edit.html:37
 msgid "Item colour"
 msgstr "Kolor"
 
-#: templates/new.html:69 templates/new.html:141 templates/report/edit.html:50
+#: templates/new.html:69 templates/new.html:143 templates/report/edit.html:52
 msgid "Last seen at"
 msgstr "Ostatnio widziane"
 
-#: templates/new.html:75 templates/new.html:142 templates/report/edit.html:56
+#: templates/new.html:75 templates/new.html:144 templates/report/edit.html:58
 msgid "Lost in"
 msgstr "Zgubione w"
 
@@ -161,7 +163,7 @@ msgstr "Zgubione w"
 msgid "level"
 msgstr "piętro"
 
-#: templates/new.html:109 templates/report/edit.html:92
+#: templates/new.html:109 templates/report/edit.html:95
 msgid "Additional content"
 msgstr "Dodatkowe informacje"
 
@@ -169,11 +171,11 @@ msgstr "Dodatkowe informacje"
 msgid "Create"
 msgstr "Utwórz"
 
-#: templates/new.html:149 templates/report/edit.html:50
+#: templates/new.html:151 templates/report/edit.html:52
 msgid "Found at"
 msgstr "Widziane w"
 
-#: templates/new.html:150 templates/report/edit.html:56
+#: templates/new.html:152 templates/report/edit.html:58
 msgid "Found in"
 msgstr "Znalezione w"
 
@@ -253,41 +255,67 @@ msgstr "Zmień nazwę użytkownika"
 msgid "Change grade"
 msgstr "Zmień klasę"
 
-#: templates/account/index.html:50
+#: templates/account/index.html:51
 msgid "Change password"
 msgstr "Zmień hasło"
 
-#: templates/account/index.html:51
+#: templates/account/index.html:52
 msgid "New password"
 msgstr "Nowe hasło"
 
-#: templates/account/index.html:52
+#: templates/account/index.html:53
 msgid "Repeat new password"
 msgstr "Powtórz nowe hasło"
 
-#: templates/account/index.html:54
+#: templates/account/index.html:55
 msgid "Old password"
 msgstr "Hasło"
 
-#: templates/account/index.html:59
+#: templates/account/index.html:60
 msgid "Wrong old password"
 msgstr "Nieprawidłowe hasło"
 
-#: templates/account/index.html:65
+#: templates/account/index.html:66
 msgid "Change e-mail (this will become your new login)"
 msgstr "Zmień e-mail (to będzie Twój nowy login)"
 
-#: templates/account/index.html:70
+#: templates/account/index.html:71
 msgid "Emails don't match"
 msgstr "E-maile są różne"
 
-#: templates/account/index.html:74
+#: templates/account/index.html:75
 msgid "Change"
 msgstr "Zmień"
 
-#: templates/account/index.html:77
+#: templates/account/index.html:78
 msgid "Delete account"
 msgstr "Usuwanie konta"
+
+#: templates/pwreset/check.html:7 templates/pwreset/check.html:14
+#: templates/pwreset/check.html:28 templates/pwreset/index.html:7
+#: templates/pwreset/index.html:14 templates/pwreset/index.html:22
+msgid "Reset password"
+msgstr "Zresetuj hasło"
+
+#: templates/pwreset/check.html:18
+msgid "Set a new password"
+msgstr "Ustaw nowe hasło"
+
+#: templates/pwreset/check.html:24
+msgid "Repeat password"
+msgstr "Powtórz hasło"
+
+#: templates/pwreset/check.html:34 templates/pwreset/index.html:31
+msgid "Return to login"
+msgstr "Powrót do logowania"
+
+#: templates/pwreset/index.html:24
+msgid "If an account with the provided e-mail address exists, you have been sent a password reset link"
+msgstr "Jeżeli konto z podanym adresem e-mail istnieje, zostanie wysłany link do resetowania hasła"
+
+#: templates/pwreset/index.html:27
+msgid "The entered code is incorrect or it has expired"
+msgstr "Wpisany kod jest nieprawidłowy albo wygasł"
 
 msgid "Item image"
 msgstr "zdjęcie"

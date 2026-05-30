@@ -4,34 +4,34 @@
 <head>
     {% include "common_head.html" %}
     <link rel="stylesheet" href="{{ url_for('static', filename='auth.css') }}">
-    <title>Reset password</title>
+    <title>{{ lang("Reset password") }}</title>
 </head>
 
 <body>
     <div class="container">
         <h1>Lost&amp;Found</h1>
         <div class="auth-wrapper">
-            <h1>Reset password</h1>
+            <h1>{{ lang("Reset password") }}</h1>
             <form class="auth-form" method="post">
                 <div class="form-group">
                     <label>
-                        Set a new password {% include "required.html" %}
+                        {{ lang("Set a new password") }} {% include "required.html" %}
                         <input type="password" name="password" required>
                     </label>
                 </div>
                 <div class="form-group">
                     <label>
-                        Repeat password {% include "required.html" %}
+                        {{ lang("Repeat password") }} {% include "required.html" %}
                         <input type="password" name="password-repeat" required>
                     </label>
                 </div>
-                <button type="submit" class="btn-primary">Reset password</button>
+                <button type="submit" class="btn-primary">{{ lang("Reset password") }}</button>
                 {% if request.args.get("msg") == "pwdnomatch" %}
-                <p class="auth-fail-message">Passwords don't match</p>
+                <p class="auth-fail-message">{{ lang("Passwords don't match") }}</p>
                 {% endif %}
             </form>
             <div class="auth-footer">
-                <p><a href="{{ url_for('login') }}">Return to login</a></p>
+                <p><a href="{{ url_for('login') }}">{{ lang("Return to login") }}</a></p>
             </div>
         </div>
     </div>
