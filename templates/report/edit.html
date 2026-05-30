@@ -68,9 +68,9 @@
             <label>
 				Suspected owner
 				<select name="item_owner">
-                    <option value="" selected>-- Select --</option>
+                    <option value="" {% if not item_owner %}selected{% endif %}>-- Select --</option>
                     {% for user in user_list %}
-                    <option value="{{ user.id }}">{{ user.public_name() }}</option>
+                    <option value="{{ user.id }}" {% if item_owner == user.id %}selected{% endif %}>{{ user.public_name() }}</option>
                     {% endfor %}
                 </select>
 			</label>
@@ -78,10 +78,10 @@
             <label>
                 Retrieve found item at
                 <select name="pickup_location">
-                    <option value="" selected>-- Select --</option>
+                    <option value="" {% if not pickup_location %}selected{% endif %}>-- Select --</option>
                     {% for loc in location_list %}
-                    <option value="{{ loc['id'] }}">
-                        {{ loc['name'] }} ({{ lang("level") }} {{ loc['building_level'] }})
+                    <option value="{{ loc['id'] }}" {% if loc.id == pickup_location %}selected{% endif %}>
+                        {{ loc.location_string() }}
                     </option>
                     {% endfor %}
                 </select>
@@ -90,7 +90,7 @@
             
             <label>
                 {{ lang("Additional content") }}
-                <textarea class="form-textarea" name="report-content" rows="6" cols="40"></textarea>
+                <textarea class="form-textarea" name="report-content" rows="6" cols="40">{{ description }}</textarea>
             </label>
 
             <br><br>
