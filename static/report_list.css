@@ -149,6 +149,10 @@
     font-size: 0.95em;
 }
 
+.description-content {
+    white-space: pre-wrap; /* Line breaks in the comment field will be correctly rendered. */
+}
+
 .no-description {
     color: #999 !important;
     font-style: italic;

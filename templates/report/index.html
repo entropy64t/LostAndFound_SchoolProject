@@ -14,49 +14,53 @@
         <h1>Report details</h1>
         <div class="content">
             <h2>{{ title }}</h2>
+            <p>
+            {% if report_type == "lost" %}
+            Lost
+            {% else %}
+            Found
+            {% endif %}
+            by {{ author }}, posted {{ created }}</p>
 
             <div class="report-details">
-                <div class="detail-item">
-                    {% if report_type == "lost" %}
-                    Lost
-                    {% else %}
-                    Found
-                    {% endif %}
-                    by {{ author }}, posted {{ created }}</div>
 
-                <div class="detail-item">
-                    <strong>Category</strong> {{ category }}
-                </div>
                 <div class="detail-item">
                     <strong>{{ lang("Colour") }}:</strong>
                     <div class="color-swatch" style="background-color: {{ colour_value }};" title="{{ lang(colour) }}">
                     </div>{{ lang(colour) }}
                 </div>
 
+                <div class="detail-item">
+                    <strong>Category</strong> {{ category }}
+                </div>
+
                 <div class="detail-item detail-item-last-seen"><strong>Last seen:</strong> {{ last_seen }} at {{
                     last_seen_location }}
                 </div>
+
+                {% if item_owner %}
+                <div class="detail-item">
+                    <strong>Suspected owner:</strong> {{ item_owner }}
+                </div>
+                {% endif %}
             </div>
 
 
             <p>
             <div class="report-description">
                 {% if description and description != "" %}
-                <p>{{ description }}</p>
+                <p class="description-content">{{ description }}</p>
                 {% else %}
                 <p class="no-description">{{ lang("No description provided") }}</p>
                 {% endif %}
             </div>
             </p>
 
+            {% if pickup_location %}
             <p>
-                {% if item_owner %}
-                Suspected owner: {{ item_owner }}
-                {% endif %}
-                {% if pickup_location %}
-                <br>Retrieve at: {{ pickup_location }}
-                {% endif %}
+                <strong>Retrieve at:</strong> {{ pickup_location }}
             </p>
+            {% endif %}
 
             {% if author_object == current_user %}
             <br><br>
