@@ -44,6 +44,10 @@
                         <span class="color-circle" style="background: {{ clr.name }};"></span>
                     </label>
                     {% endfor %}
+                    <label>
+                        <input type="radio" name="item-color" value="" required {% if colour=="" %}checked{% endif %}>
+                        <span>Other/unknown</span>
+                    </label>
                 </div>
             </fieldset>
 

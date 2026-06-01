@@ -69,7 +69,7 @@
 
         <div class="report-details">
             {% if report.category %}
-            <div class="detail-item">
+            <div class="{% if report.colour %}detail-item{% else %}detail-item-wide{% endif %}">
                 <strong>{{ lang("Category") }}:</strong> {{ lang(get_category(report.category).name) }}
             </div>
             {% endif %}
@@ -98,6 +98,12 @@
                 {% else %}
                 {{ lang("Unknown") }}
                 {% endif %}
+            </div>
+            {% endif %}
+            
+            {% if report.item_owner %}
+            <div class="detail-item-wide">
+                <strong>Suspected owner:</strong> {{ get_user(report.item_owner).public_name() }}
             </div>
             {% endif %}
         </div>

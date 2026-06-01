@@ -319,6 +319,7 @@ def render_reports(query: Query, template: str, view_all: bool = True): # TODO m
         get_category=get_category,
         get_colour=get_colour,
         get_location=get_location,
+        get_user=get_user,
         filter=True
     )
 
@@ -365,8 +366,8 @@ def report_details(report_id):
     creation_date = report.creation_date.strftime('%B %d, %Y at %H:%M')
 
     category = get_category(report.category).name if report.category else "not set"
-    colour = get_colour(report.colour).display_name if report.colour else "not set"
-    colour_value = get_colour(report.colour).colour_value or  get_colour(report.colour).name
+    colour = get_colour(report.colour).display_name if report.colour else ""
+    colour_value = get_colour(report.colour).colour_value or get_colour(report.colour).name if report.colour else ""
     description = report.description
     
     # TODO Images
@@ -375,7 +376,7 @@ def report_details(report_id):
     last_seen = ""
     if last_seen_dt:
         last_seen = last_seen_dt.strftime('%B %d, %Y at %H:%M')
-    last_seen_location = get_location(report.last_seen_location).location_string() if report.last_seen_location else "not set"
+    last_seen_location = get_location(report.last_seen_location).location_string() if report.last_seen_location else ""
 
     item_owner = ""
     pickup_location = ""
@@ -412,7 +413,9 @@ def report_details(report_id):
                            scores={pair[0]: int(round(pair[1] * 100, 0)) for pair in score_pairs},
                            get_category=get_category, 
                            get_colour=get_colour, 
-                           get_location=get_location)
+                           get_location=get_location,
+                           get_user=get_user
+                           )
 
 @app.route("/report/<report_id>/edit", methods=['GET', 'POST'])
 @login_required
@@ -462,19 +465,19 @@ def edit_report(report_id):
     title = report.title
 
     report_type = report.report_type
-    author = get_user(report.author).public_name() if report.author else "not set"
+    author = get_user(report.author).public_name() if report.author else "unknown"
 
     creation_date = report.creation_date.strftime('%B %d, %Y at %H:%M')
 
-    category = get_category(report.category).id if report.category else "not set"
-    colour = get_colour(report.colour).id if report.colour else "not set"
+    category = get_category(report.category).id if report.category else ""
+    colour = get_colour(report.colour).id if report.colour else ""
     description = report.description
     
     last_seen_dt: datetime = report.last_seen
     last_seen = ""
     if last_seen_dt:
         last_seen = last_seen_dt.strftime("%Y-%m-%dT%H:%M")
-    last_seen_location = get_location(report.last_seen_location).id if report.last_seen_location else "not set"
+    last_seen_location = get_location(report.last_seen_location).id if report.last_seen_location else ""
    
     item_owner = ""
     pickup_location = ""

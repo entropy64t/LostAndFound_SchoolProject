@@ -24,19 +24,25 @@
 
             <div class="report-details">
 
+                {% if category %}
+                <div class="detail-item">
+                    <strong>Category</strong> {{ category }}
+                </div>
+                {% endif %}
+                
+                {% if colour %}
                 <div class="detail-item">
                     <strong>{{ lang("Colour") }}:</strong>
                     <div class="color-swatch" style="background-color: {{ colour_value }};" title="{{ lang(colour) }}">
                     </div>{{ lang(colour) }}
                 </div>
+                {% endif %}
 
-                <div class="detail-item">
-                    <strong>Category</strong> {{ category }}
+                {% if last_seen or last_seen_location %}
+                <div class="detail-item detail-item-last-seen"><strong>Last seen:</strong>{% if last_seen %}<span class="last-seen-value"> {{ last_seen }}</span>{% endif %}{% if last_seen_location %} at {{
+                    last_seen_location }}{% endif %}
                 </div>
-
-                <div class="detail-item detail-item-last-seen"><strong>Last seen:</strong> {{ last_seen }} at {{
-                    last_seen_location }}
-                </div>
+                {% endif %}
 
                 {% if item_owner %}
                 <div class="detail-item">
