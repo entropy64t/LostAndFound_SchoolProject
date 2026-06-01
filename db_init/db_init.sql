@@ -38,12 +38,14 @@ CREATE TABLE colours (
 	id serial PRIMARY KEY,
 	name text,
     display_name text,
+    display_name_pl text,
 	colour_value integer
 );
 
 CREATE TABLE categories (
 	id serial PRIMARY KEY,
-	name text
+	name text,
+    name_pl text
 );
 
 CREATE TYPE reportType AS ENUM ('lost', 'found');

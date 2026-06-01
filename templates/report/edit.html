@@ -27,7 +27,7 @@
                     <label class="radio-option">
                         <input type="radio" name="item-type" value="{{ cat.id }}" required {% if category==cat.id
                             %}checked{% endif %}>
-                        <span>{{ lang(cat.name) }}</span>
+                        <span>{{ cat.localized_name() }}</span>
                     </label>
                 </div>
                 {% endfor %}
@@ -41,7 +41,7 @@
                     <label class="color-option">
                         <input type="radio" name="item-color" value="{{ clr.id }}" required {% if colour==clr.id
                             %}checked{% endif %}>
-                        <span class="color-circle" style="background: {{ clr.name }};"></span>
+                        <span class="color-circle" title="{{ clr.localized_name() }}" style="background: {{ clr.name }};"></span>
                     </label>
                     {% endfor %}
                     <label>

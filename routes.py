@@ -291,7 +291,7 @@ def render_reports(query: Query, template: str, view_all: bool = True): # TODO m
     authors = {u.id: u.public_name() for u in User.query.all()}
     categories = Category.query.all()
     colours = Colour.query.all()
-    locations = {l.id: l.location_string() for l in Location.query.all()} # XXX translation of 'level' will need to be moved to models.py/location_string()
+    locations = {l.id: l.location_string() for l in Location.query.all()}
     
     selected_colour = request.args.get('color', type=int)
     selected_item = request.args.get('category', type=int)
@@ -365,8 +365,8 @@ def report_details(report_id):
 
     creation_date = report.creation_date.strftime('%B %d, %Y at %H:%M')
 
-    category = get_category(report.category).name if report.category else "not set"
-    colour = get_colour(report.colour).display_name if report.colour else ""
+    category = get_category(report.category)
+    colour = get_colour(report.colour)
     colour_value = get_colour(report.colour).colour_value or get_colour(report.colour).name if report.colour else ""
     description = report.description
     
@@ -388,7 +388,7 @@ def report_details(report_id):
             
     all_reports = Report.query.all()
     authors = {u.id: u.public_name() for u in User.query.all()}
-    locations = {l.id: l.location_string() for l in Location.query.all()} # XXX translation of 'level' will need to be moved to models.py/location_string()
+    locations = {l.id: l.location_string() for l in Location.query.all()}
     score_pairs = sort_by_score(report, all_reports)
     
     return render_template("report/index.html", 

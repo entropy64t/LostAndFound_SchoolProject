@@ -22,10 +22,10 @@ SET row_security = off;
 -- Data for Name: categories; Type: TABLE DATA; Schema: public; Owner: bruno
 --
 
-INSERT INTO public.categories (id, name) VALUES (1, 'Umbrella');
-INSERT INTO public.categories (id, name) VALUES (2, 'Coat / Jacket');
-INSERT INTO public.categories (id, name) VALUES (3, 'Phone');
-INSERT INTO public.categories (id, name) VALUES (4, 'Other');
+INSERT INTO public.categories (id, name, name_pl) VALUES (1, 'Umbrella', 'Parasol');
+INSERT INTO public.categories (id, name, name_pl) VALUES (2, 'Coat / Jacket', 'Kurtka');
+INSERT INTO public.categories (id, name, name_pl) VALUES (3, 'Phone', 'Telefon');
+INSERT INTO public.categories (id, name, name_pl) VALUES (4, 'Other', 'Inne');
 
 
 --

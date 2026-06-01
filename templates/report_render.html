@@ -13,8 +13,8 @@
             <input type="radio" name="color" value="{{ colour.id }}" {% if selected_colour==colour.id %}checked{% endif
                 %}>
             <span class="filter-color-circle" style="background-color: {{ colour.name }};"
-                title="{{ colour.display_name }}"></span>
-            <span class="filter-color-name">{{ lang(colour.display_name) }}</span>
+                title="{{ colour.localized_name() }}"></span>
+            <span class="filter-color-name">{{ colour.localized_name() }}</span>
         </label>
         {% endfor %}
     </div>
@@ -34,7 +34,7 @@
             <option value="">{{ lang("All") }}</option>
             {% for category in categories %}
             <option value="{{ category.id }}" {% if selected_item==category.id %}selected{% endif %}>{{
-                lang(category.name) }}</option>
+                category.localized_name() }}</option>
             {% endfor %}
         </select>
     </label>
@@ -70,7 +70,7 @@
         <div class="report-details">
             {% if report.category %}
             <div class="{% if report.colour %}detail-item{% else %}detail-item-wide{% endif %}">
-                <strong>{{ lang("Category") }}:</strong> {{ lang(get_category(report.category).name) }}
+                <strong>{{ lang("Category") }}:</strong> {{ get_category(report.category).localized_name() }}
             </div>
             {% endif %}
 
@@ -79,7 +79,7 @@
                 <strong>{{ lang("Colour") }}:</strong>
                 <div class="color-swatch"
                     style="background-color: {{ get_colour(report.colour).colour_value or get_colour(report.colour).name }};"
-                    title="{{ lang(get_colour(report.colour).display_name) }}"></div>
+                    title="{{ get_colour(report.colour).localized_name() }}"></div>
             </div>
             {% endif %}
 

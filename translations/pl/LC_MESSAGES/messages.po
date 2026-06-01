@@ -159,10 +159,6 @@ msgstr "Ostatnio widziane"
 msgid "Lost in"
 msgstr "Zgubione w"
 
-#: templates/new.html:102
-msgid "level"
-msgstr "piętro"
-
 #: templates/new.html:109 templates/report/edit.html:95
 msgid "Additional content"
 msgstr "Dodatkowe informacje"
@@ -319,37 +315,3 @@ msgstr "Wpisany kod jest nieprawidłowy albo wygasł"
 
 msgid "Item image"
 msgstr "zdjęcie"
-
-msgid "Umbrella"
-msgstr "Parasol"
-
-msgid "Coat / Jacket"
-msgstr "Kurtka"
-
-msgid "Phone"
-msgstr "Telefon"
-
-msgid "Other"
-msgstr "Inne"
-
-msgid "Black"
-msgstr "Czarny"
-
-msgid "White"
-msgstr "Biały"
-
-msgid "Beige"
-msgstr "Beżowy"
-
-msgid "Red"
-msgstr "Czerwony"
-
-msgid "Blue"
-msgstr "Niebieski"
-
-msgid "Sky Blue"
-msgstr "Błękitny"
-
-msgid "Pink"
-msgstr "Różowy"
-

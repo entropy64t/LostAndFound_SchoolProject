@@ -24,17 +24,17 @@
 
             <div class="report-details">
 
-                {% if category %}
+                {% if category != None %}
                 <div class="detail-item">
-                    <strong>Category</strong> {{ category }}
+                    <strong>Category:</strong> {{ category.localized_name() }}
                 </div>
                 {% endif %}
                 
-                {% if colour %}
+                {% if colour != None %}
                 <div class="detail-item">
                     <strong>{{ lang("Colour") }}:</strong>
-                    <div class="color-swatch" style="background-color: {{ colour_value }};" title="{{ lang(colour) }}">
-                    </div>{{ lang(colour) }}
+                    <div class="color-swatch" style="background-color: {{ colour_value }};" title="{{ colour.localized_name() }}">
+                    </div>{{ colour.localized_name() }}
                 </div>
                 {% endif %}
 

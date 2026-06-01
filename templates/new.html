@@ -45,7 +45,7 @@
                 <div class="radio-row">
                     <label class="radio-option">
                         <input type="radio" name="item-type" value="{{ category.id }}" required>
-                        <span>{{ lang(category.name) }}</span>
+                        <span>{{ category.localized_name() }}</span>
                     </label>
                 </div>
                 {% endfor %}
@@ -58,7 +58,7 @@
                     {% for color in colour_list %}
                     <label class="color-option">
                         <input type="radio" name="item-color" value="{{ color.id }}" required>
-                        <span class="color-circle" style="background: {{ color.name }};"></span>
+                        <span class="color-circle" title="{{ color.localized_name() }}" style="background: {{ color.name }};"></span>
                     </label>
                     {% endfor %}
                     <label>
@@ -103,7 +103,7 @@
                     <option value="" selected>-- Select --</option>
                     {% for loc in location_list %}
                     <option value="{{ loc['id'] }}">
-                        {{ loc['name'] }} ({{ lang("level") }} {{ loc['building_level'] }})
+                        {{ loc.location_string() }}
                     </option>
                     {% endfor %}
                 </select>

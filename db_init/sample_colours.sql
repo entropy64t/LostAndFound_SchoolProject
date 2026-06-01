@@ -22,14 +22,14 @@ SET row_security = off;
 -- Data for Name: colours; Type: TABLE DATA; Schema: public; Owner: bruno
 --
 
-INSERT INTO public.colours (id, name, display_name, colour_value) VALUES (1, 'black', 'Black', NULL);
-INSERT INTO public.colours (id, name, display_name, colour_value) VALUES (2, 'white', 'White', NULL);
-INSERT INTO public.colours (id, name, display_name, colour_value) VALUES (3, 'beige', 'Beige', NULL);
-INSERT INTO public.colours (id, name, display_name, colour_value) VALUES (4, 'red', 'Red', NULL);
-INSERT INTO public.colours (id, name, display_name, colour_value) VALUES (5, 'royalblue', 'Blue', NULL);
-INSERT INTO public.colours (id, name, display_name, colour_value) VALUES (6, 'green', 'Green', NULL);
-INSERT INTO public.colours (id, name, display_name, colour_value) VALUES (7, 'skyblue', 'Sky Blue', NULL);
-INSERT INTO public.colours (id, name, display_name, colour_value) VALUES (8, 'pink', 'Pink', NULL);
+INSERT INTO public.colours (id, name, display_name, display_name_pl, colour_value) VALUES (1, 'black', 'Black', 'Czarny', NULL);
+INSERT INTO public.colours (id, name, display_name, display_name_pl, colour_value) VALUES (2, 'white', 'White', 'Biały', NULL);
+INSERT INTO public.colours (id, name, display_name, display_name_pl, colour_value) VALUES (3, 'beige', 'Beige', 'Beżowy', NULL);
+INSERT INTO public.colours (id, name, display_name, display_name_pl, colour_value) VALUES (4, 'red', 'Red', 'Czerwony', NULL);
+INSERT INTO public.colours (id, name, display_name, display_name_pl, colour_value) VALUES (5, 'royalblue', 'Blue', 'Niebieski', NULL);
+INSERT INTO public.colours (id, name, display_name, display_name_pl, colour_value) VALUES (6, 'green', 'Green', 'Zielony', NULL);
+INSERT INTO public.colours (id, name, display_name, display_name_pl, colour_value) VALUES (7, 'skyblue', 'Sky Blue', 'Błękitny', NULL);
+INSERT INTO public.colours (id, name, display_name, display_name_pl, colour_value) VALUES (8, 'pink', 'Pink', 'Różowy', NULL);
 
 
 --

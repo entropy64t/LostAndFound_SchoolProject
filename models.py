@@ -1,5 +1,6 @@
 from sqlalchemy import Enum as SQLAEnum
 from app import db
+from flask import session
 
 reportType = SQLAEnum('lost', 'found', name='reportType')
 
@@ -46,6 +47,13 @@ class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     
     name = db.Column(db.String())
+    name_pl = db.Column(db.String())
+
+    def localized_name(self) -> str:
+        if session.get('lang') == 'pl':
+            return self.name_pl
+        else:
+            return self.name
 
 def get_category(category_id: int) -> Category:
     return Category.query.get(category_id)
@@ -57,7 +65,14 @@ class Colour(db.Model):
 
     name = db.Column(db.String())
     display_name = db.Column(db.String())
+    display_name_pl = db.Column(db.String())
     colour_value = db.Column(db.Integer)
+
+    def localized_name(self) -> str:
+        if session.get('lang') == 'pl':
+            return self.display_name_pl
+        else:
+            return self.display_name
 
 def get_colour(colour_id: int) -> Colour:
     return Colour.query.get(colour_id)
@@ -71,7 +86,11 @@ class Location(db.Model):
     name = db.Column(db.String())
 
     def location_string(self) -> str:
-        return self.name + " (level " + str(self.building_level) + ")"
+        if session.get('lang') == 'pl':
+            level_str = "poziom"
+        else:
+            level_str = "level"
+        return self.name + " (" + level_str + " " + str(self.building_level) + ")"
 
 def get_location(location_id: int) -> Location:
     return Location.query.get(location_id)
