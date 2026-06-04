@@ -2,6 +2,7 @@ BEGIN;
 
 CREATE EXTENSION IF NOT EXISTS citext;
 
+DROP TABLE IF EXISTS matches;
 DROP TABLE IF EXISTS reports;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS locations;
@@ -66,6 +67,14 @@ CREATE TABLE reports (
 	last_seen_location integer REFERENCES locations(id),
 	item_owner integer REFERENCES users(id) ON DELETE SET NULL,
 	pickup_location integer REFERENCES locations(id)
+);
+
+CREATE TABLE matches (
+    id serial PRIMARY KEY,
+    lost_item integer REFERENCES reports(id) ON DELETE CASCADE,
+    found_item integer REFERENCES reports(id) ON DELETE CASCADE,
+    score integer,
+    creation_date timestamptz
 );
 
 COMMIT;

@@ -94,3 +94,13 @@ class Location(db.Model):
 
 def get_location(location_id: int) -> Location:
     return Location.query.get(location_id)
+
+class Match(db.Model):
+    __tablename__ = "matches"
+
+    id = db.Column(db.Integer, primary_key=True)
+
+    lost_item = db.Column(db.Integer)
+    found_item = db.Column(db.Integer)
+    score = db.Column(db.Integer)
+    creation_date = db.Column(db.DateTime(timezone=True))

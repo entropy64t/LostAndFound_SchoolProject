@@ -18,7 +18,7 @@
                 <div class="form-group">
                     <label>
                         Verification code
-                        <input type="text" name="otp" required>
+                        <input type="text" name="otp" pattern="[0-9]*" inputmode="numeric" required>
                 </div>
                 <button type="submit" class="btn-primary">Submit</button>
                 {% if request.args.get("msg") == "wrongotp" %}

@@ -21,7 +21,7 @@ from verification import send_message_email, send_pwreset, verify_domain
 
 from flask_babel import gettext as lang
 
-from scoring import sort_by_score
+from scoring import sort_by_score, update_scoring_of_report
 
 @app.route("/new", methods=["GET", "POST"])
 @login_required
@@ -68,6 +68,7 @@ def new(): # TODO make sure the user is logged in and verified - also for POST r
         
         db.session.add(report)
         db.session.commit()
+        update_scoring_of_report(report)
         
         return redirect(url_for("all"))
 
@@ -410,7 +411,7 @@ def report_details(report_id):
                            authors=authors,
                            locations=locations,
                            filter=False,
-                           scores={pair[0]: int(round(pair[1] * 100, 0)) for pair in score_pairs},
+                           scores={pair[0]: int(pair[1]) for pair in score_pairs},
                            get_category=get_category, 
                            get_colour=get_colour, 
                            get_location=get_location,
@@ -456,6 +457,7 @@ def edit_report(report_id):
                 report.pickup_location = pickup_location
 
         db.session.commit()
+        update_scoring_of_report(report)
 
         return redirect(url_for("report_details", report_id=report_id))
 
