@@ -1,4 +1,4 @@
-from models import Report, get_location, Match
+from models import Report, get_report, Location, get_location, Match
 from sqlalchemy import delete, or_
 from app import app, db
 from flask import current_app
@@ -49,12 +49,17 @@ def score_against(target: Report, items: list[Report]) -> dict[Report, float]:
     
     return {item: score_single(target, item) for item in items}
 
-def sort_by_score(target: Report, items: list[Report]) -> list[tuple[Report, float]]:
-    scores = score_against(target, items)
+def sort_by_score(target: Report) -> list[tuple[Report, float]]:
+    if target.report_type == "lost":
+        matches = Match.query.filter_by(lost_item=target.id).all()
+        unsorted_pairs = {get_report(mat.found_item): mat.score for mat in matches}
+    else:
+        matches = Match.query.filter_by(found_item=target.id).all()
+        unsorted_pairs = {get_report(mat.lost_item): mat.score for mat in matches}
     
-    sorted_pairs = sorted(scores.items(), key=lambda item: item[1], reverse=True)
+    sorted_pairs = sorted(unsorted_pairs.items(), key=lambda item: item[1], reverse=True)
     
-    return [pair for pair in sorted_pairs if pair[1] != 0] # delete ones that scored 0
+    return sorted_pairs
 
 def scoring_service(root: Report, report_list: list[Report], app):
     with app.app_context():

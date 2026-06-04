@@ -390,7 +390,7 @@ def report_details(report_id):
     all_reports = Report.query.all()
     authors = {u.id: u.public_name() for u in User.query.all()}
     locations = {l.id: l.location_string() for l in Location.query.all()}
-    score_pairs = sort_by_score(report, all_reports)
+    score_pairs = sort_by_score(report)
     
     return render_template("report/index.html", 
                            report_type=report_type, 
