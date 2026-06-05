@@ -274,3 +274,7 @@ nav,
 .container {
     width: 100%;
 }
+
+.bold-td {
+    font-weight: 700;
+}

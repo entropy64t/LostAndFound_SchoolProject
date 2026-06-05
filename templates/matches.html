@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    {% include "common_head.html" %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='matches.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='report_list.css') }}">
+    <title>Matches</title>
+</head>
+
+<body>
+    {% include "navbar.html" %}
+
+    <div class="container">
+        <h1>Report matches</h1>
+        <form class="report-filter" method="get">
+            <div class="filter-chip-picker">
+                <span class="filter-label">Show matches:</span>
+                <label class="filter-chip-option filter-chip-helper">
+                    <input type="radio" name="filter" value="" {% if not selected_filter %}checked{% endif %}>
+                    <span class="filter-chip-name">All</span>
+                </label>
+                <label class="filter-chip-option filter-chip-helper">
+                    <input type="radio" name="filter" value="mine" {% if selected_filter=="mine" %}checked{% endif %}>
+                    <span class="filter-chip-name">Related to my reports</span>
+                </label>
+            </div>
+            <div class="filter-chip-picker">
+                <span class="filter-label">Sort by:</span>
+                <label class="filter-chip-option filter-chip-helper">
+                    <input type="radio" name="order" value="" {% if not selected_order %}checked{% endif %}>
+                    <span class="filter-chip-name">Score</span>
+                </label>
+                <label class="filter-chip-option filter-chip-helper">
+                    <input type="radio" name="order" value="created" {% if selected_order=="created" %}checked{% endif %}>
+                    <span class="filter-chip-name">Creation date</span>
+                </label>
+            </div>
+            <button type="submit">{{ lang("Apply") }}</button>
+        </form>
+        <div class="content">
+            <p>Reports in bold are authored by you</p>
+            <table>
+                <tr><th>Lost item</th><th>Found item</th><th>Score</th><th>Generated</th></tr>
+                {% for mat in all_matches %}
+                <tr>
+                    <td {% if get_report(mat[0]).author == current_user.id %}class="bold-td"{% endif %}><a href="{{ url_for('report_details', report_id=mat[0]) }}">{{ get_report(mat[0]).title }}</a></td>
+                    <td {% if get_report(mat[1]).author == current_user.id %}class="bold-td"{% endif %}><a href="{{ url_for('report_details', report_id=mat[1]) }}">{{ get_report(mat[1]).title }}</a></td>
+                    <td>{{ mat[2] }}</td>
+                    <td>{{ mat[3] }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+    {% include "footer.html" %}
+</body>
+
+</html>

@@ -229,7 +229,7 @@
     font-size: 0.95em;
 }
 
-.filter-color-picker {
+.filter-chip-picker {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -245,7 +245,7 @@
     min-width: 56px;
 }
 
-.filter-color-option {
+.filter-chip-option {
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -259,24 +259,28 @@
     user-select: none;
 }
 
-.filter-color-option:hover {
+.filter-chip-option:hover {
     background: #f5f7fb;
     border-color: #cbd5e1;
 }
 
-.filter-color-option input {
+.filter-chip-option input {
     position: absolute;
     opacity: 0;
     pointer-events: none;
 }
 
-.filter-color-option input:checked+.filter-color-circle {
+.filter-chip-option input:checked+.filter-color-circle {
     outline: 2px solid #007bff;
     outline-offset: 2px;
 }
 
-.filter-color-option,
-.filter-color-name,
+.filter-chip-helper:has(> input:checked) {
+    outline: 2px solid #007bff;
+}
+
+.filter-chip-option,
+.filter-chip-name,
 .filter-color-circle {
     user-select: none;
 }
@@ -299,7 +303,7 @@
     background-size: 8px 8px;
 }
 
-.filter-color-name {
+.filter-chip-name {
     font-size: 0.95em;
     color: #333;
 }

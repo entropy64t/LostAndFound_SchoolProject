@@ -1,20 +1,20 @@
 {% if filter %}
 
 <form class="report-filter" method="get">
-    <div class="filter-color-picker">
+    <div class="filter-chip-picker">
         <span class="filter-label">{{ lang("Colour") }}:</span>
-        <label class="filter-color-option">
+        <label class="filter-chip-option">
             <input type="radio" name="color" value="" {% if selected_colour is none %}checked{% endif %}>
             <span class="filter-color-circle filter-color-circle-all"></span>
-            <span class="filter-color-name">{{ lang("All") }}</span>
+            <span class="filter-chip-name">{{ lang("All") }}</span>
         </label>
         {% for colour in colours %}
-        <label class="filter-color-option">
+        <label class="filter-chip-option">
             <input type="radio" name="color" value="{{ colour.id }}" {% if selected_colour==colour.id %}checked{% endif
                 %}>
             <span class="filter-color-circle" style="background-color: {{ colour.name }};"
                 title="{{ colour.localized_name() }}"></span>
-            <span class="filter-color-name">{{ colour.localized_name() }}</span>
+            <span class="filter-chip-name">{{ colour.localized_name() }}</span>
         </label>
         {% endfor %}
     </div>
@@ -61,7 +61,7 @@
             <span class="meta-item"><strong>{{ lang("Posted") }}:</strong> {{ report.creation_date.strftime('%Y-%m-%d
                 %H:%M')
                 if report.creation_date else 'N/A' }}</span>
-            {% if scores%}
+            {% if scores %}
             <span class="meta-item"><strong>{{ lang("Score") }}:</strong>
                 {{ scores[report]}}</span>
             {% endif %}
@@ -129,7 +129,7 @@
         #}
 
         <div class="report-footer">
-            <a href="/report/{{ report.id }}" class="btn-view">{{ lang("View Details") }}</a>
+            <a href="{{ url_for('report_details', report_id=report.id) }}" class="btn-view">{{ lang("View Details") }}</a>
         </div>
     </div>
     {% endfor %}

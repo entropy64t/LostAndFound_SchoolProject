@@ -2,8 +2,10 @@ from models import Report, get_report, Location, get_location, Match
 from sqlalchemy import delete, or_
 from app import app, db
 from flask import current_app
+from flask_login import current_user
 
 import threading
+from datetime import datetime, timezone
 
 def score_single(target: Report, item: Report) -> float:
     """Score `item` against `target` on a [0, 100] scale
@@ -61,6 +63,22 @@ def sort_by_score(target: Report) -> list[tuple[Report, float]]:
     
     return sorted_pairs
 
+def all_sorted(filter_by_user, by_creation_date) -> list[tuple[Report, Report, float, str]]: # lost, found, score, created
+    matches = Match.query.all()
+    if filter_by_user:
+        for mat in list(matches): # creates a copy, allowing to remove elements
+            if get_report(mat.lost_item).author != current_user.id and get_report(mat.found_item).author != current_user.id:
+                matches.remove(mat)
+
+    unsorted_pairs = [(mat.lost_item, mat.found_item, mat.score, mat.creation_date.strftime('%Y-%m-%d %H:%M')) for mat in matches]
+
+    if by_creation_date:
+        sorted_pairs = sorted(unsorted_pairs, key=lambda item: item[3], reverse=True)
+    else:
+        sorted_pairs = sorted(unsorted_pairs, key=lambda item: item[2], reverse=True)
+
+    return sorted_pairs
+
 def scoring_service(root: Report, report_list: list[Report], app):
     with app.app_context():
         scoring_result = score_against(root, report_list)
@@ -75,7 +93,7 @@ def scoring_service(root: Report, report_list: list[Report], app):
                     lost_item_id = pair.id
                     found_item_id = root.id
 
-                mat = Match(lost_item=lost_item_id, found_item=found_item_id, score=scoring_result[pair])
+                mat = Match(lost_item=lost_item_id, found_item=found_item_id, score=scoring_result[pair], creation_date=datetime.now(timezone.utc))
                 db.session.add(mat)
         db.session.commit()
         db.session.remove()

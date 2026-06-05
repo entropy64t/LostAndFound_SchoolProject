@@ -21,7 +21,7 @@ from verification import send_message_email, send_pwreset, verify_domain
 
 from flask_babel import gettext as lang
 
-from scoring import sort_by_score, update_scoring_of_report
+from scoring import sort_by_score, update_scoring_of_report, all_sorted
 
 @app.route("/new", methods=["GET", "POST"])
 @login_required
@@ -356,6 +356,9 @@ def found():
 @app.route("/report/<report_id>")
 @login_required
 def report_details(report_id):
+    if not current_user.account_verified:
+        return redirect(url_for("index"))
+
     report = get_report(report_id)
     print(report)
 
@@ -421,6 +424,9 @@ def report_details(report_id):
 @app.route("/report/<report_id>/edit", methods=['GET', 'POST'])
 @login_required
 def edit_report(report_id):
+    if not current_user.account_verified:
+        return redirect(url_for("index"))
+
     report = get_report(report_id)
     
     if request.method == "POST":
@@ -500,6 +506,8 @@ def edit_report(report_id):
 @app.route("/report/<report_id>/delete", methods=['GET', 'POST'])
 @login_required
 def delete_report(report_id):
+    if not current_user.account_verified:
+        return redirect(url_for("index"))
     if request.method == "POST":
         report = get_report(report_id)
         if get_user(report.author) != current_user:
@@ -508,6 +516,18 @@ def delete_report(report_id):
         db.session.commit()
         return redirect(url_for("index"))
     return redirect(url_for("report_details", report_id=report_id))
+
+@app.route("/matches")
+@login_required
+def matches():
+    if not current_user.account_verified:
+        return redirect(url_for("index"))
+
+    selected_filter = request.args.get('filter')
+    selected_order = request.args.get('order')
+
+    all_matches = all_sorted(selected_filter == "mine", selected_order == "created")
+    return render_template("matches.html", all_matches=all_matches, get_report=get_report, selected_filter=selected_filter, selected_order=selected_order)
 
 @login_manager.user_loader
 def load_user(user_id: str):
