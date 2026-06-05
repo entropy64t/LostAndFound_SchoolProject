@@ -7,7 +7,7 @@ from flask_login import current_user
 import threading
 from datetime import datetime, timezone
 
-def score_single(target: Report, item: Report) -> float:
+def score_single(target: Report, item: Report) -> int:
     """Score `item` against `target` on a [0, 100] scale
  - `target` == `item` => 0
  - `target` and `item` have the same report type => 0
@@ -17,7 +17,9 @@ def score_single(target: Report, item: Report) -> float:
  - same `location` => 20
  - same `location.level` => 10
  - different locations => 0
+ - share of words of shorter title having equivalents in longer title => 0 - 40
     
+ - total: 0 - 100
     """
     if target == item: return 0
     if target.report_type == item.report_type: return 0
@@ -44,14 +46,31 @@ def score_single(target: Report, item: Report) -> float:
             if item.item_owner == target.author:
                 ownership_score = 30
 
-    return colour_score + loc_score + ownership_score
+    title_score = 0
+    if target.title and item.title:
+        if len(target.title) <= len(item.title):
+            a = target.title.lower()
+            b = item.title.lower()
+        else:
+            a = item.title.lower()
+            b = target.title.lower()
+        a_words = a.split(' ')
+        counter = 0
+        for a_word in a_words:
+            if a_word in b:
+                counter += 1
+        counter *= 40 # scale to [0, 40]
+        total = len(a_words)
+        title_score += counter // total
 
-def score_against(target: Report, items: list[Report]) -> dict[Report, float]:
+    return colour_score + loc_score + ownership_score + title_score
+
+def score_against(target: Report, items: list[Report]) -> dict[Report, int]:
     """Score `items` against `target`. For criteria look at `score_single`"""
     
     return {item: score_single(target, item) for item in items}
 
-def sort_by_score(target: Report) -> list[tuple[Report, float]]:
+def sort_by_score(target: Report) -> list[tuple[Report, int]]:
     if target.report_type == "lost":
         matches = Match.query.filter_by(lost_item=target.id).all()
         unsorted_pairs = {get_report(mat.found_item): mat.score for mat in matches}
@@ -63,7 +82,7 @@ def sort_by_score(target: Report) -> list[tuple[Report, float]]:
     
     return sorted_pairs
 
-def all_sorted(filter_by_user, by_creation_date) -> list[tuple[Report, Report, float, str]]: # lost, found, score, created
+def all_sorted(filter_by_user, by_creation_date) -> list[tuple[Report, Report, int, str]]: # lost, found, score, created
     matches = Match.query.all()
     if filter_by_user:
         for mat in list(matches): # creates a copy, allowing to remove elements

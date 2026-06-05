@@ -25,7 +25,7 @@ from scoring import sort_by_score, update_scoring_of_report, all_sorted
 
 @app.route("/new", methods=["GET", "POST"])
 @login_required
-def new(): # TODO make sure the user is logged in and verified - also for POST request
+def new():
     if request.method == "POST":
         if not current_user.account_verified or not current_user.is_authenticated:
             return redirect(url_for("index"))
@@ -289,7 +289,7 @@ def set_language(lang):
     # stay on current page
     return redirect(request.referrer or url_for('home'))
 
-def render_reports(query: Query, template: str, view_all: bool = True): # TODO make sure the user is logged in and verified - also for POST request
+def render_reports(query: Query, template: str, view_all: bool = True):
     if not current_user.account_verified or not current_user.is_authenticated:
         return redirect(url_for("index"))
 
