@@ -229,6 +229,20 @@
     font-size: 0.95em;
 }
 
+.filter-text-field {
+    margin-bottom: 4px;
+    grid-column: 1 / -1;
+}
+
+.filter-text-input {
+    font-size: 1em;
+    padding: 8px;
+    border: 1px solid #dfe3e8;
+    border-radius: 8px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
 .filter-chip-picker {
     display: flex;
     flex-wrap: wrap;

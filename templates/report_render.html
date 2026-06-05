@@ -1,6 +1,9 @@
 {% if filter %}
 
 <form class="report-filter" method="get">
+    <div class="filter-text-field">
+        <input type="text" class="filter-text-input" name="text" {% if selected_text %}value="{{ selected_text }}"{% endif %} placeholder="Filter by name or description...">
+    </div>
     <div class="filter-chip-picker">
         <span class="filter-label">{{ lang("Colour") }}:</span>
         <label class="filter-chip-option">

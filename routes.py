@@ -6,7 +6,7 @@ from enum import Enum
 from flask_login import LoginManager, login_required, login_user, logout_user, current_user
 
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import text, select, func, desc
+from sqlalchemy import text, select, func, desc, or_
 from sqlalchemy.orm import Query
 
 from urllib.parse import urlparse
@@ -299,11 +299,14 @@ def render_reports(query: Query, template: str, view_all: bool = True): # TODO m
     colours = Colour.query.all()
     locations = {l.id: l.location_string() for l in Location.query.all()}
     
+    selected_text = request.args.get('text')
     selected_colour = request.args.get('color', type=int)
     selected_item = request.args.get('category', type=int)
     selected_type = request.args.get('type', "").lower()
     selected_owner = request.args.get('item_owner')
     
+    if selected_text:
+        query = query.filter(or_(Report.title.icontains(selected_text, autoescape=True), Report.description.icontains(selected_text, autoescape=True))) # icontains is case-insensitive contains
     if selected_colour is not None:
         query = query.filter_by(colour=selected_colour)
     if selected_item is not None:
@@ -324,6 +327,7 @@ def render_reports(query: Query, template: str, view_all: bool = True): # TODO m
         selected_item=selected_item,
         selected_type=selected_type,
         selected_owner=selected_owner,
+        selected_text=selected_text,
         locations=locations,
         view_all=view_all,
         get_category=get_category,
