@@ -6,7 +6,7 @@ from enum import Enum
 from flask_login import LoginManager, login_required, login_user, logout_user, current_user
 
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import text, select, func
+from sqlalchemy import text, select, func, desc
 from sqlalchemy.orm import Query
 
 from urllib.parse import urlparse
@@ -312,7 +312,7 @@ def render_reports(query: Query, template: str, view_all: bool = True): # TODO m
         query = query.filter_by(report_type=selected_type)
     if selected_owner == "me":
         query = query.filter_by(item_owner=current_user.id)
-    reports = query.all()
+    reports = query.order_by(desc(Report.creation_date)).all()
     
     return render_template(
         template,
