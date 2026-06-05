@@ -38,6 +38,13 @@
             {% endfor %}
         </select>
     </label>
+    <label>
+        Suspected owner:
+        <select name="item_owner">
+            <option value="">Anybody</option>
+            <option value="me" {% if selected_owner=="me" %}selected{% endif %}>You</option>
+        </select>
+    </label>
     <button type="submit">{{ lang("Apply") }}</button>
 </form>
 

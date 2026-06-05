@@ -3,7 +3,6 @@
 
 <head>
     {% include "common_head.html" %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='auth.css') }}">
     <title>Lost&Found</title>
 </head>
 
@@ -15,6 +14,12 @@
         <div class="content">
             <h2>Welcome to Lost&Found</h2>
             <p>Wybierz z menu aby zobaczyć przedmioty zgubione lub znalezione.</p>
+            <hr>
+            <p><strong>{{ total_reports }}</strong> active reports, <strong>{{ lost_reports }}</strong> lost, <strong>{{ found_reports }}</strong> found</p>
+            <hr>
+            <p>Go to:</br>
+            <a class="btn-primary" style="display: inline-block;" href="{{ url_for('matches', filter='mine') }}">Matches with your reports</a>
+            <a class="btn-primary" style="display: inline-block;" href="{{ url_for('all', item_owner='me') }}">Reports with you as suspected owner</a></p>
         </div>
     </div>
 

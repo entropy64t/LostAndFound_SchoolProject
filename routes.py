@@ -6,7 +6,7 @@ from enum import Enum
 from flask_login import LoginManager, login_required, login_user, logout_user, current_user
 
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import text, select
+from sqlalchemy import text, select, func
 from sqlalchemy.orm import Query
 
 from urllib.parse import urlparse
@@ -274,7 +274,12 @@ def delete_account():
 def index():
     if not current_user.account_verified:
         return redirect(url_for("verify_account"))
-    return render_template("index.html")
+
+    total_reports = db.session.scalar(select(func.count(Report.id)))
+    lost_reports = db.session.scalar(select(func.count(Report.id)).where(Report.report_type=="lost"))
+    found_reports = db.session.scalar(select(func.count(Report.id)).where(Report.report_type=="found"))
+
+    return render_template("index.html", total_reports=total_reports, lost_reports=lost_reports, found_reports=found_reports)
 
 @app.route('/setlang/<lang>')
 def set_language(lang):
@@ -297,6 +302,7 @@ def render_reports(query: Query, template: str, view_all: bool = True): # TODO m
     selected_colour = request.args.get('color', type=int)
     selected_item = request.args.get('category', type=int)
     selected_type = request.args.get('type', "").lower()
+    selected_owner = request.args.get('item_owner')
     
     if selected_colour is not None:
         query = query.filter_by(colour=selected_colour)
@@ -304,6 +310,8 @@ def render_reports(query: Query, template: str, view_all: bool = True): # TODO m
         query = query.filter_by(category=selected_item)
     if selected_type in ("lost", "found"):
         query = query.filter_by(report_type=selected_type)
+    if selected_owner == "me":
+        query = query.filter_by(item_owner=current_user.id)
     reports = query.all()
     
     return render_template(
@@ -315,6 +323,7 @@ def render_reports(query: Query, template: str, view_all: bool = True): # TODO m
         selected_colour=selected_colour,
         selected_item=selected_item,
         selected_type=selected_type,
+        selected_owner=selected_owner,
         locations=locations,
         view_all=view_all,
         get_category=get_category,
@@ -459,8 +468,12 @@ def edit_report(report_id):
             pickup_location = request.form['pickup_location']
             if item_owner:
                 report.item_owner = item_owner
+            else:
+                report.item_owner = None
             if pickup_location:
                 report.pickup_location = pickup_location
+            else:
+                report.pickup_location = None
 
         db.session.commit()
         update_scoring_of_report(report)
