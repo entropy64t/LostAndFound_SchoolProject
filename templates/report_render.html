@@ -63,7 +63,7 @@
         <div class="report-header">
             <h2 class="report-title">{{ report.title }}</h2>
             <span class="report-badge report-type-{{ report.report_type }}">{{
-                lang(report.report_type.capitalize()).upper()
+                lang(report.report_type.capitalize())
                 }}</span> {# capitalize so babel can detect 'found' and 'lost' #}
         </div>
 
@@ -95,21 +95,10 @@
             </div>
             {% endif %}
 
-            {% if report.last_seen %}
+            {% if report.last_seen or report.last_seen_location %}
             <div class="detail-item-wide detail-item-last-seen">
-                <strong>{{ lang("Last seen") }}:</strong>
-                <span class="last-seen-value">{{ report.last_seen.strftime('%Y-%m-%d %H:%M') }}</span>
-            </div>
-            {% endif %}
-
-            {% if report.last_seen_location %}
-            <div class="detail-item-wide">
-                <strong>{{ lang("Location") }}:</strong>
-                {% if report.last_seen_location in locations %}
-                {{ locations[report.last_seen_location] }}
-                {% else %}
-                {{ lang("Unknown") }}
-                {% endif %}
+                <strong>{{lang("Last seen")}}:</strong>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">{% if report.last_seen %}<span class="last-seen-value" style="display: inline-block;"> {{ report.last_seen.strftime('%Y-%m-%d %H:%M') }}</span>{% endif %}{% if report.last_seen_location %}<span style="display: inline-block;"> at {{ locations[report.last_seen_location] }}</span>{% endif %}</div>
             </div>
             {% endif %}
             

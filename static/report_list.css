@@ -42,22 +42,21 @@
 
 .report-badge {
     padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 0.75em;
+    border-radius: 8px;
+    font-size: 0.9em;
     font-weight: 600;
-    text-transform: uppercase;
     white-space: nowrap;
     flex-shrink: 0;
 }
 
 .report-type-lost {
     background-color: var(--badge-lost-bg);
-    color: var(--badge-lost);
+    color: var(--main-red);
 }
 
 .report-type-found {
     background-color: var(--badge-found-bg);
-    color: var(--badge-found);
+    color: var(--main-green);
 }
 
 .report-metadata {
@@ -89,7 +88,6 @@
     background: var(--gray-bg);
     padding: 10px;
     border-radius: 4px;
-    border-left: 3px solid var(--secondary);
     display: flex;
     align-items: center;
     gap: 8px;
@@ -99,7 +97,6 @@
     background: var(--gray-bg);
     padding: 10px;
     border-radius: 4px;
-    border-left: 3px solid var(--secondary);
     display: flex;
     align-items: center;
     gap: 8px;
@@ -111,7 +108,6 @@
     color: var(--primary);
     padding: 4px 8px;
     border-radius: 4px;
-    margin-left: 8px;
     font-weight: 600;
 }
 
@@ -194,6 +190,7 @@
     border: 1px solid var(--gray-border);
     border-radius: 8px;
     padding: 14px 16px;
+    box-sizing: border-box;
 }
 
 .report-filter label {
@@ -201,7 +198,7 @@
     align-items: center;
     gap: 10px;
     font-size: 0.95em;
-    color: #333;
+    color: var(--primary);
     padding: 10px 12px;
     background: #ffffff;
     border: 1px solid var(--gray-border);
@@ -258,13 +255,13 @@
 }
 
 .filter-chip-option {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    border-radius: 999px;
-    padding: 4px 10px;
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    border-radius: 8px !important;
+    padding: 10px 12px;
     background: #fff;
-    border: 1px solid var(--gray-border);
+    border: 1px solid var(--gray-border) !important;
     cursor: pointer;
     transition: background-color 0.2s ease, border-color 0.2s ease;
     position: relative;
@@ -330,6 +327,17 @@
 .report-filter button:hover {
     background: var(--secondary-accent);
 }
+
+
+.color-picker-parent {
+    transition: border-color 0.1s ease;
+}
+
+.color-picker-parent:focus-within {
+    outline: none;
+    border-color: var(--secondary) !important;
+}
+
 
 /* Responsive design */
 @media (max-width: 768px) {

@@ -3,7 +3,7 @@
 
 <head>
     {% include "common_head.html" %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='color_picker.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='report_list.css')}}">
     <title>Lost&Found - edit {{ title }}</title>
 </head>
 
@@ -36,17 +36,18 @@
             <fieldset class="color-picker-parent">
                 <legend>{{ lang("Item colour") }} {% include "required.html" %}</legend>
 
-                <div class="color-picker">
-                    {% for clr in colour_list %}
-                    <label class="color-option">
-                        <input type="radio" name="item-color" value="{{ clr.id }}" required {% if colour==clr.id
-                          %}checked{% endif %} title="{{ clr.localized_name() }}">
-                        <span class="color-circle" title="{{ clr.localized_name() }}" style="background: {{ clr.name }};"></span>
+                <div class="filter-chip-picker">
+                    {% for color in colour_list %}
+                    <label class="filter-chip-option">
+                        <input type="radio" name="item-color" value="{{ color.id }}" required {% if colour==color.id %}checked{% endif %}>
+                        <span class="filter-color-circle" style="background-color: {{ color.name }};" title="{{ color.localized_name() }}"></span>
+                        <span class="filter-chip-name">{{ color.localized_name() }}</span>
                     </label>
                     {% endfor %}
-                    <label>
+                    <label class="filter-chip-option">
                         <input type="radio" name="item-color" value="" required {% if colour=="" %}checked{% endif %}>
-                        <span>Other/unknown</span>
+                        <span class="filter-color-circle filter-color-circle-all"></span>
+                        <span class="filter-chip-name">Other/unknown</span>
                     </label>
                 </div>
             </fieldset>

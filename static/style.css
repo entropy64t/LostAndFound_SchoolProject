@@ -94,6 +94,7 @@ body {
 }
 
 .container {
+    box-sizing: border-box;
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
@@ -114,11 +115,13 @@ h2 {
     padding: 30px;
     border-radius: 5px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
 }
 
 /* Create Post Form */
 #create-post {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 20px;
 }
 
@@ -127,6 +130,7 @@ h2 {
     font-size: 0.95rem;
     color: var(--primary);
     margin-bottom: 8px;
+    box-sizing: border-box;
 }
 
 #create-post input[type="text"],
@@ -153,6 +157,8 @@ h2 {
 }
 
 #create-post textarea.form-textarea {
+    width: 100%;
+    box-sizing: border-box;
     resize: none;
     min-height: 180px;
 }
@@ -160,17 +166,23 @@ h2 {
 #create-post input[type="text"]:focus,
 #create-post input[type="datetime-local"]:focus,
 #create-post textarea:focus,
-#create-post select:focus {
+#create-post select:focus,
+.content input[type="text"]:focus,
+.content input[type="password"]:focus,
+.content input[type="email"]:focus,
+.content select:focus {
     outline: none;
     border-color: var(--secondary);
     box-shadow: 0 0 0 3px var(--secondary-transparent);
 }
 
 #create-post fieldset {
+    width: 100%;
     border: 1px solid var(--gray-border);
     border-radius: 8px;
     padding: 20px;
     background-color: var(--almost-white);
+    box-sizing: border-box;
 }
 
 #create-post legend {
