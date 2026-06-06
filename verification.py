@@ -16,7 +16,7 @@ def send_mail(receiver_address, message):
 
 def mail_service_send(receiver_address, account_otp, account_mail, account_name):
     message_subject = "Your LostAndFound code is " + account_otp
-    message = "Subject:" + message_subject + "\n\nUse the following code to verify your LostAndFound account:\n" + account_otp + "\n\nAccount details:\nE-mail: " + account_mail + "\nName: " + account_name
+    message = "Subject:" + message_subject + "\n\nUse the following code to verify your LostAndFound account:\n" + account_otp + "\n\nAccount details:\nE-mail: " + account_mail + "\nName: " + account_name + "\n\nThe link is valid for 30 minutes."
     send_mail(receiver_address, message)
 
 def send_message_email(receiver_address, account_otp, account_mail, account_name):

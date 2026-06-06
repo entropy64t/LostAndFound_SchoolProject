@@ -28,3 +28,7 @@
     border: 3px solid black;
     transform: scale(1.1);
 }
+
+.color-picker-parent:focus-within > legend {
+    text-decoration: underline;
+}

@@ -172,7 +172,7 @@ def create_account():
 
         return redirect(next or url_for("index"))
     
-    grades_from_db = db.session.execute(text("SELECT * FROM grades;")).mappings().all()
+    grades_from_db = Grade.query.all()
     return render_template("create_account.html", grade_list=grades_from_db)
 
 @app.route("/verification/", methods=["GET", "POST"])

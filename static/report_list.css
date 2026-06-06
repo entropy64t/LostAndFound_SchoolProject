@@ -259,6 +259,10 @@
     min-width: 56px;
 }
 
+.filter-chip-picker:focus-within > .filter-label {
+    text-decoration: underline;
+}
+
 .filter-chip-option {
     display: inline-flex;
     align-items: center;

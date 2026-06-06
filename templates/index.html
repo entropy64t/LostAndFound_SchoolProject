@@ -17,7 +17,7 @@
             <hr>
             <p><strong>{{ total_reports }}</strong> active reports, <strong>{{ lost_reports }}</strong> lost, <strong>{{ found_reports }}</strong> found</p>
             <hr>
-            <p>Go to:</br>
+            <p>Go to:<br>
             <a class="btn-primary" style="display: inline-block;" href="{{ url_for('matches', filter='mine') }}">Matches with your reports</a>
             <a class="btn-primary" style="display: inline-block;" href="{{ url_for('all', item_owner='me') }}">Reports with you as suspected owner</a></p>
         </div>

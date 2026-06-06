@@ -29,4 +29,4 @@ babel = Babel(app, locale_selector=get_locale)
 import routes, models, user
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True) # TODO change for production
