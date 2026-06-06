@@ -29,6 +29,11 @@
     transform: scale(1.1);
 }
 
-.color-picker-parent:focus-within > legend {
-    text-decoration: underline;
+.color-picker-parent {
+    transition: border-color 0.1s ease;
+}
+
+.color-picker-parent:focus-within {
+    outline: none;
+    border-color: var(--secondary) !important;
 }

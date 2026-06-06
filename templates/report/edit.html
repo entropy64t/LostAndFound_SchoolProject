@@ -40,7 +40,7 @@
                     {% for clr in colour_list %}
                     <label class="color-option">
                         <input type="radio" name="item-color" value="{{ clr.id }}" required {% if colour==clr.id
-                            %}checked{% endif %}>
+                          %}checked{% endif %} title="{{ clr.localized_name() }}">
                         <span class="color-circle" title="{{ clr.localized_name() }}" style="background: {{ clr.name }};"></span>
                     </label>
                     {% endfor %}

@@ -1,6 +1,31 @@
+/* Global colours */
+:root {
+    --primary: #2c3e50;
+    --primary-accent: #34495e;
+    --secondary: #3498db;
+    --secondary-accent: #217dbb;
+
+    --main-red: #db2528;
+    --main-green: #1fa32c;
+
+    --badge-found: #3c3;
+    --badge-found-bg: #efe;
+    --badge-lost: #c33;
+    --badge-lost-bg: #fee;
+    
+    --color-swatch-border: #ccc;
+
+    --almost-white: #fbfcfd;
+    --near-white-site-bg: #f8f9fa; /* used for site bg */
+    --gray-border: #dfe3e8;
+    --gray-metadata: #666;
+    --gray-bg: #f9f9f9;
+    --secondary-transparent: #3498db1f;
+}
+
 /* Navigation Menu Styles */
 nav {
-    background-color: #2c3e50;
+    background-color: var(--primary);
     padding: 0;
     margin: 0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -33,19 +58,19 @@ nav ul .nav-right a {
 nav a {
     display: block;
     padding: 15px 20px;
-    color: #ecf0f1;
+    color: white;
     text-decoration: none;
     transition: background-color 0.3s ease, color 0.3s ease;
     font-weight: 500;
 }
 
 nav a:hover {
-    background-color: #34495e;
+    background-color: var(--primary-accent);
     color: #fff;
 }
 
 nav a.active {
-    background-color: #3498db;
+    background-color: var(--secondary);
     color: #fff;
 }
 
@@ -54,7 +79,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f8f9fa;
+    background-color: var(--near-white-site-bg);
     height: 100%;
 }
 
@@ -75,12 +100,12 @@ body {
 }
 
 h1 {
-    color: #2c3e50;
+    color: var(--primary);
     margin-top: 0;
 }
 
 h2 {
-    color: #3498db;
+    color: var(--secondary);
 }
 
 /* Content Styling */
@@ -100,7 +125,7 @@ h2 {
 #create-post label {
     display: block;
     font-size: 0.95rem;
-    color: #34495e;
+    color: var(--primary);
     margin-bottom: 8px;
 }
 
@@ -118,12 +143,12 @@ h2 {
     width: 100%;
     padding: 12px 14px;
     margin-top: 8px;
-    border: 1px solid #dfe3e8;
+    border: 1px solid var(--gray-border);
     border-radius: 6px;
-    background-color: #f7f9fb;
+    background-color: var(--almost-white);
     font-size: 1rem;
-    color: #2c3e50;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    color: var(--primary);
+    transition: border-color 0.1s ease, box-shadow 0.1s ease;
     box-sizing: border-box;
 }
 
@@ -133,23 +158,24 @@ h2 {
 }
 
 #create-post input[type="text"]:focus,
+#create-post input[type="datetime-local"]:focus,
 #create-post textarea:focus,
 #create-post select:focus {
     outline: none;
-    border-color: #3498db;
-    box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.12);
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 3px var(--secondary-transparent);
 }
 
 #create-post fieldset {
-    border: 1px solid #dfe3e8;
+    border: 1px solid var(--gray-border);
     border-radius: 8px;
     padding: 20px;
-    background-color: #fbfcfd;
+    background-color: var(--almost-white);
 }
 
 #create-post legend {
     font-weight: 600;
-    color: #2c3e50;
+    color: var(--primary);
     padding: 0 8px;
 }
 
@@ -170,28 +196,28 @@ h2 {
     align-items: center;
     gap: 14px;
     padding: 14px 16px;
-    border: 1px solid #dfe3e8;
+    border: 1px solid var(--gray-border);
     border-radius: 10px;
     background-color: #ffffff;
-    transition: border-color 0.2s ease, background-color 0.2s ease;
+    transition: border-color 0.1s ease, background-color 0.1s ease;
     cursor: pointer;
 }
 
 #create-post .item-type .radio-option:hover {
-    border-color: #3498db;
+    border-color: var(--secondary);
     background-color: #eef6ff;
 }
 
 #create-post .item-type .radio-option input[type="radio"] {
     margin: 0;
-    accent-color: #3498db;
+    accent-color: var(--secondary);
     width: 1rem;
     height: 1rem;
 }
 
 #create-post .item-type .radio-option input[type="radio"]:checked+span {
     font-weight: 700;
-    color: #2c3e50;
+    color: var(--primary);
 }
 
 #create-post button,
@@ -203,7 +229,7 @@ h2 {
     padding: 12px 22px;
     border: none;
     border-radius: 8px;
-    background-color: #3498db;
+    background-color: var(--secondary);
     color: white;
     font-size: 1rem;
     font-weight: 600;
@@ -214,16 +240,16 @@ h2 {
 }
 
 .dangerous {
-    background-color: #db2528 !important;
+    background-color: var(--main-red) !important;
 }
 
 .confirm {
-    background-color: #1fa32c !important;
+    background-color: var(--main-green) !important;
 }
 
 #create-post button:hover,
 #create-post input[type="submit"]:hover {
-    background-color: #217dbb;
+    background-color: var(--secondary-accent);
     transform: translateY(-1px);
 }
 
@@ -236,37 +262,38 @@ h2 {
 }
 
 .heading-a {
-    color: black;
+    color: var(--primary);
 }
 
 footer {
     margin-top: auto;
-    background-color: #2c3e50;
-    color: #ecf0f1;
+    background-color: var(--primary);
+    color: white;
     padding: 12px 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 0.9rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 footer a {
-    color: #ecf0f1;
+    color: white;
     text-decoration: none;
     padding: 6px 10px;
+    margin-left: 6px;
     border-radius: 6px;
     transition: background-color 0.2s ease, color 0.2s ease;
     font-weight: 500;
 }
 
 footer a:hover {
-    background-color: #34495e;
+    background-color: var(--primary-accent);
     color: #ffffff;
 }
 
 footer a.active {
-    background-color: #3498db;
+    background-color: var(--secondary);
     color: #ffffff;
 }
 

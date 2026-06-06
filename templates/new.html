@@ -57,7 +57,7 @@
                 <div class="color-picker">
                     {% for color in colour_list %}
                     <label class="color-option">
-                        <input type="radio" name="item-color" value="{{ color.id }}" required>
+                        <input type="radio" name="item-color" value="{{ color.id }}" title="{{ color.localized_name() }}" required>
                         <span class="color-circle" title="{{ color.localized_name() }}" style="background: {{ color.name }};"></span>
                     </label>
                     {% endfor %}

@@ -26,6 +26,7 @@ from scoring import sort_by_score, update_scoring_of_report, all_sorted
 @app.route("/new", methods=["GET", "POST"])
 @login_required
 def new():
+    # TODO the color picker from the report filter is more accessible and probably would also fit better on this page
     if request.method == "POST":
         if not current_user.account_verified or not current_user.is_authenticated:
             return redirect(url_for("index"))
@@ -437,6 +438,7 @@ def report_details(report_id):
 @app.route("/report/<report_id>/edit", methods=['GET', 'POST'])
 @login_required
 def edit_report(report_id):
+    # TODO the color picker from the report filter is more accessible and probably would also fit better on this page
     if not current_user.account_verified:
         return redirect(url_for("index"))
 
