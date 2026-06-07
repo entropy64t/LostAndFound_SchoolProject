@@ -23,9 +23,19 @@ SET row_security = off;
 --
 
 INSERT INTO public.categories (id, name, name_pl) VALUES (1, 'Umbrella', 'Parasol');
-INSERT INTO public.categories (id, name, name_pl) VALUES (2, 'Coat / Jacket', 'Kurtka');
-INSERT INTO public.categories (id, name, name_pl) VALUES (3, 'Phone', 'Telefon');
-INSERT INTO public.categories (id, name, name_pl) VALUES (4, 'Other', 'Inne');
+INSERT INTO public.categories (id, name, name_pl) VALUES (2, 'Coat / jacket', 'Kurtka');
+INSERT INTO public.categories (id, name, name_pl) VALUES (3, 'Clothing', 'Ubrania');
+INSERT INTO public.categories (id, name, name_pl) VALUES (4, 'Sports equipment', 'Sprzęt sportowy');
+INSERT INTO public.categories (id, name, name_pl) VALUES (5, 'Backpack / bag', 'Plecak / torba');
+INSERT INTO public.categories (id, name, name_pl) VALUES (6, 'Books', 'Książki');
+INSERT INTO public.categories (id, name, name_pl) VALUES (7, 'Pencil case', 'Piórnik');
+INSERT INTO public.categories (id, name, name_pl) VALUES (8, 'Glasses', 'Okulary');
+INSERT INTO public.categories (id, name, name_pl) VALUES (9, 'Bottle', 'Butelka');
+INSERT INTO public.categories (id, name, name_pl) VALUES (10, 'Electronics', 'Elektronika');
+INSERT INTO public.categories (id, name, name_pl) VALUES (11, 'Keys', 'Klucze');
+INSERT INTO public.categories (id, name, name_pl) VALUES (12, 'Wallet', 'Portfel');
+INSERT INTO public.categories (id, name, name_pl) VALUES (13, 'ID card', 'Dowód osobisty');
+INSERT INTO public.categories (id, name, name_pl) VALUES (14, 'Other', 'Inne');
 
 
 --
