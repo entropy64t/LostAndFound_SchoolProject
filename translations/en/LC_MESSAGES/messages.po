@@ -552,6 +552,9 @@ msgstr ""
 msgid "The entered email address doesn't belong to the appropriate domain"
 msgstr ""
 
+msgid "Privacy policy"
+msgstr ""
+
 #~ msgid "Welcome to Lost&Found"
 #~ msgstr ""
 
