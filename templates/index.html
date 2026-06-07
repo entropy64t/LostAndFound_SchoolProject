@@ -15,7 +15,7 @@
             <h2>Welcome to Lost&Found</h2>
             <p>Wybierz z menu aby zobaczyć przedmioty zgubione lub znalezione.</p>
             <hr>
-            <p><strong>{{ total_reports }}</strong> active reports, <strong>{{ lost_reports }}</strong> lost, <strong>{{ found_reports }}</strong> found</p>
+            <p><span style="font-weight: 700;">{{ total_reports }}</span> active reports, <span style="font-weight: 700;">{{ lost_reports }}</span> lost, <span style="font-weight: 700;">{{ found_reports }}</span> found</p>
             <hr>
             <p>Looking for updates on something you have lost?<br>
             <a class="btn-primary" style="display: inline-block;" href="{{ url_for('matches', filter='mine') }}">Matches with your reports</a>

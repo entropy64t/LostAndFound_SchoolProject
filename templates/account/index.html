@@ -13,9 +13,9 @@
         <h1>{{ lang("My account") }}</h1>
         <div class="content">
             <h2>{{ current_user.display_name }}</h2>
-            <p><strong>{{ lang("Manage your account here.") }}</strong></p>
-            <p><strong>{{ lang("E-mail address") }}:</strong> {{ current_user.email }}</p>
-            <p><strong>{{ lang("Grade") }}:</strong> {{ grade_name }}</p>
+            <p><span style="font-weight: 700;">{{ lang("Manage your account here.") }}</span></p>
+            <p><span style="font-weight: 700;">{{ lang("E-mail address") }}:</span> {{ current_user.email }}</p>
+            <p><span style="font-weight: 700;">{{ lang("Grade") }}:</span> {{ grade_name }}</p>
             <p>
                 {% if current_user.account_verified %}
                 <span style="color: green;">&#10004; {{ lang("Account Verified") }}</span>

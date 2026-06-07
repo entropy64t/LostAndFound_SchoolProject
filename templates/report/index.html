@@ -26,27 +26,27 @@
 
                 {% if category != None %}
                 <div class="detail-item">
-                    <strong>Category:</strong> {{ category.localized_name() }}
+                    <span style="font-weight: 700;">Category:</span> {{ category.localized_name() }}
                 </div>
                 {% endif %}
                 
                 {% if colour != None %}
                 <div class="detail-item">
-                    <strong>{{ lang("Colour") }}:</strong>
+                    <span style="font-weight: 700;">{{ lang("Colour") }}:</span>
                     <div class="color-swatch" style="background-color: {{ colour_value }};" title="{{ colour.localized_name() }}">
                     </div>{{ colour.localized_name() }}
                 </div>
                 {% endif %}
 
                 {% if last_seen or last_seen_location %}
-                <div class="detail-item detail-item-last-seen"><strong>Last seen:</strong>{% if last_seen %}<span class="last-seen-value"> {{ last_seen }}</span>{% endif %}{% if last_seen_location %} at {{
+                <div class="detail-item detail-item-last-seen"><span style="font-weight: 700;">Last seen:</span>{% if last_seen %}<span class="last-seen-value"> {{ last_seen }}</span>{% endif %}{% if last_seen_location %} at {{
                     last_seen_location }}{% endif %}
                 </div>
                 {% endif %}
 
                 {% if item_owner %}
                 <div class="detail-item">
-                    <strong>Suspected owner:</strong> {{ item_owner }}
+                    <span style="font-weight: 700;">Suspected owner:</span> {{ item_owner }}
                 </div>
                 {% endif %}
             </div>
@@ -64,7 +64,7 @@
 
             {% if pickup_location %}
             <p>
-                <strong>Retrieve at:</strong> {{ pickup_location }}
+                <span style="font-weight: 700;">Retrieve at:</span> {{ pickup_location }}
             </p>
             {% endif %}
 
