@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ session.get('lang') }}">
+<html lang="{{ session.get('lang') if session.get('lang') is not none else 'en' }}">
 
 <head>
     {% include "common_head.html" %}
@@ -12,7 +12,7 @@
 
     <div class="container">
         <h1>{{ lang("Report details") }}</h1>
-        <div class="content">
+        <div class="content" role="main">
             <h2>{{ title }}</h2>
             <p>
                 {% if report_type == "lost" %}

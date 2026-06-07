@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ session.get('lang') }}">
+<html lang="{{ session.get('lang') if session.get('lang') is not none else 'en' }}">
 
 <head>
     {% include "common_head.html" %}
@@ -50,7 +50,7 @@
             <button type="submit">{{ lang("Apply") }}</button>
         </form>
 
-        <div class="content">
+        <div class="content" role="main">
             <div class="matches-instructions">
                 <p>
                     <span style="font-weight: 700;">{{ lang("Tip") }}:</span>

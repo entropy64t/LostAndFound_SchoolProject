@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ session.get('lang') }}">
+<html lang="{{ session.get('lang') if session.get('lang') is not none else 'en' }}">
 
 <head>
     {% include "common_head.html" %}
@@ -10,7 +10,7 @@
 <body>
     <div class="container">
         <h1><a class="heading-a" href="{{ url_for('index') }}">Lost&amp;Found</a></h1>
-        <div class="auth-wrapper">
+        <div class="auth-wrapper" role="main">
             <h1>{{ lang("Login") }}</h1>
             <form class="auth-form" method="post">
                 <div class="form-group">
