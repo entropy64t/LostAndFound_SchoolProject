@@ -8,7 +8,7 @@ from sqlalchemy import text
 
 from flask_babel import Babel, gettext as lang
 
-from server_secrets import secret_key
+from server_secrets import secret_key, connection_string
 
 app = Flask(__name__)
 app.secret_key = secret_key
@@ -16,7 +16,7 @@ login_manager = LoginManager(app)
 login_manager.login_view = "login"
 
 # Database connection init
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:postgres291830@localhost/LostAndFound" # TODO Update database hostname for production environment TODO store secrets separately
+app.config["SQLALCHEMY_DATABASE_URI"] = connection_string
 db = SQLAlchemy(app)
 
 # babel config
@@ -31,4 +31,4 @@ babel = Babel(app, locale_selector=get_locale)
 import routes, models, user
 
 if __name__ == "__main__":
-    app.run(debug=True) # TODO change for production
+    app.run(debug=False)

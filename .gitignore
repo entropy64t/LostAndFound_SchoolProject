@@ -220,4 +220,4 @@ __marimo__/
 local
 
 # Development secrets file
-server_secrets.py
+server_secrets.py.dev
