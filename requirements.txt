@@ -3,3 +3,4 @@ gunicorn
 flask-login
 Flask-SQLAlchemy
 flask-babel
+psycopg2-binary
