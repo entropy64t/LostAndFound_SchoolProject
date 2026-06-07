@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ session.get('lang') }}">
+<html lang="{{ session.get('lang') if session.get('lang') is not none else 'en' }}">
 
 <head>
     {% include "common_head.html" %}
@@ -10,7 +10,7 @@
 <body>
     {% include "navbar.html" %}
 
-    <div class="container">
+    <div class="container" role="main">
         <h1>{{ lang("New report") }}</h1>
 
         <form class="content" id="create-post" method="post">
