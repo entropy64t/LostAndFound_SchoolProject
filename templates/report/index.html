@@ -84,10 +84,12 @@
         </div>
     </div>
 
+    {% if reports|length > 0 %}
     <div class="container">
         <h2>{{ lang("Matches with this report") }}</h2>
         {% include "report_render.html" %}
     </div>
+    {% endif %}
 
     {% include "footer.html" %}
 
