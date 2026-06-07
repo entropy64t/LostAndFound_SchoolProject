@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-07 11:08+0200\n"
+"POT-Creation-Date: 2026-06-07 11:20+0200\n"
 "PO-Revision-Date: 2026-05-26 19:16+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: pl\n"
@@ -183,7 +183,7 @@ msgstr "Wyloguj się"
 msgid "New Report"
 msgstr "Nowe Zgłoszenie"
 
-#: templates/new.html:19 templates/report/edit.html:18
+#: templates/new.html:19 templates/report/edit.html:19
 msgid "Report title"
 msgstr "Tytuł Zgłoszenia"
 
@@ -191,24 +191,24 @@ msgstr "Tytuł Zgłoszenia"
 msgid "Report type"
 msgstr "Kategoria"
 
-#: templates/new.html:42 templates/report/edit.html:23
+#: templates/new.html:42 templates/report/edit.html:24
 #: templates/report_render.html:36
 msgid "Item type"
 msgstr "Rodzaj Przedmiotu"
 
-#: templates/new.html:55 templates/report/edit.html:37
+#: templates/new.html:55 templates/report/edit.html:38
 msgid "Item colour"
 msgstr "Kolor"
 
-#: templates/new.html:75 templates/new.html:149 templates/report/edit.html:57
+#: templates/new.html:75 templates/new.html:149 templates/report/edit.html:60
 msgid "Last seen at"
 msgstr "Ostatnio widziane"
 
-#: templates/new.html:81 templates/new.html:150 templates/report/edit.html:63
+#: templates/new.html:81 templates/new.html:150 templates/report/edit.html:66
 msgid "Lost in"
 msgstr "Zgubione w"
 
-#: templates/new.html:115 templates/report/edit.html:100
+#: templates/new.html:115 templates/report/edit.html:103
 msgid "Additional content"
 msgstr "Dodatkowe informacje"
 
@@ -216,11 +216,11 @@ msgstr "Dodatkowe informacje"
 msgid "Create"
 msgstr "Utwórz"
 
-#: templates/new.html:157 templates/report/edit.html:57
+#: templates/new.html:157 templates/report/edit.html:60
 msgid "Found at"
 msgstr "Widziane w"
 
-#: templates/new.html:158 templates/report/edit.html:63
+#: templates/new.html:158 templates/report/edit.html:66
 msgid "Found in"
 msgstr "Znalezione w"
 
@@ -233,8 +233,8 @@ msgstr "Filtruj po tytule lub opisie"
 msgid "Colour"
 msgstr "Kolor"
 
-#: templates/report/index.html:53 templates/report_render.html:47
-#: templates/report_render.html:115
+#: templates/report/edit.html:79 templates/report/index.html:53
+#: templates/report_render.html:47 templates/report_render.html:116
 msgid "Suspected owner"
 msgstr "Prawdopodobny właściciel"
 
@@ -266,11 +266,11 @@ msgstr "Przedmiot"
 msgid "Last seen"
 msgstr "Ostatnio widziane"
 
-#: templates/report/index.html:46 templates/report_render.html:107
+#: templates/report/index.html:46 templates/report_render.html:108
 msgid "common.at.location"
 msgstr "w"
 
-#: templates/report_render.html:132
+#: templates/report_render.html:133
 msgid "View Details"
 msgstr "Więcej"
 
@@ -376,17 +376,37 @@ msgstr ""
 msgid "The entered code is incorrect or it has expired"
 msgstr "Wpisany kod jest nieprawidłowy albo wygasł"
 
-#: templates/report/index.html:14
-msgid "Report details"
-msgstr "Szczegóły zgłoszenia"
+#: templates/report/edit.html:14 templates/report/index.html:78
+msgid "Edit report"
+msgstr "Edytuj zgłoszenie"
 
-#: templates/report/index.html:23
+#: templates/report/edit.html:16 templates/report/index.html:23
 msgid "by"
 msgstr "przez"
 
-#: templates/report/index.html:23
+#: templates/report/edit.html:16 templates/report/index.html:23
 msgid "posted"
 msgstr "utworzono"
+
+#: templates/report/edit.html:53
+msgid "colour.unknown"
+msgstr "Inny / Nieznany"
+
+#: templates/report/edit.html:90
+msgid "Retrieve found item at"
+msgstr "Odzyskaj w"
+
+#: templates/report/edit.html:108
+msgid "Save"
+msgstr "Zapisz"
+
+#: templates/report/edit.html:110
+msgid "Back"
+msgstr "Wstecz"
+
+#: templates/report/index.html:14
+msgid "Report details"
+msgstr "Szczegóły zgłoszenia"
 
 #: templates/report/index.html:64
 msgid "No description provided"
@@ -395,10 +415,6 @@ msgstr "Brak dodatkowych informacji"
 #: templates/report/index.html:71
 msgid "Retrieve at"
 msgstr "Odzyskaj w"
-
-#: templates/report/index.html:78
-msgid "Edit report"
-msgstr "Edytuj zgłoszenie"
 
 #: templates/report/index.html:81
 msgid "Delete report"

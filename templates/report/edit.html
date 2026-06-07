@@ -11,9 +11,10 @@
     {% include "navbar.html" %}
 
     <div class="container">
-        <h1>Edit report</h1>
+        <h1>{{ lang("Edit report") }}</h1>
         <form class="content" id="create-post" method="post">
-            <p>{% if report_type == "lost" %}Lost{% else %}Found{% endif %} by {{ author }}, posted {{ created }}</p>
+            <p>{{ lang(report_type.capitalize()) }} {{ lang("by") }} {{ author }}, {{ lang("posted") }} {{ created }}
+            </p>
             <label id="title">
                 {{ lang("Report title") }} {% include "required.html" %}
                 <input value="{{ title }}" type="text" name="title" required>
@@ -39,15 +40,17 @@
                 <div class="filter-chip-picker">
                     {% for color in colour_list %}
                     <label class="filter-chip-option">
-                        <input type="radio" name="item-color" value="{{ color.id }}" required {% if colour==color.id %}checked{% endif %}>
-                        <span class="filter-color-circle" style="background-color: {{ color.name }};" title="{{ color.localized_name() }}"></span>
+                        <input type="radio" name="item-color" value="{{ color.id }}" required {% if colour==color.id
+                            %}checked{% endif %}>
+                        <span class="filter-color-circle" style="background-color: {{ color.name }};"
+                            title="{{ color.localized_name() }}"></span>
                         <span class="filter-chip-name">{{ color.localized_name() }}</span>
                     </label>
                     {% endfor %}
                     <label class="filter-chip-option">
                         <input type="radio" name="item-color" value="" required {% if colour=="" %}checked{% endif %}>
                         <span class="filter-color-circle filter-color-circle-all"></span>
-                        <span class="filter-chip-name">Other/unknown</span>
+                        <span class="filter-chip-name">{{ lang("colour.unknown") }}</span>
                     </label>
                 </div>
             </fieldset>
@@ -73,7 +76,7 @@
 
             {% if report_type != "lost" %}
             <label>
-                Suspected owner
+                {{ lang("Suspected owner") }}
                 <select name="item_owner">
                     <option value="" {% if not item_owner %}selected{% endif %}>-- Select --</option>
                     {% for user in user_list %}
@@ -84,7 +87,7 @@
             </label>
 
             <label>
-                Retrieve found item at
+                {{ lang("Retrieve found item at") }}
                 <select name="pickup_location">
                     <option value="" {% if not pickup_location %}selected{% endif %}>-- Select --</option>
                     {% for loc in location_list %}
@@ -102,9 +105,9 @@
             </label>
 
             <br><br>
-            <button class="btn-primary confirm" type="submit">Save</button>
+            <button class="btn-primary confirm" type="submit">{{ lang("Save") }}</button>
             <a style="width: fit-content;" class="btn-primary"
-                href="{{ url_for('report_details', report_id=report_id) }}">Back</a>
+                href="{{ url_for('report_details', report_id=report_id) }}">{{ lang("Back") }}</a>
         </form>
     </div>
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-07 11:08+0200\n"
+"POT-Creation-Date: 2026-06-07 11:20+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -180,7 +180,7 @@ msgstr ""
 msgid "New Report"
 msgstr ""
 
-#: templates/new.html:19 templates/report/edit.html:18
+#: templates/new.html:19 templates/report/edit.html:19
 msgid "Report title"
 msgstr ""
 
@@ -188,24 +188,24 @@ msgstr ""
 msgid "Report type"
 msgstr ""
 
-#: templates/new.html:42 templates/report/edit.html:23
+#: templates/new.html:42 templates/report/edit.html:24
 #: templates/report_render.html:36
 msgid "Item type"
 msgstr ""
 
-#: templates/new.html:55 templates/report/edit.html:37
+#: templates/new.html:55 templates/report/edit.html:38
 msgid "Item colour"
 msgstr ""
 
-#: templates/new.html:75 templates/new.html:149 templates/report/edit.html:57
+#: templates/new.html:75 templates/new.html:149 templates/report/edit.html:60
 msgid "Last seen at"
 msgstr ""
 
-#: templates/new.html:81 templates/new.html:150 templates/report/edit.html:63
+#: templates/new.html:81 templates/new.html:150 templates/report/edit.html:66
 msgid "Lost in"
 msgstr ""
 
-#: templates/new.html:115 templates/report/edit.html:100
+#: templates/new.html:115 templates/report/edit.html:103
 msgid "Additional content"
 msgstr ""
 
@@ -213,11 +213,11 @@ msgstr ""
 msgid "Create"
 msgstr ""
 
-#: templates/new.html:157 templates/report/edit.html:57
+#: templates/new.html:157 templates/report/edit.html:60
 msgid "Found at"
 msgstr ""
 
-#: templates/new.html:158 templates/report/edit.html:63
+#: templates/new.html:158 templates/report/edit.html:66
 msgid "Found in"
 msgstr ""
 
@@ -230,8 +230,8 @@ msgstr ""
 msgid "Colour"
 msgstr ""
 
-#: templates/report/index.html:53 templates/report_render.html:47
-#: templates/report_render.html:115
+#: templates/report/edit.html:79 templates/report/index.html:53
+#: templates/report_render.html:47 templates/report_render.html:116
 msgid "Suspected owner"
 msgstr ""
 
@@ -263,11 +263,11 @@ msgstr ""
 msgid "Last seen"
 msgstr ""
 
-#: templates/report/index.html:46 templates/report_render.html:107
+#: templates/report/index.html:46 templates/report_render.html:108
 msgid "common.at.location"
 msgstr "at"
 
-#: templates/report_render.html:132
+#: templates/report_render.html:133
 msgid "View Details"
 msgstr ""
 
@@ -371,16 +371,36 @@ msgstr ""
 msgid "The entered code is incorrect or it has expired"
 msgstr ""
 
-#: templates/report/index.html:14
-msgid "Report details"
+#: templates/report/edit.html:14 templates/report/index.html:78
+msgid "Edit report"
 msgstr ""
 
-#: templates/report/index.html:23
+#: templates/report/edit.html:16 templates/report/index.html:23
 msgid "by"
 msgstr ""
 
-#: templates/report/index.html:23
+#: templates/report/edit.html:16 templates/report/index.html:23
 msgid "posted"
+msgstr ""
+
+#: templates/report/edit.html:53
+msgid "colour.unknown"
+msgstr "Other / Unknown"
+
+#: templates/report/edit.html:90
+msgid "Retrieve found item at"
+msgstr ""
+
+#: templates/report/edit.html:108
+msgid "Save"
+msgstr ""
+
+#: templates/report/edit.html:110
+msgid "Back"
+msgstr ""
+
+#: templates/report/index.html:14
+msgid "Report details"
 msgstr ""
 
 #: templates/report/index.html:64
@@ -389,10 +409,6 @@ msgstr ""
 
 #: templates/report/index.html:71
 msgid "Retrieve at"
-msgstr ""
-
-#: templates/report/index.html:78
-msgid "Edit report"
 msgstr ""
 
 #: templates/report/index.html:81
