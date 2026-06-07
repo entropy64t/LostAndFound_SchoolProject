@@ -27,7 +27,7 @@ INSERT INTO public.colours (id, name, display_name, display_name_pl, colour_valu
 INSERT INTO public.colours (id, name, display_name, display_name_pl, colour_value) VALUES (3, 'grey', 'Gray', 'Szary', NULL);
 INSERT INTO public.colours (id, name, display_name, display_name_pl, colour_value) VALUES (4, 'beige', 'Beige', 'Beżowy', NULL);
 INSERT INTO public.colours (id, name, display_name, display_name_pl, colour_value) VALUES (5, 'red', 'Red', 'Czerwony', NULL);
-INSERT INTO public.colours (id, name, display_name, display_name_pl, colour_value) VALUES (6, 'orangered', 'Orange', 'Pomarańczowy', NULL);
+INSERT INTO public.colours (id, name, display_name, display_name_pl, colour_value) VALUES (6, 'orange', 'Orange', 'Pomarańczowy', NULL);
 INSERT INTO public.colours (id, name, display_name, display_name_pl, colour_value) VALUES (7, 'yellow', 'Yellow', 'Żółty', NULL);
 INSERT INTO public.colours (id, name, display_name, display_name_pl, colour_value) VALUES (8, 'green', 'Green', 'Zielony', NULL);
 INSERT INTO public.colours (id, name, display_name, display_name_pl, colour_value) VALUES (9, 'royalblue', 'Blue', 'Niebieski', NULL);
