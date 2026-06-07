@@ -103,7 +103,8 @@
                 <span style="font-weight: 700;">{{lang("Last seen")}}:</span>
                 <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">{% if report.last_seen
                     %}<span class="last-seen-value" style="display: inline-block;"> {{
-                        report.last_seen.strftime('%Y-%m-%d %H:%M') }}</span>{% endif %}{% if report.last_seen_location
+                        format_date(report.last_seen, locale=session['lang']) }}</span>{% endif %}{% if
+                    report.last_seen_location
                     %}<span style="display: inline-block;"> {{ lang("common.at.location") }} {{
                         locations[report.last_seen_location] }}</span>{% endif
                     %}</div>

@@ -7,6 +7,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import text
 
 from flask_babel import Babel, gettext as lang
+from babel.dates import format_date
 
 app = Flask(__name__)
 app.secret_key = "Bda4L_rbDg2nMbE0Z3ZALk-zK2ODy5eCXyAfTCObtjg"
@@ -21,6 +22,7 @@ db = SQLAlchemy(app)
 app.config['BABEL_DEFAULT_LOCALE'] = 'en'
 app.config['BABEL_SUPPORTED_LOCALES'] = ['en', 'pl']
 app.jinja_env.globals['lang'] = lang
+app.jinja_env.globals['format_date'] = format_date
 
 def get_locale():
     return session.get('lang', 'en')
