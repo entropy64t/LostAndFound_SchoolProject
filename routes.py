@@ -381,7 +381,7 @@ def report_details(report_id):
     report_type = report.report_type
     author = get_user(report.author).public_name() if report.author else "not set"
 
-    creation_date = report.creation_date.strftime('%B %d, %Y at %H:%M')
+    creation_date = report.creation_date.strftime('%Y-%m-%d %H:%M')
 
     category = get_category(report.category)
     colour = get_colour(report.colour)
@@ -393,7 +393,7 @@ def report_details(report_id):
     last_seen_dt: datetime = report.last_seen
     last_seen = ""
     if last_seen_dt:
-        last_seen = last_seen_dt.strftime('%B %d, %Y at %H:%M')
+        last_seen = last_seen_dt.strftime('%Y-%m-%d %H:%M')
     last_seen_location = get_location(report.last_seen_location).location_string() if report.last_seen_location else ""
 
     item_owner = ""
@@ -494,7 +494,7 @@ def edit_report(report_id):
     report_type = report.report_type
     author = get_user(report.author).public_name() if report.author else "unknown"
 
-    creation_date = report.creation_date.strftime('%B %d, %Y at %H:%M')
+    creation_date = report.creation_date.strftime('%Y-%m-%d %H:%M')
 
     category = get_category(report.category).id if report.category else ""
     colour = get_colour(report.colour).id if report.colour else ""
