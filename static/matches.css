@@ -24,7 +24,7 @@ tr {
 }
 
 tr:nth-child(even) {
-    background-color: #fbfbfb;
+    background-color: var(--gray-bg);
 }
 
 tr:hover {
@@ -34,7 +34,7 @@ tr:hover {
 .bold-td {
     font-weight: 700;
     color: var(--primary);
-    background-color: rgba(56, 142, 60, 0.08);
+    background-color: var(--main-green-transparent);
     position: relative;
 }
 
