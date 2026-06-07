@@ -55,7 +55,7 @@
                         <input type="password" placeholder="{{ lang('Old password') }}" name="password">
                     </label>
                     {% if request.args.get("msg") == "pwdnomatch" %}
-                    <p class="auth-fail-message">{{ lang("Passwords don't match") }}</p>
+                    <p class="auth-fail-message">{{ lang("Passwords don't match.") }}</p>
                     {% elif request.args.get("msg") == "wrongpwd" %}
                     <p class="auth-fail-message">{{ lang("Wrong old password") }}</p>
                     {% endif %}
@@ -75,7 +75,7 @@
                 <button type="submit" class="btn-primary">{{ lang("Change") }}</button>
             </form>
             <br><br>
-            <a class="dangerous btn-primary" href="/account/delete">{{ lang("Delete account") }}</a>
+            <a class="btn-primary dangerous" href="/account/delete">{{ lang("Delete account") }}</a>
         </div>
     </div>
     {% include "footer.html" %}

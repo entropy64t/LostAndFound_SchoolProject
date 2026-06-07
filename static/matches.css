@@ -2,6 +2,7 @@ table, td {
     border-left: 2px solid black;
     border-right: 2px solid black;
     border-collapse: collapse;
+    text-align: center;
 }
 th {
     border: 2px solid black;
@@ -10,4 +11,36 @@ th {
 table {
     width: 100%;
     border-bottom: 2px solid black;
+}
+tr {
+    transition: background-color 0.2s ease;
+}
+tr:hover {
+    background-color: var(--gray-border);
+}
+.table-button {
+    align-self: start;
+    padding: 8px 12px;
+    border: 2px solid black;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    text-decoration: none;
+    margin: 5px;
+    width: fit-content;
+}
+
+.table-button a {
+    color: black;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.table-button:hover {
+    background-color: var(--secondary);
+}
+
+.table-button:hover a {
+    color: white;
 }

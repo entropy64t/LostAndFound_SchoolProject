@@ -4,9 +4,12 @@
     --primary-accent: #34495e;
     --secondary: #3498db;
     --secondary-accent: #217dbb;
+    --secondary-bright: #eef6ff;
 
     --main-red: #db2528;
+    --main-red-accent: #af1d1f;
     --main-green: #1fa32c;
+    --main-green-accent: #177821;
 
     --badge-found: #3c3;
     --badge-found-bg: #efe;
@@ -196,6 +199,7 @@ h2 {
 }
 
 #create-post input[type="radio"] {
+    accent-color: var(--secondary);
     margin-right: 10px;
 }
 
@@ -217,7 +221,7 @@ h2 {
 
 #create-post .item-type .radio-option:hover {
     border-color: var(--secondary);
-    background-color: #eef6ff;
+    background-color: var(--secondary-bright);
 }
 
 #create-post .item-type .radio-option input[type="radio"] {
@@ -246,7 +250,7 @@ h2 {
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.2s ease;
+    transition: background-color 0.2s ease;
     text-decoration: none;
     margin: 5px;
 }
@@ -259,10 +263,17 @@ h2 {
     background-color: var(--main-green) !important;
 }
 
-#create-post button:hover,
-#create-post input[type="submit"]:hover {
+.btn-primary:hover,
+#create-post button:hover {
     background-color: var(--secondary-accent);
-    transform: translateY(-1px);
+}
+
+.btn-primary.dangerous:hover {
+    background-color: var(--main-red-accent) !important;
+}
+
+.btn-primary.confirm:hover {
+    background-color: var(--main-green-accent) !important;
 }
 
 #create-post #title {
@@ -316,4 +327,8 @@ nav,
 
 .bold-td {
     font-weight: 700;
+}
+
+.auth-fail-message {
+    color: red;
 }

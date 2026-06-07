@@ -6,10 +6,9 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='report_list.css') }}">
     <title>
         {% if session.get('lang') == 'pl' %}
-        Zgłoszenia użytkownika {{ current_user.display_name }} {# TODO fix to use
-        username#}
+        Zgłoszenia użytkownika {{ current_user.display_name }}
         {% else %}
-        {{ current_user.display_name }}'s Reports {# TODO fix to use username#}
+        {{ current_user.display_name }}'s Reports
         {% endif %} - Lost&Found</title>
 </head>
 
@@ -19,10 +18,9 @@
     <div class="container">
         <h1>
             {% if session.get('lang') == 'pl' %}
-            Zgłoszenia użytkownika {{ current_user.display_name }} {# TODO fix to use
-            username#}
+            Zgłoszenia użytkownika {{ current_user.display_name }}
             {% else %}
-            {{ current_user.display_name }}'s Reports {# TODO fix to use username#}
+            {{ current_user.display_name }}'s Reports
             {% endif %}
         </h1>
         {% include "report_render.html" %}

@@ -92,9 +92,11 @@ def all_sorted(filter_by_user, by_creation_date) -> list[tuple[Report, Report, i
     unsorted_pairs = [(mat.lost_item, mat.found_item, mat.score, mat.creation_date.strftime('%Y-%m-%d %H:%M')) for mat in matches]
 
     if by_creation_date:
-        sorted_pairs = sorted(unsorted_pairs, key=lambda item: item[3], reverse=True)
+        sorted_pairs = sorted(unsorted_pairs, key=lambda item: item[2], reverse=True) # Sort by score for equal items
+        sorted_pairs = sorted(sorted_pairs, key=lambda item: item[3], reverse=True)
     else:
-        sorted_pairs = sorted(unsorted_pairs, key=lambda item: item[2], reverse=True)
+        sorted_pairs = sorted(unsorted_pairs, key=lambda item: item[3], reverse=True) # Sort by date for equal items
+        sorted_pairs = sorted(sorted_pairs, key=lambda item: item[2], reverse=True)
 
     return sorted_pairs
 

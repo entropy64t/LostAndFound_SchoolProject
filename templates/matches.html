@@ -40,17 +40,19 @@
         </form>
         <div class="content">
             <p>Reports in bold are authored by you.</p>
+            <div style="overflow: scroll;">
             <table>
                 <tr><th>Lost item</th><th>Found item</th><th>Score</th><th>Generated</th></tr>
                 {% for mat in all_matches %}
                 <tr>
-                    <td {% if get_report(mat[0]).author == current_user.id %}class="bold-td"{% endif %}><a href="{{ url_for('report_details', report_id=mat[0]) }}">{{ get_report(mat[0]).title }}</a></td>
-                    <td {% if get_report(mat[1]).author == current_user.id %}class="bold-td"{% endif %}><a href="{{ url_for('report_details', report_id=mat[1]) }}">{{ get_report(mat[1]).title }}</a></td>
+                    <td {% if get_report(mat[0]).author == current_user.id %}class="bold-td"{% endif %}><div class="table-button" style="box-sizing: border-box;"><a href="{{ url_for('report_details', report_id=mat[0]) }}">{{ get_report(mat[0]).title }}</a></div></td>
+                    <td {% if get_report(mat[1]).author == current_user.id %}class="bold-td"{% endif %}><div class="table-button" style="box-sizing: border-box;"><a href="{{ url_for('report_details', report_id=mat[1]) }}">{{ get_report(mat[1]).title }}</a></div></td>
                     <td>{{ mat[2] }}</td>
                     <td>{{ mat[3] }}</td>
                 </tr>
                 {% endfor %}
             </table>
+            </div>
         </div>
     </div>
 
