@@ -58,14 +58,15 @@
                     {% for color in colour_list %}
                     <label class="filter-chip-option">
                         <input type="radio" name="item-color" value="{{ color.id }}" required>
-                        <span class="filter-color-circle" style="background-color: {{ color.name }};" title="{{ color.localized_name() }}"></span>
+                        <span class="filter-color-circle" style="background-color: {{ color.name }};"
+                            title="{{ color.localized_name() }}"></span>
                         <span class="filter-chip-name">{{ color.localized_name() }}</span>
                     </label>
                     {% endfor %}
                     <label class="filter-chip-option">
                         <input type="radio" name="item-color" value="" required>
                         <span class="filter-color-circle filter-color-circle-all"></span>
-                        <span class="filter-chip-name">Other/unknown</span>
+                        <span class="filter-chip-name">{{ lang("colour.unknown") }}</span>
                     </label>
                 </div>
             </fieldset>
@@ -90,7 +91,7 @@
             </label>
 
             <label class="found-only">
-                Suspected owner
+                {{ lang("Suspected owner") }}
                 <select name="item_owner">
                     <option value="" selected>-- Select --</option>
                     {% for user in user_list %}
@@ -100,7 +101,7 @@
             </label>
 
             <label class="found-only">
-                Retrieve found item at
+                {{ lang("Retrieve found item at") }}
                 <select name="pickup_location">
                     <option value="" selected>-- Select --</option>
                     {% for loc in location_list %}
