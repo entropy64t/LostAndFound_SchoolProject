@@ -8,8 +8,10 @@ from sqlalchemy import text
 
 from flask_babel import Babel, gettext as lang
 
+from server_secrets import secret_key
+
 app = Flask(__name__)
-app.secret_key = "Bda4L_rbDg2nMbE0Z3ZALk-zK2ODy5eCXyAfTCObtjg"
+app.secret_key = secret_key
 login_manager = LoginManager(app)
 login_manager.login_view = "login"
 
