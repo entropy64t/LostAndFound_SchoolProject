@@ -1,0 +1,75 @@
+-- English --
+
+Effective from: 7 June 2026
+
+This document applies to all Lost&Found webpages.
+
+This website stores session cookies in your browser, in order to:
+1) remember the currently logged-in user;
+2) remember the user's selected preferred language.
+
+This website collects and securely stores the following data provided by the user:
+1) username (on account creation);
+2) email address (on account creation);
+3) selected grade (on account creation);
+4) lost and found item reports ("Reports"; whenever the user creates one).
+
+It does so in order to:
+1) allow the user to manage (add, edit, delete) their Reports;
+2) create matches between Reports created by different users;
+3) display the user's username on Reports.
+
+Data entered when filtering or searching for Reports and matches is never stored.
+
+In order to be able to browse and manage Reports, the user must verify their account after creation.
+
+Reports created by the user are publicly visible, along with the author's username and grade, to all other users who have verified their accounts. Any verified user's username and grade are always visible to users with verified accounts. The user's email address is never shown publicly.
+
+The user's account details and created Reports' contents can be changed at any time.
+
+The user can permanently delete all Reports they have created.
+They can also permanently delete their account. Doing so:
+1) deletes all Reports created by that user;
+2) deletes all matches involving those reports;
+3) makes the account's username and grade no longer visible to other verified users.
+After deleting their account, the user will no longer be able to log into that account.
+
+This document is subject to change at any time without notice.
+
+-- Polski --
+
+Obowiązuje od: 7 czerwca 2026
+
+Niniejszy dokument dotyczy całej witryny internetowej Lost&Found.
+
+Ta witryna internetowa zapisuje w przeglądarce użytkownika sesyjne pliki cookie w celu:
+1) zapamiętania aktualnie zalogowanego użytkownika;
+2) zapamiętania wybranego przez użytkownika języka.
+
+Ta witryna internetowa gromadzi i bezpiecznie przechowuje następujące dane podane przez użytkownika:
+1) nazwa użytkownika (podczas tworzenia konta);
+2) adres e-mail (podczas tworzenia konta);
+3) wybraną klasę (podczas tworzenia konta);
+4) zgłoszenia dotyczące przedmiotów znalezionych („Zgłoszenia”; za każdym razem, gdy użytkownik je tworzy).
+
+Odbywa się to w celu:
+1) umożliwienia użytkownikowi zarządzania (dodawania, edytowania, usuwania) jego Zgłoszeniami;
+2) tworzenia dopasowań między Zgłoszeniami utworzonymi przez różnych użytkowników;
+3) wyświetlania nazwy użytkownika w Zgłoszeniach.
+
+Dane wprowadzone podczas filtrowania lub wyszukiwania Zgłoszeń i dopasowań nigdy nie są przechowywane.
+
+Aby móc przeglądać zgłoszenia i zarządzać nimi, użytkownik musi zweryfikować swoje konto po jego utworzeniu.
+
+Zgłoszenia utworzone przez użytkownika są publicznie widoczne, wraz z nazwą użytkownika i klasą autora, dla wszystkich innych użytkowników, którzy zweryfikowali swoje konta. Nazwa użytkownika i klasa każdego zweryfikowanego użytkownika są zawsze widoczne dla użytkowników posiadających zweryfikowane konta. Adres e-mail użytkownika nigdy nie jest publicznie wyświetlany.
+
+Szczegóły konta oraz treść utworzonych Zgłoszeń użytkownik możne zmienić w dowolnym momencie.
+
+Użytkownik może trwale usunąć wszystkie utworzone przez siebie Zgłoszenia.
+Może również trwale usunąć swoje konto. Spowoduje to:
+1) usunięcie wszystkich Zgłoszeń dotychczas utworzonych przez tego użytkownika;
+2) usunięcie wszystkich dopasowań związanych z tymi Zgłoszeniami;
+3) ukrycie nazwy użytkownika i klasy konta przed innymi zweryfikowanymi użytkownikami.
+Po usunięciu konta użytkownik nie będzie mógł się już na nie zalogować.
+
+Niniejszy dokument może ulec zmianie w dowolnym momencie bez uprzedzenia.

@@ -3,11 +3,12 @@
         © 2026 Lost&amp;Found
     </div>
 
-    <div class="footer-right">{% if session.get('lang') == 'pl' %}
+    <div class="footer-right">
+        <a target="_blank" href="/static/privacy_policy.txt">{{ lang("Privacy policy") }}</a>
+        {% if session.get('lang') == 'pl' %}
         <a href="{{ url_for('set_language', lang='en') }}">English</a>
         {% else %}
         <a href="{{ url_for('set_language', lang='pl') }}">Polski</a>
         {% endif %}
-        {#<a href="#">Privacy</a>#}
     </div>
 </footer>

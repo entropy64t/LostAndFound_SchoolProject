@@ -559,6 +559,9 @@ msgstr "Wpisany adres e-mail nie jest w odpowiedniej domenie"
 msgid "all.alt"
 msgstr "Wszystkie"
 
+msgid "Privacy policy"
+msgstr "Polityka prywatności"
+
 #~ msgid " Choose which matches are displayed in the table"
 #~ msgstr ""
 
