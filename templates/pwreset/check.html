@@ -4,7 +4,7 @@
 <head>
     {% include "common_head.html" %}
     <link rel="stylesheet" href="{{ url_for('static', filename='auth.css') }}">
-    <title>Reset password</title>
+    <title>Reset password - Lost&Found</title>
 </head>
 
 <body>
@@ -27,7 +27,7 @@
                 </div>
                 <button type="submit" class="btn-primary">{{ lang("Reset password") }}</button>
                 {% if request.args.get("msg") == "pwdnomatch" %}
-                <p class="auth-fail-message">{{ lang("Passwords don't match") }}</p>
+                <p class="auth-fail-message">{{ lang("Passwords don't match") }}.</p>
                 {% endif %}
             </form>
             <div class="auth-footer">

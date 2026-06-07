@@ -5,7 +5,7 @@
     {% include "common_head.html" %}
     <link rel="stylesheet" href="{{ url_for('static', filename='report_list.css') }}">
     <title>
-        {{ current_user.display_name }}'s Reports - Lost&Found
+        {{ current_user.display_name }}'s reports - Lost&Found
     </title>
 </head>
 
@@ -17,7 +17,7 @@
             {% if session.get('lang') == 'pl' %}
             Zgłoszenia użytkownika {{ current_user.display_name }}
             {% else %}
-            {{ current_user.display_name }}'s Reports
+            {{ current_user.display_name }}'s reports
             {% endif %}
         </h1>
         {% include "report_render.html" %}

@@ -4,14 +4,14 @@
 <head>
     {% include "common_head.html" %}
     <link rel="stylesheet" href="{{ url_for('static', filename='report_list.css')}}">
-    <title>New Report</title>
+    <title>New report - Lost&Found</title>
 </head>
 
 <body>
     {% include "navbar.html" %}
 
     <div class="container">
-        <h1>{{ lang("New Report") }}</h1>
+        <h1>{{ lang("New report") }}</h1>
 
         <form class="content" id="create-post" method="post">
 
@@ -113,7 +113,7 @@
             </label>
 
             <label>
-                {{ lang("Additional content") }}
+                {{ lang("Description") }}
                 <textarea class="form-textarea" name="report-content" rows="6" cols="40"></textarea>
             </label>
 

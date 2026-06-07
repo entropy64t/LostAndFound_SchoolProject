@@ -4,7 +4,7 @@
 <head>
     {% include "common_head.html" %}
     <link rel="stylesheet" href="{{ url_for('static', filename='auth.css') }}">
-    <title>Create account</title>
+    <title>Create account - Lost&Found</title>
 </head>
 
 <body>
@@ -57,7 +57,7 @@
                 {% if request.args.get("msg") == "pwdnomatch" %}
                 <p class="auth-fail-message">{{ lang("Passwords don't match.") }}</p>
                 {% elif request.args.get("msg") == "existent" %}
-                <p class="auth-fail-message">{{ lang("An account with that e-mail address already exists") }}</p>
+                <p class="auth-fail-message">{{ lang("An account with that email address already exists.") }}</p>
                 {% endif %}
             </form>
             <div class="auth-footer">

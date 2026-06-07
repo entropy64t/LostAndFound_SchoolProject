@@ -4,7 +4,7 @@
 <head>
     {% include "common_head.html" %}
     <link rel="stylesheet" href="{{ url_for('static', filename='auth.css') }}">
-    <title>Account verification</title>
+    <title>Account verification - Lost&Found</title>
 </head>
 
 <body>
@@ -17,17 +17,17 @@
             <form class="auth-form" method="post">
                 <div class="form-group">
                     <label>
-                        {{ lang("Verification e-mail") }} {% include "required.html" %}
+                        {{ lang("Verification email") }} {% include "required.html" %}
                         <input type="email" name="verif_mail" value="{{ prefill }}" required>
                         <br><br>
                         {{ lang(
-                        "This address is only used to verify your account and must be in the (v-lo.krakow.pl) domain"
-                        ) }}.
+                        "This address is used only to verify your account and must be part of the <code>v-lo.krakow.pl</code> domain"
+                        )|safe }}.
                     </label>
                 </div>
                 <button type="submit" class="btn-primary">{{ lang("Verify") }}</button>
                 {% if request.args.get("msg") == "wrongdomain" %}
-                <p class="auth-fail-message">{{ lang("The entered e-mail address isn't in the appropriate domain") }}.
+                <p class="auth-fail-message">{{ lang("The entered email address doesn't belong to the appropriate domain") }}.
                 </p>
                 {% endif %}
             </form>

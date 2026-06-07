@@ -19,7 +19,7 @@ msgstr ""
 "Generated-By: Babel 2.18.0\n"
 
 #: templates/all.html:14
-msgid "All Items"
+msgid "All items"
 msgstr ""
 
 #: templates/create_account.html:14 templates/create_account.html:56
@@ -57,7 +57,7 @@ msgid "Passwords don't match."
 msgstr ""
 
 #: templates/create_account.html:60
-msgid "An account with that e-mail address already exists"
+msgid "An account with that email address already exists."
 msgstr ""
 
 #: templates/create_account.html:64
@@ -70,7 +70,7 @@ msgid "Login"
 msgstr ""
 
 #: templates/found.html:14
-msgid "Found Items"
+msgid "Found items"
 msgstr ""
 
 #: templates/index.html:19
@@ -134,7 +134,7 @@ msgid "Reset it"
 msgstr ""
 
 #: templates/lost.html:14
-msgid "Lost Items"
+msgid "Lost items"
 msgstr ""
 
 #: templates/matches.html:15
@@ -199,7 +199,7 @@ msgid "Found item"
 msgstr ""
 
 #: templates/matches.html:67
-msgid "Later report created on"
+msgid "Match appeared on"
 msgstr ""
 
 #: templates/navbar.html:5
@@ -217,7 +217,7 @@ msgid "Found"
 msgstr ""
 
 #: templates/navbar.html:18
-msgid "Your Reports"
+msgid "Your reports"
 msgstr ""
 
 #: templates/navbar.html:21
@@ -233,7 +233,7 @@ msgid "Logout"
 msgstr ""
 
 #: templates/new.html:14
-msgid "New Report"
+msgid "New report"
 msgstr ""
 
 #: templates/new.html:19 templates/report/edit.html:19
@@ -255,7 +255,11 @@ msgstr ""
 
 #: templates/new.html:69 templates/report/edit.html:53
 msgid "colour.unknown"
-msgstr "Other / Unknown"
+msgstr "Other / unknown"
+
+#: templates/matches.html:92
+msgid "all.alt"
+msgstr "All"
 
 #: templates/new.html:76 templates/new.html:150 templates/report/edit.html:60
 msgid "Last seen on"
@@ -276,7 +280,7 @@ msgid "Retrieve found item at"
 msgstr ""
 
 #: templates/new.html:116 templates/report/edit.html:103
-msgid "Additional content"
+msgid "Description"
 msgstr ""
 
 #: templates/new.html:120
@@ -329,7 +333,7 @@ msgid "common.at.location"
 msgstr "at"
 
 #: templates/report_render.html:132
-msgid "View Details"
+msgid "View details"
 msgstr ""
 
 #: templates/account/delete.html:13 templates/account/delete.html:31
@@ -362,15 +366,15 @@ msgid "Manage your account here."
 msgstr ""
 
 #: templates/account/index.html:17
-msgid "E-mail address"
+msgid "Email address"
 msgstr ""
 
 #: templates/account/index.html:21
-msgid "Account Verified"
+msgid "Account verified"
 msgstr ""
 
 #: templates/account/index.html:23
-msgid "Account NOT Verified"
+msgid "Account NOT verified"
 msgstr ""
 
 #: templates/account/index.html:27
@@ -406,7 +410,7 @@ msgid "Wrong old password"
 msgstr ""
 
 #: templates/account/index.html:66
-msgid "Change e-mail (this will become your new login)"
+msgid "Change email (this will become your new login)"
 msgstr ""
 
 #: templates/account/index.html:67
@@ -448,7 +452,7 @@ msgstr ""
 
 #: templates/pwreset/index.html:24
 msgid ""
-"If an account with the provided e-mail address exists, you have been sent"
+"If an account with the provided email address exists, you have been sent"
 " a password reset link"
 msgstr ""
 
@@ -529,13 +533,12 @@ msgid ""
 msgstr ""
 
 #: templates/verification/index.html:20
-msgid "Verification e-mail"
+msgid "Verification email"
 msgstr ""
 
 #: templates/verification/index.html:23
 msgid ""
-"This address is only used to verify your account and must be in the "
-"(v-lo.krakow.pl) domain"
+"This address is used only to verify your account and must be part of the <code>v-lo.krakow.pl</code> domain"
 msgstr ""
 
 #: templates/verification/index.html:28
@@ -543,7 +546,7 @@ msgid "Verify"
 msgstr ""
 
 #: templates/verification/index.html:30
-msgid "The entered e-mail address isn't in the appropriate domain"
+msgid "The entered email address doesn't belong to the appropriate domain"
 msgstr ""
 
 #~ msgid "Welcome to Lost&Found"

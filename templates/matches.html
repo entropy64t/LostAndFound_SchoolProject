@@ -5,7 +5,7 @@
     {% include "common_head.html" %}
     <link rel="stylesheet" href="{{ url_for('static', filename='matches.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='report_list.css') }}">
-    <title>Matches</title>
+    <title>Matches - Lost&Found</title>
 </head>
 
 <body>
@@ -22,7 +22,7 @@
 
                 <label class="filter-chip-option filter-chip-helper">
                     <input type="radio" name="filter" value="" {% if not selected_filter %}checked{% endif %}>
-                    <span class="filter-chip-name">{{ lang("All") }}</span>
+                    <span class="filter-chip-name">{{ lang("all.alt") }}</span>
                 </label>
 
                 <label class="filter-chip-option filter-chip-helper">
@@ -56,7 +56,6 @@
                     <span style="font-weight: 700;">{{ lang("Tip") }}:</span>
                     {{ lang("Reports shown in bold are authored by you and are easier to spot in the match list.") }}
                 </p>
-                {#<p>{{ lang("Use filters to narrow the list, then click a report title to open its details.") }}</p>#}
             </div>
             <div style="overflow: scroll;">
                 <table>
@@ -64,7 +63,7 @@
                         <th>{{ lang("Lost item") }}</th>
                         <th>{{ lang("Found item") }}</th>
                         <th>{{ lang("Score") }}</th>
-                        <th>{{ lang("Later report created on") }}</th>
+                        <th>{{ lang("Match appeared on") }}</th>
                     </tr>
                     {% for mat in all_matches %}
                     <tr>

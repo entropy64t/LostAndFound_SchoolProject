@@ -4,7 +4,7 @@
 <head>
     {% include "common_head.html" %}
     <link rel="stylesheet" href="{{ url_for('static', filename='report_list.css')}}">
-    <title>Lost&Found - edit {{ title }}</title>
+    <title>Edit {{ title }} - Lost&Found</title>
 </head>
 
 <body>
@@ -100,7 +100,7 @@
             {% endif %}
 
             <label>
-                {{ lang("Additional content") }}
+                {{ lang("Description") }}
                 <textarea class="form-textarea" name="report-content" rows="6" cols="40">{{ description }}</textarea>
             </label>
 

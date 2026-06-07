@@ -4,14 +4,14 @@
 <head>
     {% include "common_head.html" %}
     <link rel="stylesheet" href="{{ url_for('static', filename='report_list.css') }}">
-    <title>Lost&Found - All Items</title>
+    <title>All items - Lost&Found</title>
 </head>
 
 <body>
     {% include "navbar.html" %}
 
     <div class="container">
-        <h1>{{ lang("All Items") }}</h1>
+        <h1>{{ lang("All items") }}</h1>
         {% include "report_render.html" %}
     </div>
 
