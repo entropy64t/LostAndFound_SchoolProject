@@ -15,31 +15,34 @@
         <div class="content">
             <h2>{{ title }}</h2>
             <p>
-            {% if report_type == "lost" %}
-            Lost
-            {% else %}
-            Found
-            {% endif %}
-            by {{ author }}, posted {{ created }}</p>
+                {% if report_type == "lost" %}
+                {{ lang("Lost") }}
+                {% else %}
+                {{ lang("Found") }}
+                {% endif %}
+                {{ lang("by") }} {{ author }}, {{ lang("posted") }} {{ created }}
+            </p>
 
             <div class="report-details">
-
                 {% if category != None %}
                 <div class="detail-item">
-                    <span style="font-weight: 700;">Category:</span> {{ category.localized_name() }}
+                    <span style="font-weight: 700;">{{ lang("Category") }}:</span> {{ category.localized_name() }}
                 </div>
                 {% endif %}
-                
+
                 {% if colour != None %}
                 <div class="detail-item">
                     <span style="font-weight: 700;">{{ lang("Colour") }}:</span>
-                    <div class="color-swatch" style="background-color: {{ colour_value }};" title="{{ colour.localized_name() }}">
-                    </div>{{ colour.localized_name() }}
+                    <div class="color-swatch" style="background-color: {{ colour_value }};"
+                        title="{{ colour.localized_name() }}"></div>
+                    {{ colour.localized_name() }}
                 </div>
                 {% endif %}
 
                 {% if last_seen or last_seen_location %}
-                <div class="detail-item detail-item-last-seen"><span style="font-weight: 700;">Last seen:</span>{% if last_seen %}<span class="last-seen-value"> {{ last_seen }}</span>{% endif %}{% if last_seen_location %} at {{
+                <div class="detail-item detail-item-last-seen"><span style="font-weight: 700;">Last seen:</span>{% if
+                    last_seen %}<span class="last-seen-value"> {{ last_seen }}</span>{% endif %}{% if last_seen_location
+                    %} at {{
                     last_seen_location }}{% endif %}
                 </div>
                 {% endif %}
@@ -70,8 +73,10 @@
 
             {% if author_object == current_user %}
             <br><br>
-            <a class="btn-primary" style="display: inline-block;" href="{{ url_for('edit_report', report_id=report_id) }}">Edit report</a>
-            <form style="display: inline-block;" method="post" action="{{ url_for('delete_report', report_id=report_id) }}">
+            <a class="btn-primary" style="display: inline-block;"
+                href="{{ url_for('edit_report', report_id=report_id) }}">Edit report</a>
+            <form style="display: inline-block;" method="post"
+                action="{{ url_for('delete_report', report_id=report_id) }}">
                 <button class="btn-primary dangerous" type="submit">Delete report</button>
             </form>
             {% endif %}

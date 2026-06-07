@@ -12,24 +12,23 @@
     <div class="container">
         <h1>Lost&amp;Found</h1>
         <div class="content">
-            <h2>Welcome to Lost&Found</h2>
-            <p>Wybierz z menu aby zobaczyć przedmioty zgubione lub znalezione.</p>
-            <hr>
-            <p><span style="font-weight: 700;">{{ total_reports }}</span> active reports, <span style="font-weight: 700;">{{ lost_reports }}</span> lost, <span style="font-weight: 700;">{{ found_reports }}</span> found</p>
-            <hr>
-            <p>Looking for updates on something you have lost?<br>
-            <a class="btn-primary" style="display: inline-block; margin-top: 0.6em;" href="{{ url_for('matches', filter='mine') }}">Matches with your reports</a>
-            <a class="btn-primary" style="display: inline-block; margin-top: 0.6em;" href="{{ url_for('all', item_owner='me') }}">Reports with you as suspected owner</a></p>
+            {#<h2>{{ la("Welcome to Lost&Found") }}</h2>#}
+            {#<p>Wybierz z menu aby zobaczyć przedmioty zgubione lub znalezione.</p>#}
             <hr>
             <p>
-            If you have lost or found something, tap the <code>+</code> at the top to create a report. <strong>Items you have borrowed shall be marked <code>found</code>.</strong> In case you can't be easily reached by school email, please include contact details in the description.
+                <span style="font-weight: 700;">{{ total_reports }}</span> {{ lang("active reports") }},
+                <span style="font-weight: 700;">{{ lost_reports }}</span> {{ lang("lost") }},
+                <span style="font-weight: 700;">{{ found_reports }}</span> {{ lang("found") }}
             </p>
-            <p>
-            Browse reports to find ones of opposite type matching your item. Alternatively, use one of the two buttons above to view a list of automatically generated report pairs. These are also displayed on the details page of a report.
+            <hr>
+            <p>{{ lang("Looking for updates on something you have lost") }}?<br>
+                <a class="btn-primary" style="display: inline-block; margin-top: 0.6em;"
+                    href="{{ url_for('matches', filter='mine') }}">{{ lang("Matches with your reports") }}</a>
+                <a class="btn-primary" style="display: inline-block; margin-top: 0.6em;"
+                    href="{{ url_for('all', item_owner='me') }}">{{ lang("Reports with you as suspected owner") }}</a>
             </p>
-            <p>
-            Once you have found a report which you believe describes an item your have lost/found/borrowed, message the report author privately (using the contact details from the description, if provided) and arrange for pickup. When the case is resolved, both sides should delete the corresponding reports on their ends.
-            </p>
+            <hr>
+            {{ lang("index.instructions")|safe }}
 
         </div>
     </div>

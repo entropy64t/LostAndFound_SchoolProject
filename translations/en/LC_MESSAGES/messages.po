@@ -1,4 +1,4 @@
-# Polish translations for PROJECT.
+# English translations for PROJECT.
 # Copyright (C) 2026 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
@@ -8,12 +8,11 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-06-07 10:48+0200\n"
-"PO-Revision-Date: 2026-05-26 19:16+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language: pl\n"
-"Language-Team: pl <LL@li.org>\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && "
-"(n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,358 +20,348 @@ msgstr ""
 
 #: templates/all.html:14
 msgid "All Items"
-msgstr "Wszystkie Przedmioty"
+msgstr ""
 
 #: templates/create_account.html:7 templates/create_account.html:14
 #: templates/create_account.html:56
 msgid "Create account"
-msgstr "Utwórz konto"
+msgstr ""
 
 #: templates/create_account.html:18
 msgid "Name"
-msgstr "Imię"
+msgstr ""
 
 #: templates/create_account.html:25 templates/login.html:18
 #: templates/pwreset/index.html:18
 msgid "Email"
-msgstr "Adres e-mail"
+msgstr ""
 
 #: templates/create_account.html:31 templates/login.html:24
 msgid "Password"
-msgstr "Hasło"
+msgstr ""
 
 #: templates/create_account.html:37
 msgid "Repeat Password"
-msgstr "Powtórz hasło"
+msgstr ""
 
 #: templates/account/index.html:18 templates/create_account.html:43
 msgid "Grade"
-msgstr "Klasa"
+msgstr ""
 
 #: templates/create_account.html:43
 msgid "can be changed later"
-msgstr "może zostać zmieniona później"
+msgstr ""
 
 #: templates/account/index.html:58 templates/create_account.html:58
 msgid "Passwords don't match."
-msgstr "Podane hasła różnią się"
+msgstr ""
 
 #: templates/create_account.html:60
 msgid "An account with that e-mail address already exists"
-msgstr "Konto z tym adresem e-mail już istnieje"
+msgstr ""
 
 #: templates/create_account.html:64
 msgid "Already have an account"
-msgstr "Posiadasz już konto"
+msgstr ""
 
 #: templates/create_account.html:65 templates/login.html:7
 #: templates/login.html:14 templates/login.html:28
 msgid "Login"
-msgstr "Logowanie"
+msgstr ""
 
 #: templates/found.html:14
 msgid "Found Items"
-msgstr "Znalezione Przedmioty"
+msgstr ""
 
 #: templates/index.html:19
 msgid "active reports"
-msgstr "aktywnych zgłoszeń"
+msgstr ""
 
 #: templates/index.html:20
 msgid "lost"
-msgstr "zgubionych"
+msgstr ""
 
 #: templates/index.html:21
 msgid "found"
-msgstr "znalezionych"
+msgstr ""
 
 #: templates/index.html:24
 msgid "Looking for updates on something you have lost"
-msgstr "Szukasz informacji o swojej zgubie"
+msgstr ""
 
 #: templates/index.html:26
 msgid "Matches with your reports"
-msgstr "Zgłoszenia pasujące do Twoich"
+msgstr ""
 
 #: templates/index.html:28
 msgid "Reports with you as suspected owner"
-msgstr "Zgłoszenia, w których jesteś oznaczon* jako prawdopodobny właściciel"
+msgstr ""
 
 #: templates/index.html:31
 msgid "index.instructions"
 msgstr ""
-"<p>Jeżeli coś zgubił*ś / znalazł*ś, naciśnij <code>+</code> na górze "
-"strony aby utworzyć zgłoszenie. <strong>Rzeczy, które pożyczył*ś powinny "
-"zostać oznaczone jako <code>znalezione</code>. </strong>Jeżeli nie można "
-"się z tobą łatwo skontaktować przez szkolnego e-maila, proszę umieścieć "
-"informacje do kontaktu w opisie zgłoszenia.</p><p>Przeglądaj zgłoszenia, "
-"aby znaleźć zgłoszenia przeciwnego typu pasujące do Twojego "
-"przedmiotu. Alternatywnie możesz użyć jednego z dwóch przycisków powyżej, "
-"aby wyświetlić listę automatycznie wygenerowanych par zgłoszeń. Są one "
-"również wyświetlane na stronie szczegółów zgłoszenia.</p><p>Gdy "
-"znajdziesz zgłoszenie, które Twoim zdaniem opisuje przedmiot, który "
-"zgubiłeś/znalazłeś/pożyczyłeś, skontaktuj się prywatnie z autorem "
-"zgłoszenia (korzystając z danych kontaktowych podanych w opisie, jeśli są"
-" dostępne) i umów odbiór. Po rozwiązaniu sprawy obie strony powinny usunąć"
-" odpowiadające sobie zgłoszenia.</p>"
+"<p>If you have lost or found something, tap the <code>+</code> at the top"
+" to create a report. <strong>Items you have borrowed shall be marked "
+"<code>found</code>.</strong> In case you can't be easily reached by school"
+" email, please include contact details in the report "
+"description.</p><p>Browse reports to find ones of opposite type matching "
+"your item. Alternatively, use one of the two buttons above to view a list"
+" of automatically generated report pairs. These are also displayed on the"
+" details page of a report.</p><p>Once you have found a report which you "
+"believe describes an item your have lost/found/borrowed, message the "
+"report author privately (using the contact details from the description, "
+"if provided) and arrange for pickup. When the case is resolved, both "
+"sides should delete the corresponding reports on their ends.</p>"
 
 #: templates/login.html:30
 msgid "Wrong password"
-msgstr "Nieprawidłowe hasło"
+msgstr ""
 
 #: templates/login.html:34
 msgid "Don't have an account"
-msgstr "Nie posiadasz konta"
+msgstr ""
 
 #: templates/login.html:36
 msgid "Create one"
-msgstr "Utwórz je"
+msgstr ""
 
 #: templates/login.html:38
 msgid "Forgot your password"
-msgstr "Zapomniał*ś hasła"
+msgstr ""
 
 #: templates/login.html:38
 msgid "Reset it"
-msgstr "Zresetuj je"
+msgstr ""
 
 #: templates/lost.html:14
 msgid "Lost Items"
-msgstr "Zgubione Przedmioty"
+msgstr ""
 
 #: templates/matches.html:39 templates/report_render.html:53
 msgid "Apply"
-msgstr "Zatwierdź"
+msgstr ""
 
 #: templates/navbar.html:5
 msgid "Home"
-msgstr "Strona Główna"
+msgstr ""
 
 #: templates/navbar.html:8 templates/report_render.html:12
 #: templates/report_render.html:28 templates/report_render.html:37
 msgid "All"
-msgstr "Wszystko"
+msgstr ""
 
 #: templates/navbar.html:11 templates/new.html:29
 #: templates/report/index.html:19 templates/report_render.html:29
 msgid "Lost"
-msgstr "Zgubione"
+msgstr ""
 
 #: templates/navbar.html:14 templates/new.html:36
 #: templates/report/index.html:21 templates/report_render.html:30
 msgid "Found"
-msgstr "Znalezione"
+msgstr ""
 
 #: templates/navbar.html:18
 msgid "Your Reports"
-msgstr "Twoje Zgłoszenia"
+msgstr ""
 
 #: templates/navbar.html:21
 msgid "Matches"
-msgstr "Pasujące zgłoszenia"
+msgstr ""
 
 #: templates/navbar.html:31
 msgid "Verify account"
-msgstr "Weryfikacja Konta"
+msgstr ""
 
 #: templates/navbar.html:41
 msgid "Logout"
-msgstr "Wyloguj się"
+msgstr ""
 
 #: templates/new.html:7 templates/new.html:14
 msgid "New Report"
-msgstr "Nowe Zgłoszenie"
+msgstr ""
 
 #: templates/new.html:19 templates/report/edit.html:18
 msgid "Report title"
-msgstr "Tytuł Zgłoszenia"
+msgstr ""
 
 #: templates/new.html:24 templates/report_render.html:26
 msgid "Report type"
-msgstr "Kategoria"
+msgstr ""
 
 #: templates/new.html:42 templates/report/edit.html:23
 #: templates/report_render.html:35
 msgid "Item type"
-msgstr "Rodzaj Przedmiotu"
+msgstr ""
 
 #: templates/new.html:55 templates/report/edit.html:37
 msgid "Item colour"
-msgstr "Kolor"
+msgstr ""
 
 #: templates/new.html:75 templates/new.html:149 templates/report/edit.html:57
 msgid "Last seen at"
-msgstr "Ostatnio widziane"
+msgstr ""
 
 #: templates/new.html:81 templates/new.html:150 templates/report/edit.html:63
 msgid "Lost in"
-msgstr "Zgubione w"
+msgstr ""
 
 #: templates/new.html:115 templates/report/edit.html:100
 msgid "Additional content"
-msgstr "Dodatkowe informacje"
+msgstr ""
 
 #: templates/new.html:119
 msgid "Create"
-msgstr "Utwórz"
+msgstr ""
 
 #: templates/new.html:157 templates/report/edit.html:57
 msgid "Found at"
-msgstr "Widziane w"
+msgstr ""
 
 #: templates/new.html:158 templates/report/edit.html:63
 msgid "Found in"
-msgstr "Znalezione w"
+msgstr ""
 
 #: templates/report/index.html:35 templates/report_render.html:8
 #: templates/report_render.html:91
 msgid "Colour"
-msgstr "Kolor"
+msgstr ""
 
 #: templates/report_render.html:71
 msgid "By"
-msgstr "Przez"
+msgstr ""
 
 #: templates/report_render.html:73
 msgid "Posted"
-msgstr "Utworzono"
+msgstr ""
 
 #: templates/report_render.html:77
 msgid "Score"
-msgstr "Punkty"
+msgstr ""
 
 #: templates/report/index.html:29 templates/report_render.html:85
 msgid "Category"
-msgstr "Przedmiot"
+msgstr ""
 
 #: templates/report_render.html:100
 msgid "Last seen"
-msgstr "Ostatnio widziane"
+msgstr ""
 
 #: templates/report_render.html:123
 msgid "View Details"
-msgstr "Więcej"
+msgstr ""
 
 #: templates/account/index.html:13
 msgid "My account"
-msgstr "Moje Konto"
+msgstr ""
 
 #: templates/account/index.html:16
 msgid "Manage your account here."
-msgstr "Zarządzaj kontem"
+msgstr ""
 
 #: templates/account/index.html:17
 msgid "E-mail address"
-msgstr "Adres e-mail"
+msgstr ""
 
 #: templates/account/index.html:21
 msgid "Account Verified"
-msgstr "Konto zweryfikowane"
+msgstr ""
 
 #: templates/account/index.html:23
 msgid "Account NOT Verified"
-msgstr "Konto NIE zweryfikowane"
+msgstr ""
 
 #: templates/account/index.html:27
 msgid "Update personal data"
-msgstr "Zmień dane konta"
+msgstr ""
 
 #: templates/account/index.html:31
 msgid "Change name"
-msgstr "Zmień nazwę użytkownika"
+msgstr ""
 
 #: templates/account/index.html:38
 msgid "Change grade"
-msgstr "Zmień klasę"
+msgstr ""
 
 #: templates/account/index.html:51
 msgid "Change password"
-msgstr "Zmień hasło"
+msgstr ""
 
 #: templates/account/index.html:52
 msgid "New password"
-msgstr "Nowe hasło"
+msgstr ""
 
 #: templates/account/index.html:53
 msgid "Repeat new password"
-msgstr "Powtórz nowe hasło"
+msgstr ""
 
 #: templates/account/index.html:55
 msgid "Old password"
-msgstr "Hasło"
+msgstr ""
 
 #: templates/account/index.html:60
 msgid "Wrong old password"
-msgstr "Nieprawidłowe hasło"
+msgstr ""
 
 #: templates/account/index.html:66
 msgid "Change e-mail (this will become your new login)"
-msgstr "Zmień e-mail (to będzie Twój nowy login)"
+msgstr ""
 
 #: templates/account/index.html:71
 msgid "Emails don't match"
-msgstr "E-maile są różne"
+msgstr ""
 
 #: templates/account/index.html:75
 msgid "Change"
-msgstr "Zmień"
+msgstr ""
 
 #: templates/account/index.html:78
 msgid "Delete account"
-msgstr "Usuwanie konta"
+msgstr ""
 
 #: templates/pwreset/check.html:7 templates/pwreset/check.html:14
 #: templates/pwreset/check.html:28 templates/pwreset/index.html:7
 #: templates/pwreset/index.html:14 templates/pwreset/index.html:22
 msgid "Reset password"
-msgstr "Zresetuj hasło"
+msgstr ""
 
 #: templates/pwreset/check.html:18
 msgid "Set a new password"
-msgstr "Ustaw nowe hasło"
+msgstr ""
 
 #: templates/pwreset/check.html:24
 msgid "Repeat password"
-msgstr "Powtórz hasło"
+msgstr ""
 
 #: templates/pwreset/check.html:30
 msgid "Passwords don't match"
-msgstr "Podane hasła różnią się"
+msgstr ""
 
 #: templates/pwreset/check.html:34 templates/pwreset/index.html:32
 msgid "Return to login"
-msgstr "Powrót do logowania"
+msgstr ""
 
 #: templates/pwreset/index.html:24
 msgid ""
 "If an account with the provided e-mail address exists, you have been sent"
 " a password reset link"
 msgstr ""
-"Jeżeli konto z podanym adresem e-mail istnieje, zostanie wysłany link do "
-"resetowania hasła"
 
 #: templates/pwreset/index.html:28
 msgid "The entered code is incorrect or it has expired"
-msgstr "Wpisany kod jest nieprawidłowy albo wygasł"
+msgstr ""
 
 #: templates/report/index.html:23
 msgid "by"
-msgstr "przez"
+msgstr ""
 
 #: templates/report/index.html:23
 msgid "posted"
-msgstr "utworzono"
+msgstr ""
 
 #: templates/report/index.html:63
 msgid "No description provided"
-msgstr "Brak dodatkowych informacji"
+msgstr ""
 
-#~ msgid "Location"
-#~ msgstr "Sala"
-
-#~ msgid "Unknown"
-#~ msgstr "Nieokreślone"
-
-#~ msgid "Item image"
-#~ msgstr "zdjęcie"
+#~ msgid "Welcome to Lost&Found"
+#~ msgstr ""
 
