@@ -113,6 +113,9 @@ msgstr ""
 "if provided) and arrange for pickup. When the case is resolved, both "
 "sides should delete the corresponding reports on their ends.</p>"
 
+msgid "index.contact"
+msgstr "<p>For reporting issues or suggesting new features, open an issue on <a style='color: var(--primary);' target='_blank' href='https://github.com/entropy64t/LostAndFound_SchoolProject'>GitHub</a>. To give feedback or for support, contact"
+
 #: templates/account/delete.html:24 templates/login.html:30
 msgid "Wrong password"
 msgstr ""

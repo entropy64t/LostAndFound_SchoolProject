@@ -116,6 +116,9 @@ msgstr ""
 " dostępne) i umów odbiór. Po rozwiązaniu sprawy obie strony powinny "
 "usunąć odpowiadające sobie zgłoszenia.</p>"
 
+msgid "index.contact"
+msgstr "<p>Aby zgłosić błąd lub zaproponować nową funkcję, otwórz zgłoszenie: <a style='color: var(--primary);' target='_blank' href='https://github.com/entropy64t/LostAndFound_SchoolProject'>GitHub</a>. Aby uzyskać wsparcie, skontaktuj się z"
+
 #: templates/account/delete.html:24 templates/login.html:30
 msgid "Wrong password"
 msgstr "Nieprawidłowe hasło"

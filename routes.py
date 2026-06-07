@@ -23,6 +23,8 @@ from flask_babel import gettext as lang
 
 from scoring import sort_by_score, update_scoring_of_report, all_sorted
 
+from server_secrets import sender_replyto_address
+
 @app.route("/new", methods=["GET", "POST"])
 @login_required
 def new():
@@ -280,7 +282,7 @@ def index():
     lost_reports = db.session.scalar(select(func.count(Report.id)).where(Report.report_type=="lost"))
     found_reports = db.session.scalar(select(func.count(Report.id)).where(Report.report_type=="found"))
 
-    return render_template("index.html", total_reports=total_reports, lost_reports=lost_reports, found_reports=found_reports)
+    return render_template("index.html", total_reports=total_reports, lost_reports=lost_reports, found_reports=found_reports, sender_replyto_address=sender_replyto_address)
 
 @app.route('/setlang/<lang>')
 def set_language(lang):
