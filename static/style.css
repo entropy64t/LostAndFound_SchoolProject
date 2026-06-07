@@ -2,12 +2,12 @@
 :root {
     --primary: #2c3e50;
     --primary-accent: #34495e;
-    --secondary: #3498db;
-    --secondary-accent: #217dbb;
-    --secondary-bright: #eef6ff;
+    --secondary: #852439;
+    --secondary-accent: #5c1928;
+    --secondary-bright: #edd1d5;
 
-    --main-red: #db2528;
-    --main-red-accent: #af1d1f;
+    --main-red: #de2922;
+    --main-red-accent: #b1201b;
     --main-green: #1fa32c;
     --main-green-accent: #177821;
     --main-green-transparent: #388e3c14;
@@ -24,7 +24,7 @@
     --gray-border: #dfe3e8;
     --gray-metadata: #666;
     --gray-bg: #f9f9f9;
-    --secondary-transparent: #3498db1f;
+    --secondary-transparent: #8524391f;
 }
 
 /* Navigation Menu Styles */
