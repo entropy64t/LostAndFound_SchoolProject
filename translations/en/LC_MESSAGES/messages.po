@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-07 11:45+0200\n"
+"POT-Creation-Date: 2026-06-07 12:08+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -138,7 +138,7 @@ msgstr ""
 msgid "Lost Items"
 msgstr ""
 
-#: templates/matches.html:39 templates/report_render.html:54
+#: templates/matches.html:40 templates/report_render.html:54
 msgid "Apply"
 msgstr ""
 
@@ -198,27 +198,41 @@ msgstr ""
 msgid "Item colour"
 msgstr ""
 
-#: templates/new.html:75 templates/new.html:149 templates/report/edit.html:60
-msgid "Last seen at"
+#: templates/new.html:69 templates/report/edit.html:53
+msgid "colour.unknown"
+msgstr "Other / Unknown"
+
+#: templates/new.html:76 templates/new.html:150 templates/report/edit.html:60
+msgid "Last seen on"
 msgstr ""
 
-#: templates/new.html:81 templates/new.html:150 templates/report/edit.html:66
+#: templates/new.html:82 templates/new.html:151 templates/report/edit.html:66
 msgid "Lost in"
 msgstr ""
 
-#: templates/new.html:115 templates/report/edit.html:103
+#: templates/new.html:94 templates/report/edit.html:79
+#: templates/report/index.html:53 templates/report_render.html:47
+#: templates/report_render.html:115
+msgid "Suspected owner"
+msgstr ""
+
+#: templates/new.html:104 templates/report/edit.html:90
+msgid "Retrieve found item at"
+msgstr ""
+
+#: templates/new.html:116 templates/report/edit.html:103
 msgid "Additional content"
 msgstr ""
 
-#: templates/new.html:119
+#: templates/new.html:120
 msgid "Create"
 msgstr ""
 
-#: templates/new.html:157 templates/report/edit.html:60
-msgid "Found at"
+#: templates/new.html:158 templates/report/edit.html:60
+msgid "Found on"
 msgstr ""
 
-#: templates/new.html:158 templates/report/edit.html:66
+#: templates/new.html:159 templates/report/edit.html:66
 msgid "Found in"
 msgstr ""
 
@@ -229,11 +243,6 @@ msgstr ""
 #: templates/report/index.html:35 templates/report_render.html:9
 #: templates/report_render.html:94
 msgid "Colour"
-msgstr ""
-
-#: templates/report/edit.html:79 templates/report/index.html:53
-#: templates/report_render.html:47 templates/report_render.html:116
-msgid "Suspected owner"
 msgstr ""
 
 #: templates/report_render.html:49
@@ -264,11 +273,11 @@ msgstr ""
 msgid "Last seen"
 msgstr ""
 
-#: templates/report/index.html:46 templates/report_render.html:108
+#: templates/report/index.html:46 templates/report_render.html:107
 msgid "common.at.location"
 msgstr "at"
 
-#: templates/report_render.html:133
+#: templates/report_render.html:132
 msgid "View Details"
 msgstr ""
 
@@ -409,14 +418,6 @@ msgstr ""
 msgid "posted"
 msgstr ""
 
-#: templates/report/edit.html:53
-msgid "colour.unknown"
-msgstr "Other / Unknown"
-
-#: templates/report/edit.html:90
-msgid "Retrieve found item at"
-msgstr ""
-
 #: templates/report/edit.html:108
 msgid "Save"
 msgstr ""
@@ -507,5 +508,11 @@ msgstr ""
 #~ msgid ""
 #~ "Send\n"
 #~ "                        another"
+#~ msgstr ""
+
+#~ msgid "Last seen at"
+#~ msgstr ""
+
+#~ msgid "Found at"
 #~ msgstr ""
 

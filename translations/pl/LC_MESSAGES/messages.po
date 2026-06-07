@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-07 11:45+0200\n"
+"POT-Creation-Date: 2026-06-07 12:08+0200\n"
 "PO-Revision-Date: 2026-05-26 19:16+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: pl\n"
@@ -141,7 +141,7 @@ msgstr "Zresetuj je"
 msgid "Lost Items"
 msgstr "Zgubione Przedmioty"
 
-#: templates/matches.html:39 templates/report_render.html:54
+#: templates/matches.html:40 templates/report_render.html:54
 msgid "Apply"
 msgstr "Zatwierdź"
 
@@ -201,27 +201,41 @@ msgstr "Rodzaj Przedmiotu"
 msgid "Item colour"
 msgstr "Kolor"
 
-#: templates/new.html:75 templates/new.html:149 templates/report/edit.html:60
-msgid "Last seen at"
+#: templates/new.html:69 templates/report/edit.html:53
+msgid "colour.unknown"
+msgstr "Inny / Nieznany"
+
+#: templates/new.html:76 templates/new.html:150 templates/report/edit.html:60
+msgid "Last seen on"
 msgstr "Ostatnio widziane"
 
-#: templates/new.html:81 templates/new.html:150 templates/report/edit.html:66
+#: templates/new.html:82 templates/new.html:151 templates/report/edit.html:66
 msgid "Lost in"
 msgstr "Zgubione w"
 
-#: templates/new.html:115 templates/report/edit.html:103
+#: templates/new.html:94 templates/report/edit.html:79
+#: templates/report/index.html:53 templates/report_render.html:47
+#: templates/report_render.html:115
+msgid "Suspected owner"
+msgstr "Prawdopodobny właściciel"
+
+#: templates/new.html:104 templates/report/edit.html:90
+msgid "Retrieve found item at"
+msgstr "Odzyskaj w"
+
+#: templates/new.html:116 templates/report/edit.html:103
 msgid "Additional content"
 msgstr "Dodatkowe informacje"
 
-#: templates/new.html:119
+#: templates/new.html:120
 msgid "Create"
 msgstr "Utwórz"
 
-#: templates/new.html:157 templates/report/edit.html:60
-msgid "Found at"
-msgstr "Widziane w"
+#: templates/new.html:158 templates/report/edit.html:60
+msgid "Found on"
+msgstr "Znalezione"
 
-#: templates/new.html:158 templates/report/edit.html:66
+#: templates/new.html:159 templates/report/edit.html:66
 msgid "Found in"
 msgstr "Znalezione w"
 
@@ -233,11 +247,6 @@ msgstr "Filtruj po tytule lub opisie"
 #: templates/report_render.html:94
 msgid "Colour"
 msgstr "Kolor"
-
-#: templates/report/edit.html:79 templates/report/index.html:53
-#: templates/report_render.html:47 templates/report_render.html:116
-msgid "Suspected owner"
-msgstr "Prawdopodobny właściciel"
 
 #: templates/report_render.html:49
 msgid "Anybody"
@@ -267,11 +276,11 @@ msgstr "Przedmiot"
 msgid "Last seen"
 msgstr "Ostatnio widziane"
 
-#: templates/report/index.html:46 templates/report_render.html:108
+#: templates/report/index.html:46 templates/report_render.html:107
 msgid "common.at.location"
 msgstr "w"
 
-#: templates/report_render.html:133
+#: templates/report_render.html:132
 msgid "View Details"
 msgstr "Więcej"
 
@@ -414,14 +423,6 @@ msgstr "przez"
 msgid "posted"
 msgstr "utworzono"
 
-#: templates/report/edit.html:53
-msgid "colour.unknown"
-msgstr "Inny / Nieznany"
-
-#: templates/report/edit.html:90
-msgid "Retrieve found item at"
-msgstr "Odzyskaj w"
-
 #: templates/report/edit.html:108
 msgid "Save"
 msgstr "Zapisz"
@@ -497,9 +498,3 @@ msgstr "Weryfikuj"
 #: templates/verification/index.html:30
 msgid "The entered e-mail address isn't in the appropriate domain"
 msgstr "Wpisany adres e-mail nie jest w odpowiedniej domenie"
-
-#~ msgid ""
-#~ "Send\n"
-#~ "                        another"
-#~ msgstr ""
-

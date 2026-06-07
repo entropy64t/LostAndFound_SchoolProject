@@ -5,11 +5,8 @@
     {% include "common_head.html" %}
     <link rel="stylesheet" href="{{ url_for('static', filename='report_list.css') }}">
     <title>
-        {% if session.get('lang') == 'pl' %}
-        Zgłoszenia użytkownika {{ current_user.display_name }}
-        {% else %}
-        {{ current_user.display_name }}'s Reports
-        {% endif %} - Lost&Found</title>
+        {{ current_user.display_name }}'s Reports - Lost&Found
+    </title>
 </head>
 
 <body>

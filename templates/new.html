@@ -4,7 +4,7 @@
 <head>
     {% include "common_head.html" %}
     <link rel="stylesheet" href="{{ url_for('static', filename='report_list.css')}}">
-    <title>{{ lang("New Report") }}</title>
+    <title>New Report</title>
 </head>
 
 <body>
@@ -73,7 +73,7 @@
 
             <!-- Dynamic datetime label -->
             <label id="datetime-label">
-                {{ lang("Last seen at") }}
+                {{ lang("Last seen on") }}
                 <input type="datetime-local" name="last-seen">
             </label>
 
@@ -147,7 +147,7 @@
             if (!selected) { changeVisibility(false); return; };
 
             if (selected.value === 'lost' || selected.value === "") {
-                datetimeLabel.childNodes[0].textContent = '{{ lang("Last seen at") }} ';
+                datetimeLabel.childNodes[0].textContent = '{{ lang("Last seen on") }} ';
                 locationLabel.childNodes[0].textContent = '{{ lang("Lost in") }} ';
 
                 // Hide additional fields
@@ -155,7 +155,7 @@
             }
 
             if (selected.value === 'found') {
-                datetimeLabel.childNodes[0].textContent = '{{ lang("Found at") }} ';
+                datetimeLabel.childNodes[0].textContent = '{{ lang("Found on") }} ';
                 locationLabel.childNodes[0].textContent = '{{ lang("Found in") }} ';
 
                 // Show additional fields

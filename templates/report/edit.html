@@ -57,7 +57,7 @@
 
             <!-- Dynamic datetime label -->
             <label id="datetime-label">
-                {% if report_type == "lost" %}{{ lang("Last seen at") }}{% else %}{{ lang("Found at") }}{% endif %}
+                {% if report_type == "lost" %}{{ lang("Last seen on") }}{% else %}{{ lang("Found on") }}{% endif %}
                 <input value="{{ last_seen }}" type="datetime-local" name="last-seen">
             </label>
 
