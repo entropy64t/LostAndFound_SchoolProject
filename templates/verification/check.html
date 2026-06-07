@@ -12,21 +12,23 @@
 
     <div class="container">
         <div class="auth-wrapper">
-            <h1>Verify your account</h1>
-            <p>Enter the code sent to the provided address. The code is valid for 30 minutes.</p>
+            <h1>{{ lang("Verify your account") }}</h1>
+            <p>{{ lang("Enter the code sent to the provided address. The code is valid for 30 minutes") }}.</p>
             <form class="auth-form" method="post">
                 <div class="form-group">
                     <label>
-                        Verification code
+                        {{ lang("Verification code") }}
                         <input type="text" name="otp" pattern="[0-9]*" inputmode="numeric" required>
                 </div>
-                <button type="submit" class="btn-primary">Submit</button>
+                <button type="submit" class="btn-primary">{{ lang("Submit") }}</button>
                 {% if request.args.get("msg") == "wrongotp" %}
-                <p class="auth-fail-message">The entered code is incorrect or it has expired.</p>
+                <p class="auth-fail-message">{{ lang("The entered code is incorrect or it has expired") }}.</p>
                 {% endif %}
             </form>
             <div class="auth-footer">
-                <p>Message didn't arrive? <a href="{{ url_for('verify_account') }}">Send another</a></p>
+                <p>{{ lang("Message didn't arrive") }}?
+                    <a href="{{ url_for('verify_account') }}">{{ lang("Send another") }}</a>
+                </p>
             </div>
         </div>
     </div>

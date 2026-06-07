@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-07 11:39+0200\n"
+"POT-Creation-Date: 2026-06-07 11:45+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -393,7 +393,7 @@ msgid ""
 " a password reset link"
 msgstr ""
 
-#: templates/pwreset/index.html:28
+#: templates/pwreset/index.html:28 templates/verification/check.html:25
 msgid "The entered code is incorrect or it has expired"
 msgstr ""
 
@@ -441,8 +441,30 @@ msgstr ""
 msgid "Matches with this report"
 msgstr ""
 
-#: templates/verification/index.html:15
+#: templates/verification/check.html:15 templates/verification/index.html:15
 msgid "Verify your account"
+msgstr ""
+
+#: templates/verification/check.html:16
+msgid ""
+"Enter the code sent to the provided address. The code is valid for 30 "
+"minutes"
+msgstr ""
+
+#: templates/verification/check.html:20
+msgid "Verification code"
+msgstr ""
+
+#: templates/verification/check.html:23
+msgid "Submit"
+msgstr ""
+
+#: templates/verification/check.html:29
+msgid "Message didn't arrive"
+msgstr ""
+
+#: templates/verification/check.html:30
+msgid "Send another"
 msgstr ""
 
 #: templates/verification/index.html:16
@@ -480,5 +502,10 @@ msgstr ""
 #~ "verify your account and must be in"
 #~ " the (v-lo.krakow.pl)\n"
 #~ "                        domain"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Send\n"
+#~ "                        another"
 #~ msgstr ""
 
