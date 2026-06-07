@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-07 10:48+0200\n"
+"POT-Creation-Date: 2026-06-07 11:08+0200\n"
 "PO-Revision-Date: 2026-05-26 19:16+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: pl\n"
@@ -106,15 +106,15 @@ msgstr ""
 "zostać oznaczone jako <code>znalezione</code>. </strong>Jeżeli nie można "
 "się z tobą łatwo skontaktować przez szkolnego e-maila, proszę umieścieć "
 "informacje do kontaktu w opisie zgłoszenia.</p><p>Przeglądaj zgłoszenia, "
-"aby znaleźć zgłoszenia przeciwnego typu pasujące do Twojego "
-"przedmiotu. Alternatywnie możesz użyć jednego z dwóch przycisków powyżej, "
-"aby wyświetlić listę automatycznie wygenerowanych par zgłoszeń. Są one "
+"aby znaleźć zgłoszenia przeciwnego typu pasujące do Twojego przedmiotu. "
+"Alternatywnie możesz użyć jednego z dwóch przycisków powyżej, aby "
+"wyświetlić listę automatycznie wygenerowanych par zgłoszeń. Są one "
 "również wyświetlane na stronie szczegółów zgłoszenia.</p><p>Gdy "
 "znajdziesz zgłoszenie, które Twoim zdaniem opisuje przedmiot, który "
 "zgubiłeś/znalazłeś/pożyczyłeś, skontaktuj się prywatnie z autorem "
 "zgłoszenia (korzystając z danych kontaktowych podanych w opisie, jeśli są"
-" dostępne) i umów odbiór. Po rozwiązaniu sprawy obie strony powinny usunąć"
-" odpowiadające sobie zgłoszenia.</p>"
+" dostępne) i umów odbiór. Po rozwiązaniu sprawy obie strony powinny "
+"usunąć odpowiadające sobie zgłoszenia.</p>"
 
 #: templates/login.html:30
 msgid "Wrong password"
@@ -140,7 +140,7 @@ msgstr "Zresetuj je"
 msgid "Lost Items"
 msgstr "Zgubione Przedmioty"
 
-#: templates/matches.html:39 templates/report_render.html:53
+#: templates/matches.html:39 templates/report_render.html:54
 msgid "Apply"
 msgstr "Zatwierdź"
 
@@ -148,18 +148,18 @@ msgstr "Zatwierdź"
 msgid "Home"
 msgstr "Strona Główna"
 
-#: templates/navbar.html:8 templates/report_render.html:12
-#: templates/report_render.html:28 templates/report_render.html:37
+#: templates/navbar.html:8 templates/report_render.html:13
+#: templates/report_render.html:29 templates/report_render.html:38
 msgid "All"
 msgstr "Wszystko"
 
 #: templates/navbar.html:11 templates/new.html:29
-#: templates/report/index.html:19 templates/report_render.html:29
+#: templates/report/index.html:19 templates/report_render.html:30
 msgid "Lost"
 msgstr "Zgubione"
 
 #: templates/navbar.html:14 templates/new.html:36
-#: templates/report/index.html:21 templates/report_render.html:30
+#: templates/report/index.html:21 templates/report_render.html:31
 msgid "Found"
 msgstr "Znalezione"
 
@@ -187,12 +187,12 @@ msgstr "Nowe Zgłoszenie"
 msgid "Report title"
 msgstr "Tytuł Zgłoszenia"
 
-#: templates/new.html:24 templates/report_render.html:26
+#: templates/new.html:24 templates/report_render.html:27
 msgid "Report type"
 msgstr "Kategoria"
 
 #: templates/new.html:42 templates/report/edit.html:23
-#: templates/report_render.html:35
+#: templates/report_render.html:36
 msgid "Item type"
 msgstr "Rodzaj Przedmiotu"
 
@@ -224,32 +224,53 @@ msgstr "Widziane w"
 msgid "Found in"
 msgstr "Znalezione w"
 
-#: templates/report/index.html:35 templates/report_render.html:8
-#: templates/report_render.html:91
+#: templates/report_render.html:6
+msgid "Filter by name or description"
+msgstr "Filtruj po tytule lub opisie"
+
+#: templates/report/index.html:35 templates/report_render.html:9
+#: templates/report_render.html:94
 msgid "Colour"
 msgstr "Kolor"
 
-#: templates/report_render.html:71
+#: templates/report/index.html:53 templates/report_render.html:47
+#: templates/report_render.html:115
+msgid "Suspected owner"
+msgstr "Prawdopodobny właściciel"
+
+#: templates/report_render.html:49
+msgid "Anybody"
+msgstr "Ktokolwiek"
+
+#: templates/report_render.html:50
+msgid "You"
+msgstr "Ty"
+
+#: templates/report_render.html:72
 msgid "By"
 msgstr "Przez"
 
-#: templates/report_render.html:73
+#: templates/report_render.html:74
 msgid "Posted"
 msgstr "Utworzono"
 
-#: templates/report_render.html:77
+#: templates/report_render.html:79
 msgid "Score"
 msgstr "Punkty"
 
-#: templates/report/index.html:29 templates/report_render.html:85
+#: templates/report/index.html:29 templates/report_render.html:87
 msgid "Category"
 msgstr "Przedmiot"
 
-#: templates/report_render.html:100
+#: templates/report/index.html:43 templates/report_render.html:103
 msgid "Last seen"
 msgstr "Ostatnio widziane"
 
-#: templates/report_render.html:123
+#: templates/report/index.html:46 templates/report_render.html:107
+msgid "common.at.location"
+msgstr "w"
+
+#: templates/report_render.html:132
 msgid "View Details"
 msgstr "Więcej"
 
@@ -355,6 +376,10 @@ msgstr ""
 msgid "The entered code is incorrect or it has expired"
 msgstr "Wpisany kod jest nieprawidłowy albo wygasł"
 
+#: templates/report/index.html:14
+msgid "Report details"
+msgstr "Szczegóły zgłoszenia"
+
 #: templates/report/index.html:23
 msgid "by"
 msgstr "przez"
@@ -363,9 +388,25 @@ msgstr "przez"
 msgid "posted"
 msgstr "utworzono"
 
-#: templates/report/index.html:63
+#: templates/report/index.html:64
 msgid "No description provided"
 msgstr "Brak dodatkowych informacji"
+
+#: templates/report/index.html:71
+msgid "Retrieve at"
+msgstr "Odzyskaj w"
+
+#: templates/report/index.html:78
+msgid "Edit report"
+msgstr "Edytuj zgłoszenie"
+
+#: templates/report/index.html:81
+msgid "Delete report"
+msgstr "Usuń zgłoszenie"
+
+#: templates/report/index.html:88
+msgid "Matches with this report"
+msgstr "Zgłoszenia pasujące do tego"
 
 #~ msgid "Location"
 #~ msgstr "Sala"

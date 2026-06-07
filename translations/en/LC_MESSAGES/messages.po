@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-07 10:48+0200\n"
+"POT-Creation-Date: 2026-06-07 11:08+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -102,8 +102,8 @@ msgid "index.instructions"
 msgstr ""
 "<p>If you have lost or found something, tap the <code>+</code> at the top"
 " to create a report. <strong>Items you have borrowed shall be marked "
-"<code>found</code>.</strong> In case you can't be easily reached by school"
-" email, please include contact details in the report "
+"<code>found</code>.</strong> In case you can't be easily reached by "
+"school email, please include contact details in the report "
 "description.</p><p>Browse reports to find ones of opposite type matching "
 "your item. Alternatively, use one of the two buttons above to view a list"
 " of automatically generated report pairs. These are also displayed on the"
@@ -137,7 +137,7 @@ msgstr ""
 msgid "Lost Items"
 msgstr ""
 
-#: templates/matches.html:39 templates/report_render.html:53
+#: templates/matches.html:39 templates/report_render.html:54
 msgid "Apply"
 msgstr ""
 
@@ -145,18 +145,18 @@ msgstr ""
 msgid "Home"
 msgstr ""
 
-#: templates/navbar.html:8 templates/report_render.html:12
-#: templates/report_render.html:28 templates/report_render.html:37
+#: templates/navbar.html:8 templates/report_render.html:13
+#: templates/report_render.html:29 templates/report_render.html:38
 msgid "All"
 msgstr ""
 
 #: templates/navbar.html:11 templates/new.html:29
-#: templates/report/index.html:19 templates/report_render.html:29
+#: templates/report/index.html:19 templates/report_render.html:30
 msgid "Lost"
 msgstr ""
 
 #: templates/navbar.html:14 templates/new.html:36
-#: templates/report/index.html:21 templates/report_render.html:30
+#: templates/report/index.html:21 templates/report_render.html:31
 msgid "Found"
 msgstr ""
 
@@ -184,12 +184,12 @@ msgstr ""
 msgid "Report title"
 msgstr ""
 
-#: templates/new.html:24 templates/report_render.html:26
+#: templates/new.html:24 templates/report_render.html:27
 msgid "Report type"
 msgstr ""
 
 #: templates/new.html:42 templates/report/edit.html:23
-#: templates/report_render.html:35
+#: templates/report_render.html:36
 msgid "Item type"
 msgstr ""
 
@@ -221,32 +221,53 @@ msgstr ""
 msgid "Found in"
 msgstr ""
 
-#: templates/report/index.html:35 templates/report_render.html:8
-#: templates/report_render.html:91
+#: templates/report_render.html:6
+msgid "Filter by name or description"
+msgstr ""
+
+#: templates/report/index.html:35 templates/report_render.html:9
+#: templates/report_render.html:94
 msgid "Colour"
 msgstr ""
 
-#: templates/report_render.html:71
+#: templates/report/index.html:53 templates/report_render.html:47
+#: templates/report_render.html:115
+msgid "Suspected owner"
+msgstr ""
+
+#: templates/report_render.html:49
+msgid "Anybody"
+msgstr ""
+
+#: templates/report_render.html:50
+msgid "You"
+msgstr ""
+
+#: templates/report_render.html:72
 msgid "By"
 msgstr ""
 
-#: templates/report_render.html:73
+#: templates/report_render.html:74
 msgid "Posted"
 msgstr ""
 
-#: templates/report_render.html:77
+#: templates/report_render.html:79
 msgid "Score"
 msgstr ""
 
-#: templates/report/index.html:29 templates/report_render.html:85
+#: templates/report/index.html:29 templates/report_render.html:87
 msgid "Category"
 msgstr ""
 
-#: templates/report_render.html:100
+#: templates/report/index.html:43 templates/report_render.html:103
 msgid "Last seen"
 msgstr ""
 
-#: templates/report_render.html:123
+#: templates/report/index.html:46 templates/report_render.html:107
+msgid "common.at.location"
+msgstr "at"
+
+#: templates/report_render.html:132
 msgid "View Details"
 msgstr ""
 
@@ -350,6 +371,10 @@ msgstr ""
 msgid "The entered code is incorrect or it has expired"
 msgstr ""
 
+#: templates/report/index.html:14
+msgid "Report details"
+msgstr ""
+
 #: templates/report/index.html:23
 msgid "by"
 msgstr ""
@@ -358,8 +383,24 @@ msgstr ""
 msgid "posted"
 msgstr ""
 
-#: templates/report/index.html:63
+#: templates/report/index.html:64
 msgid "No description provided"
+msgstr ""
+
+#: templates/report/index.html:71
+msgid "Retrieve at"
+msgstr ""
+
+#: templates/report/index.html:78
+msgid "Edit report"
+msgstr ""
+
+#: templates/report/index.html:81
+msgid "Delete report"
+msgstr ""
+
+#: templates/report/index.html:88
+msgid "Matches with this report"
 msgstr ""
 
 #~ msgid "Welcome to Lost&Found"

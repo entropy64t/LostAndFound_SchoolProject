@@ -11,7 +11,7 @@
     {% include "navbar.html" %}
 
     <div class="container">
-        <h1>Report details</h1>
+        <h1>{{ lang("Report details") }}</h1>
         <div class="content">
             <h2>{{ title }}</h2>
             <p>
@@ -40,16 +40,17 @@
                 {% endif %}
 
                 {% if last_seen or last_seen_location %}
-                <div class="detail-item detail-item-last-seen"><span style="font-weight: 700;">Last seen:</span>{% if
+                <div class="detail-item detail-item-last-seen"><span style="font-weight: 700;">{{ lang("Last seen")
+                        }}:</span>{% if
                     last_seen %}<span class="last-seen-value"> {{ last_seen }}</span>{% endif %}{% if last_seen_location
-                    %} at {{
+                    %} {{ lang("common.at.location") }} {{
                     last_seen_location }}{% endif %}
                 </div>
                 {% endif %}
 
                 {% if item_owner %}
                 <div class="detail-item">
-                    <span style="font-weight: 700;">Suspected owner:</span> {{ item_owner }}
+                    <span style="font-weight: 700;">{{ lang("Suspected owner") }}:</span> {{ item_owner }}
                 </div>
                 {% endif %}
             </div>
@@ -67,24 +68,24 @@
 
             {% if pickup_location %}
             <p>
-                <span style="font-weight: 700;">Retrieve at:</span> {{ pickup_location }}
+                <span style="font-weight: 700;">{{ lang("Retrieve at") }}:</span> {{ pickup_location }}
             </p>
             {% endif %}
 
             {% if author_object == current_user %}
             <br><br>
             <a class="btn-primary" style="display: inline-block;"
-                href="{{ url_for('edit_report', report_id=report_id) }}">Edit report</a>
+                href="{{ url_for('edit_report', report_id=report_id) }}">{{ lang("Edit report") }}</a>
             <form style="display: inline-block;" method="post"
                 action="{{ url_for('delete_report', report_id=report_id) }}">
-                <button class="btn-primary dangerous" type="submit">Delete report</button>
+                <button class="btn-primary dangerous" type="submit">{{ lang("Delete report") }}</button>
             </form>
             {% endif %}
         </div>
     </div>
 
     <div class="container">
-        <h2>Matches with this report</h2>
+        <h2>{{ lang("Matches with this report") }}</h2>
         {% include "report_render.html" %}
     </div>
 

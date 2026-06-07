@@ -2,7 +2,8 @@
 
 <form class="report-filter" method="get">
     <div class="filter-text-field">
-        <input type="text" class="filter-text-input" name="text" {% if selected_text %}value="{{ selected_text }}"{% endif %} placeholder="Filter by name or description...">
+        <input type="text" class="filter-text-input" name="text" {% if selected_text %}value="{{ selected_text }}" {%
+            endif %} placeholder="{{ lang('Filter by name or description') }}...">
     </div>
     <div class="filter-chip-picker">
         <span class="filter-label">{{ lang("Colour") }}:</span>
@@ -43,10 +44,10 @@
     </label>
     {% if request.endpoint != "lost" %}
     <label>
-        Suspected owner:
+        {{ lang("Suspected owner") }}:
         <select name="item_owner">
-            <option value="">Anybody</option>
-            <option value="me" {% if selected_owner=="me" %}selected{% endif %}>You</option>
+            <option value="">{{ lang("Anybody") }}</option>
+            <option value="me" {% if selected_owner=="me" %}selected{% endif %}>{{ lang("You") }}</option>
         </select>
     </label>
     {% endif %}
@@ -70,7 +71,8 @@
         <div class="report-metadata">
             <span class="meta-item"><span style="font-weight: 700;">{{ lang("By") }}:</span>
                 {{ authors[report.author]}}</span>
-            <span class="meta-item"><span style="font-weight: 700;">{{ lang("Posted") }}:</span> {{ report.creation_date.strftime('%Y-%m-%d
+            <span class="meta-item"><span style="font-weight: 700;">{{ lang("Posted") }}:</span> {{
+                report.creation_date.strftime('%Y-%m-%d
                 %H:%M')
                 if report.creation_date else 'N/A' }}</span>
             {% if scores %}
@@ -82,7 +84,8 @@
         <div class="report-details">
             {% if report.category %}
             <div class="{% if report.colour %}detail-item{% else %}detail-item-wide{% endif %}">
-                <span style="font-weight: 700;">{{ lang("Category") }}:</span> {{ get_category(report.category).localized_name() }}
+                <span style="font-weight: 700;">{{ lang("Category") }}:</span> {{
+                get_category(report.category).localized_name() }}
             </div>
             {% endif %}
 
@@ -98,13 +101,19 @@
             {% if report.last_seen or report.last_seen_location %}
             <div class="detail-item-wide detail-item-last-seen">
                 <span style="font-weight: 700;">{{lang("Last seen")}}:</span>
-                <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">{% if report.last_seen %}<span class="last-seen-value" style="display: inline-block;"> {{ report.last_seen.strftime('%Y-%m-%d %H:%M') }}</span>{% endif %}{% if report.last_seen_location %}<span style="display: inline-block;"> at {{ locations[report.last_seen_location] }}</span>{% endif %}</div>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">{% if report.last_seen
+                    %}<span class="last-seen-value" style="display: inline-block;"> {{
+                        report.last_seen.strftime('%Y-%m-%d %H:%M') }}</span>{% endif %}{% if report.last_seen_location
+                    %}<span style="display: inline-block;"> {{ lang("common.at.location") }} {{
+                        locations[report.last_seen_location] }}</span>{% endif
+                    %}</div>
             </div>
             {% endif %}
-            
+
             {% if report.item_owner %}
             <div class="detail-item-wide">
-                <span style="font-weight: 700;">Suspected owner:</span> {{ get_user(report.item_owner).public_name() }}
+                <span style="font-weight: 700;">{{ lang("Suspected owner") }}:</span> {{
+                get_user(report.item_owner).public_name() }}
             </div>
             {% endif %}
         </div>
@@ -120,7 +129,8 @@
         #}
 
         <div class="report-footer">
-            <a href="{{ url_for('report_details', report_id=report.id) }}" class="btn-view">{{ lang("View Details") }}</a>
+            <a href="{{ url_for('report_details', report_id=report.id) }}" class="btn-view">{{ lang("View Details")
+                }}</a>
         </div>
     </div>
     {% endfor %}
