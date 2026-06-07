@@ -12,42 +12,59 @@
     {% include "navbar.html" %}
 
     <div class="container">
-        <h1>Report matches</h1>
+        <h1>{{ lang("Report matches") }}</h1>
+
         <form class="report-filter" method="get">
             <div class="filter-chip-picker">
-                <span class="filter-label">Show matches:</span>
+                <span class="filter-label" title="{{ lang('Choose which matches are displayed in the table') }}">
+                    {{ lang("Show matches") }}:
+                </span>
+
                 <label class="filter-chip-option filter-chip-helper">
                     <input type="radio" name="filter" value="" {% if not selected_filter %}checked{% endif %}>
-                    <span class="filter-chip-name">All</span>
+                    <span class="filter-chip-name">{{ lang("All") }}</span>
                 </label>
+
                 <label class="filter-chip-option filter-chip-helper">
-                    <input type="radio" name="filter" value="mine" {% if selected_filter=="mine" %}checked{% endif %}>
-                    <span class="filter-chip-name">Related to my reports</span>
+                    <input type="radio" name="filter" value="mine" {% if selected_filter=='mine' %}checked{% endif %}>
+                    <span class="filter-chip-name">{{ lang("Related to my reports") }}</span>
                 </label>
             </div>
+
             <div class="filter-chip-picker">
-                <span class="filter-label">Sort by:</span>
+                <span class="filter-label" title="{{ lang('Choose the column by which the match list is sorted') }}">
+                    {{ lang("Sort by") }}:
+                </span>
+
                 <label class="filter-chip-option filter-chip-helper">
                     <input type="radio" name="order" value="" {% if not selected_order %}checked{% endif %}>
-                    <span class="filter-chip-name">Score</span>
+                    <span class="filter-chip-name">{{ lang("Score") }}</span>
                 </label>
+
                 <label class="filter-chip-option filter-chip-helper">
                     <input type="radio" name="order" value="created" {% if selected_order=="created" %}checked{% endif
                         %}>
-                    <span class="filter-chip-name">Creation date</span>
+                    <span class="filter-chip-name">{{ lang("Creation date") }}</span>
                 </label>
             </div>
             <button type="submit">{{ lang("Apply") }}</button>
         </form>
+
         <div class="content">
-            <p>Reports in bold are authored by you.</p>
+            <div class="matches-instructions">
+                <p>
+                    <span style="font-weight: 700;">{{ lang("Tip") }}:</span>
+                    {{ lang("Reports shown in bold are authored by you and are easier to spot in the match list.") }}
+                </p>
+                {#<p>{{ lang("Use filters to narrow the list, then click a report title to open its details.") }}</p>#}
+            </div>
             <div style="overflow: scroll;">
                 <table>
                     <tr>
-                        <th>Lost item</th>
-                        <th>Found item</th>
-                        <th>Score</th>
-                        <th>Generated</th>
+                        <th>{{ lang("Lost item") }}</th>
+                        <th>{{ lang("Found item") }}</th>
+                        <th>{{ lang("Score") }}</th>
+                        <th>{{ lang("Later report created on") }}</th>
                     </tr>
                     {% for mat in all_matches %}
                     <tr>

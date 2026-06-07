@@ -1,44 +1,91 @@
-table, td {
-    border-left: 2px solid black;
-    border-right: 2px solid black;
-    border-collapse: collapse;
-    text-align: center;
-}
-th {
-    border: 2px solid black;
-    border-collapse: collapse;
-}
 table {
     width: 100%;
-    border-bottom: 2px solid black;
+    border-collapse: collapse;
+    min-width: 720px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
+
+th,
+td {
+    padding: 14px 16px;
+    border: 1px solid var(--gray-border);
+    text-align: left;
+    vertical-align: top;
+}
+
+th {
+    background-color: var(--almost-white);
+    color: var(--primary);
+    font-weight: 700;
+}
+
 tr {
     transition: background-color 0.2s ease;
 }
+
+tr:nth-child(even) {
+    background-color: #fbfbfb;
+}
+
 tr:hover {
     background-color: var(--gray-border);
 }
+
+.bold-td {
+    font-weight: 700;
+    color: var(--primary);
+    background-color: rgba(56, 142, 60, 0.08);
+    position: relative;
+}
+
+.bold-td::before {
+    content: "★";
+    display: inline-block;
+    margin-right: 8px;
+    color: var(--main-green);
+}
+
+.matches-instructions {
+    background: var(--almost-white);
+    border: 1px solid var(--gray-border);
+    padding: 14px 16px;
+    border-radius: 10px;
+    margin-bottom: 18px;
+    color: var(--primary);
+}
+
+.matches-instructions p {
+    margin: 0 0 8px;
+    line-height: 1.5;
+}
+
+.matches-instructions p:last-child {
+    margin-bottom: 0;
+}
+
 .table-button {
-    align-self: start;
+    display: inline-block;
     padding: 8px 12px;
-    border: 2px solid black;
+    border: 1px solid var(--gray-border);
     border-radius: 8px;
-    font-size: 1rem;
+    font-size: 0.95rem;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
     text-decoration: none;
-    margin: 5px;
+    margin: 5px 0;
     width: fit-content;
+    background: white;
 }
 
 .table-button a {
-    color: black;
+    color: var(--primary);
     text-decoration: none;
     transition: color 0.2s ease;
 }
 
 .table-button:hover {
     background-color: var(--secondary);
+    border-color: var(--secondary);
 }
 
 .table-button:hover a {

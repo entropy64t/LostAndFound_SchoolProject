@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-07 12:08+0200\n"
+"POT-Creation-Date: 2026-06-07 12:27+0200\n"
 "PO-Revision-Date: 2026-05-26 19:16+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: pl\n"
@@ -23,8 +23,7 @@ msgstr ""
 msgid "All Items"
 msgstr "Wszystkie Przedmioty"
 
-#: templates/create_account.html:7 templates/create_account.html:14
-#: templates/create_account.html:56
+#: templates/create_account.html:14 templates/create_account.html:56
 msgid "Create account"
 msgstr "Utwórz konto"
 
@@ -66,8 +65,8 @@ msgstr "Konto z tym adresem e-mail już istnieje"
 msgid "Already have an account"
 msgstr "Posiadasz już konto"
 
-#: templates/create_account.html:65 templates/login.html:7
-#: templates/login.html:14 templates/login.html:28
+#: templates/create_account.html:65 templates/login.html:14
+#: templates/login.html:28
 msgid "Login"
 msgstr "Logowanie"
 
@@ -141,18 +140,74 @@ msgstr "Zresetuj je"
 msgid "Lost Items"
 msgstr "Zgubione Przedmioty"
 
-#: templates/matches.html:40 templates/report_render.html:54
+#: templates/matches.html:15
+msgid "Report matches"
+msgstr "Pasujące zgłoszenia"
+
+#: templates/matches.html:19
+msgid "Choose which matches are displayed in the table"
+msgstr "Wybierz, które pasujące zgłoszenia będą wyświetlane w tabeli"
+
+#: templates/matches.html:20
+msgid "Show matches"
+msgstr "Pokaż pasujące zgłoszenia"
+
+#: templates/matches.html:25 templates/navbar.html:8
+#: templates/report_render.html:13 templates/report_render.html:29
+#: templates/report_render.html:38
+msgid "All"
+msgstr "Wszystko"
+
+#: templates/matches.html:30
+msgid "Related to my reports"
+msgstr "Zgłoszenia pasujące do Twoich"
+
+#: templates/matches.html:35
+msgid "Choose the column by which the match list is sorted"
+msgstr "Wybierx kolumnę, po której tabela będzie sortowana"
+
+#: templates/matches.html:36
+msgid "Sort by"
+msgstr "Sortuj po"
+
+#: templates/matches.html:41 templates/matches.html:66
+#: templates/report_render.html:79
+msgid "Score"
+msgstr "Punkty"
+
+#: templates/matches.html:47
+msgid "Creation date"
+msgstr "Data utworzenia"
+
+#: templates/matches.html:50 templates/report_render.html:54
 msgid "Apply"
 msgstr "Zatwierdź"
+
+#: templates/matches.html:56
+msgid "Tip"
+msgstr "Wskazówka"
+
+#: templates/matches.html:57
+msgid ""
+"Reports shown in bold are authored by you and are easier to spot in the "
+"match list."
+msgstr "Zgłoszenia stworzone przez Ciebie są pogrubione"
+
+#: templates/matches.html:64
+msgid "Lost item"
+msgstr "Zgubiony przedmiot"
+
+#: templates/matches.html:65
+msgid "Found item"
+msgstr "Znaleziony przedmiot"
+
+#: templates/matches.html:67
+msgid "Later report created on"
+msgstr "Późniejsze zgłoszenie utworzono"
 
 #: templates/navbar.html:5
 msgid "Home"
 msgstr "Strona Główna"
-
-#: templates/navbar.html:8 templates/report_render.html:13
-#: templates/report_render.html:29 templates/report_render.html:38
-msgid "All"
-msgstr "Wszystko"
 
 #: templates/navbar.html:11 templates/new.html:29
 #: templates/report/index.html:19 templates/report_render.html:30
@@ -180,7 +235,7 @@ msgstr "Weryfikacja Konta"
 msgid "Logout"
 msgstr "Wyloguj się"
 
-#: templates/new.html:7 templates/new.html:14
+#: templates/new.html:14
 msgid "New Report"
 msgstr "Nowe Zgłoszenie"
 
@@ -263,10 +318,6 @@ msgstr "Przez"
 #: templates/report_render.html:74
 msgid "Posted"
 msgstr "Utworzono"
-
-#: templates/report_render.html:79
-msgid "Score"
-msgstr "Punkty"
 
 #: templates/report/index.html:29 templates/report_render.html:87
 msgid "Category"
@@ -377,8 +428,7 @@ msgstr "E-maile są różne"
 msgid "Change"
 msgstr "Zmień"
 
-#: templates/pwreset/check.html:7 templates/pwreset/check.html:14
-#: templates/pwreset/check.html:28 templates/pwreset/index.html:7
+#: templates/pwreset/check.html:14 templates/pwreset/check.html:28
 #: templates/pwreset/index.html:14 templates/pwreset/index.html:22
 msgid "Reset password"
 msgstr "Zresetuj hasło"
@@ -443,7 +493,7 @@ msgstr "Odzyskaj w"
 msgid "Delete report"
 msgstr "Usuń zgłoszenie"
 
-#: templates/report/index.html:88
+#: templates/report/index.html:89
 msgid "Matches with this report"
 msgstr "Zgłoszenia pasujące do tego"
 
@@ -498,3 +548,10 @@ msgstr "Weryfikuj"
 #: templates/verification/index.html:30
 msgid "The entered e-mail address isn't in the appropriate domain"
 msgstr "Wpisany adres e-mail nie jest w odpowiedniej domenie"
+
+#~ msgid " Choose which matches are displayed in the table"
+#~ msgstr ""
+
+#~ msgid " Choose the column by which the match list is sorted"
+#~ msgstr ""
+

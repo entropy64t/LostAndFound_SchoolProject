@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-07 12:08+0200\n"
+"POT-Creation-Date: 2026-06-07 12:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -22,8 +22,7 @@ msgstr ""
 msgid "All Items"
 msgstr ""
 
-#: templates/create_account.html:7 templates/create_account.html:14
-#: templates/create_account.html:56
+#: templates/create_account.html:14 templates/create_account.html:56
 msgid "Create account"
 msgstr ""
 
@@ -65,8 +64,8 @@ msgstr ""
 msgid "Already have an account"
 msgstr ""
 
-#: templates/create_account.html:65 templates/login.html:7
-#: templates/login.html:14 templates/login.html:28
+#: templates/create_account.html:65 templates/login.html:14
+#: templates/login.html:28
 msgid "Login"
 msgstr ""
 
@@ -138,17 +137,73 @@ msgstr ""
 msgid "Lost Items"
 msgstr ""
 
-#: templates/matches.html:40 templates/report_render.html:54
+#: templates/matches.html:15
+msgid "Report matches"
+msgstr ""
+
+#: templates/matches.html:19
+msgid "Choose which matches are displayed in the table"
+msgstr ""
+
+#: templates/matches.html:20
+msgid "Show matches"
+msgstr ""
+
+#: templates/matches.html:25 templates/navbar.html:8
+#: templates/report_render.html:13 templates/report_render.html:29
+#: templates/report_render.html:38
+msgid "All"
+msgstr ""
+
+#: templates/matches.html:30
+msgid "Related to my reports"
+msgstr ""
+
+#: templates/matches.html:35
+msgid "Choose the column by which the match list is sorted"
+msgstr ""
+
+#: templates/matches.html:36
+msgid "Sort by"
+msgstr ""
+
+#: templates/matches.html:41 templates/matches.html:66
+#: templates/report_render.html:79
+msgid "Score"
+msgstr ""
+
+#: templates/matches.html:47
+msgid "Creation date"
+msgstr ""
+
+#: templates/matches.html:50 templates/report_render.html:54
 msgid "Apply"
+msgstr ""
+
+#: templates/matches.html:56
+msgid "Tip"
+msgstr ""
+
+#: templates/matches.html:57
+msgid ""
+"Reports shown in bold are authored by you and are easier to spot in the "
+"match list."
+msgstr ""
+
+#: templates/matches.html:64
+msgid "Lost item"
+msgstr ""
+
+#: templates/matches.html:65
+msgid "Found item"
+msgstr ""
+
+#: templates/matches.html:67
+msgid "Later report created on"
 msgstr ""
 
 #: templates/navbar.html:5
 msgid "Home"
-msgstr ""
-
-#: templates/navbar.html:8 templates/report_render.html:13
-#: templates/report_render.html:29 templates/report_render.html:38
-msgid "All"
 msgstr ""
 
 #: templates/navbar.html:11 templates/new.html:29
@@ -177,7 +232,7 @@ msgstr ""
 msgid "Logout"
 msgstr ""
 
-#: templates/new.html:7 templates/new.html:14
+#: templates/new.html:14
 msgid "New Report"
 msgstr ""
 
@@ -259,10 +314,6 @@ msgstr ""
 
 #: templates/report_render.html:74
 msgid "Posted"
-msgstr ""
-
-#: templates/report_render.html:79
-msgid "Score"
 msgstr ""
 
 #: templates/report/index.html:29 templates/report_render.html:87
@@ -374,8 +425,7 @@ msgstr ""
 msgid "Change"
 msgstr ""
 
-#: templates/pwreset/check.html:7 templates/pwreset/check.html:14
-#: templates/pwreset/check.html:28 templates/pwreset/index.html:7
+#: templates/pwreset/check.html:14 templates/pwreset/check.html:28
 #: templates/pwreset/index.html:14 templates/pwreset/index.html:22
 msgid "Reset password"
 msgstr ""
@@ -438,7 +488,7 @@ msgstr ""
 msgid "Delete report"
 msgstr ""
 
-#: templates/report/index.html:88
+#: templates/report/index.html:89
 msgid "Matches with this report"
 msgstr ""
 
@@ -514,5 +564,20 @@ msgstr ""
 #~ msgstr ""
 
 #~ msgid "Found at"
+#~ msgstr ""
+
+#~ msgid " Choose which matches are displayed in the table"
+#~ msgstr ""
+
+#~ msgid " Choose the column by which the match list is sorted"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Use filters to narrow the list, "
+#~ "then click a report title to open"
+#~ " its details."
+#~ msgstr ""
+
+#~ msgid "Reports in bold are authored by you."
 #~ msgstr ""
 
