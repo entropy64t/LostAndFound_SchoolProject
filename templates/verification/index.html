@@ -12,20 +12,23 @@
 
     <div class="container">
         <div class="auth-wrapper">
-            <h1>Verify your account</h1>
-            <p>To access any kind of lost and found functionality, you must verify your account.</p>
+            <h1>{{ lang("Verify your account") }}</h1>
+            <p>{{ lang("To access any kind of lost and found functionality, you must verify your account") }}.</p>
             <form class="auth-form" method="post">
                 <div class="form-group">
                     <label>
-                        Verification e-mail {% include "required.html" %}
+                        {{ lang("Verification e-mail") }} {% include "required.html" %}
                         <input type="email" name="verif_mail" value="{{ prefill }}" required>
                         <br><br>
-                        This address is only used to verify your account and must be in the (v-lo.krakow.pl) domain.
+                        {{ lang(
+                        "This address is only used to verify your account and must be in the (v-lo.krakow.pl) domain"
+                        ) }}.
                     </label>
                 </div>
-                <button type="submit" class="btn-primary">Verify</button>
+                <button type="submit" class="btn-primary">{{ lang("Verify") }}</button>
                 {% if request.args.get("msg") == "wrongdomain" %}
-                <p class="auth-fail-message">The entered e-mail address isn't in the appropriate domain.</p>
+                <p class="auth-fail-message">{{ lang("The entered e-mail address isn't in the appropriate domain") }}.
+                </p>
                 {% endif %}
             </form>
         </div>

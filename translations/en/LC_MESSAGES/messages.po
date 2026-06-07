@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-07 11:33+0200\n"
+"POT-Creation-Date: 2026-06-07 11:39+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -441,9 +441,44 @@ msgstr ""
 msgid "Matches with this report"
 msgstr ""
 
+#: templates/verification/index.html:15
+msgid "Verify your account"
+msgstr ""
+
+#: templates/verification/index.html:16
+msgid ""
+"To access any kind of lost and found functionality, you must verify your "
+"account"
+msgstr ""
+
+#: templates/verification/index.html:20
+msgid "Verification e-mail"
+msgstr ""
+
+#: templates/verification/index.html:23
+msgid ""
+"This address is only used to verify your account and must be in the "
+"(v-lo.krakow.pl) domain"
+msgstr ""
+
+#: templates/verification/index.html:28
+msgid "Verify"
+msgstr ""
+
+#: templates/verification/index.html:30
+msgid "The entered e-mail address isn't in the appropriate domain"
+msgstr ""
+
 #~ msgid "Welcome to Lost&Found"
 #~ msgstr ""
 
 #~ msgid "Are you sure"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "This address is only used to "
+#~ "verify your account and must be in"
+#~ " the (v-lo.krakow.pl)\n"
+#~ "                        domain"
 #~ msgstr ""
 
