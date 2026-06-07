@@ -20,7 +20,6 @@ from user import User, get_user, find_by_email, create_user
 from verification import send_message_email, send_pwreset, verify_domain
 
 from flask_babel import gettext as lang
-from babel.dates import format_date
 
 from scoring import sort_by_score, update_scoring_of_report, all_sorted
 
@@ -382,7 +381,7 @@ def report_details(report_id):
     report_type = report.report_type
     author = get_user(report.author).public_name() if report.author else "not set"
 
-    creation_date = format_date(report.creation_date, locale=session['lang'])
+    creation_date = report.creation_date.strftime('%Y-%m-%d %H:%M')
 
     category = get_category(report.category)
     colour = get_colour(report.colour)
@@ -394,7 +393,7 @@ def report_details(report_id):
     last_seen_dt: datetime = report.last_seen
     last_seen = ""
     if last_seen_dt:
-        last_seen = format_date(last_seen_dt, locale=session['lang'])
+        last_seen = last_seen_dt.strftime('%Y-%m-%d %H:%M')
     last_seen_location = get_location(report.last_seen_location).location_string() if report.last_seen_location else ""
 
     item_owner = ""
@@ -495,7 +494,7 @@ def edit_report(report_id):
     report_type = report.report_type
     author = get_user(report.author).public_name() if report.author else "unknown"
 
-    creation_date = format_date(report.creation_date, locale=session['lang'])
+    creation_date = report.creation_date.strftime('%Y-%m-%d %H:%M')
 
     category = get_category(report.category).id if report.category else ""
     colour = get_colour(report.colour).id if report.colour else ""
@@ -504,7 +503,7 @@ def edit_report(report_id):
     last_seen_dt: datetime = report.last_seen
     last_seen = ""
     if last_seen_dt:
-        last_seen = format_date(last_seen_dt, locale=session['lang'])
+        last_seen = last_seen_dt.strftime("%Y-%m-%dT%H:%M")
     last_seen_location = get_location(report.last_seen_location).id if report.last_seen_location else ""
    
     item_owner = ""
