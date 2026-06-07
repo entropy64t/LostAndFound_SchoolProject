@@ -106,7 +106,7 @@ def scoring_service(root: Report, report_list: list[Report], app):
         db.session.execute(delete(Match).where(or_(Match.lost_item == root.id, Match.found_item == root.id)))
         db.session.commit()
         for pair in scoring_result:
-            if scoring_result[pair] > 0:
+            if scoring_result[pair] >= 10: # scoring threshold
                 if root.report_type == "lost":
                     lost_item_id = root.id
                     found_item_id = pair.id
