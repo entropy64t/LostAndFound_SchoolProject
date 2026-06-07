@@ -64,8 +64,8 @@
                 <div class="form-group">
                     <label>
                         {{ lang("Change e-mail (this will become your new login)") }}:<br>
-                        <input type="email" placeholder="New email" name="new_email">
-                        <input type="email" placeholder="Repeat new email" name="new_email-repeat">
+                        <input type="email" placeholder="{{ lang('New email') }}" name="new_email">
+                        <input type="email" placeholder="{{ lang('Repeat new email') }}" name="new_email-repeat">
                     </label>
                     {% if request.args.get("email_msg") == "emailnomatch" %}
                     <p class="auth-fail-message">{{ lang("Emails don't match") }}</p>

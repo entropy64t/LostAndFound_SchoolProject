@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-07 11:20+0200\n"
+"POT-Creation-Date: 2026-06-07 11:33+0200\n"
 "PO-Revision-Date: 2026-05-26 19:16+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: pl\n"
@@ -37,7 +37,8 @@ msgstr "Imię"
 msgid "Email"
 msgstr "Adres e-mail"
 
-#: templates/create_account.html:31 templates/login.html:24
+#: templates/account/delete.html:21 templates/create_account.html:31
+#: templates/login.html:24
 msgid "Password"
 msgstr "Hasło"
 
@@ -116,7 +117,7 @@ msgstr ""
 " dostępne) i umów odbiór. Po rozwiązaniu sprawy obie strony powinny "
 "usunąć odpowiadające sobie zgłoszenia.</p>"
 
-#: templates/login.html:30
+#: templates/account/delete.html:24 templates/login.html:30
 msgid "Wrong password"
 msgstr "Nieprawidłowe hasło"
 
@@ -274,6 +275,27 @@ msgstr "w"
 msgid "View Details"
 msgstr "Więcej"
 
+#: templates/account/delete.html:13 templates/account/delete.html:31
+#: templates/account/index.html:78
+msgid "Delete account"
+msgstr "Usuwanie konta"
+
+#: templates/account/delete.html:15 templates/account/delete.html:30
+msgid "Are you sure you want to delete your account"
+msgstr "Czy na pewno chcesz usunąć swoje konto"
+
+#: templates/account/delete.html:16
+msgid "This action is permanent and deletes all reports you have created"
+msgstr "Jest to nieodwracalne i usuwa wszystkie Twoje zgłoszenia"
+
+#: templates/account/delete.html:20
+msgid "Enter your password to delete your account"
+msgstr "Wpisz swoje hasło aby usunąć konto"
+
+#: templates/account/delete.html:28 templates/report/edit.html:110
+msgid "Back"
+msgstr "Wstecz"
+
 #: templates/account/index.html:13
 msgid "My account"
 msgstr "Moje Konto"
@@ -330,6 +352,14 @@ msgstr "Nieprawidłowe hasło"
 msgid "Change e-mail (this will become your new login)"
 msgstr "Zmień e-mail (to będzie Twój nowy login)"
 
+#: templates/account/index.html:67
+msgid "New email"
+msgstr "Nowy adres e-mail"
+
+#: templates/account/index.html:68
+msgid "Repeat new email"
+msgstr "Powtórz nowy e-mail"
+
 #: templates/account/index.html:71
 msgid "Emails don't match"
 msgstr "E-maile są różne"
@@ -337,10 +367,6 @@ msgstr "E-maile są różne"
 #: templates/account/index.html:75
 msgid "Change"
 msgstr "Zmień"
-
-#: templates/account/index.html:78
-msgid "Delete account"
-msgstr "Usuwanie konta"
 
 #: templates/pwreset/check.html:7 templates/pwreset/check.html:14
 #: templates/pwreset/check.html:28 templates/pwreset/index.html:7
@@ -399,10 +425,6 @@ msgstr "Odzyskaj w"
 #: templates/report/edit.html:108
 msgid "Save"
 msgstr "Zapisz"
-
-#: templates/report/edit.html:110
-msgid "Back"
-msgstr "Wstecz"
 
 #: templates/report/index.html:14
 msgid "Report details"

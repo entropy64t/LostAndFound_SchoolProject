@@ -1,3 +1,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<script>
+    document.addEventListener("click", function (e) {
+        const btn = e.target.closest(".confirm-required");
+        if (!btn) return;
+
+        const message = btn.dataset.message || "Are you sure?";
+
+        if (!confirm(message)) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+    });
+</script>

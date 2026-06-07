@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-07 11:20+0200\n"
+"POT-Creation-Date: 2026-06-07 11:33+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -36,7 +36,8 @@ msgstr ""
 msgid "Email"
 msgstr ""
 
-#: templates/create_account.html:31 templates/login.html:24
+#: templates/account/delete.html:21 templates/create_account.html:31
+#: templates/login.html:24
 msgid "Password"
 msgstr ""
 
@@ -113,7 +114,7 @@ msgstr ""
 "if provided) and arrange for pickup. When the case is resolved, both "
 "sides should delete the corresponding reports on their ends.</p>"
 
-#: templates/login.html:30
+#: templates/account/delete.html:24 templates/login.html:30
 msgid "Wrong password"
 msgstr ""
 
@@ -271,6 +272,27 @@ msgstr "at"
 msgid "View Details"
 msgstr ""
 
+#: templates/account/delete.html:13 templates/account/delete.html:31
+#: templates/account/index.html:78
+msgid "Delete account"
+msgstr ""
+
+#: templates/account/delete.html:15 templates/account/delete.html:30
+msgid "Are you sure you want to delete your account"
+msgstr ""
+
+#: templates/account/delete.html:16
+msgid "This action is permanent and deletes all reports you have created"
+msgstr ""
+
+#: templates/account/delete.html:20
+msgid "Enter your password to delete your account"
+msgstr ""
+
+#: templates/account/delete.html:28 templates/report/edit.html:110
+msgid "Back"
+msgstr ""
+
 #: templates/account/index.html:13
 msgid "My account"
 msgstr ""
@@ -327,16 +349,20 @@ msgstr ""
 msgid "Change e-mail (this will become your new login)"
 msgstr ""
 
+#: templates/account/index.html:67
+msgid "New email"
+msgstr ""
+
+#: templates/account/index.html:68
+msgid "Repeat new email"
+msgstr ""
+
 #: templates/account/index.html:71
 msgid "Emails don't match"
 msgstr ""
 
 #: templates/account/index.html:75
 msgid "Change"
-msgstr ""
-
-#: templates/account/index.html:78
-msgid "Delete account"
 msgstr ""
 
 #: templates/pwreset/check.html:7 templates/pwreset/check.html:14
@@ -395,10 +421,6 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: templates/report/edit.html:110
-msgid "Back"
-msgstr ""
-
 #: templates/report/index.html:14
 msgid "Report details"
 msgstr ""
@@ -420,5 +442,8 @@ msgid "Matches with this report"
 msgstr ""
 
 #~ msgid "Welcome to Lost&Found"
+#~ msgstr ""
+
+#~ msgid "Are you sure"
 #~ msgstr ""
 

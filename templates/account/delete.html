@@ -10,23 +10,25 @@
     {% include "navbar.html" %}
 
     <div class="container">
-        <h1>Delete account</h1>
+        <h1>{{ lang("Delete account") }}</h1>
         <div class="content">
-            <h2>Are you sure you want to delete your account?</h2>
-            <p>This action is permanent and deletes all reports you have created.</p>
+            <h2>{{ lang("Are you sure you want to delete your account") }}?</h2>
+            <p>{{ lang("This action is permanent and deletes all reports you have created") }}.</p>
             <form method="post">
                 <div class="form-group">
                     <label>
-                        Enter your password to delete your account {% include "required.html" %}<br>
-                        <input type="password" placeholder="Password" name="password" required>
+                        {{ lang("Enter your password to delete your account") }} {% include "required.html" %}<br>
+                        <input type="password" placeholder="{{ lang('Password') }}" name="password" required>
                     </label>
                     {% if request.args.get("msg") == "wrongpwd" %}
-                    <p class="auth-fail-message">Wrong password</p>
+                    <p class="auth-fail-message">{{ lang("Wrong password") }}</p>
                     {% endif %}
                 </div>
                 <br>
-                <a class="btn-primary" href="{{ url_for('account') }}">Back</a><button type="submit"
-                    class="btn-primary dangerous">Delete account</button>
+                <a class="btn-primary" href="{{ url_for('account') }}">{{ lang("Back") }}</a><button type="submit"
+                    class="btn-primary dangerous confirm-required"
+                    data-message="{{ lang('Are you sure you want to delete your account') }}?">{{
+                    lang("Delete account" )}}</button>
             </form>
         </div>
     </div>
