@@ -8,7 +8,7 @@ The sample list of rooms comes from [dominik-korsa/timetable](https://github.com
 
 ## Contributing
 
-Read the below section for details on how to deploy for development. Then see [CONTRIBUTING.md](#).
+Read the below section for details on how to deploy for development. Then see [CONTRIBUTING.md](https://github.com/entropy64t/LostAndFound_SchoolProject/tree/main?tab=contributing-ov-file).
 
 ## Deployment
 
