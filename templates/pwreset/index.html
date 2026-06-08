@@ -22,7 +22,7 @@
                 <button type="submit" class="btn-primary">{{ lang("Reset password") }}</button>
                 {% if request.args.get("msg") == "sent" %}
                 <p>{{ lang(
-                    "If an account with the provided email address exists, you have been sent a password reset link"
+                    "If an account with the provided email address exists, you have been sent a password reset link. Also check your spam folder"
                     ) }}.</p>
                 {% elif request.args.get("msg") == "wrongotp" %}
                 <p class="auth-fail-message">{{ lang("The entered code is incorrect or it has expired") }}.</p>

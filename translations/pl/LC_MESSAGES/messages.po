@@ -455,10 +455,10 @@ msgstr "Powrót do logowania"
 #: templates/pwreset/index.html:24
 msgid ""
 "If an account with the provided email address exists, you have been sent"
-" a password reset link"
+" a password reset link. Also check your spam folder"
 msgstr ""
 "Jeżeli konto z podanym adresem e-mail istnieje, zostanie wysłany link do "
-"resetowania hasła"
+"resetowania hasła. Sprawdź również folder ze spamem"
 
 #: templates/pwreset/index.html:28 templates/verification/check.html:25
 msgid "The entered code is incorrect or it has expired"
@@ -510,9 +510,9 @@ msgstr "Weryfikacja konta"
 
 #: templates/verification/check.html:16
 msgid ""
-"Enter the code sent to the provided address. The code is valid for 30 "
+"Enter the code sent to the provided address. Also check your spam folder. The code is valid for 30 "
 "minutes"
-msgstr "Wpisz kod wysłany na podany adres e-mail. Kod jest ważny przez 30 minut"
+msgstr "Wpisz kod wysłany na podany adres e-mail. Sprawdź również folder ze spamem. Kod jest ważny przez 30 minut"
 
 #: templates/verification/check.html:20
 msgid "Verification code"
