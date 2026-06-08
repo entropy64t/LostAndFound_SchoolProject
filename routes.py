@@ -23,7 +23,7 @@ from flask_babel import gettext as lang
 
 from scoring import sort_by_score, update_scoring_of_report, all_sorted
 
-from server_secrets import sender_replyto_address
+from server_secrets import sender_replyto_address, org_timezone
 
 @app.route("/new", methods=["GET", "POST"])
 @login_required
@@ -337,7 +337,8 @@ def render_reports(query: Query, template: str, view_all: bool = True):
         get_colour=get_colour,
         get_location=get_location,
         get_user=get_user,
-        filter=True
+        filter=True,
+        org_timezone=org_timezone
     )
 
 @app.route("/all")
@@ -383,7 +384,7 @@ def report_details(report_id):
     report_type = report.report_type
     author = get_user(report.author).public_name() if report.author else "not set"
 
-    creation_date = report.creation_date.strftime('%Y-%m-%d %H:%M')
+    creation_date = report.creation_date.astimezone(org_timezone).strftime('%Y-%m-%d %H:%M')
 
     category = get_category(report.category)
     colour = get_colour(report.colour)
@@ -434,7 +435,8 @@ def report_details(report_id):
                            get_category=get_category, 
                            get_colour=get_colour, 
                            get_location=get_location,
-                           get_user=get_user
+                           get_user=get_user,
+                           org_timezone=org_timezone
                            )
 
 @app.route("/report/<report_id>/edit", methods=['GET', 'POST'])
@@ -496,7 +498,7 @@ def edit_report(report_id):
     report_type = report.report_type
     author = get_user(report.author).public_name() if report.author else "unknown"
 
-    creation_date = report.creation_date.strftime('%Y-%m-%d %H:%M')
+    creation_date = report.creation_date.astimezone(org_timezone).strftime('%Y-%m-%d %H:%M')
 
     category = get_category(report.category).id if report.category else ""
     colour = get_colour(report.colour).id if report.colour else ""

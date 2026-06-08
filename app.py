@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, abort, session
 from markupsafe import escape
 from flask_login import LoginManager, login_required, login_user, logout_user
+from zoneinfo import ZoneInfo
 
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import text
@@ -31,6 +32,9 @@ app.jinja_env.globals['lang'] = lang
 def get_locale():
     return session.get('lang', 'en')
 babel = Babel(app, locale_selector=get_locale)
+
+# timezone 
+org_timezone = ZoneInfo("Europe/Warsaw")
 
 import routes, models, user
 
