@@ -7,7 +7,7 @@ from flask_login import current_user
 import threading
 from datetime import datetime, timezone
 
-from server_secrets import org_timezone
+from app import org_timezone
 
 def score_single(target: Report, item: Report) -> int:
     """Score `item` against `target` on a [0, 100] scale

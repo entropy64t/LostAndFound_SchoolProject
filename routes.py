@@ -13,7 +13,7 @@ from urllib.parse import urlparse
 import secrets
 import string
 
-from app import app, db, login_manager, babel
+from app import app, db, login_manager, babel, org_timezone
 from models import Report, get_report, Grade, get_grade, Category, get_category, Colour, get_colour, Location, get_location
 from user import User, get_user, find_by_email, create_user
 
@@ -23,7 +23,7 @@ from flask_babel import gettext as lang
 
 from scoring import sort_by_score, update_scoring_of_report, all_sorted
 
-from server_secrets import sender_replyto_address, org_timezone
+from server_secrets import sender_replyto_address
 
 @app.route("/new", methods=["GET", "POST"])
 @login_required
