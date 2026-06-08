@@ -18,8 +18,7 @@ login_manager = LoginManager(app)
 login_manager.login_view = "login"
 
 # Database connection init
-DB_URL = os.getenv("DATABASE_URL") 
-# DB_URL = db_docker
+DB_URL = os.getenv("DATABASE_URL", db_docker) 
 # DB_URL = db_localhost
 app.config["SQLALCHEMY_DATABASE_URI"] = DB_URL
 
