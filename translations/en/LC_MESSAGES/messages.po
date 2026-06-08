@@ -456,7 +456,7 @@ msgstr ""
 #: templates/pwreset/index.html:24
 msgid ""
 "If an account with the provided email address exists, you have been sent"
-" a password reset link"
+" a password reset link. Also check your spam folder"
 msgstr ""
 
 #: templates/pwreset/index.html:28 templates/verification/check.html:25
@@ -509,7 +509,7 @@ msgstr ""
 
 #: templates/verification/check.html:16
 msgid ""
-"Enter the code sent to the provided address. The code is valid for 30 "
+"Enter the code sent to the provided address. Also check your spam folder. The code is valid for 30 "
 "minutes"
 msgstr ""
 
