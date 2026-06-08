@@ -72,7 +72,7 @@
             <span class="meta-item"><span style="font-weight: 700;">{{ lang("By") }}:</span>
                 {{ authors[report.author]}}</span>
             <span class="meta-item"><span style="font-weight: 700;">{{ lang("Posted") }}:</span> {{
-                report.creation_date.strftime('%Y-%m-%d
+                report.creation_date.astimezone(org_timezone).strftime('%Y-%m-%d
                 %H:%M')
                 if report.creation_date else 'N/A' }}</span>
             {% if scores %}

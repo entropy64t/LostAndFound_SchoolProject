@@ -7,6 +7,8 @@ from flask_login import current_user
 import threading
 from datetime import datetime, timezone
 
+from server_secrets import org_timezone
+
 def score_single(target: Report, item: Report) -> int:
     """Score `item` against `target` on a [0, 100] scale
  - `target` == `item` => 0
@@ -89,7 +91,7 @@ def all_sorted(filter_by_user, by_creation_date) -> list[tuple[Report, Report, i
             if get_report(mat.lost_item).author != current_user.id and get_report(mat.found_item).author != current_user.id:
                 matches.remove(mat)
 
-    unsorted_pairs = [(mat.lost_item, mat.found_item, mat.score, mat.creation_date.strftime('%Y-%m-%d %H:%M')) for mat in matches]
+    unsorted_pairs = [(mat.lost_item, mat.found_item, mat.score, mat.creation_date.astimezone(org_timezone).strftime('%Y-%m-%d %H:%M')) for mat in matches]
 
     if by_creation_date:
         sorted_pairs = sorted(unsorted_pairs, key=lambda item: item[2], reverse=True) # Sort by score for equal items
