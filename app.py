@@ -8,7 +8,7 @@ from sqlalchemy import text
 
 from flask_babel import Babel, gettext as lang
 
-from server_secrets import secret_key, db_docker, db_localhost
+from server_secrets import secret_key, default
 
 import os
 
@@ -19,8 +19,7 @@ login_manager = LoginManager(app)
 login_manager.login_view = "login"
 
 # Database connection init
-DB_URL = os.getenv("DATABASE_URL", db_docker) 
-# DB_URL = db_localhost
+DB_URL = os.getenv("DATABASE_URL", default) 
 app.config["SQLALCHEMY_DATABASE_URI"] = DB_URL
 
 db = SQLAlchemy(app)
@@ -39,5 +38,4 @@ org_timezone = ZoneInfo("Europe/Warsaw")
 import routes, models, user
 
 if __name__ == "__main__":
-    # app.run(debug=True) # for local testing
     app.run(host="0.0.0.0", port=5000) # for production
