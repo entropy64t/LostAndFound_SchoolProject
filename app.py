@@ -19,6 +19,7 @@ login_manager.login_view = "login"
 
 # Database connection init
 DB_URL = os.getenv("DATABASE_URL", "postgresql://postgres:postgres291830@host.docker.internal:5432/LostAndFound")
+# DB_URL = "postgresql://postgres:postgres291830@localhost:5432/LostAndFound" # for local testing
 app.config["SQLALCHEMY_DATABASE_URI"] = DB_URL
 #"postgresql://postgres:postgres291830@host.docker.internal:5432/LostAndFound" # TODO Update database hostname for production environment TODO store secrets separately
 db = SQLAlchemy(app)
@@ -35,4 +36,5 @@ babel = Babel(app, locale_selector=get_locale)
 import routes, models, user
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000) # TODO change for production
+    # app.run(debug=True) # for local testing
+    app.run(host="0.0.0.0", port=5000) # for production
