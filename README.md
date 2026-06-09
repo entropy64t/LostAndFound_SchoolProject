@@ -2,7 +2,7 @@
 
 LostAndFound is a web application for decentralized trafcking of lost and found items across public buildings (e.g. schools, office buildings, libraries, community centers). Users who have verified ownership of the organization's email address can create and browse reports. Lost and found reports are tried to be automatically matched into pairs based on a simple scoring system.
 
-The instance deployed for the 5th High School in Kraków is available at <https://lost-and-found-app.graysmoke-0e4ec27f.westeurope.azurecontainerapps.io/login>.
+The instance deployed for the 5th High School in Kraków is available at <https://lost-and-found-app.graysmoke-0e4ec27f.westeurope.azurecontainerapps.io/login>. [Give feedback for that instance.](https://forms.gle/QAZikmCdNK2SZ5t56)
 
 The sample list of rooms comes from [dominik-korsa/timetable](https://github.com/dominik-korsa/timetable).
 
