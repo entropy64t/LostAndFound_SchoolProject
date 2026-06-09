@@ -541,7 +541,7 @@ msgstr ""
 
 #: templates/verification/index.html:23
 msgid ""
-"This address is used only to verify your account and must be part of the <code>v-lo.krakow.pl</code> domain"
+"This address is used only to verify your account and must be part of the %(domain)s domain"
 msgstr ""
 
 #: templates/verification/index.html:28
@@ -554,43 +554,4 @@ msgstr ""
 
 msgid "Privacy policy"
 msgstr ""
-
-#~ msgid "Welcome to Lost&Found"
-#~ msgstr ""
-
-#~ msgid "Are you sure"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "This address is only used to "
-#~ "verify your account and must be in"
-#~ " the (v-lo.krakow.pl)\n"
-#~ "                        domain"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Send\n"
-#~ "                        another"
-#~ msgstr ""
-
-#~ msgid "Last seen at"
-#~ msgstr ""
-
-#~ msgid "Found at"
-#~ msgstr ""
-
-#~ msgid " Choose which matches are displayed in the table"
-#~ msgstr ""
-
-#~ msgid " Choose the column by which the match list is sorted"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Use filters to narrow the list, "
-#~ "then click a report title to open"
-#~ " its details."
-#~ msgstr ""
-
-#~ msgid "Reports in bold are authored by you."
-#~ msgstr ""
 

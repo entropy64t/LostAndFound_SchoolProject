@@ -23,7 +23,7 @@ from flask_babel import gettext as lang
 
 from scoring import sort_by_score, update_scoring_of_report, all_sorted
 
-from server_secrets import sender_replyto_address
+from server_secrets import sender_replyto_address, email_domain
 
 @app.route("/new", methods=["GET", "POST"])
 @login_required
@@ -198,7 +198,7 @@ def verify_account():
         prefill = current_user.email
     else:
         prefill = ""
-    return render_template("verification/index.html", prefill=prefill)
+    return render_template("verification/index.html", prefill=prefill, email_domain=email_domain)
 
 @app.route("/verification/check", methods=["GET", "POST"])
 @login_required
