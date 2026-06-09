@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-07 12:33+0200\n"
+"POT-Creation-Date: 2026-06-09 17:01+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -69,35 +69,43 @@ msgstr ""
 msgid "Login"
 msgstr ""
 
+#: templates/footer.html:7
+msgid "Privacy policy"
+msgstr ""
+
+#: templates/footer.html:15
+msgid "Give feedback"
+msgstr ""
+
 #: templates/found.html:14
 msgid "Found items"
 msgstr ""
 
-#: templates/index.html:19
+#: templates/index.html:16
 msgid "active reports"
 msgstr ""
 
-#: templates/index.html:20
+#: templates/index.html:17
 msgid "lost"
 msgstr ""
 
-#: templates/index.html:21
+#: templates/index.html:18
 msgid "found"
 msgstr ""
 
-#: templates/index.html:24
+#: templates/index.html:21
 msgid "Looking for updates on something you have lost"
 msgstr ""
 
-#: templates/index.html:26
+#: templates/index.html:23
 msgid "Matches with your reports"
 msgstr ""
 
-#: templates/index.html:28
+#: templates/index.html:25
 msgid "Reports with you as suspected owner"
 msgstr ""
 
-#: templates/index.html:31
+#: templates/index.html:28
 msgid "index.instructions"
 msgstr ""
 "<p>If you have lost or found something, tap the <code>+</code> at the top"
@@ -113,8 +121,13 @@ msgstr ""
 "if provided) and arrange for pickup. When the case is resolved, both "
 "sides should delete the corresponding reports on their ends.</p>"
 
+#: templates/index.html:30
 msgid "index.contact"
-msgstr "<p>For reporting issues or suggesting new features, open an issue on <a style='color: var(--primary);' target='_blank' href='https://github.com/entropy64t/LostAndFound_SchoolProject'>GitHub</a>. To give feedback or for support, contact"
+msgstr ""
+"<p>For reporting issues or suggesting new features, open an issue on <a "
+"style='color: var(--primary);' target='_blank' "
+"href='https://github.com/entropy64t/LostAndFound_SchoolProject'>GitHub</a>."
+" To give feedback or for support, contact"
 
 #: templates/account/delete.html:24 templates/login.html:30
 msgid "Wrong password"
@@ -152,11 +165,9 @@ msgstr ""
 msgid "Show matches"
 msgstr ""
 
-#: templates/matches.html:25 templates/navbar.html:8
-#: templates/report_render.html:13 templates/report_render.html:29
-#: templates/report_render.html:38
-msgid "All"
-msgstr ""
+#: templates/matches.html:25
+msgid "all.alt"
+msgstr "All"
 
 #: templates/matches.html:30
 msgid "Related to my reports"
@@ -170,7 +181,7 @@ msgstr ""
 msgid "Sort by"
 msgstr ""
 
-#: templates/matches.html:41 templates/matches.html:66
+#: templates/matches.html:41 templates/matches.html:65
 #: templates/report_render.html:79
 msgid "Score"
 msgstr ""
@@ -193,20 +204,25 @@ msgid ""
 "match list."
 msgstr ""
 
-#: templates/matches.html:64
+#: templates/matches.html:63
 msgid "Lost item"
 msgstr ""
 
-#: templates/matches.html:65
+#: templates/matches.html:64
 msgid "Found item"
 msgstr ""
 
-#: templates/matches.html:67
+#: templates/matches.html:66
 msgid "Match appeared on"
 msgstr ""
 
 #: templates/navbar.html:5
 msgid "Home"
+msgstr ""
+
+#: templates/navbar.html:8 templates/report_render.html:13
+#: templates/report_render.html:29 templates/report_render.html:38
+msgid "All"
 msgstr ""
 
 #: templates/navbar.html:11 templates/new.html:29
@@ -259,10 +275,6 @@ msgstr ""
 #: templates/new.html:69 templates/report/edit.html:53
 msgid "colour.unknown"
 msgstr "Other / unknown"
-
-#: templates/matches.html:92
-msgid "all.alt"
-msgstr "All"
 
 #: templates/new.html:76 templates/new.html:150 templates/report/edit.html:60
 msgid "Last seen on"
@@ -455,8 +467,8 @@ msgstr ""
 
 #: templates/pwreset/index.html:24
 msgid ""
-"If an account with the provided email address exists, you have been sent"
-" a password reset link. Also check your spam folder"
+"If an account with the provided email address exists, you have been sent "
+"a password reset link. Also check your spam folder"
 msgstr ""
 
 #: templates/pwreset/index.html:28 templates/verification/check.html:25
@@ -509,8 +521,8 @@ msgstr ""
 
 #: templates/verification/check.html:16
 msgid ""
-"Enter the code sent to the provided address. Also check your spam folder. The code is valid for 30 "
-"minutes"
+"Enter the code sent to the provided address. Also check your spam folder."
+" The code is valid for 30 minutes"
 msgstr ""
 
 #: templates/verification/check.html:20
@@ -540,18 +552,22 @@ msgid "Verification email"
 msgstr ""
 
 #: templates/verification/index.html:23
+#, python-format
 msgid ""
-"This address is used only to verify your account and must be part of the %(domain)s domain"
+"This address is used only to verify your account and must be part of the "
+"%(domain)s domain"
 msgstr ""
 
-#: templates/verification/index.html:28
+#: templates/verification/index.html:29
 msgid "Verify"
 msgstr ""
 
-#: templates/verification/index.html:30
-msgid "The entered email address doesn't belong to the appropriate domain"
+#: templates/verification/index.html:31
+msgid ""
+"The entered email address doesn't belong to the appropriate\n"
+"                    domain"
 msgstr ""
 
-msgid "Privacy policy"
-msgstr ""
+#~ msgid "The entered email address doesn't belong to the appropriate domain"
+#~ msgstr ""
 
