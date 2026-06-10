@@ -28,8 +28,8 @@ msgid "Create account"
 msgstr "Utwórz konto"
 
 #: templates/create_account.html:18
-msgid "Name"
-msgstr "Imię"
+msgid "Name (choose something others will recognize)"
+msgstr "Imię (rozpoznawalne przez innych)"
 
 #: templates/create_account.html:25 templates/login.html:18
 #: templates/pwreset/index.html:18

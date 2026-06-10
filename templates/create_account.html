@@ -15,7 +15,7 @@
             <form class="auth-form" method="post">
                 <div class="form-group">
                     <label>
-                        {{ lang("Name") }} {% include "required.html" %}
+                        {{ lang("Name (choose something others will recognize)") }} {% include "required.html" %}
                         <input type="text" name="display_name" value="{{ request.args.get('display_name') or '' }}"
                             required>
                     </label>
