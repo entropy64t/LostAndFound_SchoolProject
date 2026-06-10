@@ -50,6 +50,9 @@ msgstr "Powtórz hasło"
 msgid "Grade"
 msgstr "Klasa"
 
+msgid "Filter by grade"
+msgstr "Filtruj po klasie"
+
 #: templates/create_account.html:43
 msgid "can be changed later"
 msgstr "może zostać zmieniona później"
