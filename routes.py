@@ -77,10 +77,12 @@ def new():
 
     if not current_user.account_verified or not current_user.is_authenticated:
         return redirect(url_for("index"))
-    locations_from_db = Location.query.all()
-    colours_from_db = Colour.query.all()
-    categories_from_db = Category.query.all()
-    grades_from_db = Grade.query.all()
+
+    
+    locations_from_db = Location.query.order_by(Location.id).all()
+    colours_from_db = Colour.query.order_by(Colour.id).all()
+    categories_from_db = Category.query.order_by(Category.id).all()
+    grades_from_db = Grade.query.order_by(Grade.id).all()
     verified_users = db.session.scalars(select(User).filter_by(account_verified=True).order_by(User.grade)).all()
     
     return render_template("new.html", 
@@ -304,8 +306,8 @@ def render_reports(query: Query, template: str, view_all: bool = True):
 
     # Fetch lookup tables for display
     authors = {u.id: u.public_name() for u in User.query.all()}
-    categories = Category.query.all()
-    colours = Colour.query.all()
+    categories = Category.query.order_by(Category.id).all()
+    colours = Colour.query.order_by(Colour.id).all()
     locations = {l.id: l.location_string() for l in Location.query.all()}
     
     selected_text = request.args.get('text')
@@ -523,9 +525,9 @@ def edit_report(report_id):
         pickup_location = report.pickup_location
    
     # Get option lists from db
-    locations_from_db = Location.query.all()
-    colours_from_db = Colour.query.all()
-    categories_from_db = Category.query.all()
+    locations_from_db = Location.query.order_by(Location.id).all()
+    colours_from_db = Colour.query.order_by(Colour.id).all()
+    categories_from_db = Category.query.order_by(Category.id).all()
     verified_users = db.session.scalars(select(User).filter_by(account_verified=True).order_by(User.grade)).all()
 
     return render_template("report/edit.html", report_id=report_id, title=title, report_type=report_type, author=author, created=creation_date, category=category, colour=colour, description=description,
