@@ -333,3 +333,66 @@ nav,
 .auth-fail-message {
     color: red;
 }
+<<<<<<< HEAD
+||||||| parent of 0c42b1e (add instructions to new.html)
+
+.owner-section {
+    display: inline-block;
+}
+
+.section-title {
+    margin-bottom: 6px;
+}
+
+.field-grid {
+    display: grid;
+    grid-template-columns: max-content 200px;
+    gap: 8px 10px;
+    align-items: center;
+}
+
+.field-label {
+    white-space: nowrap;
+}
+=======
+
+.owner-section {
+    display: inline-block;
+}
+
+.section-title {
+    margin-bottom: 6px;
+}
+
+.field-grid {
+    display: grid;
+    grid-template-columns: max-content 200px;
+    gap: 8px 10px;
+    align-items: center;
+}
+
+.field-label {
+    white-space: nowrap;
+}
+
+.instructions-box {
+    border: 1px solid #d8dae0;
+    border-radius: 10px;
+    padding: 1rem;
+    background: #ffffff;
+    box-shadow: 0 1px 3px rgba(18, 23, 40, 0.08);
+}
+
+.instructions-heading {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+.instructions-content {
+    margin-top: 0.75rem;
+    color: #374151;
+    line-height: 1.6;
+}
+>>>>>>> 0c42b1e (add instructions to new.html)
