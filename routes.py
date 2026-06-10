@@ -76,12 +76,19 @@ def new():
 
     if not current_user.account_verified or not current_user.is_authenticated:
         return redirect(url_for("index"))
+
     locations_from_db = Location.query.order_by(Location.id).all()
     colours_from_db = Colour.query.order_by(Colour.id).all()
     categories_from_db = Category.query.order_by(Category.id).all()
+    grades_from_db = Grade.query.all()
     verified_users = db.session.scalars(select(User).filter_by(account_verified=True).order_by(User.grade)).all()
     
-    return render_template("new.html", category_list=categories_from_db, colour_list=colours_from_db, location_list=locations_from_db, user_list=verified_users)
+    return render_template("new.html", 
+                           category_list=categories_from_db, 
+                           colour_list=colours_from_db, 
+                           location_list=locations_from_db, 
+                           user_list=verified_users,
+                           grade_list=grades_from_db)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

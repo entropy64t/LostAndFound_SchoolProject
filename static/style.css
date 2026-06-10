@@ -16,11 +16,12 @@
     --badge-found-bg: #efe;
     --badge-lost: #c33;
     --badge-lost-bg: #fee;
-    
+
     --color-swatch-border: #ccc;
 
     --almost-white: #fbfcfd;
-    --near-white-site-bg: #f8f9fa; /* used for site bg */
+    --near-white-site-bg: #f8f9fa;
+    /* used for site bg */
     --gray-border: #dfe3e8;
     --gray-metadata: #666;
     --gray-bg: #f9f9f9;
@@ -332,4 +333,23 @@ nav,
 
 .auth-fail-message {
     color: red;
+}
+
+.owner-section {
+    display: inline-block;
+}
+
+.section-title {
+    margin-bottom: 6px;
+}
+
+.field-grid {
+    display: grid;
+    grid-template-columns: max-content 200px;
+    gap: 8px 10px;
+    align-items: center;
+}
+
+.field-label {
+    white-space: nowrap;
 }
