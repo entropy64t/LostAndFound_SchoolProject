@@ -7,7 +7,7 @@ port = 465
 context = ssl.create_default_context()
 
 def verify_domain(address):
-    return address.split('@')[-1] == "v-lo.krakow.pl"
+    return address.split('@')[-1] == email_domain
 
 def send_mail(receiver_address, message, subject):
     with smtplib.SMTP_SSL("smtp.gmail.com", port, context=context) as mail_server:

@@ -8,3 +8,4 @@ secret_key = os.environ.get('lostandfound_secret_key') # "flask_app_secret_key"
 connection_string = os.environ.get('lostandfound_connection_string') # "postgresql://user:password@host/LostAndFound"
 
 org_timezone = ZoneInfo("Europe/Warsaw")
+email_domain = "v-lo.krakow.pl"

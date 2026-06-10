@@ -542,10 +542,10 @@ msgstr "Adres e-mail do weryfikacji"
 
 #: templates/verification/index.html:23
 msgid ""
-"This address is used only to verify your account and must be part of the <code>v-lo.krakow.pl</code> domain"
+"This address is used only to verify your account and must be part of the %(domain)s domain"
 msgstr ""
 "Ten adres e-mail zostanie użyty wyłącznie do weryfikacji Twojego konta i "
-"musi być w domenie <code>v-lo.krakow.pl</code>"
+"musi być w domenie %(domain)s"
 
 #: templates/verification/index.html:28
 msgid "Verify"

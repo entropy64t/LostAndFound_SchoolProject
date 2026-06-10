@@ -26,6 +26,7 @@ Read the below section for details on how to deploy for development. Then see [C
         - `lostandfound_secret_key` - a secret long random string, e.g. Python's `secrets.token_hex(16)`
         - `lostandfound_connection_string` - the PostgreSQL connection string: `postgresql://user:password@host/LostAndFound`, create a dedicated PostgreSQL user for the Flask web app and replace `user` and `password`
     - Replace the timezone in `server_secrets.py` with your instance's timezone
+    - Replace `email_domain` in `server_secrets.py` with your organization's email address domain (for users to verify their accounts).
     - Setup Babel: compile messages.po (`$ pybabel compile -d translations`)
 3. Run the server
     - In a development environment, run directly from Flask:

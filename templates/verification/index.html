@@ -21,7 +21,8 @@
                         <input type="email" name="verif_mail" value="{{ prefill }}" required>
                         <br><br>
                         {{ lang(
-                        "This address is used only to verify your account and must be part of the <code>v-lo.krakow.pl</code> domain"
+                        "This address is used only to verify your account and must be part of the %(domain)s domain",
+                        domain=("<code>" + email_domain + "</code>")
                         )|safe }}.
                     </label>
                 </div>

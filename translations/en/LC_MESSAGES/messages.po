@@ -541,7 +541,7 @@ msgstr ""
 
 #: templates/verification/index.html:23
 msgid ""
-"This address is used only to verify your account and must be part of the <code>v-lo.krakow.pl</code> domain"
+"This address is used only to verify your account and must be part of the %(domain)s domain"
 msgstr ""
 
 #: templates/verification/index.html:28
