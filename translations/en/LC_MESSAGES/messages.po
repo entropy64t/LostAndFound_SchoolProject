@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-09 17:01+0200\n"
+"POT-Creation-Date: 2026-06-10 17:51+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -45,6 +45,7 @@ msgid "Repeat Password"
 msgstr ""
 
 #: templates/account/index.html:18 templates/create_account.html:43
+#: templates/new.html:99
 msgid "Grade"
 msgstr ""
 
@@ -276,37 +277,41 @@ msgstr ""
 msgid "colour.unknown"
 msgstr "Other / unknown"
 
-#: templates/new.html:76 templates/new.html:150 templates/report/edit.html:60
+#: templates/new.html:76 templates/new.html:168 templates/report/edit.html:60
 msgid "Last seen on"
 msgstr ""
 
-#: templates/new.html:82 templates/new.html:151 templates/report/edit.html:66
+#: templates/new.html:82 templates/new.html:169 templates/report/edit.html:66
 msgid "Lost in"
 msgstr ""
 
-#: templates/new.html:94 templates/report/edit.html:79
+#: templates/new.html:95 templates/report/edit.html:79
 #: templates/report/index.html:53 templates/report_render.html:47
 #: templates/report_render.html:115
 msgid "Suspected owner"
 msgstr ""
 
-#: templates/new.html:104 templates/report/edit.html:90
+#: templates/new.html:109
+msgid "Owner"
+msgstr ""
+
+#: templates/new.html:122 templates/report/edit.html:90
 msgid "Retrieve found item at"
 msgstr ""
 
-#: templates/new.html:116 templates/report/edit.html:103
+#: templates/new.html:134 templates/report/edit.html:103
 msgid "Description"
 msgstr ""
 
-#: templates/new.html:120
+#: templates/new.html:138
 msgid "Create"
 msgstr ""
 
-#: templates/new.html:158 templates/report/edit.html:60
+#: templates/new.html:176 templates/report/edit.html:60
 msgid "Found on"
 msgstr ""
 
-#: templates/new.html:159 templates/report/edit.html:66
+#: templates/new.html:177 templates/report/edit.html:66
 msgid "Found in"
 msgstr ""
 
@@ -569,5 +574,8 @@ msgid ""
 msgstr ""
 
 #~ msgid "The entered email address doesn't belong to the appropriate domain"
+#~ msgstr ""
+
+#~ msgid "User"
 #~ msgstr ""
 

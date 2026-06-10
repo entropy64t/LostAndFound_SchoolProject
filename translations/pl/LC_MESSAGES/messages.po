@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-09 17:01+0200\n"
+"POT-Creation-Date: 2026-06-10 17:51+0200\n"
 "PO-Revision-Date: 2026-05-26 19:16+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: pl\n"
@@ -46,6 +46,7 @@ msgid "Repeat Password"
 msgstr "Powtórz hasło"
 
 #: templates/account/index.html:18 templates/create_account.html:43
+#: templates/new.html:99
 msgid "Grade"
 msgstr "Klasa"
 
@@ -280,37 +281,41 @@ msgstr "Kolor"
 msgid "colour.unknown"
 msgstr "Inny / nieznany"
 
-#: templates/new.html:76 templates/new.html:150 templates/report/edit.html:60
+#: templates/new.html:76 templates/new.html:168 templates/report/edit.html:60
 msgid "Last seen on"
 msgstr "Ostatnio widziane"
 
-#: templates/new.html:82 templates/new.html:151 templates/report/edit.html:66
+#: templates/new.html:82 templates/new.html:169 templates/report/edit.html:66
 msgid "Lost in"
 msgstr "Zgubione w"
 
-#: templates/new.html:94 templates/report/edit.html:79
+#: templates/new.html:95 templates/report/edit.html:79
 #: templates/report/index.html:53 templates/report_render.html:47
 #: templates/report_render.html:115
 msgid "Suspected owner"
 msgstr "Prawdopodobny właściciel"
 
-#: templates/new.html:104 templates/report/edit.html:90
+#: templates/new.html:109
+msgid "Owner"
+msgstr "Właściciel"
+
+#: templates/new.html:122 templates/report/edit.html:90
 msgid "Retrieve found item at"
 msgstr "Odzyskaj w"
 
-#: templates/new.html:116 templates/report/edit.html:103
+#: templates/new.html:134 templates/report/edit.html:103
 msgid "Description"
 msgstr "Dodatkowe informacje"
 
-#: templates/new.html:120
+#: templates/new.html:138
 msgid "Create"
 msgstr "Utwórz"
 
-#: templates/new.html:158 templates/report/edit.html:60
+#: templates/new.html:176 templates/report/edit.html:60
 msgid "Found on"
 msgstr "Znalezione"
 
-#: templates/new.html:159 templates/report/edit.html:66
+#: templates/new.html:177 templates/report/edit.html:66
 msgid "Found in"
 msgstr "Znalezione w"
 
@@ -583,5 +588,8 @@ msgstr "Wpisany adres e-mail nie jest w odpowiedniej domenie"
 #~ msgstr ""
 
 #~ msgid " Choose the column by which the match list is sorted"
+#~ msgstr ""
+
+#~ msgid "User"
 #~ msgstr ""
 

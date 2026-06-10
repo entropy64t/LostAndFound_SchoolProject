@@ -90,14 +90,30 @@
                 </select>
             </label>
 
-            <label class="found-only">
-                {{ lang("Suspected owner") }}
-                <select name="item_owner">
-                    <option value="" selected>-- Select --</option>
-                    {% for user in user_list %}
-                    <option value="{{ user.id }}">{{ user.public_name() }}</option>
-                    {% endfor %}
-                </select>
+            <label class="owner-section">
+                <div class="section-title">
+                    {{ lang("Suspected owner") }}
+                </div>
+
+                <div class="field-grid">
+                    <div class="field-label">{{ lang("Grade") }}</div>
+                    <select name="item_owner_grade" id="item_owner_grade">
+                        <option value="">-- Select --</option>
+                        {% for grade in grade_list %}
+                        <option value="{{ grade.id }}">{{ grade.name }}</option>
+                        {% endfor %}
+                    </select>
+
+                    <div class="field-label">{{ lang("Owner") }}</div>
+                    <select name="item_owner" id="item_owner">
+                        <option value="">-- Select --</option>
+                        {% for user in user_list %}
+                        <option value="{{ user.id }}" data-grade="{{ user.grade }}">
+                            {{ user.public_name() }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
             </label>
 
             <label class="found-only">
@@ -168,6 +184,23 @@
         });
 
         updateLabels();
+
+        document.getElementById('item_owner_grade').addEventListener('change', function () {
+            const selectedGrade = this.value;
+            const userOptions = document.querySelectorAll('#item_owner option');
+
+            userOptions.forEach(option => {
+                if (option.value === '') {
+                    option.hidden = false;
+                    return;
+                }
+
+                option.hidden = selectedGrade &&
+                    option.dataset.grade !== selectedGrade;
+            });
+
+            document.getElementById('item_owner').value = '';
+        });
     </script>
 
 </body>
