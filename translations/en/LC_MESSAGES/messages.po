@@ -49,6 +49,9 @@ msgstr ""
 msgid "Grade"
 msgstr ""
 
+msgid "Filter by grade"
+msgstr ""
+
 #: templates/create_account.html:43
 msgid "can be changed later"
 msgstr ""
