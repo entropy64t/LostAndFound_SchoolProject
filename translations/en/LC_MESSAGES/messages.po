@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-10 17:51+0200\n"
+"POT-Creation-Date: 2026-06-10 18:19+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -45,7 +45,7 @@ msgid "Repeat Password"
 msgstr ""
 
 #: templates/account/index.html:18 templates/create_account.html:43
-#: templates/new.html:99
+#: templates/new.html:107
 msgid "Grade"
 msgstr ""
 
@@ -210,12 +210,17 @@ msgstr ""
 msgid "Home"
 msgstr ""
 
-#: templates/navbar.html:11 templates/new.html:29
+#: templates/navbar.html:8 templates/report_render.html:13
+#: templates/report_render.html:29 templates/report_render.html:38
+msgid "All"
+msgstr ""
+
+#: templates/navbar.html:11 templates/new.html:37
 #: templates/report/index.html:19 templates/report_render.html:30
 msgid "Lost"
 msgstr ""
 
-#: templates/navbar.html:14 templates/new.html:36
+#: templates/navbar.html:14 templates/new.html:44
 #: templates/report/index.html:21 templates/report_render.html:31
 msgid "Found"
 msgstr ""
@@ -240,66 +245,74 @@ msgstr ""
 msgid "New report"
 msgstr ""
 
-#: templates/new.html:19 templates/report/edit.html:19
+#: templates/new.html:17
+msgid "Instructions"
+msgstr ""
+
+#: templates/new.html:20
+msgid "index.short_instructions"
+msgstr ""
+"<strong>Items you have borrowed shall be marked "
+"<code>found</code>.</strong> In case you can't be easily reached by "
+"school email, please include contact details in the report "
+"description.</p"
+
+#: templates/new.html:27 templates/report/edit.html:19
 msgid "Report title"
 msgstr ""
 
-#: templates/new.html:24 templates/report_render.html:27
+#: templates/new.html:32 templates/report_render.html:27
 msgid "Report type"
 msgstr ""
 
-#: templates/new.html:42 templates/report/edit.html:24
+#: templates/new.html:50 templates/report/edit.html:24
 #: templates/report_render.html:36
 msgid "Item type"
 msgstr ""
 
-#: templates/new.html:55 templates/report/edit.html:38
+#: templates/new.html:63 templates/report/edit.html:38
 msgid "Item colour"
 msgstr ""
 
-#: templates/new.html:69 templates/report/edit.html:53
+#: templates/new.html:77 templates/report/edit.html:53
 msgid "colour.unknown"
 msgstr "Other / unknown"
 
-#: templates/matches.html:92
-msgid "all.alt"
-msgstr "All"
-
-#: templates/new.html:76 templates/new.html:168 templates/report/edit.html:60
+#: templates/new.html:84 templates/new.html:174 templates/report/edit.html:60
 msgid "Last seen on"
 msgstr ""
 
-#: templates/new.html:82 templates/new.html:169 templates/report/edit.html:66
+#: templates/new.html:90 templates/new.html:175 templates/report/edit.html:66
 msgid "Lost in"
 msgstr ""
 
-#: templates/new.html:95 templates/report/edit.html:79
+#: templates/new.html:103 templates/report/edit.html:79
 #: templates/report/index.html:53 templates/report_render.html:47
 #: templates/report_render.html:115
 msgid "Suspected owner"
 msgstr ""
 
-#: templates/new.html:109
+#: templates/new.html:115
 msgid "Owner"
 msgstr ""
 
-#: templates/new.html:122 templates/report/edit.html:90
+#: templates/new.html:128 templates/report/edit.html:90
 msgid "Retrieve found item at"
 msgstr ""
 
-#: templates/new.html:134 templates/report/edit.html:103
+#: templates/new.html:140 templates/report/edit.html:103
 msgid "Description"
 msgstr ""
 
-#: templates/new.html:138
+#: templates/new.html:144
 msgid "Create"
 msgstr ""
 
-#: templates/new.html:176 templates/report/edit.html:60
+#: templates/new.html:182 templates/report/edit.html:60
 msgid "Found on"
 msgstr ""
 
-#: templates/new.html:177 templates/report/edit.html:66
+#: templates/new.html:183 templates/report/edit.html:66
 msgid "Found in"
 msgstr ""
 
@@ -600,5 +613,8 @@ msgstr ""
 #~ msgstr ""
 
 #~ msgid "User"
+#~ msgstr ""
+
+#~ msgid "Show instructions"
 #~ msgstr ""
 
