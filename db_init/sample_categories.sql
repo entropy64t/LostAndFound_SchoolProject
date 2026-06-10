@@ -27,7 +27,7 @@ INSERT INTO public.categories (id, name, name_pl) VALUES (2, 'Coat / jacket', 'K
 INSERT INTO public.categories (id, name, name_pl) VALUES (3, 'Clothing', 'Ubrania');
 INSERT INTO public.categories (id, name, name_pl) VALUES (4, 'Sports equipment', 'Sprzęt sportowy');
 INSERT INTO public.categories (id, name, name_pl) VALUES (5, 'Backpack / bag', 'Plecak / torba');
-INSERT INTO public.categories (id, name, name_pl) VALUES (6, 'Books', 'Książki');
+INSERT INTO public.categories (id, name, name_pl) VALUES (6, 'Books / notebooks', 'Książki / zeszyty');
 INSERT INTO public.categories (id, name, name_pl) VALUES (7, 'Pencil case', 'Piórnik');
 INSERT INTO public.categories (id, name, name_pl) VALUES (8, 'Glasses', 'Okulary');
 INSERT INTO public.categories (id, name, name_pl) VALUES (9, 'Bottle', 'Butelka');
