@@ -355,22 +355,21 @@ nav,
 }
 
 .instructions-box {
-    border: 1px solid #d8dae0;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 1rem;
-    background: #ffffff;
-    box-shadow: 0 1px 3px rgba(18, 23, 40, 0.08);
+    background: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 8px;
 }
 
 .instructions-heading {
     margin: 0;
     font-size: 1rem;
     font-weight: 700;
-    color: #1f2937;
+    color: var(--primary);
 }
 
 .instructions-content {
     margin-top: 0.75rem;
-    color: #374151;
     line-height: 1.6;
 }

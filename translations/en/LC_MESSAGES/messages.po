@@ -27,7 +27,7 @@ msgid "Create account"
 msgstr ""
 
 #: templates/create_account.html:18
-msgid "Name"
+msgid "Name (choose something others will recognize)"
 msgstr ""
 
 #: templates/create_account.html:25 templates/login.html:18
