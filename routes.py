@@ -37,6 +37,10 @@ def new():
         report_type = request.form['report-type']
         item_type = request.form['item-type']
         item_color = request.form['item-color']
+        colour = Colour(name=item_color, display_name=item_color, display_name_pl=item_color, colour_value=item_color)
+        db.session.add(colour)
+        db.session.commit()
+        print(item_color)
         last_seen_str = request.form['last-seen']
         location_id = request.form['locations']
         report_content = request.form['report-content']
@@ -54,7 +58,7 @@ def new():
             title=title,
             report_type=report_type,
             category=item_type if item_type else None,
-            colour=item_color if item_color else None,
+            colour=colour.id,
             creation_date=datetime.now(timezone.utc),
             last_seen=last_seen,
             last_seen_location=location_id if location_id else None,

@@ -66,7 +66,7 @@ class Colour(db.Model):
     name = db.Column(db.String())
     display_name = db.Column(db.String())
     display_name_pl = db.Column(db.String())
-    colour_value = db.Column(db.Integer)
+    colour_value = db.Column(db.String())
 
     def localized_name(self) -> str:
         if session.get('lang') == 'pl':

@@ -62,7 +62,9 @@
             <fieldset class="color-picker-parent">
                 <legend>{{ lang("Item colour") }} {% include "required.html" %}</legend>
 
-                <div class="filter-chip-picker">
+                <input type="color" name="item-color">
+
+                {#<div class="filter-chip-picker">
                     {% for color in colour_list %}
                     <label class="filter-chip-option">
                         <input type="radio" name="item-color" value="{{ color.id }}" required>
@@ -76,7 +78,7 @@
                         <span class="filter-color-circle filter-color-circle-all"></span>
                         <span class="filter-chip-name">{{ lang("colour.unknown") }}</span>
                     </label>
-                </div>
+                </div>#}
             </fieldset>
 
             <!-- Dynamic datetime label -->
