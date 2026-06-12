@@ -1,4 +1,4 @@
-from models import Report, get_report, Location, get_location, Match
+from models import Report, get_report, Location, get_location, Match, Colour, get_colour
 from sqlalchemy import delete, or_
 from app import app, db
 from flask import current_app
@@ -8,6 +8,9 @@ import threading
 from datetime import datetime, timezone
 
 from app import org_timezone
+
+def rgb(colour_value: str):
+    return int(colour_value[1:2], 16), int(colour_value[3:4], 16), int(colour_value[5:6], 16)
 
 def score_single(target: Report, item: Report) -> int:
     """Score `item` against `target` on a [0, 100] scale
@@ -23,20 +26,31 @@ def score_single(target: Report, item: Report) -> int:
     
  - total: 0 - 100
     """
+    print("scoring")
     if target == item: return 0
     if target.report_type == item.report_type: return 0
     if target.category != item.category: return 0
     
-    colour_score = 10 if target.colour == item.colour else 1
-
+    target_colour = get_colour(target.colour).colour_value[1:] # remove '#'
+    item_colour = get_colour(item.colour).colour_value[1:]
+    tr, tg, tb = rgb(target_colour)
+    ir, ig, ib = rgb(item_colour)
+    diff_r = (tr - ir) / 255
+    diff_g = (tg - ig) / 255
+    diff_b = (tb - ib) / 255
+    dist = (diff_r ** 2 + diff_g ** 2 + diff_b ** 2) ** 0.5
+    print("distance = ", dist)
+    colour_score = max(1 / dist, 40)
+    
     loc_score = 0
-    target_loc = get_location(target.last_seen_location)
-    item_loc = get_location(item.last_seen_location)
-    if target_loc != None and item_loc != None:
-        if target_loc == item_loc:
-            loc_score = 20
-        elif target_loc.building_level == item_loc.building_level:
-            loc_score = 10
+    if target.last_seen_location and item.last_seen_location:
+        target_loc = get_location(target.last_seen_location)
+        item_loc = get_location(item.last_seen_location)
+        if target_loc != None and item_loc != None:
+            if target_loc == item_loc:
+                loc_score = 20
+            elif target_loc.building_level == item_loc.building_level:
+                loc_score = 10
 
     ownership_score = 0
     if target.item_owner:
@@ -64,6 +78,8 @@ def score_single(target: Report, item: Report) -> int:
         counter *= 40 # scale to [0, 40]
         total = len(a_words)
         title_score += counter // total
+        
+    print("total =", colour_score + loc_score + ownership_score + title_score)
 
     return colour_score + loc_score + ownership_score + title_score
 

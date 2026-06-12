@@ -40,7 +40,6 @@ def new():
         colour = Colour(name=item_color, display_name=item_color, display_name_pl=item_color, colour_value=item_color)
         db.session.add(colour)
         db.session.commit()
-        print(item_color)
         last_seen_str = request.form['last-seen']
         location_id = request.form['locations']
         report_content = request.form['report-content']
@@ -389,7 +388,6 @@ def report_details(report_id):
         return redirect(url_for("index"))
 
     report = get_report(report_id)
-    print(report)
 
     title = report.title
 
