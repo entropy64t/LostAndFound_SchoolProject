@@ -8,7 +8,7 @@ from sqlalchemy import text
 
 from flask_babel import Babel, gettext as lang
 
-from server_secrets import secret_key, default, db_localhost
+from server_secrets import secret_key, default
 
 import os
 
@@ -20,7 +20,6 @@ login_manager.login_view = "login"
 
 # Database connection init
 DB_URL = os.getenv("DATABASE_URL", default) 
-DB_URL = db_localhost
 app.config["SQLALCHEMY_DATABASE_URI"] = DB_URL
 
 db = SQLAlchemy(app)
