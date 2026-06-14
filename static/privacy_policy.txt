@@ -34,6 +34,8 @@ They can also permanently delete their account. Doing so:
 3) makes the account's username and grade no longer visible to other verified users.
 After deleting their account, the user will no longer be able to log into that account.
 
+The app administrator reserves the right to remove accounts and reports considered inappropriate due to offensive language.
+
 This document is subject to change at any time without notice.
 
 -- Polski --
@@ -71,5 +73,7 @@ Może również trwale usunąć swoje konto. Spowoduje to:
 2) usunięcie wszystkich dopasowań związanych z tymi Zgłoszeniami;
 3) ukrycie nazwy użytkownika i klasy konta przed innymi zweryfikowanymi użytkownikami.
 Po usunięciu konta użytkownik nie będzie mógł się już na nie zalogować.
+
+Administrator aplikacji zastrzega sobie prawo do usuwania kont oraz Zgłoszeń użytkowników uważanych za nieodpowiednie ze względu na obraźliwy język.
 
 Niniejszy dokument może ulec zmianie w dowolnym momencie bez uprzedzenia.
