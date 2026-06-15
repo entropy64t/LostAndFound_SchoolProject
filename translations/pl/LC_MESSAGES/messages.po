@@ -113,6 +113,7 @@ msgstr "Zgłoszenia, w których oznaczono Cię jako prawdopodobnego właściciel
 #: templates/index.html:28
 msgid "index.instructions"
 msgstr ""
+"<p>!! W obecnej wersji nie ma polskich nazw kolorów !!</p>"
 "<p>Naciśnij <code>+</code> na górze "
 "strony, aby utworzyć zgłoszenie przedmiotu zgubionego lub znalezionego. <strong>Pożyczone przez Ciebie rzeczy powinny "
 "zostać oznaczone jako <code>znalezione</code>.</strong> Jeżeli nie można "

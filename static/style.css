@@ -148,7 +148,8 @@ h2 {
 .content input[type="password"],
 .content input[type="email"],
 .content input[type="datetime-local"],
-.content select {
+.content select,
+.content input[type="color"] {
     width: 100%;
     padding: 12px 14px;
     margin-top: 8px;
@@ -159,6 +160,12 @@ h2 {
     color: var(--primary);
     transition: border-color 0.1s ease, box-shadow 0.1s ease;
     box-sizing: border-box;
+}
+
+#create-post input[type="color"] {
+    padding: 0;
+    height: 48px;
+    cursor: pointer;
 }
 
 #create-post textarea.form-textarea {
