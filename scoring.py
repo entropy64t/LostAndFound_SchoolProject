@@ -9,8 +9,7 @@ from datetime import datetime, timezone
 
 from app import org_timezone
 
-def rgb(colour_value: str):
-    return int(colour_value[1:2], 16), int(colour_value[3:4], 16), int(colour_value[5:6], 16)
+from models import distance
 
 def score_single(target: Report, item: Report) -> int:
     """Score `item` against `target` on a [0, 100] scale
@@ -26,21 +25,18 @@ def score_single(target: Report, item: Report) -> int:
     
  - total: 0 - 100
     """
-    print("scoring")
     if target == item: return 0
     if target.report_type == item.report_type: return 0
     if target.category != item.category: return 0
     
-    target_colour = get_colour(target.colour).colour_value[1:] # remove '#'
-    item_colour = get_colour(item.colour).colour_value[1:]
-    tr, tg, tb = rgb(target_colour)
-    ir, ig, ib = rgb(item_colour)
-    diff_r = (tr - ir) / 255
-    diff_g = (tg - ig) / 255
-    diff_b = (tb - ib) / 255
-    dist = (diff_r ** 2 + diff_g ** 2 + diff_b ** 2) ** 0.5
-    print("distance = ", dist)
-    colour_score = max(1 / dist, 40)
+    target_colour = get_colour(target.colour) # remove '#'
+    item_colour = get_colour(item.colour)
+
+    dist = distance(target_colour, item_colour)
+    if dist != 0:
+        colour_score = max(1 / dist, 40)
+    else:
+        colour_score = 40
     
     loc_score = 0
     if target.last_seen_location and item.last_seen_location:

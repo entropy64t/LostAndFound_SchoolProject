@@ -1,6 +1,10 @@
-from sqlalchemy import Enum as SQLAEnum
+from sqlalchemy import Enum as SQLAEnum, select
 from app import db
 from flask import session
+from typing import Optional
+import numpy as np
+from skimage.color import rgb2lab
+from matplotlib import colors as mcolors
 
 reportType = SQLAEnum('lost', 'found', name='reportType')
 
@@ -76,6 +80,77 @@ class Colour(db.Model):
 
 def get_colour(colour_id: int) -> Colour:
     return Colour.query.get(colour_id)
+
+def _hex_to_rgb(hexstr: str) -> tuple[int, int, int]:
+    s = hexstr.lstrip('#')
+    if len(s) == 3:
+        s = ''.join([c*2 for c in s])
+    return int(s[0:2], 16), int(s[2:4], 16), int(s[4:6], 16)
+
+def distance(a: Colour, b: Colour) -> float:
+    # Use skimage to convert sRGB to Lab and compute CIE76 Delta E
+    ar, ag, ab = _hex_to_rgb(a.colour_value)
+    br, bg, bb = _hex_to_rgb(b.colour_value)
+
+    rgb1 = np.array([[[ar / 255.0, ag / 255.0, ab / 255.0]]], dtype=float)
+    rgb2 = np.array([[[br / 255.0, bg / 255.0, bb / 255.0]]], dtype=float)
+    lab1 = rgb2lab(rgb1)[0, 0]
+    lab2 = rgb2lab(rgb2)[0, 0]
+
+    return float(np.linalg.norm(lab1 - lab2))
+
+
+def get_closest_colour(colour: Colour) -> tuple[float, Optional[Colour]]:
+    colours = db.session.execute(select(Colour)).scalars().all()
+    if len(colours) < 1:
+        return (float("inf"), None)
+    pairs = sorted((distance(colour, c), c) for c in colours)
+    return pairs[0]
+
+
+# XKCD colour lookup table (from matplotlib)
+XKCD_COLORS = {k.replace('xkcd:', '').lower(): v for k, v in mcolors.XKCD_COLORS.items()}
+
+
+def get_xkcd_hex(name: str) -> Optional[str]:
+    if not name:
+        return None
+    return XKCD_COLORS.get(name.lower())
+
+
+def get_name_from_hex(hexstr: str) -> Optional[str]:
+    """Return the closest XKCD colour name for the given hex string.
+
+    Returns None if input is invalid or table is empty.
+    """
+    if not hexstr:
+        return None
+
+    try:
+        ar, ag, ab = _hex_to_rgb(hexstr)
+    except Exception:
+        return None
+
+    rgb1 = np.array([[[ar / 255.0, ag / 255.0, ab / 255.0]]], dtype=float)
+    lab1 = rgb2lab(rgb1)[0, 0]
+
+    best_name = None
+    best_dist = float('inf')
+
+    for name, val in XKCD_COLORS.items():
+        try:
+            r, g, b = mcolors.to_rgb(val)
+        except Exception:
+            # skip malformed entry
+            continue
+        rgb2 = np.array([[[r, g, b]]], dtype=float)
+        lab2 = rgb2lab(rgb2)[0, 0]
+        dist = float(np.linalg.norm(lab1 - lab2))
+        if dist < best_dist:
+            best_dist = dist
+            best_name = name
+
+    return best_name
 
 class Location(db.Model):
     __tablename__ = "locations"
