@@ -3,8 +3,6 @@ from email.message import EmailMessage
 import threading
 from server_secrets import *
 
-from server_secrets import email_domain
-
 port = 465
 context = ssl.create_default_context()
 

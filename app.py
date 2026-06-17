@@ -8,7 +8,8 @@ from sqlalchemy import text
 
 from flask_babel import Babel, gettext as lang
 
-from server_secrets import secret_key, db_uri, org_timezone
+from server_secrets import secret_key, db_uri, config_timezone
+from server_secrets import *
 
 import os
 
@@ -32,7 +33,7 @@ def get_locale():
 babel = Babel(app, locale_selector=get_locale)
 
 # timezone 
-org_timezone = ZoneInfo(org_timezone)
+org_timezone = ZoneInfo(config_timezone)
 
 import routes, models, user
 

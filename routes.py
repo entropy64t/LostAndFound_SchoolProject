@@ -75,7 +75,6 @@ def _create_or_get_colour(item_color: str) -> Colour:
 @app.route("/new", methods=["GET", "POST"])
 @login_required
 def new():
-    # TODO the color picker from the report filter is more accessible and probably would also fit better on this page
     if request.method == "POST":
         if not current_user.account_verified or not current_user.is_authenticated:
             return redirect(url_for("index"))
