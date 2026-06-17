@@ -8,19 +8,18 @@ from sqlalchemy import text
 
 from flask_babel import Babel, gettext as lang
 
-from server_secrets import secret_key, default
+from server_secrets import secret_key, db_uri, org_timezone
 
 import os
 
 app = Flask(__name__)
-app.secret_key = os.getenv("SECRET_KEY", secret_key)
+app.secret_key = secret_key
 
 login_manager = LoginManager(app)
 login_manager.login_view = "login"
 
 # Database connection init
-DB_URL = os.getenv("DATABASE_URL", default) 
-app.config["SQLALCHEMY_DATABASE_URI"] = DB_URL
+app.config["SQLALCHEMY_DATABASE_URI"] = db_uri
 
 db = SQLAlchemy(app)
 
@@ -33,7 +32,7 @@ def get_locale():
 babel = Babel(app, locale_selector=get_locale)
 
 # timezone 
-org_timezone = ZoneInfo("Europe/Warsaw")
+org_timezone = ZoneInfo(org_timezone)
 
 import routes, models, user
 
