@@ -9,7 +9,6 @@ from sqlalchemy import text
 from flask_babel import Babel, gettext as lang
 
 from server_secrets import secret_key, db_uri, config_timezone
-from server_secrets import *
 
 import os
 
