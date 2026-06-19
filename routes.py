@@ -72,6 +72,12 @@ def _create_or_get_colour(item_color: str) -> Colour:
         return new_colour
     return closest
 
+def remove_obsolete_colour(clr):
+    report_num = db.session.scalar(select(func.count(Report.id)).where(Report.colour==clr))
+    if report_num == 0:
+        db.session.query(Colour).filter(Colour.id == clr).delete()
+        db.session.commit()
+
 @app.route("/new", methods=["GET", "POST"])
 @login_required
 def new():
@@ -506,6 +512,8 @@ def edit_report(report_id):
         if not current_user.account_verified or not current_user.is_authenticated or get_user(report.author) != current_user:
             return redirect(url_for("index"))
         
+        old_colour = report.colour
+
         title = request.form['title']
         item_type = request.form['item-type']
         item_color = request.form['item-color']
@@ -541,6 +549,7 @@ def edit_report(report_id):
 
         db.session.commit()
         update_scoring_of_report(report)
+        remove_obsolete_colour(old_colour)
 
         return redirect(url_for("report_details", report_id=report_id))
 
@@ -587,10 +596,12 @@ def delete_report(report_id):
         return redirect(url_for("index"))
     if request.method == "POST":
         report = get_report(report_id)
+        old_colour = report.colour
         if get_user(report.author) != current_user:
             return redirect(url_for("report_details", report_id=report_id))
         db.session.delete(report)
         db.session.commit()
+        remove_obsolete_colour(old_colour)
         return redirect(url_for("index"))
     return redirect(url_for("report_details", report_id=report_id))
 
