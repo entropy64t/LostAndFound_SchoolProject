@@ -2,7 +2,7 @@ Pull requests are welcome. For new features or fixing bugs, please create a GitH
 
 Consult [the deployment manual](https://github.com/entropy64t/LostAndFound_SchoolProject/tree/main?tab=readme-ov-file#deployment) to run the app on your development machine.
 
-This project uses [Flask](https://flask.palletsprojects.com/en/stable/) for the backend, [Jinja](https://jinja.palletsprojects.com/en/stable/) to render HTML pages, [SQLAlchemy](https://www.sqlalchemy.org/) for interacting with the [PostgreSQL](https://www.postgresql.org/) databse, and [Babel](https://babel.pocoo.org/en/latest/) for managing Polish translations.
+This project uses [Flask](https://flask.palletsprojects.com/en/stable/) for the backend, [Jinja](https://jinja.palletsprojects.com/en/stable/) to render HTML pages, [SQLAlchemy](https://www.sqlalchemy.org/) for interacting with the [PostgreSQL](https://www.postgresql.org/) database, and [Babel](https://babel.pocoo.org/en/latest/) for managing Polish translations.
 
 The project structure is as follows:
 - `/`
