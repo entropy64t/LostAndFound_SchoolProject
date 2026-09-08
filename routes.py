@@ -144,6 +144,7 @@ def check_pwreset():
         if not user.check_pwreset(otp):
             return redirect(url_for("reset_password", msg="wrongotp"))
         user.set_password(password)
+        user.set_pwreset(None)
         db.session.commit()
         login_user(user)
         return redirect(url_for("index"))

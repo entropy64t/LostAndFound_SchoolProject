@@ -25,7 +25,7 @@
                     "If an account with the provided email address exists, you have been sent a password reset link. Also check your spam folder"
                     ) }}.</p>
                 {% elif request.args.get("msg") == "wrongotp" %}
-                <p class="auth-fail-message">{{ lang("The entered code is incorrect or it has expired") }}.</p>
+                <p class="auth-fail-message">{{ lang("The reset token is incorrect, has been used, or has expired") }}.</p>
                 {% endif %}
             </form>
             <div class="auth-footer">

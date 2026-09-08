@@ -34,7 +34,7 @@ def send_message_email(receiver_address, account_otp, account_mail, account_name
 
 def mail_service_pwreset(receiver_address, pw_link):
     message_subject = "Your LostAndFound password reset link"
-    message = "Use the following link to reset your LostAndFound account password:\n" + pw_link + "\n\nAccount details:\nE-mail: " + receiver_address + "\n\nThe link is valid for 30 minutes."
+    message = "Use the following link to reset your LostAndFound account password:\n" + pw_link + "\n\nAccount details:\nE-mail: " + receiver_address + "\n\nThe link is single-use only and valid for 30 minutes."
     send_mail(receiver_address, message, message_subject)
 
 def send_pwreset(receiver_address, pw_link):

@@ -492,7 +492,7 @@ msgid ""
 msgstr ""
 
 #: templates/pwreset/index.html:28 templates/verification/check.html:25
-msgid "The entered code is incorrect or it has expired"
+msgid "The reset token is incorrect, has been used, or has expired"
 msgstr ""
 
 #: templates/report/edit.html:14 templates/report/index.html:78

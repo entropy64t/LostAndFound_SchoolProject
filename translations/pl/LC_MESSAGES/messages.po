@@ -497,8 +497,8 @@ msgstr ""
 "resetowania hasła. Sprawdź również folder ze spamem"
 
 #: templates/pwreset/index.html:28 templates/verification/check.html:25
-msgid "The entered code is incorrect or it has expired"
-msgstr "Wpisany kod jest nieprawidłowy albo wygasł"
+msgid "The reset token is incorrect, has been used, or has expired"
+msgstr "Link do resetowania hasła jest niepoprawny, został już użyty, albo wygasł"
 
 #: templates/report/edit.html:14 templates/report/index.html:78
 msgid "Edit report"

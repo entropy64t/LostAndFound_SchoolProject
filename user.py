@@ -47,13 +47,17 @@ class User(UserMixin, db.Model):
         return check_password_hash(self.otp, otp)
 
     def set_pwreset(self, otp: str) -> None:
-        self.pwreset = generate_password_hash(otp, method="scrypt", salt_length=16)
-        self.pwreset_creation = datetime.now(timezone.utc)
+        if otp == None:
+            self.pwreset = None
+            self.pwreset_creation = None
+        else:
+            self.pwreset = generate_password_hash(otp, method="scrypt", salt_length=16)
+            self.pwreset_creation = datetime.now(timezone.utc)
     
     def check_pwreset(self, otp: str) -> None:
-        if (datetime.now(timezone.utc) - self.pwreset_creation).total_seconds() // 60 > 30:
-            return False
         if not self.pwreset:
+            return False
+        if (datetime.now(timezone.utc) - self.pwreset_creation).total_seconds() // 60 > 30:
             return False
         return check_password_hash(self.pwreset, otp)
 
