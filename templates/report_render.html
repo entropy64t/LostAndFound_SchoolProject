@@ -16,7 +16,7 @@
         <label class="filter-chip-option">
             <input type="radio" name="color" value="{{ colour.id }}" {% if selected_colour==colour.id %}checked{% endif
                 %}>
-            <span class="filter-color-circle" style="background-color: {{ colour.colour_value or colour.name }};"
+            <span class="filter-color-circle" style="background-color: {{ colour.name }};"
                 title="{{ colour.localized_name() }}"></span>
             <span class="filter-chip-name">{{ colour.localized_name() }}</span>
         </label>

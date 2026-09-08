@@ -68,8 +68,7 @@
                     {% for color in colour_list %}
                     <label class="filter-chip-option">
                         <input type="radio" name="item-color" value="{{ color.id }}" required>
-                        <span class="filter-color-circle"
-                            style="background-color: {{ color.colour_value or color.name }};"
+                        <span class="filter-color-circle" style="background-color: {{ color.name }};"
                             title="{{ color.localized_name() }}"></span>
                         <span class="filter-chip-name">{{ color.localized_name() }}</span>
                     </label>

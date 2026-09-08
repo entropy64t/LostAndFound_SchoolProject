@@ -4,6 +4,3 @@ flask-login
 Flask-SQLAlchemy
 flask-babel
 psycopg2-binary
-numpy
-matplotlib
-scikit-image

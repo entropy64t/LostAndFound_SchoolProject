@@ -221,6 +221,3 @@ local
 
 # Development secrets file
 server_secrets.py
-useful_cmds/fix_translated_colours_gemini.py
-useful_cmds/translated_colours.txt
-useful_cmds/translated_colours_fixed.txt

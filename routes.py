@@ -14,7 +14,7 @@ import secrets
 import string
 
 from app import app, db, login_manager, babel, org_timezone
-from models import Report, get_report, Grade, get_grade, Category, get_category, Colour, get_colour, Location, get_location, get_closest_colour, get_name_from_hex, get_xkcd_hex, distance
+from models import Report, get_report, Grade, get_grade, Category, get_category, Colour, get_colour, Location, get_location
 from user import User, get_user, find_by_email, create_user
 
 from verification import send_message_email, send_pwreset, verify_domain
@@ -24,53 +24,6 @@ from flask_babel import gettext as lang
 from scoring import sort_by_score, update_scoring_of_report, all_sorted
 
 from server_secrets import sender_replyto_address, email_domain
-
-# Threshold for colour distance: if a new colour's Delta E (CIE76)
-# to the closest existing colour is greater than this value, treat it
-# as distinct and add it to the database. Delta E is a perceptual
-# distance in Lab space (0 = identical, typical visible differences
-# start around 2-3; larger values approach ~100).
-MAX_COLOUR_DIST = 0.1
-
-def _create_or_get_colour(item_color: str) -> Colour:
-    """Resolve a hex colour to a DB `Colour` row.
-
-    Uses XKCD name mapping when available, consolidates existing named
-    colours to the canonical hex if the new value is closer, and otherwise
-    de-duplicates by proximity using `A_VALUE`.
-    """
-    xkcd_name = get_name_from_hex(item_color)
-    if xkcd_name:
-        display_name = xkcd_name.capitalize()
-        existing = Colour.query.filter(Colour.name.ilike(xkcd_name)).first()
-        canonical = get_xkcd_hex(xkcd_name)
-        if existing and canonical:
-            temp_new = Colour(name=xkcd_name, display_name=display_name, display_name_pl=display_name, colour_value=item_color)
-            canonical_colour = Colour(name=xkcd_name, display_name=display_name, display_name_pl=display_name, colour_value=canonical)
-            dist_existing = distance(canonical_colour, existing)
-            dist_new = distance(canonical_colour, temp_new)
-            if dist_new < dist_existing:
-                existing.colour_value = item_color
-                db.session.add(existing)
-                db.session.commit()
-            return existing
-        else:
-            new_colour = Colour(name=xkcd_name, display_name=display_name, display_name_pl=display_name, colour_value=item_color)
-            distance_to_closest, closest = get_closest_colour(new_colour)
-            if distance_to_closest > MAX_COLOUR_DIST:
-                db.session.add(new_colour)
-                db.session.commit()
-                return new_colour
-            return closest
-
-    # Fallback when no XKCD name
-    new_colour = Colour(name=item_color, display_name=item_color, display_name_pl=item_color, colour_value=item_color)
-    distance_to_closest, closest = get_closest_colour(new_colour)
-    if distance_to_closest > MAX_COLOUR_DIST:
-        db.session.add(new_colour)
-        db.session.commit()
-        return new_colour
-    return closest
 
 @app.route("/new", methods=["GET", "POST"])
 @login_required
@@ -83,7 +36,10 @@ def new():
         report_type = request.form['report-type']
         item_type = request.form['item-type']
         item_color = request.form['item-color']
-        colour = _create_or_get_colour(item_color)
+        colour = Colour(name=item_color, display_name=item_color, display_name_pl=item_color, colour_value=item_color)
+        db.session.add(colour)
+        db.session.commit()
+        print(item_color)
         last_seen_str = request.form['last-seen']
         location_id = request.form['locations']
         report_content = request.form['report-content']
@@ -432,6 +388,7 @@ def report_details(report_id):
         return redirect(url_for("index"))
 
     report = get_report(report_id)
+    print(report)
 
     title = report.title
 
