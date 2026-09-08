@@ -40,7 +40,7 @@ CREATE TABLE colours (
 	name text,
     display_name text,
     display_name_pl text,
-	colour_value text
+	colour_value integer
 );
 
 CREATE TABLE categories (
