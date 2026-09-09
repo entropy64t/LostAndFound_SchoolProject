@@ -17,7 +17,7 @@
             <form class="auth-form" method="post">
                 <div class="form-group">
                     <label>
-                        {{ lang("Verification code") }}
+                        {{ lang("Verification code") }} {% include "required.html" %}
                         <input type="text" name="otp" pattern="[0-9]*" inputmode="numeric" required>
                 </div>
                 <button type="submit" class="btn-primary">{{ lang("Submit") }}</button>

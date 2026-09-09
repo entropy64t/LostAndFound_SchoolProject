@@ -35,7 +35,7 @@
                     <a href="{{ url_for('create_account', email=email, next=request.args.get('next')) }}">{{
                         lang("Create one") }}</a>
                 </p>
-                <p>{{ lang("Forgot your password") }}? <a href="{{ url_for('reset_password') }}">{{ lang("Reset it")
+                <p>{{ lang("Forgot your password") }}? <a href="{{ url_for('reset_password', next=request.args.get('next')) }}">{{ lang("Reset it")
                         }}</a></p>
             </div>
         </div>

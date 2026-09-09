@@ -75,15 +75,30 @@
             </label>
 
             {% if report_type != "lost" %}
-            <label>
-                {{ lang("Suspected owner") }}
-                <select name="item_owner">
-                    <option value="" {% if not item_owner %}selected{% endif %}>-- Select --</option>
-                    {% for user in user_list %}
-                    <option value="{{ user.id }}" {% if item_owner==user.id %}selected{% endif %}>{{ user.public_name()
-                        }}</option>
-                    {% endfor %}
-                </select>
+            <label class="owner-section">
+                <div class="section-title">
+                    {{ lang("Suspected owner") }}
+                </div>
+
+                <div class="field-grid">
+                    <div class="field-label">{{ lang("Filter by grade") }}</div>
+                    <select name="item_owner_grade" id="item_owner_grade">
+                        <option value="">-- Select --</option>
+                        {% for grade in grade_list %}
+                        <option value="{{ grade.id }}">{{ grade.name }}</option>
+                        {% endfor %}
+                    </select>
+
+                    <div class="field-label">{{ lang("Owner") }}</div>
+                    <select name="item_owner" id="item_owner">
+                        <option value="" {% if not item_owner %}selected{% endif %}>-- Select --</option>
+                        {% for user in user_list %}
+                        <option value="{{ user.id }}" {% if item_owner==user.id %}selected{% endif %} data-grade="{{ user.grade }}">
+                            {{ user.public_name() }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
             </label>
 
             <label>
@@ -116,6 +131,8 @@
     </div>
 
     {% include "footer.html" %}
+
+    <script src="{{ url_for('static', filename='user_filter.js') }}"></script>
 
 </body>
 

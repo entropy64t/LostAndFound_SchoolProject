@@ -33,9 +33,17 @@ def new():
             return redirect(url_for("index"))
 
         title = request.form['title']
+        if title == "":
+            return redirect(url_for("new"))
         report_type = request.form['report-type']
+        if report_type == "":
+            return redirect(url_for("new"))
         item_type = request.form['item-type']
+        if item_type == "":
+            return redirect(url_for("new"))
         item_color = request.form['item-color']
+        if item_color == "":
+            return redirect(url_for("new"))
         last_seen_str = request.form['last-seen']
         location_id = request.form['locations']
         report_content = request.form['report-content']
@@ -96,6 +104,8 @@ def login():
     if request.method == "POST":
         email = request.form["email"]
         password = request.form["password"]
+        if email == "" or password == "":
+            return redirect(url_for("login"))
         user = find_by_email(email)
         if user is None:
             # user does not exist
@@ -121,7 +131,7 @@ def reset_password():
             otp_plaintext = ""
             for i in range(16): # OTP length
                 otp_plaintext += secrets.choice(string.digits + string.ascii_letters)
-            pw_reset_url = url_for("check_pwreset", otp=otp_plaintext, email=receiver_address, _external=True)
+            pw_reset_url = url_for("check_pwreset", otp=otp_plaintext, email=receiver_address, next=request.args.get("next"), _external=True)
             user.set_pwreset(otp_plaintext)
             db.session.commit()
             send_pwreset(receiver_address, pw_reset_url)
@@ -132,12 +142,13 @@ def reset_password():
 @app.route('/reset/link', methods=['GET', 'POST'])
 def check_pwreset():
     if request.method == "POST":
+        next = request.args.get("next")
         email = request.args.get("email")
         otp = request.args.get("otp")
         password = request.form["password"]
         password_repeat = request.form["password-repeat"]
-        if password != password_repeat:
-            return redirect(url_for("check_pwreset", msg="pwdnomatch", email=email, otp=otp))
+        if password == "" or password != password_repeat:
+            return redirect(url_for("check_pwreset", msg="pwdnomatch", email=email, otp=otp, next=next))
         user = find_by_email(email)
         if user == None:
             return redirect(url_for("reset_password"))
@@ -147,7 +158,7 @@ def check_pwreset():
         user.set_pwreset(None)
         db.session.commit()
         login_user(user)
-        return redirect(url_for("index"))
+        return redirect(next or url_for("index"))
 
     return render_template("pwreset/check.html")
 
@@ -161,8 +172,14 @@ def logout():
 def create_account():
     if request.method == "POST":
         email = request.form["email"]
+        if email == "":
+            return redirect(url_for("create_account"))
         display_name = request.form["display_name"]
+        if display_name == "":
+            return redirect(url_for("create_account"))
         password = request.form["password"]
+        if password == "":
+            return redirect(url_for("create_account"))
         password_repeat = request.form["password-repeat"]
         if request.form["grade"] == "":
             grade = None
@@ -191,6 +208,8 @@ def create_account():
 def verify_account():
     if request.method == "POST":
         receiver_address = request.form["verif_mail"]
+        if receiver_address == "":
+            return redirect(url_for("verify_account"))
         if not verify_domain(receiver_address):
             return redirect(url_for("verify_account", msg="wrongdomain"))
         otp_plaintext = ""
@@ -213,7 +232,7 @@ def verify_account():
 def check_verification():
     if request.method == "POST":
         received_otp = request.form["otp"]
-        if not current_user.check_otp(received_otp):
+        if received_otp == "" or not current_user.check_otp(received_otp):
             return redirect(url_for("check_verification", msg="wrongotp"))
 
         current_user.account_verified = True
@@ -232,6 +251,8 @@ def account():
         else:
             current_user.grade = new_grade
         new_name = request.form["display_name"]
+        if new_name == "":
+            return redirect(url_for("account"))
         current_user.display_name = new_name
         db.session.commit()
 
@@ -272,6 +293,8 @@ def account():
 def delete_account():
     if request.method == "POST":
         password = request.form["password"]
+        if not password:
+            return redirect(url_for("delete_account"))
         if not current_user.check_password(password):
             return redirect(url_for("delete_account", msg="wrongpwd"))
         db.session.delete(current_user)
@@ -450,7 +473,6 @@ def report_details(report_id):
 @app.route("/report/<report_id>/edit", methods=['GET', 'POST'])
 @login_required
 def edit_report(report_id):
-    # TODO the color picker from the report filter is more accessible and probably would also fit better on this page
     if not current_user.account_verified:
         return redirect(url_for("index"))
 
@@ -461,8 +483,14 @@ def edit_report(report_id):
             return redirect(url_for("index"))
         
         title = request.form['title']
+        if title == "":
+            return redirect(url_for("edit_report", report_id=report_id))
         item_type = request.form['item-type']
+        if item_type == "":
+            return redirect(url_for("edit_report", report_id=report_id))
         item_color = request.form['item-color']
+        if item_color == "":
+            return redirect(url_for("edit_report", report_id=report_id))
         last_seen_str = request.form['last-seen']
         location_id = request.form['locations']
         report_content = request.form['report-content']
@@ -528,11 +556,12 @@ def edit_report(report_id):
     locations_from_db = Location.query.order_by(Location.id).all()
     colours_from_db = Colour.query.order_by(Colour.id).all()
     categories_from_db = Category.query.order_by(Category.id).all()
+    grades_from_db = Grade.query.order_by(Grade.id).all()
     verified_users = db.session.scalars(select(User).filter_by(account_verified=True).order_by(User.grade)).all()
 
     return render_template("report/edit.html", report_id=report_id, title=title, report_type=report_type, author=author, created=creation_date, category=category, colour=colour, description=description,
                            last_seen=last_seen, last_seen_location=last_seen_location, item_owner=item_owner, pickup_location=pickup_location,
-                           category_list=categories_from_db, colour_list=colours_from_db, location_list=locations_from_db, user_list=verified_users)
+                           category_list=categories_from_db, colour_list=colours_from_db, grade_list=grades_from_db, location_list=locations_from_db, user_list=verified_users)
 
 @app.route("/report/<report_id>/delete", methods=['GET', 'POST'])
 @login_required
