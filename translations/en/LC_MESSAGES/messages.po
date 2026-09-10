@@ -574,7 +574,7 @@ msgstr ""
 #: templates/verification/index.html:23
 #, python-format
 msgid ""
-"This address is used only to verify your account and must be part of the "
+"This address is only used to verify your account and must be part of the "
 "%(domain)s domain"
 msgstr ""
 

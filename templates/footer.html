@@ -4,13 +4,13 @@
     </div>
 
     <div class="footer-right">
-        <a target="_blank" href="/static/privacy_policy.txt">{{ lang("Privacy policy") }}</a>
+        <a target="_blank" rel="privacy-policy" href="/static/privacy_policy.txt">{{ lang("Privacy policy") }}</a>
         {% if session.get('lang') == 'pl' %}
         <a href="{{ url_for('set_language', lang='en') }}">English</a>
         {% else %}
         <a href="{{ url_for('set_language', lang='pl') }}">Polski</a>
         {% endif %}
-        <a target="_blank"
+        <a target="_blank" rel="noreferrer"
             href="https://docs.google.com/forms/d/e/1FAIpQLScxvgrwNht8mlz6xi7Qs1RMZS0_eh0ZlUfru9IULsQ0aoehfw/viewform?usp=sharing&ouid=103493346255811892219">{{
             lang("Give feedback") }}</a>
     </div>
