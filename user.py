@@ -78,8 +78,8 @@ class User(UserMixin, db.Model):
 
 
 def get_user(user_id: int) -> User | None:
-	"""Retrieve a user by ID from the database."""
-	return User.query.get(user_id)
+    """Retrieve a user by ID from the database."""
+    return User.query.get(user_id)
 
 
 def find_by_email(email: str) -> User | None:

@@ -47,7 +47,15 @@
         {{ lang("Suspected owner") }}:
         <select name="item_owner">
             <option value="">{{ lang("Anybody") }}</option>
-            <option value="me" {% if selected_owner=="me" %}selected{% endif %}>{{ lang("You") }}</option>
+            <option value="{{ current_user.id }}" {% if (selected_owner | int)==current_user.id %}selected{% endif %}>{{ current_user.display_name }} ({{ lang("You") }})</option>
+            {% for user in user_list %}
+            {% if user.id != current_user.id %}
+            <option value="{{ user.id }}" {% if (selected_owner | int)==user.id %}selected{% endif %}>
+                {{ user.public_name() }}
+            </option>
+            {% endif %}
+            {% endfor %}
+
         </select>
     </label>
     {% endif %}

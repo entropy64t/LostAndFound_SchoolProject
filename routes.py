@@ -42,8 +42,6 @@ def new():
         if item_type == "":
             return redirect(url_for("new"))
         item_color = request.form['item-color']
-        if item_color == "":
-            return redirect(url_for("new"))
         last_seen_str = request.form['last-seen']
         location_id = request.form['locations']
         report_content = request.form['report-content']
@@ -347,10 +345,11 @@ def render_reports(query: Query, template: str, view_all: bool = True):
         query = query.filter_by(category=selected_item)
     if selected_type in ("lost", "found"):
         query = query.filter_by(report_type=selected_type)
-    if selected_owner == "me":
-        query = query.filter_by(item_owner=current_user.id)
+    if (selected_owner is not None) and (selected_owner != "") and (get_user(selected_owner) is not None):
+        query = query.filter_by(item_owner=int(selected_owner))
     reports = query.order_by(desc(Report.creation_date)).all()
     
+    verified_users = db.session.scalars(select(User).filter_by(account_verified=True).order_by(User.grade)).all()
     return render_template(
         template,
         reports=reports,
@@ -369,7 +368,8 @@ def render_reports(query: Query, template: str, view_all: bool = True):
         get_location=get_location,
         get_user=get_user,
         filter=True,
-        org_timezone=org_timezone
+        org_timezone=org_timezone,
+        user_list=verified_users
     )
 
 @app.route("/all")
@@ -489,8 +489,6 @@ def edit_report(report_id):
         if item_type == "":
             return redirect(url_for("edit_report", report_id=report_id))
         item_color = request.form['item-color']
-        if item_color == "":
-            return redirect(url_for("edit_report", report_id=report_id))
         last_seen_str = request.form['last-seen']
         location_id = request.form['locations']
         report_content = request.form['report-content']
