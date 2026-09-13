@@ -1,6 +1,6 @@
 from datetime import datetime, timezone
 
-from flask import Blueprint, render_template, request, redirect, url_for, abort, session
+from flask import Blueprint, render_template, request, redirect, url_for, abort, session, make_response
 from markupsafe import escape
 from enum import Enum
 from flask_login import LoginManager, login_required, login_user, logout_user, current_user
@@ -284,7 +284,10 @@ def account():
     else:
         grade_name = "not set"
     grades_from_db = db.session.execute(text("SELECT * FROM grades;")).mappings().all()
-    return render_template("account/index.html", grade_id=current_user.grade, grade_name=grade_name, grade_list=grades_from_db)
+
+    res = make_response(render_template("account/index.html", grade_id=current_user.grade, grade_name=grade_name, grade_list=grades_from_db))
+    res.headers['Cache-Control'] = 'no-store'
+    return res
 
 @app.route("/account/delete", methods=['GET', 'POST'])
 @login_required
