@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="{{ session.get('lang') if session.get('lang') is not none else 'en' }}">
+
+<head>
+    {% include "common_head.html" %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='auth.css') }}">
+    <title>Reset password - Lost&Found</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1><a class="heading-a" href="{{ url_for('index') }}">Lost&amp;Found</a></h1>
+        <div class="auth-wrapper" role="main">
+            <h1>{{ lang("Reset password") }}</h1>
+            <form class="auth-form" method="post">
+                <div class="form-group">
+                    <label>
+                        {{ lang("Email") }} {% include "required.html" %}
+                        <input type="email" name="email" required>
+                    </label>
+                </div>
+                <button type="submit" class="btn-primary">{{ lang("Reset password") }}</button>
+                {% if request.args.get("msg") == "sent" %}
+                <p>{{ lang(
+                    "If an account with the provided email address exists, you have been sent a password reset link. Also check your spam folder"
+                    ) }}.</p>
+                {% elif request.args.get("msg") == "wrongotp" %}
+                <p class="auth-fail-message">{{ lang("The reset token is incorrect, has been used, or has expired") }}.</p>
+                {% endif %}
+            </form>
+            <div class="auth-footer">
+                <p><a href="{{ url_for('auth.login', next=request.args.get('next')) }}">{{ lang("Return to login") }}</a></p>
+            </div>
+        </div>
+    </div>
+
+    {% include "footer.html" %}
+</body>
+
+</html>

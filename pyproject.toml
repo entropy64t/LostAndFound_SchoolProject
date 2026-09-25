@@ -1,0 +1,21 @@
+[project]
+name = "lostandfound"
+version = "0.1.0"
+requires-python = ">=3.12"
+
+dependencies = [
+    "flask>=3.1",
+    "gunicorn",
+    "flask-login",
+    "Flask-SQLAlchemy",
+    "flask-babel",
+    "psycopg2-binary",
+    "resend",
+    "markdown-it-py",
+    "bleach",
+    "rapidfuzz",
+    "coloraide",
+    "jinja2>=3.1.6",
+    "dotenv>=0.9.9",
+    "psycopg>=3.3.6",
+]

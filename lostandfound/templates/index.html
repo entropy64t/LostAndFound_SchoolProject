@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="{{ session.get('lang') if session.get('lang') is not none else 'en' }}">
+
+<head>
+    {% include "common_head.html" %}
+    <title>Lost&Found</title>
+</head>
+
+<body>
+    {% include "navbar.html" %}
+
+    <div class="container">
+        <h1>Lost&amp;Found</h1>
+        <div class="content" role="main">
+            <p>
+                <span style="font-weight: 700;">{{ total_reports }}</span> {{ lang("active reports") }},
+                <span style="font-weight: 700;">{{ lost_reports }}</span> {{ lang("lost") }},
+                <span style="font-weight: 700;">{{ found_reports }}</span> {{ lang("found") }}
+            </p>
+            <hr>
+            <p>{{ lang("Looking for updates on something you have lost") }}?<br>
+                <a class="btn-primary" style="display: inline-block; margin-top: 0.6em;"
+                    href="{{ url_for('reports.matches', filter='mine') }}">{{ lang("Matches with your reports") }}</a>
+                <a class="btn-primary" style="display: inline-block; margin-top: 0.6em;"
+                    href="{{ url_for('reports.all', item_owner='me') }}">{{ lang("Reports with you as suspected owner") }}</a>
+            </p>
+            <hr>
+            {{ lang("index.instructions")|safe }}
+            <hr>
+            {{ lang("index.contact")|safe }} <a style="color: var(--primary);" href="mailto:{{sender_replyto_address}}">{{sender_replyto_address}}</a>.</p>
+
+        </div>
+    </div>
+
+    {% include "footer.html" %}
+</body>
+
+</html>
