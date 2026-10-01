@@ -1,53 +1,33 @@
-from sqlalchemy import Enum as SQLAEnum
+from flask_login import UserMixin
+from werkzeug.security import generate_password_hash, check_password_hash
+from sqlalchemy.orm import Mapped, mapped_column, relationship
+from sqlalchemy import Enum as SQLAEnum, ForeignKey, select
 from app import db
 from flask import session
 
+from datetime import datetime, timezone
+
 reportType = SQLAEnum('lost', 'found', name='reportType')
-
-class Report(db.Model):
-    __tablename__ = "reports"
-
-    id = db.Column(db.Integer, primary_key=True)
-    
-    creation_date = db.Column(db.DateTime(timezone=True))
-    author = db.Column(db.Integer)
-    report_type = db.Column('type', reportType, nullable=False)
-    
-    category = db.Column(db.Integer)
-    colour = db.Column(db.Integer)
-    
-    title = db.Column(db.String(255))
-    description = db.Column(db.String(255))
-    
-    image_urls = db.Column(db.String(255))
-    
-    last_seen = db.Column(db.DateTime(timezone=True))
-    last_seen_location = db.Column(db.Integer)
-    
-    item_owner = db.Column(db.Integer)
-    
-    pickup_location = db.Column(db.Integer)
-
-def get_report(report_id: int) -> Report:
-    return Report.query.get(report_id)
 
 class Grade(db.Model):
     __tablename__ = "grades"
 
-    id = db.Column(db.Integer, primary_key=True)
+    id: Mapped[int] = mapped_column(db.Integer, primary_key=True)
 
-    name = db.Column(db.String())
+    name: Mapped[str] = mapped_column(db.String)
 
 def get_grade(grade_id: int) -> Grade:
-    return Grade.query.get(grade_id)
+    return db.session.get(Grade, grade_id)
+def all_grades():
+    return db.session.scalars(select(Grade).order_by(Grade.id)).all()
 
 class Category(db.Model):
     __tablename__ = "categories"
 
-    id = db.Column(db.Integer, primary_key=True)
+    id: Mapped[int] = mapped_column(db.Integer, primary_key=True)
     
-    name = db.Column(db.String())
-    name_pl = db.Column(db.String())
+    name: Mapped[str] = mapped_column(db.String())
+    name_pl: Mapped[str] = mapped_column(db.String())
 
     def localized_name(self) -> str:
         if session.get('lang') == 'pl':
@@ -56,17 +36,19 @@ class Category(db.Model):
             return self.name
 
 def get_category(category_id: int) -> Category:
-    return Category.query.get(category_id)
+    return db.session.get(Category, category_id)
+def all_categories():
+    return db.session.scalars(select(Category).order_by(Category.id)).all()
 
 class Colour(db.Model):
     __tablename__ = "colours"
 
-    id = db.Column(db.Integer, primary_key=True)
+    id: Mapped[int] = mapped_column(db.Integer, primary_key=True)
 
-    name = db.Column(db.String())
-    display_name = db.Column(db.String())
-    display_name_pl = db.Column(db.String())
-    colour_value = db.Column(db.Integer)
+    name: Mapped[str] = mapped_column(db.String())
+    display_name: Mapped[str] = mapped_column(db.String())
+    display_name_pl: Mapped[str] = mapped_column(db.String())
+    colour_value: Mapped[int] = mapped_column(db.Integer)
 
     def localized_name(self) -> str:
         if session.get('lang') == 'pl':
@@ -75,15 +57,17 @@ class Colour(db.Model):
             return self.display_name
 
 def get_colour(colour_id: int) -> Colour:
-    return Colour.query.get(colour_id)
+    return db.session.get(Colour, colour_id)
+def all_colours():
+    return db.session.scalars(select(Colour).order_by(Colour.id)).all()
 
 class Location(db.Model):
     __tablename__ = "locations"
 
-    id = db.Column(db.Integer, primary_key=True)
+    id: Mapped[int] = mapped_column(db.Integer, primary_key=True)
 
-    building_level = db.Column(db.Integer)
-    name = db.Column(db.String())
+    building_level: Mapped[int] = mapped_column(db.Integer)
+    name: Mapped[str] = mapped_column(db.String())
 
     def location_string(self) -> str:
         if session.get('lang') == 'pl':
@@ -93,14 +77,152 @@ class Location(db.Model):
         return self.name + " (" + level_str + " " + str(self.building_level) + ")"
 
 def get_location(location_id: int) -> Location:
-    return Location.query.get(location_id)
+    return db.session.get(Location, location_id)
+def all_locations():
+    return db.session.scalars(select(Location).order_by(Location.id)).all()
+
+class User(UserMixin, db.Model):
+    """User model backed by SQLAlchemy database.
+
+    Compatible with flask-login and maps to the users table in PostgreSQL.
+    """
+    __tablename__ = "users"
+
+    id: Mapped[int] = mapped_column(db.Integer, primary_key=True)
+    email: Mapped[str] = mapped_column(db.String, unique=True, nullable=False)
+    display_name: Mapped[str] = mapped_column(db.String, nullable=False)
+    password: Mapped[str] = mapped_column(db.String, nullable=False)
+    otp: Mapped[str] = mapped_column(db.String)
+    otp_creation: Mapped[datetime.datetime] = mapped_column(db.DateTime(timezone=True))
+    pwreset: Mapped[str] = mapped_column(db.String)
+    pwreset_creation: Mapped[datetime.datetime] = mapped_column(db.DateTime(timezone=True))
+    account_verified: Mapped[bool] = mapped_column(db.Boolean, nullable=False, default=False)
+    grade: Mapped[int] = mapped_column(db.Integer, ForeignKey("grades.id"))
+    grade_obj: Mapped["Grade"] = relationship(Grade)
+
+    def set_password(self, password: str) -> None:
+        # The string generated by this function automatically includes the method, the hashed pwd+salt, and the salt itself
+        self.password = generate_password_hash(password, method="scrypt", salt_length=16)
+
+    def check_password(self, password: str) -> bool:
+        """Verify the provided password against the stored hash and salt."""
+        if not self.password:
+            return False
+        return check_password_hash(self.password, password)
+
+    def set_otp(self, otp: str) -> None:
+        self.otp = generate_password_hash(otp, method="scrypt", salt_length=16)
+        self.otp_creation = datetime.now(timezone.utc)
+
+    def check_otp(self, otp: str) -> bool:
+        if (datetime.now(timezone.utc) - self.otp_creation).total_seconds() // 60 > 30:
+            return False
+        if not self.otp:
+            return False
+        return check_password_hash(self.otp, otp)
+
+    def set_pwreset(self, otp: str) -> None:
+        if otp == None:
+            self.pwreset = None
+            self.pwreset_creation = None
+        else:
+            self.pwreset = generate_password_hash(otp, method="scrypt", salt_length=16)
+            self.pwreset_creation = datetime.now(timezone.utc)
+    
+    def check_pwreset(self, otp: str) -> None:
+        if not self.pwreset:
+            return False
+        if (datetime.now(timezone.utc) - self.pwreset_creation).total_seconds() // 60 > 30:
+            return False
+        return check_password_hash(self.pwreset, otp)
+
+    def is_active(self) -> bool:
+        """User is active if account is verified (used by flask-login)."""
+        return bool(self.account_verified)
+
+    def get_id(self) -> str:
+        """Return user ID as string (required by flask-login)."""
+        return str(self.id)
+
+    def public_name(self) -> str: # Username + grade string for use in publicly visible report pages
+        out = str(self.display_name)
+        if self.grade_obj != None:
+            out += " (" + self.grade_obj.name + ")"
+        return out
+
+
+def get_user(user_id: int) -> User | None:
+    """Retrieve a user by ID from the database."""
+    return db.session.get(User, user_id)
+
+
+def find_by_email(email: str) -> User | None:
+    """Find a user by email address."""
+    return db.session.scalars(select(User).where(User.email == email)).first()
+
+
+def create_user(email: str, display_name: str, password: str, grade: str) -> User:
+	"""Create a new user with email and password."""
+	user = User(email=email, display_name=display_name, account_verified=False, grade=grade)
+	user.set_password(password)
+	db.session.add(user)
+	db.session.commit()
+	return user
+
+def all_users(only_verified: bool):
+    if only_verified:
+        return db.session.scalars(select(User).where(User.account_verified == True).order_by(User.grade)).all()
+    else:
+        return db.session.scalars(select(User)).all()
+
+class Report(db.Model):
+    __tablename__ = "reports"
+
+    id: Mapped[int] = mapped_column(db.Integer, primary_key=True)
+    
+    creation_date: Mapped[datetime.datetime] = mapped_column(db.DateTime(timezone=True))
+    author: Mapped[int] = mapped_column(db.Integer, ForeignKey("users.id"))
+    author_obj: Mapped["User"] = relationship(User, primaryjoin="Report.author == User.id")
+    report_type: Mapped[reportType] = mapped_column('type', reportType, nullable=False)
+    
+    category: Mapped[int] = mapped_column(db.Integer, ForeignKey("categories.id"))
+    category_obj: Mapped["Category"] = relationship(Category)
+    colour: Mapped[int] = mapped_column(db.Integer, ForeignKey("colours.id"))
+    colour_obj: Mapped["Colour"] = relationship(Colour)
+    
+    title: Mapped[str] = mapped_column(db.String)
+    description: Mapped[str] = mapped_column(db.String)
+    
+    image_urls: Mapped[str] = mapped_column(db.String)
+    
+    last_seen: Mapped[datetime.datetime] = mapped_column(db.DateTime(timezone=True))
+    last_seen_location: Mapped[int] = mapped_column(db.Integer, ForeignKey("locations.id"))
+    last_seen_location_obj: Mapped["Location"] = relationship(Location, primaryjoin="Report.last_seen_location == Location.id")
+    
+    item_owner: Mapped[int] = mapped_column(db.Integer, ForeignKey("users.id"))
+    item_owner_obj: Mapped["User"] = relationship(User, primaryjoin="Report.item_owner == User.id")
+    
+    pickup_location: Mapped[int] = mapped_column(db.Integer, ForeignKey("locations.id"))
+    pickup_location_obj: Mapped["Location"] = relationship(Location, primaryjoin="Report.pickup_location == Location.id")
+
+def get_report(report_id: int) -> Report:
+    return db.session.get(Report, report_id)
+def all_reports():
+    return db.session.scalars(select(Report).where(Report.id == report_id).order_by(Report.id)).all()
 
 class Match(db.Model):
     __tablename__ = "matches"
 
-    id = db.Column(db.Integer, primary_key=True)
+    id: Mapped[int] = mapped_column(db.Integer, primary_key=True)
 
-    lost_item = db.Column(db.Integer)
-    found_item = db.Column(db.Integer)
-    score = db.Column(db.Integer)
-    creation_date = db.Column(db.DateTime(timezone=True))
+    lost_item: Mapped[int] = mapped_column(db.Integer, ForeignKey("reports.id"))
+    lost_item_obj: Mapped["Report"] = relationship(Report, primaryjoin="Match.lost_item == Report.id")
+    found_item: Mapped[int] = mapped_column(db.Integer, ForeignKey("reports.id"))
+    found_item_obj: Mapped["Report"] = relationship(Report, primaryjoin="Match.found_item == Report.id")
+    score: Mapped[int] = mapped_column(db.Integer)
+    creation_date: Mapped[datetime.datetime] = mapped_column(db.DateTime(timezone=True))
+
+def get_match(match_id: int) -> Match:
+    return db.session.get(Match, match_id)
+def all_matches():
+    return db.session.scalars(select(Match).where(Match.id == match_id).order_by(Match.id)).all()

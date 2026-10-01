@@ -34,7 +34,7 @@ babel = Babel(app, locale_selector=get_locale)
 # timezone 
 org_timezone = ZoneInfo(config_timezone)
 
-import routes, models, user
+import routes, models 
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000) # for production

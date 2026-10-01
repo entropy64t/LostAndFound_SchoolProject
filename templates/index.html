@@ -3,7 +3,7 @@
 
 <head>
     {% include "common_head.html" %}
-    <title>Lost&Found</title>
+    <title>Lost&amp;Found</title>
 </head>
 
 <body>
@@ -22,7 +22,7 @@
                 <a class="btn-primary" style="display: inline-block; margin-top: 0.6em;"
                     href="{{ url_for('matches', filter='mine') }}">{{ lang("Matches with your reports") }}</a>
                 <a class="btn-primary" style="display: inline-block; margin-top: 0.6em;"
-                    href="{{ url_for('all', item_owner='me') }}">{{ lang("Reports with you as suspected owner") }}</a>
+                    href="{{ url_for('all', item_owner=current_user.id) }}">{{ lang("Reports with you as suspected owner") }}</a>
             </p>
             <hr>
             {{ lang("index.instructions")|safe }}

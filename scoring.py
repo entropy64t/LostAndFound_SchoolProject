@@ -1,5 +1,5 @@
-from models import Report, get_report, Location, get_location, Match
-from sqlalchemy import delete, or_
+from models import Grade, Category, Colour, Location, User, Report, Match
+from sqlalchemy import delete, select, or_
 from app import app, db
 from flask import current_app
 from flask_login import current_user
@@ -30,8 +30,8 @@ def score_single(target: Report, item: Report) -> int:
     colour_score = 10 if target.colour == item.colour else 1
 
     loc_score = 0
-    target_loc = get_location(target.last_seen_location)
-    item_loc = get_location(item.last_seen_location)
+    target_loc = target.last_seen_location_obj
+    item_loc = item.last_seen_location_obj
     if target_loc != None and item_loc != None:
         if target_loc == item_loc:
             loc_score = 20
@@ -74,31 +74,28 @@ def score_against(target: Report, items: list[Report]) -> dict[Report, int]:
 
 def sort_by_score(target: Report) -> list[tuple[Report, int]]:
     if target.report_type == "lost":
-        matches = Match.query.filter_by(lost_item=target.id).all()
-        unsorted_pairs = {get_report(mat.found_item): mat.score for mat in matches}
+        matches = db.session.scalars(select(Match).filter_by(lost_item=target.id).order_by(Match.score.desc())).all()
+        sorted_pairs = [(mat.found_item_obj, mat.score) for mat in matches]
     else:
-        matches = Match.query.filter_by(found_item=target.id).all()
-        unsorted_pairs = {get_report(mat.lost_item): mat.score for mat in matches}
+        matches = db.session.scalars(select(Match).filter_by(found_item=target.id).order_by(Match.score.desc())).all()
+        sorted_pairs = [(mat.lost_item_obj, mat.score) for mat in matches]
     
-    sorted_pairs = sorted(unsorted_pairs.items(), key=lambda item: item[1], reverse=True)
     
     return sorted_pairs
 
 def all_sorted(filter_by_user, by_creation_date) -> list[tuple[Report, Report, int, str]]: # lost, found, score, created
-    matches = Match.query.all()
+    match_query = select(Match)
     if filter_by_user:
-        for mat in list(matches): # creates a copy, allowing to remove elements
-            if get_report(mat.lost_item).author != current_user.id and get_report(mat.found_item).author != current_user.id:
-                matches.remove(mat)
-
-    unsorted_pairs = [(mat.lost_item, mat.found_item, mat.score, mat.creation_date.astimezone(org_timezone).strftime('%Y-%m-%d %H:%M')) for mat in matches]
+        match_query = match_query.filter(or_(Match.lost_item_obj.has(Report.author == current_user.id), Match.found_item_obj.has(Report.author == current_user.id)))
 
     if by_creation_date:
-        sorted_pairs = sorted(unsorted_pairs, key=lambda item: item[2], reverse=True) # Sort by score for equal items
-        sorted_pairs = sorted(sorted_pairs, key=lambda item: item[3], reverse=True)
+        match_query = match_query.order_by(Match.creation_date.desc(), Match.score.desc())
     else:
-        sorted_pairs = sorted(unsorted_pairs, key=lambda item: item[3], reverse=True) # Sort by date for equal items
-        sorted_pairs = sorted(sorted_pairs, key=lambda item: item[2], reverse=True)
+        match_query = match_query.order_by(Match.score.desc(), Match.creation_date.desc())
+
+    matches = db.session.scalars(match_query).all()
+
+    sorted_pairs = [(mat.lost_item, mat.found_item, mat.score, mat.creation_date.astimezone(org_timezone).strftime('%Y-%m-%d %H:%M')) for mat in matches]
 
     return sorted_pairs
 
@@ -122,6 +119,6 @@ def scoring_service(root: Report, report_list: list[Report], app):
         db.session.remove()
 
 def update_scoring_of_report(root: Report):
-    report_list = Report.query.all()
+    report_list = db.session.scalars(select(Report)).all()
     thread = threading.Thread(target=scoring_service, daemon=True, args=(root, report_list, current_app._get_current_object()))
     thread.start()

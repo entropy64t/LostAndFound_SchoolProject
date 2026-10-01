@@ -4,7 +4,7 @@
 <head>
     {% include "common_head.html" %}
     <link rel="stylesheet" href="{{ url_for('static', filename='report_list.css')}}">
-    <title>New report - Lost&Found</title>
+    <title>New report - Lost&amp;Found</title>
 </head>
 
 <body>
@@ -130,7 +130,7 @@
                 <select name="pickup_location">
                     <option value="" selected>-- Select --</option>
                     {% for loc in location_list %}
-                    <option value="{{ loc['id'] }}">
+                    <option value="{{ loc.id }}">
                         {{ loc.location_string() }}
                     </option>
                     {% endfor %}

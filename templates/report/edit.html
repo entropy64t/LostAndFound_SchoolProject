@@ -4,7 +4,7 @@
 <head>
     {% include "common_head.html" %}
     <link rel="stylesheet" href="{{ url_for('static', filename='report_list.css')}}">
-    <title>Edit {{ title }} - Lost&Found</title>
+    <title>Edit {{ title }} - Lost&amp;Found</title>
 </head>
 
 <body>
@@ -107,7 +107,7 @@
                 <select name="pickup_location">
                     <option value="" {% if not pickup_location %}selected{% endif %}>-- Select --</option>
                     {% for loc in location_list %}
-                    <option value="{{ loc['id'] }}" {% if loc.id==pickup_location %}selected{% endif %}>
+                    <option value="{{ loc.id }}" {% if loc.id==pickup_location %}selected{% endif %}>
                         {{ loc.location_string() }}
                     </option>
                     {% endfor %}
