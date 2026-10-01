@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-10 18:19+0200\n"
+"POT-Creation-Date: 2026-09-26 11:35+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -17,6 +17,38 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
+
+#: email/email_config.py:18
+msgid "email.otp.subject"
+msgstr "Your LostAndFound code is $otp"
+
+#: email/email_config.py:22
+msgid "email.otp.content"
+msgstr ""
+"Use the following code to verify your LostAndFound account: \n"
+"**$otp**\n"
+"\n"
+"The code is valid for **30 minutes**."
+
+#: email/email_config.py:26
+msgid "email.pwreset.subject"
+msgstr "Your LostAndFound password reset link"
+
+#: email/email_config.py:30
+msgid "email.pwreset.content"
+msgstr ""
+"Use the following link to reset your LostAndFound account password:\n"
+"$link\n"
+"\n"
+"The link is single-use only and valid for **30 minutes**."
+
+#: email/email_config.py:34
+msgid "email.footer"
+msgstr ""
+"\n"
+"Account details:\n"
+"E-mail: $email\n"
+"Name: $name"
 
 #: templates/all.html:14
 msgid "All items"
@@ -44,19 +76,15 @@ msgstr ""
 msgid "Repeat Password"
 msgstr ""
 
-#: templates/account/index.html:18 templates/create_account.html:43
-#: templates/new.html:107
+#: templates/account/index.html:21 templates/create_account.html:43
 msgid "Grade"
-msgstr ""
-
-msgid "Filter by grade"
 msgstr ""
 
 #: templates/create_account.html:43
 msgid "can be changed later"
 msgstr ""
 
-#: templates/account/index.html:58 templates/create_account.html:58
+#: templates/account/index.html:61 templates/create_account.html:58
 msgid "Passwords don't match."
 msgstr ""
 
@@ -292,41 +320,50 @@ msgstr ""
 msgid "colour.unknown"
 msgstr "Other / unknown"
 
-#: templates/new.html:84 templates/new.html:174 templates/report/edit.html:60
+#: templates/new.html:84 templates/new.html:176 templates/report/edit.html:60
 msgid "Last seen on"
 msgstr ""
 
-#: templates/new.html:90 templates/new.html:175 templates/report/edit.html:66
+#: templates/new.html:90 templates/new.html:177 templates/report/edit.html:66
 msgid "Lost in"
 msgstr ""
 
-#: templates/new.html:103 templates/report/edit.html:79
+#: templates/new.html:103 templates/report/edit.html:80
 #: templates/report/index.html:53 templates/report_render.html:47
 #: templates/report_render.html:115
 msgid "Suspected owner"
 msgstr ""
 
-#: templates/new.html:115
+#: templates/new.html:107 templates/report/edit.html:84
+msgid "Filter by grade"
+msgstr ""
+
+#: templates/new.html:115 templates/report/edit.html:92
 msgid "Owner"
 msgstr ""
 
-#: templates/new.html:128 templates/report/edit.html:90
+#: templates/new.html:128 templates/report/edit.html:105
 msgid "Retrieve found item at"
 msgstr ""
 
-#: templates/new.html:140 templates/report/edit.html:103
+#: templates/new.html:140 templates/report/edit.html:118
 msgid "Description"
 msgstr ""
 
-#: templates/new.html:144
+#: templates/new.html:142
+#, fuzzy
+msgid "You can use"
+msgstr "You can use Markdown in the description."
+
+#: templates/new.html:146
 msgid "Create"
 msgstr ""
 
-#: templates/new.html:182 templates/report/edit.html:60
+#: templates/new.html:184 templates/report/edit.html:60
 msgid "Found on"
 msgstr ""
 
-#: templates/new.html:183 templates/report/edit.html:66
+#: templates/new.html:185 templates/report/edit.html:66
 msgid "Found in"
 msgstr ""
 
@@ -372,7 +409,7 @@ msgid "View details"
 msgstr ""
 
 #: templates/account/delete.html:13 templates/account/delete.html:31
-#: templates/account/index.html:78
+#: templates/account/index.html:81
 msgid "Delete account"
 msgstr ""
 
@@ -388,7 +425,7 @@ msgstr ""
 msgid "Enter your password to delete your account"
 msgstr ""
 
-#: templates/account/delete.html:28 templates/report/edit.html:110
+#: templates/account/delete.html:28 templates/report/edit.html:127
 msgid "Back"
 msgstr ""
 
@@ -396,71 +433,75 @@ msgstr ""
 msgid "My account"
 msgstr ""
 
-#: templates/account/index.html:16
+#: templates/account/index.html:17
+msgid "id"
+msgstr ""
+
+#: templates/account/index.html:19
 msgid "Manage your account here."
 msgstr ""
 
-#: templates/account/index.html:17
+#: templates/account/index.html:20
 msgid "Email address"
 msgstr ""
 
-#: templates/account/index.html:21
+#: templates/account/index.html:24
 msgid "Account verified"
 msgstr ""
 
-#: templates/account/index.html:23
+#: templates/account/index.html:26
 msgid "Account NOT verified"
 msgstr ""
 
-#: templates/account/index.html:27
+#: templates/account/index.html:30
 msgid "Update personal data"
 msgstr ""
 
-#: templates/account/index.html:31
+#: templates/account/index.html:34
 msgid "Change name"
 msgstr ""
 
-#: templates/account/index.html:38
+#: templates/account/index.html:41
 msgid "Change grade"
 msgstr ""
 
-#: templates/account/index.html:51
+#: templates/account/index.html:54
 msgid "Change password"
 msgstr ""
 
-#: templates/account/index.html:52
+#: templates/account/index.html:55
 msgid "New password"
 msgstr ""
 
-#: templates/account/index.html:53
+#: templates/account/index.html:56
 msgid "Repeat new password"
 msgstr ""
 
-#: templates/account/index.html:55
+#: templates/account/index.html:58
 msgid "Old password"
 msgstr ""
 
-#: templates/account/index.html:60
+#: templates/account/index.html:63
 msgid "Wrong old password"
 msgstr ""
 
-#: templates/account/index.html:66
+#: templates/account/index.html:69
 msgid "Change email (this will become your new login)"
 msgstr ""
 
-#: templates/account/index.html:67
+#: templates/account/index.html:70
 msgid "New email"
 msgstr ""
 
-#: templates/account/index.html:68
+#: templates/account/index.html:71
 msgid "Repeat new email"
 msgstr ""
 
-#: templates/account/index.html:71
+#: templates/account/index.html:74
 msgid "Emails don't match"
 msgstr ""
 
-#: templates/account/index.html:75
+#: templates/account/index.html:78
 msgid "Change"
 msgstr ""
 
@@ -491,7 +532,7 @@ msgid ""
 "a password reset link. Also check your spam folder"
 msgstr ""
 
-#: templates/pwreset/index.html:28 templates/verification/check.html:25
+#: templates/pwreset/index.html:28
 msgid "The reset token is incorrect, has been used, or has expired"
 msgstr ""
 
@@ -507,7 +548,12 @@ msgstr ""
 msgid "posted"
 msgstr ""
 
-#: templates/report/edit.html:108
+#: templates/report/edit.html:120
+#, fuzzy
+msgid "You can use Markdown."
+msgstr "You can use Markdown in the description."
+
+#: templates/report/edit.html:125
 msgid "Save"
 msgstr ""
 
@@ -553,6 +599,10 @@ msgstr ""
 msgid "Submit"
 msgstr ""
 
+#: templates/verification/check.html:25
+msgid "The entered code is incorrect or it has expired"
+msgstr ""
+
 #: templates/verification/check.html:29
 msgid "Message didn't arrive"
 msgstr ""
@@ -596,4 +646,7 @@ msgstr ""
 
 #~ msgid "Show instructions"
 #~ msgstr ""
+
+#~ msgid "Your LostAndFound password reset link"
+#~ msgstr "email.pwreset.subject"
 

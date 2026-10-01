@@ -317,9 +317,25 @@ footer a:hover {
     color: #ffffff;
 }
 
-footer a.active {
-    background-color: var(--secondary);
-    color: #ffffff;
+.text-link {
+    display: inline;
+    color: var(--secondary);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.15em;
+    text-decoration-color: rgba(133, 36, 57, 0.6);
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+    transition: color 0.2s ease, text-decoration-color 0.2s ease;
+    font-weight: 600;
+}
+
+.text-link:hover,
+.text-link:focus-visible {
+    background: transparent;
+    color: var(--secondary-accent);
+    text-decoration-color: var(--secondary-accent);
 }
 
 nav,

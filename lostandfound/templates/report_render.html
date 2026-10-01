@@ -16,7 +16,7 @@
         <label class="filter-chip-option">
             <input type="radio" name="color" value="{{ colour.id }}" {% if selected_colour==colour.id %}checked{% endif
                 %}>
-            <span class="filter-color-circle" style="background-color: {{ colour.name }};"
+            <span class="filter-color-circle" style="background-color: {{ colour.colour_hex_value }};"
                 title="{{ colour.localized_name() }}"></span>
             <span class="filter-chip-name">{{ colour.localized_name() }}</span>
         </label>
@@ -93,7 +93,7 @@
             <div class="detail-item">
                 <span style="font-weight: 700;">{{ lang("Colour") }}:</span>
                 <div class="color-swatch"
-                    style="background-color: {{ get_colour(report.colour).colour_value or get_colour(report.colour).name }};"
+                    style="background-color: {{ get_colour(report.colour).colour_hex_value or get_colour(report.colour).name }};"
                     title="{{ get_colour(report.colour).localized_name() }}"></div>
             </div>
             {% endif %}

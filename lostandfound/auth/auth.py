@@ -169,10 +169,11 @@ def verify_account():
             return redirect(url_for("auth.verify_account"))
         if not verify_domain(receiver_address):
             return redirect(url_for("auth.verify_account", msg="wrongdomain"))
+
         otp_plaintext = "".join(secrets.choice(string.digits) for _ in range(6))
         current_user.set_otp(otp_plaintext)
         db.session.commit()
-        send_otp(receiver_address, current_user)
+        send_otp(receiver_address, current_user, otp_plaintext)
         return redirect(url_for("auth.check_verification"))
 
     prefill = current_user.email if verify_domain(current_user.email) else ""

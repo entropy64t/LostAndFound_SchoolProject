@@ -22,18 +22,19 @@ SET row_security = off;
 -- Data for Name: colours; Type: TABLE DATA; Schema: public; Owner: bruno
 --
 
-INSERT INTO public.colours (id, name, display_name, display_name_pl, colour_value) VALUES (1, 'black', 'Black', 'Czarny', NULL);
-INSERT INTO public.colours (id, name, display_name, display_name_pl, colour_value) VALUES (2, 'white', 'White', 'Biały', NULL);
-INSERT INTO public.colours (id, name, display_name, display_name_pl, colour_value) VALUES (3, 'grey', 'Gray', 'Szary', NULL);
-INSERT INTO public.colours (id, name, display_name, display_name_pl, colour_value) VALUES (4, 'beige', 'Beige', 'Beżowy', NULL);
-INSERT INTO public.colours (id, name, display_name, display_name_pl, colour_value) VALUES (5, 'red', 'Red', 'Czerwony', NULL);
-INSERT INTO public.colours (id, name, display_name, display_name_pl, colour_value) VALUES (6, 'orange', 'Orange', 'Pomarańczowy', NULL);
-INSERT INTO public.colours (id, name, display_name, display_name_pl, colour_value) VALUES (7, 'yellow', 'Yellow', 'Żółty', NULL);
-INSERT INTO public.colours (id, name, display_name, display_name_pl, colour_value) VALUES (8, 'green', 'Green', 'Zielony', NULL);
-INSERT INTO public.colours (id, name, display_name, display_name_pl, colour_value) VALUES (9, 'royalblue', 'Blue', 'Niebieski', NULL);
-INSERT INTO public.colours (id, name, display_name, display_name_pl, colour_value) VALUES (10, 'purple', 'Purple', 'Fioletowy', NULL);
-INSERT INTO public.colours (id, name, display_name, display_name_pl, colour_value) VALUES (11, 'pink', 'Pink', 'Różowy', NULL);
 
+insert into public.colours (name, display_name, display_name_pl, colour_hex_value) values 
+    ('black', 'Black', 'Czarny', '#111111'),
+    ('white', 'White', 'Biały', '#ffeeff'),
+    ('grey', 'Gray', 'Szary', '#999999'),
+    ('beige', 'Beige', 'Beżowy', '#fbe4b5'),
+    ('red', 'Red', 'Czerwony', '#d41f1f'),
+    ('orange', 'Orange', 'Pomarańczowy', '#e88d1e'),
+    ('yellow', 'Yellow', 'Żółty', '#ffef3a'),
+    ('green', 'Green', 'Zielony', '#268800'),
+    ('royalblue', 'Blue', 'Niebieski', '#230383'),
+    ('purple', 'Purple', 'Fioletowy', '#811cb7'),
+    ('pink', 'Pink', 'Różowy', '#e868d9');
 
 --
 -- Name: colours_id_seq; Type: SEQUENCE SET; Schema: public; Owner: bruno

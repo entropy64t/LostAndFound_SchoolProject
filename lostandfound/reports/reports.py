@@ -51,7 +51,7 @@ def new():
         last_seen_str = request.form["last-seen"]
         location_id = request.form["locations"]
         report_content = request.form["report-content"]
-        report_content = parse_markdown(report_content)
+
         author = current_user.id
 
         last_seen = None
@@ -214,11 +214,11 @@ def report_details(report_id):
     category = get_category(report.category)
     colour = get_colour(report.colour)
     colour_value = (
-        get_colour(report.colour).colour_value or get_colour(report.colour).name
+        get_colour(report.colour).colour_hex_value or get_colour(report.colour).name
         if report.colour
         else ""
     )
-    description = report.description
+    description = parse_markdown(report.description)
 
     last_seen_dt: datetime = report.last_seen
     last_seen = last_seen_dt.strftime("%Y-%m-%d %H:%M") if last_seen_dt else ""

@@ -1,33 +1,34 @@
 from string import Template
 
-from lostandfound import lang
+from flask_babel import gettext as lang
+
+from lostandfound.utility.markdown import parse_markdown
 
 from ..config import SENDER_EMAIL_DOMAIN
 
 NAME = "LostAndFound"
 
-NOREPLY_ADDRESS = f"{NAME} <noreply@{SENDER_EMAIL_DOMAIN}>"
+NOREPLY_ADDRESS = f"noreply@{SENDER_EMAIL_DOMAIN}"
+NOREPLY_FULLNAME = f"{NAME} <{NOREPLY_ADDRESS}>"
+CONTACT_ADDRESS = f"contact@{SENDER_EMAIL_DOMAIN}"
+CONTACT_FULLNAME = f"{NAME} <{CONTACT_ADDRESS}>"
 
-OTP_SUBJECT = Template(lang("Your LostAndFound code is $otp"))
 
-OTP_MAIL = Template(
-    lang("""Use the following code to verify your LostAndFound account: 
-**$otp**
+def otp_subject():
+    return Template(lang("email.otp.subject"))
 
-The code is valid for **30 minutes**.""")
-)
 
-PWRSET_SUBJECT = lang("Your LostAndFound password reset link")
-PWRESET_MAIL = Template(
-    lang("""Use the following link to reset your LostAndFound account password:
-$link
+def otp_mail():
+    return Template(parse_markdown(lang("email.otp.content")))
 
-The link is single-use only and valid for **30 minutes**.""")
-)
 
-EMAIL_FOOTER = Template(
-    lang("""
-Account details:
-E-mail: $email
-Name: $name""")
-)
+def pwreset_subject():
+    return lang("email.pwreset.subject")
+
+
+def pwreset_mail():
+    return Template(parse_markdown(lang("email.pwreset.content")))
+
+
+def email_footer():
+    return Template(lang("email.footer"))

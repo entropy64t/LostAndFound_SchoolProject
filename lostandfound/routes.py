@@ -1,5 +1,3 @@
-import os
-
 from flask import (
     Flask,
     current_app,
@@ -13,10 +11,9 @@ from flask_login import current_user, login_required
 from sqlalchemy import func, select
 
 from lostandfound import db, login
+from lostandfound.email.email_config import CONTACT_ADDRESS
 from lostandfound.models import Report
 from lostandfound.user import get_user
-
-sender_replyto_address = os.getenv("REPLYTO_ADDRESS", "lost.and.found.vlo@gmail.com")
 
 
 @login_required
@@ -37,7 +34,7 @@ def index():
         total_reports=total_reports,
         lost_reports=lost_reports,
         found_reports=found_reports,
-        sender_replyto_address=sender_replyto_address,
+        sender_replyto_address=CONTACT_ADDRESS,
     )
 
 

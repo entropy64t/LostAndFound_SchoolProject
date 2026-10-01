@@ -1,12 +1,13 @@
 from zoneinfo import ZoneInfo
 
+import resend
 from flask import Flask, session
 from flask_babel import Babel
 from flask_babel import gettext as lang
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 
-from lostandfound.config import DB_URI, SECRET_KEY, TIMEZONE
+from lostandfound.config import DB_URI, RESEND_API, SECRET_KEY, TIMEZONE
 
 # Database, flask-login and babel init
 db = SQLAlchemy()
@@ -15,6 +16,7 @@ login = LoginManager()
 
 # timezone
 timezone = ZoneInfo(TIMEZONE)
+resend.api_key = RESEND_API
 
 
 def create_app():
