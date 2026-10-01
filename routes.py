@@ -308,9 +308,9 @@ def index():
     if not current_user.account_verified:
         return redirect(url_for("verify_account"))
 
-    total_reports = db.session.scalars(select(func.count(Report.id)))
-    lost_reports = db.session.scalars(select(func.count(Report.id)).where(Report.report_type=="lost"))
-    found_reports = db.session.scalars(select(func.count(Report.id)).where(Report.report_type=="found"))
+    total_reports = db.session.scalar(select(func.count(Report.id)))
+    lost_reports = db.session.scalar(select(func.count(Report.id)).where(Report.report_type=="lost"))
+    found_reports = db.session.scalar(select(func.count(Report.id)).where(Report.report_type=="found"))
 
     return render_template("index.html", total_reports=total_reports, lost_reports=lost_reports, found_reports=found_reports, sender_replyto_address=sender_replyto_address)
 

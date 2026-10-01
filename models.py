@@ -4,6 +4,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import Enum as SQLAEnum, ForeignKey, select
 from app import db
 from flask import session
+from flask_babel import gettext as lang
 
 from datetime import datetime, timezone
 
@@ -70,10 +71,7 @@ class Location(db.Model):
     name: Mapped[str] = mapped_column(db.String())
 
     def location_string(self) -> str:
-        if session.get('lang') == 'pl':
-            level_str = "poziom"
-        else:
-            level_str = "level"
+        level_str = lang("level")
         return self.name + " (" + level_str + " " + str(self.building_level) + ")"
 
 def get_location(location_id: int) -> Location:
