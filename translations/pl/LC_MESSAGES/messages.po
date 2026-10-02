@@ -272,7 +272,7 @@ msgstr ""
 "<strong>Pożyczone przez Ciebie rzeczy powinny zostać oznaczone jako "
 "<code>znalezione</code>. </strong>Jeżeli nie można się z Tobą łatwo "
 "skontaktować przez szkolnego e-maila, proszę umieść informacje kontaktowe"
-" w opisie zgłoszenia.</p"
+" w opisie zgłoszenia."
 
 #: templates/new.html:27 templates/report/edit.html:19
 msgid "Report title"

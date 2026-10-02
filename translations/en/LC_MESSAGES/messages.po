@@ -269,7 +269,7 @@ msgstr ""
 "<strong>Items you have borrowed shall be marked "
 "<code>found</code>.</strong> In case you can't be easily reached by "
 "school email, please include contact details in the report "
-"description.</p"
+"description."
 
 #: templates/new.html:27 templates/report/edit.html:19
 msgid "Report title"
