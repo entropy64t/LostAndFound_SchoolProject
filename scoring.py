@@ -8,6 +8,7 @@ import threading
 from datetime import datetime, timezone
 
 from app import org_timezone
+from models import get_location
 
 def score_single(target: Report, item: Report) -> int:
     """Score `item` against `target` on a [0, 100] scale
@@ -30,8 +31,8 @@ def score_single(target: Report, item: Report) -> int:
     colour_score = 10 if target.colour == item.colour else 1
 
     loc_score = 0
-    target_loc = target.last_seen_location_obj
-    item_loc = item.last_seen_location_obj
+    target_loc = get_location(target.last_seen_location)
+    item_loc = get_location(item.last_seen_location)
     if target_loc != None and item_loc != None:
         if target_loc == item_loc:
             loc_score = 20
@@ -65,7 +66,9 @@ def score_single(target: Report, item: Report) -> int:
         total = len(a_words)
         title_score += counter // total
 
-    return colour_score + loc_score + ownership_score + title_score
+    total_score = colour_score + loc_score + ownership_score + title_score
+    print("total: " + str(total_score))
+    return total_score
 
 def score_against(target: Report, items: list[Report]) -> dict[Report, int]:
     """Score `items` against `target`. For criteria look at `score_single`"""
@@ -99,8 +102,8 @@ def all_sorted(filter_by_user, by_creation_date) -> list[tuple[Report, Report, i
 
     return sorted_pairs
 
-def scoring_service(root: Report, report_list: list[Report], app):
-    with app.app_context():
+def scoring_service(ctx, root: Report, report_list: list[Report], app):
+    with ctx:
         scoring_result = score_against(root, report_list)
         db.session.execute(delete(Match).where(or_(Match.lost_item == root.id, Match.found_item == root.id)))
         db.session.commit()
@@ -120,5 +123,5 @@ def scoring_service(root: Report, report_list: list[Report], app):
 
 def update_scoring_of_report(root: Report):
     report_list = db.session.scalars(select(Report)).all()
-    thread = threading.Thread(target=scoring_service, daemon=True, args=(root, report_list, current_app._get_current_object()))
+    thread = threading.Thread(target=scoring_service, daemon=True, args=(app.app_context(), root, report_list, current_app._get_current_object()))
     thread.start()
