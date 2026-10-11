@@ -1,3 +1,6 @@
+[tool.setuptools.packages.find]
+include = ["lostandfound*"]
+
 [project]
 name = "lostandfound"
 version = "0.1.0"

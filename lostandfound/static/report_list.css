@@ -125,16 +125,16 @@
     flex-grow: 1;
 }
 
-.report-description p {
+/*.report-description p {
     margin: 0;
     color: var(--gray-metadata);
     line-height: 1.5;
     font-size: 0.95em;
-}
+}*/
 
-.description-content {
+/*.description-content {*/
     white-space: pre-wrap; /* Line breaks in the comment field will be correctly rendered. */
-}
+/*}*/
 
 .no-description {
     color: var(--gray-metadata) !important;

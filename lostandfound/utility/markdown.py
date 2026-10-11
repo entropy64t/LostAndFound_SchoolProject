@@ -1,7 +1,7 @@
 import bleach
 from markdown_it import MarkdownIt
 
-md = MarkdownIt()
+md = MarkdownIt(config="commonmark", options_update={"breaks": True})
 
 ALLOWED_TAGS = [
     "p",

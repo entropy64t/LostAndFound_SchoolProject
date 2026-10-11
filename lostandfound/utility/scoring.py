@@ -9,7 +9,7 @@ from sqlalchemy import delete, or_
 
 from lostandfound import timezone as org_timezone
 from lostandfound import db
-from lostandfound.models import Colour, Match, Report, get_location, get_report
+from lostandfound.models import Colour, Match, Report, get_location, get_report, get_colour
 
 _MAX_DELTA_E_VALUE = 20
 
@@ -17,8 +17,8 @@ _MAX_DELTA_E_VALUE = 20
 def _colour_similarity(a: Colour, b: Colour):
     if not a or not b:
         return 0
-    c1 = Color(a.colour_value).convert("lab")
-    c2 = Color(b.colour_value).convert("lab")
+    c1 = Color(a.colour_hex_value).convert("lab")
+    c2 = Color(b.colour_hex_value).convert("lab")
 
     distance = c1.delta_e(c2, method="2000")
 
@@ -39,7 +39,6 @@ def score_single(target: Report, item: Report) -> int:
 
     - total: 0 - 65
     """
-    # TODO make it 0-100 actually
     if target == item:
         return 0
     if target.report_type == item.report_type:
@@ -47,7 +46,7 @@ def score_single(target: Report, item: Report) -> int:
     if target.category != item.category:
         return 0
 
-    colour_score = _colour_similarity(target.colour, item.colour)
+    colour_score = _colour_similarity(get_colour(target.colour), get_colour(item.colour))
 
     loc_score = 0
     target_loc = get_location(target.last_seen_location)
@@ -67,7 +66,7 @@ def score_single(target: Report, item: Report) -> int:
     title_score = 0
     if target.title and item.title:
         title_score = round(
-            fuzz.token_set_ratio(target.title, item.title) * 0.2
+            fuzz.token_set_ratio(target.title.lower(), item.title.lower()) * 0.3
         )  # toke_set_ration returns [0, 100], so to make the title not have a very large impact scale it down by 5
 
     return colour_score + loc_score + ownership_score + title_score

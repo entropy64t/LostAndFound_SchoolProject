@@ -48,14 +48,12 @@ def account():
 
         return redirect(url_for("account.account"))
 
-    # TODO fix this
     user_grade = get_grade(current_user.grade)
     if user_grade != None:
         grade_name = user_grade.name
     else:
         grade_name = "not set"
 
-    # TODO dont use raw SQL
     grades_from_db = db.session.execute(text("SELECT * FROM grades;")).mappings().all()
     return render_template(
         "account/index.html",

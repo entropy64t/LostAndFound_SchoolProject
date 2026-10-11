@@ -32,5 +32,5 @@ Read the below section for details on how to deploy for development. Then see [C
     - In a development environment, run directly from Flask:
         - `$ flask --app app.py run`
     - In a production environment:
-        - Run the Gunicorn WSGI server: `$ gunicorn --bind 0.0.0.0:5000 app:app`
+        - Run the Gunicorn WSGI server: `$ gunicorn --bind 0.0.0.0:5000 lostandfound.app:app`
         - You can use a different port.

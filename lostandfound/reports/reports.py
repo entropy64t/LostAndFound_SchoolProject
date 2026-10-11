@@ -46,8 +46,6 @@ def new():
         if item_type == "":
             return redirect(url_for("reports.new"))
         item_color = request.form["item-color"]
-        if item_color == "":
-            return redirect(url_for("reports.new"))
         last_seen_str = request.form["last-seen"]
         location_id = request.form["locations"]
         report_content = request.form["report-content"]
@@ -293,8 +291,6 @@ def edit_report(report_id):
         if item_type == "":
             return redirect(url_for("reports.edit_report", report_id=report_id))
         item_color = request.form["item-color"]
-        if item_color == "":
-            return redirect(url_for("reports.edit_report", report_id=report_id))
         last_seen_str = request.form["last-seen"]
         location_id = request.form["locations"]
         report_content = request.form["report-content"]

@@ -59,7 +59,7 @@
             <p>
             <div class="report-description">
                 {% if description and description != "" %}
-                <p class="description-content">{{ description | safe }}</p> {# description is safe because it went thru the parse_markdown #}
+                {{ description | safe }} {# description is safe because it went thru the parse_markdown #}
                 {% else %}
                 <p class="no-description">{{ lang("No description provided") }}</p>
                 {% endif %}

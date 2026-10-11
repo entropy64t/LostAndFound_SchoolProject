@@ -25,7 +25,7 @@ SET row_security = off;
 
 insert into public.colours (name, display_name, display_name_pl, colour_hex_value) values 
     ('black', 'Black', 'Czarny', '#111111'),
-    ('white', 'White', 'Biały', '#ffeeff'),
+    ('white', 'White', 'Biały', '#ffffff'),
     ('grey', 'Gray', 'Szary', '#999999'),
     ('beige', 'Beige', 'Beżowy', '#fbe4b5'),
     ('red', 'Red', 'Czerwony', '#d41f1f'),

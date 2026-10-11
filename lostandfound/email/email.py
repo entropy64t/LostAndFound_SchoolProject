@@ -1,10 +1,15 @@
 import resend
+import smtplib, ssl
+from email.message import EmailMessage
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
 from lostandfound.user import User
 
-from ..config import EMAIL_WHITELIST, USER_EMAIL_DOMAIN
+from ..config import EMAIL_WHITELIST, USER_EMAIL_DOMAIN, FALLBACK_SENDER_ADDRESS, FALLBACK_SENDER_PASSWORD
 from .email_config import (
     NOREPLY_ADDRESS,
+    NOREPLY_FULLNAME,
     email_footer,
     otp_mail,
     otp_subject,
@@ -18,16 +23,32 @@ def verify_domain(email: str):
         return True
     return email.split("@")[1] == USER_EMAIL_DOMAIN
 
+port = 465
+context = ssl.create_default_context()
 
 def send_email(to: str, subject: str, content: str):
-    params: resend.Emails.SendParams = {
-        "from": NOREPLY_ADDRESS,
-        "to": to,
-        "subject": subject,
-        "html": content,
-    }
-    return resend.Emails.send(params)
+    try:
+        params: resend.Emails.SendParams = {
+            "from": NOREPLY_FULLNAME,
+            "to": to,
+            "subject": subject,
+            "html": content,
+        }
+        response = resend.Emails.send(params)
+        return response
+    except:
+        with smtplib.SMTP_SSL("smtp.gmail.com", port, context=context) as mail_server:
+            mail_server.login(FALLBACK_SENDER_ADDRESS, FALLBACK_SENDER_PASSWORD)
 
+            msg = MIMEMultipart('alternative')
+            #msg = EmailMessage()
+            msg['Subject'] = subject
+            msg['From'] = NOREPLY_FULLNAME
+            msg['To'] = to
+            msg.attach(MIMEText(content, 'plain'))
+            msg.attach(MIMEText(content, 'html'))
+
+            mail_server.send_message(msg, FALLBACK_SENDER_ADDRESS)
 
 def send_otp(to: str, account: User, otp_plaintext: str):
     send_email(
