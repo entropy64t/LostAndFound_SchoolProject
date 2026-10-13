@@ -19,18 +19,20 @@ Read the below section for details on how to deploy for development. Then see [C
 2. Prepare Python and Flask
     - Create a venv and install `requirements.txt`
     - Copy `server_secrets.py.template` to `server_secrets.py`
-    - Set environment variables required in `server_secrets.py` using `$ export varname="value"`
-        - `SENDER_ADDRESS` - an email address you own from which automated system emails will be sent
-        - `SENDER_PASSWORD` - the SMTP password for that account (for Gmail this must be a key generated in `My Account > Security & sign-in > 2-Step Verification > App passwords`)
-        - `REPLYTO_ADDRESS` - what email address replies to those automated emails should go to
+    - Set environment variables required in `server_secrets.py` using `$ export varname="value"` or by placing them in a `.env` file in the project root directory
+        - `TIMEZONE` - your instance's timezone as an IANA timezone string
+        - `RESEND_API` - a [Resend](https://resend.com) API key for sending automated emails from your domain (set to an empty string to use SMTP for email sending instead)
+        - `SENDER_EMAIL_DOMAIN` - the domain name for sending emails, as configured in Resend
+        - `FALLBACK_SENDER_ADDRESS` - an alternative email address for automated system emails
+        - `FALLBACK_SENDER_PASSWORD` - the SMTP password for that account (for Gmail this must be a key generated in `My Account > Security & sign-in > 2-Step Verification > App passwords`)
+        - `USER_EMAIL_DOMAIN` - your organization's email address domain (for users to verify their accounts)
+        - `EMAIL_WHITELIST` - an additional whitelist of accepted user verification email addresses, separated by `|`
         - `SECRET_KEY` - a secret long random string, e.g. Python's `secrets.token_hex(16)`
-        - `DATABASE_URL` - the PostgreSQL connection string: `postgresql://user:password@host/LostAndFound`, create a dedicated PostgreSQL user for the Flask web app and replace `user` and `password`
-    - Replace the timezone in `server_secrets.py` with your instance's timezone
-    - Replace `email_domain` in `server_secrets.py` with your organization's email address domain (for users to verify their accounts)
-    - Setup Babel: compile messages.po (`$ pybabel compile -d translations`)
+        - `DB_URI` - the PostgreSQL connection string: `postgresql://user:password@host/LostAndFound`, create a dedicated PostgreSQL user for the Flask web app and replace `user` and `password`
+    - Setup Babel: compile messages.po (`$ pybabel compile -d lostandfound/translations`)
 3. Run the server
     - In a development environment, run directly from Flask:
-        - `$ flask --app app.py run`
+        - `$ flask --app lostandfound/app.py run`
     - In a production environment:
         - Run the Gunicorn WSGI server: `$ gunicorn --bind 0.0.0.0:5000 lostandfound.app:app`
         - You can use a different port.

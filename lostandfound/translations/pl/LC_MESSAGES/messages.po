@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-26 11:35+0200\n"
+"POT-Creation-Date: 2026-10-13 21:41+0200\n"
 "PO-Revision-Date: 2026-05-26 19:16+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: pl\n"
@@ -19,11 +19,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
 
-#: email/email_config.py:18
+#: lostandfound/email/email_config.py:18
 msgid "email.otp.subject"
 msgstr "Twój kod LostAndFound to $otp"
 
-#: email/email_config.py:22
+#: lostandfound/email/email_config.py:22
 msgid "email.otp.content"
 msgstr ""
 "Użyj tego kodu aby zweryfikować swoje konto LostAndFound: \n"
@@ -31,19 +31,19 @@ msgstr ""
 "\n"
 "Kod jest ważny przez **30 minut**."
 
-#: email/email_config.py:26
+#: lostandfound/email/email_config.py:26
 msgid "email.pwreset.subject"
 msgstr "Twój link do resetowania hasła"
 
-#: email/email_config.py:30
+#: lostandfound/email/email_config.py:30
 msgid "email.pwreset.content"
 msgstr ""
-"Użyj tego linku aby zresetować hasło na swoim koncie LostAndFound:\n"
+"Użyj tego linku aby zresetować hasło do swojego konta LostAndFound:\n"
 "$link\n"
 "\n"
 "Link jest jednorazowy i ważny przez **30 minut**."
 
-#: email/email_config.py:34
+#: lostandfound/email/email_config.py:34
 msgid "email.footer"
 msgstr ""
 "\n"
@@ -51,94 +51,99 @@ msgstr ""
 "E-mail: $email\n"
 "Nazwa użytkownika: $name"
 
-#: templates/all.html:14
+#: lostandfound/templates/all.html:14
 msgid "All items"
 msgstr "Wszystkie przedmioty"
 
-#: templates/create_account.html:14 templates/create_account.html:56
+#: lostandfound/templates/create_account.html:14
+#: lostandfound/templates/create_account.html:56
 msgid "Create account"
 msgstr "Utwórz konto"
 
-#: templates/create_account.html:18
+#: lostandfound/templates/create_account.html:18
 msgid "Name (choose something others will recognize)"
 msgstr "Imię (rozpoznawalne przez innych)"
 
-#: templates/create_account.html:25 templates/login.html:18
-#: templates/pwreset/index.html:18
+#: lostandfound/templates/create_account.html:25
+#: lostandfound/templates/login.html:18
+#: lostandfound/templates/pwreset/index.html:18
 msgid "Email"
 msgstr "Adres e-mail"
 
-#: templates/account/delete.html:21 templates/create_account.html:31
-#: templates/login.html:24
+#: lostandfound/templates/account/delete.html:21
+#: lostandfound/templates/create_account.html:31
+#: lostandfound/templates/login.html:24
 msgid "Password"
 msgstr "Hasło"
 
-#: templates/create_account.html:37
+#: lostandfound/templates/create_account.html:37
 msgid "Repeat Password"
 msgstr "Powtórz hasło"
 
-#: templates/account/index.html:21 templates/create_account.html:43
+#: lostandfound/templates/account/index.html:21
+#: lostandfound/templates/create_account.html:43
 msgid "Grade"
 msgstr "Klasa"
 
-#: templates/create_account.html:43
+#: lostandfound/templates/create_account.html:43
 msgid "can be changed later"
 msgstr "może zostać zmieniona później"
 
-#: templates/account/index.html:61 templates/create_account.html:58
+#: lostandfound/templates/account/index.html:61
+#: lostandfound/templates/create_account.html:58
 msgid "Passwords don't match."
 msgstr "Podane hasła różnią się."
 
-#: templates/create_account.html:60
+#: lostandfound/templates/create_account.html:60
 msgid "An account with that email address already exists."
 msgstr "Konto z tym adresem e-mail już istnieje"
 
-#: templates/create_account.html:64
+#: lostandfound/templates/create_account.html:64
 msgid "Already have an account"
 msgstr "Posiadasz już konto"
 
-#: templates/create_account.html:65 templates/login.html:14
-#: templates/login.html:28
+#: lostandfound/templates/create_account.html:65
+#: lostandfound/templates/login.html:14 lostandfound/templates/login.html:28
 msgid "Login"
 msgstr "Logowanie"
 
-#: templates/footer.html:7
+#: lostandfound/templates/footer.html:7
 msgid "Privacy policy"
 msgstr "Polityka prywatności"
 
-#: templates/footer.html:15
+#: lostandfound/templates/footer.html:15
 msgid "Give feedback"
 msgstr "Przekaż opinię"
 
-#: templates/found.html:14
+#: lostandfound/templates/found.html:14
 msgid "Found items"
 msgstr "Znalezione przedmioty"
 
-#: templates/index.html:16
+#: lostandfound/templates/index.html:16
 msgid "active reports"
 msgstr "aktywnych zgłoszeń"
 
-#: templates/index.html:17
+#: lostandfound/templates/index.html:17
 msgid "lost"
 msgstr "zgubionych"
 
-#: templates/index.html:18
+#: lostandfound/templates/index.html:18
 msgid "found"
 msgstr "znalezionych"
 
-#: templates/index.html:21
+#: lostandfound/templates/index.html:21
 msgid "Looking for updates on something you have lost"
 msgstr "Szukasz informacji o swojej zgubie"
 
-#: templates/index.html:23
+#: lostandfound/templates/index.html:23
 msgid "Matches with your reports"
 msgstr "Zgłoszenia pasujące do Twoich"
 
-#: templates/index.html:25
+#: lostandfound/templates/index.html:25
 msgid "Reports with you as suspected owner"
 msgstr "Zgłoszenia, w których oznaczono Cię jako prawdopodobnego właściciela"
 
-#: templates/index.html:28
+#: lostandfound/templates/index.html:28
 msgid "index.instructions"
 msgstr ""
 "<p>Naciśnij <code>+</code> na górze strony, aby utworzyć zgłoszenie "
@@ -156,7 +161,7 @@ msgstr ""
 "podanych w opisie, jeśli są dostępne) i umów odbiór. Po rozwiązaniu "
 "sprawy obie strony powinny usunąć odpowiadające sobie zgłoszenia.</p>"
 
-#: templates/index.html:30
+#: lostandfound/templates/index.html:30
 msgid "index.contact"
 msgstr ""
 "<p>Aby zgłosić błąd lub zaproponować nową funkcję, otwórz zgłoszenie: <a "
@@ -164,137 +169,144 @@ msgstr ""
 "href='https://github.com/entropy64t/LostAndFound_SchoolProject'>GitHub</a>."
 " Aby uzyskać wsparcie, skontaktuj się z"
 
-#: templates/account/delete.html:24 templates/login.html:30
+#: lostandfound/templates/account/delete.html:24
+#: lostandfound/templates/login.html:30
 msgid "Wrong password"
 msgstr "Nieprawidłowe hasło"
 
-#: templates/login.html:34
+#: lostandfound/templates/login.html:34
 msgid "Don't have an account"
 msgstr "Nie posiadasz konta"
 
-#: templates/login.html:36
+#: lostandfound/templates/login.html:36
 msgid "Create one"
 msgstr "Utwórz je"
 
-#: templates/login.html:38
+#: lostandfound/templates/login.html:38
 msgid "Forgot your password"
 msgstr "Nie pamiętasz hasła"
 
-#: templates/login.html:38
+#: lostandfound/templates/login.html:38
 msgid "Reset it"
 msgstr "Zresetuj je"
 
-#: templates/lost.html:14
+#: lostandfound/templates/lost.html:14
 msgid "Lost items"
 msgstr "Zgubione przedmioty"
 
-#: templates/matches.html:15
+#: lostandfound/templates/matches.html:15
 msgid "Report matches"
 msgstr "Pasujące zgłoszenia"
 
-#: templates/matches.html:19
+#: lostandfound/templates/matches.html:19
 msgid "Choose which matches are displayed in the table"
 msgstr "Wybierz, które pasujące zgłoszenia będą wyświetlane w tabeli"
 
-#: templates/matches.html:20
+#: lostandfound/templates/matches.html:20
 msgid "Show matches"
 msgstr "Pokaż pasujące zgłoszenia"
 
-#: templates/matches.html:25
+#: lostandfound/templates/matches.html:25
 msgid "all.alt"
 msgstr "Wszystkie"
 
-#: templates/matches.html:30
+#: lostandfound/templates/matches.html:30
 msgid "Related to my reports"
 msgstr "Zgłoszenia pasujące do Twoich"
 
-#: templates/matches.html:35
+#: lostandfound/templates/matches.html:35
 msgid "Choose the column by which the match list is sorted"
 msgstr "Wybierx kolumnę, po której tabela będzie sortowana"
 
-#: templates/matches.html:36
+#: lostandfound/templates/matches.html:36
 msgid "Sort by"
 msgstr "Sortuj według"
 
-#: templates/matches.html:41 templates/matches.html:65
-#: templates/report_render.html:79
+#: lostandfound/templates/matches.html:41
+#: lostandfound/templates/matches.html:65
+#: lostandfound/templates/report_render.html:79
 msgid "Score"
 msgstr "Punkty"
 
-#: templates/matches.html:47
+#: lostandfound/templates/matches.html:47
 msgid "Creation date"
 msgstr "Data utworzenia"
 
-#: templates/matches.html:50 templates/report_render.html:54
+#: lostandfound/templates/matches.html:50
+#: lostandfound/templates/report_render.html:54
 msgid "Apply"
 msgstr "Zatwierdź"
 
-#: templates/matches.html:56
+#: lostandfound/templates/matches.html:56
 msgid "Tip"
 msgstr "Wskazówka"
 
-#: templates/matches.html:57
+#: lostandfound/templates/matches.html:57
 msgid ""
 "Reports shown in bold are authored by you and are easier to spot in the "
 "match list."
 msgstr "Zgłoszenia stworzone przez Ciebie są pogrubione."
 
-#: templates/matches.html:63
+#: lostandfound/templates/matches.html:63
 msgid "Lost item"
 msgstr "Zgubiony przedmiot"
 
-#: templates/matches.html:64
+#: lostandfound/templates/matches.html:64
 msgid "Found item"
 msgstr "Znaleziony przedmiot"
 
-#: templates/matches.html:66
+#: lostandfound/templates/matches.html:66
 msgid "Match appeared on"
 msgstr "Dopasowanie utworzono"
 
-#: templates/navbar.html:5
+#: lostandfound/templates/navbar.html:5
 msgid "Home"
 msgstr "Strona główna"
 
-#: templates/navbar.html:8 templates/report_render.html:13
-#: templates/report_render.html:29 templates/report_render.html:38
+#: lostandfound/templates/navbar.html:8
+#: lostandfound/templates/report_render.html:13
+#: lostandfound/templates/report_render.html:29
+#: lostandfound/templates/report_render.html:38
 msgid "All"
 msgstr "Wszystko"
 
-#: templates/navbar.html:11 templates/new.html:37
-#: templates/report/index.html:19 templates/report_render.html:30
+#: lostandfound/templates/navbar.html:11 lostandfound/templates/new.html:37
+#: lostandfound/templates/report/index.html:19
+#: lostandfound/templates/report_render.html:30
 msgid "Lost"
 msgstr "Zgubione"
 
-#: templates/navbar.html:14 templates/new.html:44
-#: templates/report/index.html:21 templates/report_render.html:31
+#: lostandfound/templates/navbar.html:14 lostandfound/templates/new.html:44
+#: lostandfound/templates/report/index.html:21
+#: lostandfound/templates/report_render.html:31
 msgid "Found"
 msgstr "Znalezione"
 
-#: templates/navbar.html:18
+#: lostandfound/templates/navbar.html:18
 msgid "Your reports"
 msgstr "Twoje zgłoszenia"
 
-#: templates/navbar.html:21
+#: lostandfound/templates/navbar.html:21
 msgid "Matches"
 msgstr "Pasujące zgłoszenia"
 
-#: templates/navbar.html:31
+#: lostandfound/templates/navbar.html:31
 msgid "Verify account"
 msgstr "Weryfikacja konta"
 
-#: templates/navbar.html:41
+#: lostandfound/templates/navbar.html:41
 msgid "Logout"
 msgstr "Wyloguj się"
 
-#: templates/new.html:14
+#: lostandfound/templates/new.html:14
 msgid "New report"
 msgstr "Nowe zgłoszenie"
 
-#: templates/new.html:17
+#: lostandfound/templates/new.html:17
 msgid "Instructions"
 msgstr "Instrukcja"
 
-#: templates/new.html:20
+#: lostandfound/templates/new.html:20
 msgid "index.short_instructions"
 msgstr ""
 "<strong>Pożyczone przez Ciebie rzeczy powinny zostać oznaczone jako "
@@ -302,233 +314,259 @@ msgstr ""
 "skontaktować przez szkolnego e-maila, proszę umieść informacje kontaktowe"
 " w opisie zgłoszenia.</p"
 
-#: templates/new.html:27 templates/report/edit.html:19
+#: lostandfound/templates/new.html:27
+#: lostandfound/templates/report/edit.html:19
 msgid "Report title"
 msgstr "Tytuł zgłoszenia"
 
-#: templates/new.html:32 templates/report_render.html:27
+#: lostandfound/templates/new.html:32
+#: lostandfound/templates/report_render.html:27
 msgid "Report type"
 msgstr "Kategoria"
 
-#: templates/new.html:50 templates/report/edit.html:24
-#: templates/report_render.html:36
+#: lostandfound/templates/new.html:50
+#: lostandfound/templates/report/edit.html:24
+#: lostandfound/templates/report_render.html:36
 msgid "Item type"
 msgstr "Rodzaj przedmiotu"
 
-#: templates/new.html:63 templates/report/edit.html:38
+#: lostandfound/templates/new.html:63
+#: lostandfound/templates/report/edit.html:38
 msgid "Item colour"
 msgstr "Kolor"
 
-#: templates/new.html:77 templates/report/edit.html:53
+#: lostandfound/templates/new.html:77
+#: lostandfound/templates/report/edit.html:53
 msgid "colour.unknown"
 msgstr "Inny / nieznany"
 
-#: templates/new.html:84 templates/new.html:176 templates/report/edit.html:60
+#: lostandfound/templates/new.html:84 lostandfound/templates/new.html:176
+#: lostandfound/templates/report/edit.html:60
 msgid "Last seen on"
 msgstr "Ostatnio widziane"
 
-#: templates/new.html:90 templates/new.html:177 templates/report/edit.html:66
+#: lostandfound/templates/new.html:90 lostandfound/templates/new.html:177
+#: lostandfound/templates/report/edit.html:66
 msgid "Lost in"
 msgstr "Zgubione w"
 
-#: templates/new.html:103 templates/report/edit.html:80
-#: templates/report/index.html:53 templates/report_render.html:47
-#: templates/report_render.html:115
+#: lostandfound/templates/new.html:103
+#: lostandfound/templates/report/edit.html:80
+#: lostandfound/templates/report/index.html:53
+#: lostandfound/templates/report_render.html:47
+#: lostandfound/templates/report_render.html:115
 msgid "Suspected owner"
 msgstr "Prawdopodobny właściciel"
 
-#: templates/new.html:107 templates/report/edit.html:84
+#: lostandfound/templates/new.html:107
+#: lostandfound/templates/report/edit.html:84
 msgid "Filter by grade"
 msgstr "Filtruj po klasie"
 
-#: templates/new.html:115 templates/report/edit.html:92
+#: lostandfound/templates/new.html:115
+#: lostandfound/templates/report/edit.html:92
 msgid "Owner"
 msgstr "Właściciel"
 
-#: templates/new.html:128 templates/report/edit.html:105
+#: lostandfound/templates/new.html:128
+#: lostandfound/templates/report/edit.html:105
 msgid "Retrieve found item at"
 msgstr "Odzyskaj w"
 
-#: templates/new.html:140 templates/report/edit.html:118
+#: lostandfound/templates/new.html:140
+#: lostandfound/templates/report/edit.html:118
 msgid "Description"
 msgstr "Dodatkowe informacje"
 
-#: templates/new.html:142
+#: lostandfound/templates/new.html:142
+#: lostandfound/templates/report/edit.html:120
 msgid "You can use"
 msgstr "Możesz używać"
 
-#: templates/new.html:146
+#: lostandfound/templates/new.html:146
 msgid "Create"
 msgstr "Utwórz"
 
-#: templates/new.html:184 templates/report/edit.html:60
+#: lostandfound/templates/new.html:184
+#: lostandfound/templates/report/edit.html:60
 msgid "Found on"
 msgstr "Znalezione"
 
-#: templates/new.html:185 templates/report/edit.html:66
+#: lostandfound/templates/new.html:185
+#: lostandfound/templates/report/edit.html:66
 msgid "Found in"
 msgstr "Znalezione w"
 
-#: templates/report_render.html:6
+#: lostandfound/templates/report_render.html:6
 msgid "Filter by name or description"
 msgstr "Filtruj po tytule lub opisie"
 
-#: templates/report/index.html:35 templates/report_render.html:9
-#: templates/report_render.html:94
+#: lostandfound/templates/report/index.html:35
+#: lostandfound/templates/report_render.html:9
+#: lostandfound/templates/report_render.html:94
 msgid "Colour"
 msgstr "Kolor"
 
-#: templates/report_render.html:49
+#: lostandfound/templates/report_render.html:49
 msgid "Anybody"
 msgstr "Ktokolwiek"
 
-#: templates/report_render.html:50
+#: lostandfound/templates/report_render.html:50
 msgid "You"
 msgstr "Ty"
 
-#: templates/report_render.html:72
+#: lostandfound/templates/report_render.html:72
 msgid "By"
 msgstr "Przez"
 
-#: templates/report_render.html:74
+#: lostandfound/templates/report_render.html:74
 msgid "Posted"
 msgstr "Utworzono"
 
-#: templates/report/index.html:29 templates/report_render.html:87
+#: lostandfound/templates/report/index.html:29
+#: lostandfound/templates/report_render.html:87
 msgid "Category"
 msgstr "Przedmiot"
 
-#: templates/report/index.html:43 templates/report_render.html:103
+#: lostandfound/templates/report/index.html:43
+#: lostandfound/templates/report_render.html:103
 msgid "Last seen"
 msgstr "Ostatnio widziane"
 
-#: templates/report/index.html:46 templates/report_render.html:107
+#: lostandfound/templates/report/index.html:46
+#: lostandfound/templates/report_render.html:107
 msgid "common.at.location"
 msgstr "w"
 
-#: templates/report_render.html:132
+#: lostandfound/templates/report_render.html:132
 msgid "View details"
 msgstr "Więcej"
 
-#: templates/account/delete.html:13 templates/account/delete.html:31
-#: templates/account/index.html:81
+#: lostandfound/templates/account/delete.html:13
+#: lostandfound/templates/account/delete.html:31
+#: lostandfound/templates/account/index.html:81
 msgid "Delete account"
 msgstr "Usuń konto"
 
-#: templates/account/delete.html:15 templates/account/delete.html:30
+#: lostandfound/templates/account/delete.html:15
+#: lostandfound/templates/account/delete.html:30
 msgid "Are you sure you want to delete your account"
 msgstr "Czy na pewno chcesz usunąć swoje konto"
 
-#: templates/account/delete.html:16
+#: lostandfound/templates/account/delete.html:16
 msgid "This action is permanent and deletes all reports you have created"
 msgstr "Jest to nieodwracalne i usuwa wszystkie Twoje zgłoszenia"
 
-#: templates/account/delete.html:20
+#: lostandfound/templates/account/delete.html:20
 msgid "Enter your password to delete your account"
 msgstr "Wpisz swoje hasło, aby usunąć konto"
 
-#: templates/account/delete.html:28 templates/report/edit.html:127
+#: lostandfound/templates/account/delete.html:28
+#: lostandfound/templates/report/edit.html:127
 msgid "Back"
 msgstr "Wstecz"
 
-#: templates/account/index.html:13
+#: lostandfound/templates/account/index.html:13
 msgid "My account"
 msgstr "Moje Konto"
 
-#: templates/account/index.html:17
+#: lostandfound/templates/account/index.html:17
 msgid "id"
 msgstr ""
 
-#: templates/account/index.html:19
+#: lostandfound/templates/account/index.html:19
 msgid "Manage your account here."
 msgstr "Zarządzaj kontem."
 
-#: templates/account/index.html:20
+#: lostandfound/templates/account/index.html:20
 msgid "Email address"
 msgstr "Adres e-mail"
 
-#: templates/account/index.html:24
+#: lostandfound/templates/account/index.html:24
 msgid "Account verified"
 msgstr "Konto zweryfikowane"
 
-#: templates/account/index.html:26
+#: lostandfound/templates/account/index.html:26
 msgid "Account NOT verified"
 msgstr "Konto NIE zweryfikowane"
 
-#: templates/account/index.html:30
+#: lostandfound/templates/account/index.html:30
 msgid "Update personal data"
 msgstr "Zmień dane konta"
 
-#: templates/account/index.html:34
+#: lostandfound/templates/account/index.html:34
 msgid "Change name"
 msgstr "Zmień nazwę użytkownika"
 
-#: templates/account/index.html:41
+#: lostandfound/templates/account/index.html:41
 msgid "Change grade"
 msgstr "Zmień klasę"
 
-#: templates/account/index.html:54
+#: lostandfound/templates/account/index.html:54
 msgid "Change password"
 msgstr "Zmień hasło"
 
-#: templates/account/index.html:55
+#: lostandfound/templates/account/index.html:55
 msgid "New password"
 msgstr "Nowe hasło"
 
-#: templates/account/index.html:56
+#: lostandfound/templates/account/index.html:56
 msgid "Repeat new password"
 msgstr "Powtórz nowe hasło"
 
-#: templates/account/index.html:58
+#: lostandfound/templates/account/index.html:58
 msgid "Old password"
 msgstr "Hasło"
 
-#: templates/account/index.html:63
+#: lostandfound/templates/account/index.html:63
 msgid "Wrong old password"
 msgstr "Nieprawidłowe hasło"
 
-#: templates/account/index.html:69
+#: lostandfound/templates/account/index.html:69
 msgid "Change email (this will become your new login)"
 msgstr "Zmień e-mail (to będzie Twój nowy login)"
 
-#: templates/account/index.html:70
+#: lostandfound/templates/account/index.html:70
 msgid "New email"
 msgstr "Nowy adres e-mail"
 
-#: templates/account/index.html:71
+#: lostandfound/templates/account/index.html:71
 msgid "Repeat new email"
 msgstr "Powtórz nowy e-mail"
 
-#: templates/account/index.html:74
+#: lostandfound/templates/account/index.html:74
 msgid "Emails don't match"
 msgstr "E-maile są różne"
 
-#: templates/account/index.html:78
+#: lostandfound/templates/account/index.html:78
 msgid "Change"
 msgstr "Zmień"
 
-#: templates/pwreset/check.html:14 templates/pwreset/check.html:28
-#: templates/pwreset/index.html:14 templates/pwreset/index.html:22
+#: lostandfound/templates/pwreset/check.html:14
+#: lostandfound/templates/pwreset/check.html:28
+#: lostandfound/templates/pwreset/index.html:14
+#: lostandfound/templates/pwreset/index.html:22
 msgid "Reset password"
 msgstr "Zresetuj hasło"
 
-#: templates/pwreset/check.html:18
+#: lostandfound/templates/pwreset/check.html:18
 msgid "Set a new password"
 msgstr "Ustaw nowe hasło"
 
-#: templates/pwreset/check.html:24
+#: lostandfound/templates/pwreset/check.html:24
 msgid "Repeat password"
 msgstr "Powtórz hasło"
 
-#: templates/pwreset/check.html:30
+#: lostandfound/templates/pwreset/check.html:30
 msgid "Passwords don't match"
 msgstr "Podane hasła różnią się"
 
-#: templates/pwreset/check.html:34 templates/pwreset/index.html:32
+#: lostandfound/templates/pwreset/check.html:34
+#: lostandfound/templates/pwreset/index.html:32
 msgid "Return to login"
 msgstr "Powrót do logowania"
 
-#: templates/pwreset/index.html:24
+#: lostandfound/templates/pwreset/index.html:24
 msgid ""
 "If an account with the provided email address exists, you have been sent "
 "a password reset link. Also check your spam folder"
@@ -536,59 +574,59 @@ msgstr ""
 "Jeżeli konto z podanym adresem e-mail istnieje, zostanie wysłany link do "
 "resetowania hasła. Sprawdź również folder ze spamem"
 
-#: templates/pwreset/index.html:28
+#: lostandfound/templates/pwreset/index.html:28
 msgid "The reset token is incorrect, has been used, or has expired"
 msgstr "Link do resetowania hasła jest niepoprawny, został już użyty, albo wygasł"
 
-#: templates/report/edit.html:14 templates/report/index.html:78
+#: lostandfound/templates/report/edit.html:14
+#: lostandfound/templates/report/index.html:78
 msgid "Edit report"
 msgstr "Edytuj zgłoszenie"
 
-#: templates/report/edit.html:16 templates/report/index.html:23
+#: lostandfound/templates/report/edit.html:16
+#: lostandfound/templates/report/index.html:23
 msgid "by"
 msgstr "przez"
 
-#: templates/report/edit.html:16 templates/report/index.html:23
+#: lostandfound/templates/report/edit.html:16
+#: lostandfound/templates/report/index.html:23
 msgid "posted"
 msgstr "utworzono"
 
-#: templates/report/edit.html:120
-msgid "You can use Markdown."
-msgstr "Możesz używać Markdown."
-
-#: templates/report/edit.html:125
+#: lostandfound/templates/report/edit.html:125
 msgid "Save"
 msgstr "Zapisz"
 
-#: templates/report/index.html:14
+#: lostandfound/templates/report/index.html:14
 msgid "Report details"
 msgstr "Szczegóły zgłoszenia"
 
-#: templates/report/index.html:64
+#: lostandfound/templates/report/index.html:64
 msgid "No description provided"
 msgstr "Brak dodatkowych informacji"
 
-#: templates/report/index.html:71
+#: lostandfound/templates/report/index.html:71
 msgid "Retrieve at"
 msgstr "Odzyskaj w"
 
-#: templates/report/index.html:83
+#: lostandfound/templates/report/index.html:83
 msgid "Are you sure you want to delete this report"
 msgstr "Czy na pewno chcesz usunąć to zgłoszenie"
 
-#: templates/report/index.html:84
+#: lostandfound/templates/report/index.html:84
 msgid "Delete report"
 msgstr "Usuń zgłoszenie"
 
-#: templates/report/index.html:93
+#: lostandfound/templates/report/index.html:93
 msgid "Matches with this report"
 msgstr "Zgłoszenia pasujące do tego"
 
-#: templates/verification/check.html:15 templates/verification/index.html:15
+#: lostandfound/templates/verification/check.html:15
+#: lostandfound/templates/verification/index.html:15
 msgid "Verify your account"
 msgstr "Weryfikacja konta"
 
-#: templates/verification/check.html:16
+#: lostandfound/templates/verification/check.html:16
 msgid ""
 "Enter the code sent to the provided address. Also check your spam folder."
 " The code is valid for 30 minutes"
@@ -596,38 +634,38 @@ msgstr ""
 "Wpisz kod wysłany na podany adres e-mail. Sprawdź również folder ze "
 "spamem. Kod jest ważny przez 30 minut"
 
-#: templates/verification/check.html:20
+#: lostandfound/templates/verification/check.html:20
 msgid "Verification code"
 msgstr "Kod do weryfikacji"
 
-#: templates/verification/check.html:23
+#: lostandfound/templates/verification/check.html:23
 msgid "Submit"
 msgstr "Zatwierdź"
 
-#: templates/verification/check.html:25
+#: lostandfound/templates/verification/check.html:25
 #, fuzzy
 msgid "The entered code is incorrect or it has expired"
 msgstr "Link do resetowania hasła jest niepoprawny, został już użyty, albo wygasł"
 
-#: templates/verification/check.html:29
+#: lostandfound/templates/verification/check.html:29
 msgid "Message didn't arrive"
 msgstr "E-mail nie przyszedł"
 
-#: templates/verification/check.html:30
+#: lostandfound/templates/verification/check.html:30
 msgid "Send another"
 msgstr "Wyślij ponownie"
 
-#: templates/verification/index.html:16
+#: lostandfound/templates/verification/index.html:16
 msgid ""
 "To access any kind of lost and found functionality, you must verify your "
 "account"
 msgstr "Aby mieć dostęp do wszystkich funkcji, musisz zweryfikować swoje konto"
 
-#: templates/verification/index.html:20
+#: lostandfound/templates/verification/index.html:20
 msgid "Verification email"
 msgstr "Adres e-mail do weryfikacji"
 
-#: templates/verification/index.html:23
+#: lostandfound/templates/verification/index.html:23
 #, python-format
 msgid ""
 "This address is only used to verify your account and must be part of the "
@@ -636,11 +674,11 @@ msgstr ""
 "Ten adres e-mail zostanie użyty wyłącznie do weryfikacji Twojego konta i "
 "musi być w domenie %(domain)s"
 
-#: templates/verification/index.html:29
+#: lostandfound/templates/verification/index.html:29
 msgid "Verify"
 msgstr "Weryfikuj"
 
-#: templates/verification/index.html:31
+#: lostandfound/templates/verification/index.html:31
 #, fuzzy
 msgid ""
 "The entered email address doesn't belong to the appropriate\n"
@@ -690,4 +728,7 @@ msgstr "Wpisany adres e-mail nie jest w odpowiedniej domenie"
 #~ "$link\n"
 #~ "\n"
 #~ "Link jest jednorazowy i ważny przez **30 minut**."
+
+#~ msgid "You can use Markdown."
+#~ msgstr "Możesz używać Markdown."
 

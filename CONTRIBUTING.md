@@ -5,9 +5,15 @@ Consult [the deployment manual](https://github.com/entropy64t/LostAndFound_Schoo
 This project uses [Flask](https://flask.palletsprojects.com/en/stable/) for the backend, [Jinja](https://jinja.palletsprojects.com/en/stable/) to render HTML pages, [SQLAlchemy](https://www.sqlalchemy.org/) for interacting with the [PostgreSQL](https://www.postgresql.org/) database, and [Babel](https://babel.pocoo.org/en/latest/) for managing Polish translations.
 
 The project structure is as follows:
-- `/`
-    - `routes.py` manages most backend logic, specifically all HTTP endpoints
-    - Several other python scripts do ORM, email sending, and report scoring
-- `/templates` contains all Jinja HTML templates, rendered from `routes.py`
-- `/static` contains CSS styles for `/templates`
-- `/translations` contains GNU gettext PO files used by Babel
+- `/lostandfound/`
+    - `app.py` - the application's main
+    - `routes.py` manages the root HTTP endpoint
+    - `account/` - endpoints for the user account pages
+    - `auth/` - endpoints for login, account creation and verification
+    - `reports/` - main logic for item reports and related HTTP endpoints
+    - `email/` - email sending
+    - `models.py` - SQLAlchemy ORM
+    - `utility/` - Markdown parsing and report matching
+    - `templates/` contains all Jinja HTML templates, rendered from `routes.py`
+    - `static/` contains CSS styles for `/templates`
+    - `translations/` contains GNU gettext PO files used by Babel

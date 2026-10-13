@@ -1,3 +1,3 @@
-pybabel extract -F babel.cfg -k lang -o messages.pot .
+pybabel extract -F lostandfound/babel.cfg -k lang -o messages.pot .
 
-pybabel init -i messages.pot -d translations -l pl
+pybabel init -i messages.pot -d lostandfound/translations -l pl

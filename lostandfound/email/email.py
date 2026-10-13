@@ -8,8 +8,7 @@ from lostandfound.user import User
 
 from ..config import EMAIL_WHITELIST, USER_EMAIL_DOMAIN, FALLBACK_SENDER_ADDRESS, FALLBACK_SENDER_PASSWORD
 from .email_config import (
-    NOREPLY_ADDRESS,
-    NOREPLY_FULLNAME,
+    CONTACT_FULLNAME,
     email_footer,
     otp_mail,
     otp_subject,
@@ -29,7 +28,7 @@ context = ssl.create_default_context()
 def send_email(to: str, subject: str, content: str):
     try:
         params: resend.Emails.SendParams = {
-            "from": NOREPLY_FULLNAME,
+            "from": CONTACT_FULLNAME,
             "to": to,
             "subject": subject,
             "html": content,
@@ -41,9 +40,8 @@ def send_email(to: str, subject: str, content: str):
             mail_server.login(FALLBACK_SENDER_ADDRESS, FALLBACK_SENDER_PASSWORD)
 
             msg = MIMEMultipart('alternative')
-            #msg = EmailMessage()
             msg['Subject'] = subject
-            msg['From'] = NOREPLY_FULLNAME
+            msg['From'] = CONTACT_FULLNAME
             msg['To'] = to
             msg.attach(MIMEText(content, 'plain'))
             msg.attach(MIMEText(content, 'html'))
