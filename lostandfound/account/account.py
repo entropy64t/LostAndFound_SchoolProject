@@ -1,10 +1,10 @@
-from flask import redirect, render_template, request, url_for
+from flask import redirect, render_template, request, url_for, make_response
 from flask_login import current_user, login_required
 from sqlalchemy import text
 
 from lostandfound import db
 from lostandfound.account import account_bp
-from lostandfound.models import get_grade
+from lostandfound.models import Grade, all_grades, get_user, find_by_email, create_user, all_users, Report, get_report, all_matches
 
 
 @account_bp.route("/", methods=["GET", "POST"])
@@ -48,19 +48,16 @@ def account():
 
         return redirect(url_for("account.account"))
 
-    user_grade = get_grade(current_user.grade)
+    user_grade = current_user.grade_obj
     if user_grade != None:
         grade_name = user_grade.name
     else:
         grade_name = "not set"
 
-    grades_from_db = db.session.execute(text("SELECT * FROM grades;")).mappings().all()
-    return render_template(
-        "account/index.html",
-        grade_id=current_user.grade,
-        grade_name=grade_name,
-        grade_list=grades_from_db,
-    )
+    grades_from_db = all_grades()
+    res = make_response(render_template("account/index.html", grade_id=current_user.grade, grade_name=grade_name, grade_list=grades_from_db))
+    res.headers['Cache-Control'] = 'no-store'
+    return res
 
 
 @account_bp.route("/delete", methods=["GET", "POST"])

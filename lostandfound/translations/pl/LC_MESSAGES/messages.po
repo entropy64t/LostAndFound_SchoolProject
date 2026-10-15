@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-13 21:41+0200\n"
+"POT-Creation-Date: 2026-10-15 07:39+0200\n"
 "PO-Revision-Date: 2026-05-26 19:16+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: pl\n"
@@ -19,6 +19,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
 
+#: lostandfound/models.py:75
+msgid "level"
+msgstr "poziom"
+
 #: lostandfound/email/email_config.py:18
 msgid "email.otp.subject"
 msgstr "Twój kod LostAndFound to $otp"
@@ -26,10 +30,11 @@ msgstr "Twój kod LostAndFound to $otp"
 #: lostandfound/email/email_config.py:22
 msgid "email.otp.content"
 msgstr ""
-"Użyj tego kodu aby zweryfikować swoje konto LostAndFound: \n"
-"**$otp**\n"
-"\n"
-"Kod jest ważny przez **30 minut**."
+ "Użyj tego kodu aby zweryfikować swoje konto LostAndFound: \n"
+ "**$otp**\n"
+ "\n"
+ "Kod jest ważny przez **30 minut**."
+
 
 #: lostandfound/email/email_config.py:26
 msgid "email.pwreset.subject"
@@ -38,18 +43,20 @@ msgstr "Twój link do resetowania hasła"
 #: lostandfound/email/email_config.py:30
 msgid "email.pwreset.content"
 msgstr ""
-"Użyj tego linku aby zresetować hasło do swojego konta LostAndFound:\n"
-"$link\n"
-"\n"
-"Link jest jednorazowy i ważny przez **30 minut**."
+ "Użyj tego linku aby zresetować hasło do swojego konta LostAndFound:\n"
+ "$link\n"
+ "\n"
+ "Link jest jednorazowy i ważny przez **30 minut**."
+
 
 #: lostandfound/email/email_config.py:34
 msgid "email.footer"
 msgstr ""
-"\n"
-"Szczegóły:\n"
-"E-mail: $email\n"
-"Nazwa użytkownika: $name"
+ "\n"
+ "Szczegóły:\n"
+ "E-mail: $email\n"
+ "Nazwa użytkownika: $name"
+
 
 #: lostandfound/templates/all.html:14
 msgid "All items"
@@ -96,7 +103,7 @@ msgstr "Podane hasła różnią się."
 
 #: lostandfound/templates/create_account.html:60
 msgid "An account with that email address already exists."
-msgstr "Konto z tym adresem e-mail już istnieje"
+msgstr "Konto z tym adresem e-mail już istnieje."
 
 #: lostandfound/templates/create_account.html:64
 msgid "Already have an account"
@@ -146,28 +153,42 @@ msgstr "Zgłoszenia, w których oznaczono Cię jako prawdopodobnego właściciel
 #: lostandfound/templates/index.html:28
 msgid "index.instructions"
 msgstr ""
-"<p>Naciśnij <code>+</code> na górze strony, aby utworzyć zgłoszenie "
-"przedmiotu zgubionego lub znalezionego. <strong>Pożyczone przez Ciebie "
-"rzeczy powinny zostać oznaczone jako <code>znalezione</code>.</strong> "
-"Jeżeli nie można się z Tobą łatwo skontaktować przez szkolnego e-maila, "
-"proszę umieść informacje kontaktowe w opisie zgłoszenia.</p><p>Przeglądaj"
-" zgłoszenia, aby znaleźć zgłoszenia przeciwnego typu pasujące do Twojego "
-"przedmiotu. Alternatywnie możesz użyć jednego z dwóch przycisków powyżej,"
-" aby wyświetlić listę automatycznie wygenerowanych par zgłoszeń. Są one "
-"również wyświetlane na stronie szczegółów zgłoszenia.</p><p>Gdy "
-"znajdziesz zgłoszenie, które Twoim zdaniem opisuje "
-"zgubiony/znaleziony/pożyczony przez Ciebie przedmiot, skontaktuj się "
-"prywatnie z autorem zgłoszenia (korzystając z danych kontaktowych "
-"podanych w opisie, jeśli są dostępne) i umów odbiór. Po rozwiązaniu "
-"sprawy obie strony powinny usunąć odpowiadające sobie zgłoszenia.</p>"
+ "<p>Naciśnij <code>+</code> na górze strony,"
+ " aby utworzyć zgłoszenie przedmiotu "
+ "zgubionego lub znalezionego. <strong>Pożyczone "
+ "przez Ciebie rzeczy powinny zostać "
+ "oznaczone jako <code>znalezione</code>.</strong> "
+ "Jeżeli nie można się z Tobą łatwo"
+ " skontaktować przez szkolnego e-maila, "
+ "proszę umieść informacje kontaktowe w "
+ "opisie zgłoszenia.</p><p>Przeglądaj zgłoszenia, aby"
+ " znaleźć zgłoszenia przeciwnego typu "
+ "pasujące do Twojego przedmiotu. Alternatywnie"
+ " możesz użyć jednego z dwóch "
+ "przycisków powyżej, aby wyświetlić listę "
+ "automatycznie wygenerowanych par zgłoszeń. Są"
+ " one również wyświetlane na stronie "
+ "szczegółów zgłoszenia.</p><p>Gdy znajdziesz "
+ "zgłoszenie, które Twoim zdaniem opisuje "
+ "zgubiony/znaleziony/pożyczony przez Ciebie "
+ "przedmiot, skontaktuj się prywatnie z "
+ "autorem zgłoszenia (korzystając z danych "
+ "kontaktowych podanych w opisie, jeśli są"
+ " dostępne) i umów odbiór. Po "
+ "rozwiązaniu sprawy obie strony powinny "
+ "usunąć odpowiadające sobie zgłoszenia.</p>"
+
 
 #: lostandfound/templates/index.html:30
 msgid "index.contact"
 msgstr ""
-"<p>Aby zgłosić błąd lub zaproponować nową funkcję, otwórz zgłoszenie: <a "
-"style='color: var(--primary);' target='_blank' "
-"href='https://github.com/entropy64t/LostAndFound_SchoolProject'>GitHub</a>."
-" Aby uzyskać wsparcie, skontaktuj się z"
+ "<p>Aby zgłosić błąd lub zaproponować "
+ "nową funkcję, otwórz zgłoszenie: <a "
+ "style='color: var(--primary);' target='_blank' "
+ "href='https://github.com/entropy64t/LostAndFound_SchoolProject'>GitHub</a>."
+ " Aby uzyskać wsparcie, skontaktuj się "
+ "z"
+
 
 #: lostandfound/templates/account/delete.html:24
 #: lostandfound/templates/login.html:30
@@ -216,7 +237,7 @@ msgstr "Zgłoszenia pasujące do Twoich"
 
 #: lostandfound/templates/matches.html:35
 msgid "Choose the column by which the match list is sorted"
-msgstr "Wybierx kolumnę, po której tabela będzie sortowana"
+msgstr "Wybierz kolumnę, po której tabela będzie sortowana"
 
 #: lostandfound/templates/matches.html:36
 msgid "Sort by"
@@ -224,7 +245,7 @@ msgstr "Sortuj według"
 
 #: lostandfound/templates/matches.html:41
 #: lostandfound/templates/matches.html:65
-#: lostandfound/templates/report_render.html:79
+#: lostandfound/templates/report_render.html:86
 msgid "Score"
 msgstr "Punkty"
 
@@ -233,7 +254,7 @@ msgid "Creation date"
 msgstr "Data utworzenia"
 
 #: lostandfound/templates/matches.html:50
-#: lostandfound/templates/report_render.html:54
+#: lostandfound/templates/report_render.html:61
 msgid "Apply"
 msgstr "Zatwierdź"
 
@@ -245,7 +266,7 @@ msgstr "Wskazówka"
 msgid ""
 "Reports shown in bold are authored by you and are easier to spot in the "
 "match list."
-msgstr "Zgłoszenia stworzone przez Ciebie są pogrubione."
+msgstr ""
 
 #: lostandfound/templates/matches.html:63
 msgid "Lost item"
@@ -309,10 +330,12 @@ msgstr "Instrukcja"
 #: lostandfound/templates/new.html:20
 msgid "index.short_instructions"
 msgstr ""
-"<strong>Pożyczone przez Ciebie rzeczy powinny zostać oznaczone jako "
-"<code>znalezione</code>. </strong>Jeżeli nie można się z Tobą łatwo "
-"skontaktować przez szkolnego e-maila, proszę umieść informacje kontaktowe"
-" w opisie zgłoszenia.</p"
+ "<strong>Pożyczone przez Ciebie rzeczy powinny"
+ " zostać oznaczone jako <code>znalezione</code>."
+ " </strong>Jeżeli nie można się z Tobą"
+ " łatwo skontaktować przez szkolnego "
+ "e-maila, proszę umieść informacje kontaktowe"
+ " w opisie zgłoszenia."
 
 #: lostandfound/templates/new.html:27
 #: lostandfound/templates/report/edit.html:19
@@ -340,12 +363,12 @@ msgstr "Kolor"
 msgid "colour.unknown"
 msgstr "Inny / nieznany"
 
-#: lostandfound/templates/new.html:84 lostandfound/templates/new.html:176
+#: lostandfound/templates/new.html:84 lostandfound/templates/new.html:177
 #: lostandfound/templates/report/edit.html:60
 msgid "Last seen on"
 msgstr "Ostatnio widziane"
 
-#: lostandfound/templates/new.html:90 lostandfound/templates/new.html:177
+#: lostandfound/templates/new.html:90 lostandfound/templates/new.html:178
 #: lostandfound/templates/report/edit.html:66
 msgid "Lost in"
 msgstr "Zgubione w"
@@ -354,7 +377,7 @@ msgstr "Zgubione w"
 #: lostandfound/templates/report/edit.html:80
 #: lostandfound/templates/report/index.html:53
 #: lostandfound/templates/report_render.html:47
-#: lostandfound/templates/report_render.html:115
+#: lostandfound/templates/report_render.html:122
 msgid "Suspected owner"
 msgstr "Prawdopodobny właściciel"
 
@@ -363,36 +386,41 @@ msgstr "Prawdopodobny właściciel"
 msgid "Filter by grade"
 msgstr "Filtruj po klasie"
 
-#: lostandfound/templates/new.html:115
-#: lostandfound/templates/report/edit.html:92
+#: lostandfound/templates/new.html:110
+#: lostandfound/templates/report/edit.html:87
+msgid "No grade"
+msgstr "Bez klasy"
+
+#: lostandfound/templates/new.html:116
+#: lostandfound/templates/report/edit.html:93
 msgid "Owner"
 msgstr "Właściciel"
 
-#: lostandfound/templates/new.html:128
-#: lostandfound/templates/report/edit.html:105
+#: lostandfound/templates/new.html:129
+#: lostandfound/templates/report/edit.html:106
 msgid "Retrieve found item at"
 msgstr "Odzyskaj w"
 
-#: lostandfound/templates/new.html:140
-#: lostandfound/templates/report/edit.html:118
+#: lostandfound/templates/new.html:141
+#: lostandfound/templates/report/edit.html:119
 msgid "Description"
 msgstr "Dodatkowe informacje"
 
-#: lostandfound/templates/new.html:142
-#: lostandfound/templates/report/edit.html:120
+#: lostandfound/templates/new.html:143
+#: lostandfound/templates/report/edit.html:121
 msgid "You can use"
 msgstr "Możesz używać"
 
-#: lostandfound/templates/new.html:146
+#: lostandfound/templates/new.html:147
 msgid "Create"
 msgstr "Utwórz"
 
-#: lostandfound/templates/new.html:184
+#: lostandfound/templates/new.html:185
 #: lostandfound/templates/report/edit.html:60
 msgid "Found on"
 msgstr "Znalezione"
 
-#: lostandfound/templates/new.html:185
+#: lostandfound/templates/new.html:186
 #: lostandfound/templates/report/edit.html:66
 msgid "Found in"
 msgstr "Znalezione w"
@@ -403,7 +431,7 @@ msgstr "Filtruj po tytule lub opisie"
 
 #: lostandfound/templates/report/index.html:35
 #: lostandfound/templates/report_render.html:9
-#: lostandfound/templates/report_render.html:94
+#: lostandfound/templates/report_render.html:101
 msgid "Colour"
 msgstr "Kolor"
 
@@ -415,30 +443,30 @@ msgstr "Ktokolwiek"
 msgid "You"
 msgstr "Ty"
 
-#: lostandfound/templates/report_render.html:72
+#: lostandfound/templates/report_render.html:79
 msgid "By"
 msgstr "Przez"
 
-#: lostandfound/templates/report_render.html:74
+#: lostandfound/templates/report_render.html:81
 msgid "Posted"
 msgstr "Utworzono"
 
 #: lostandfound/templates/report/index.html:29
-#: lostandfound/templates/report_render.html:87
+#: lostandfound/templates/report_render.html:94
 msgid "Category"
 msgstr "Przedmiot"
 
 #: lostandfound/templates/report/index.html:43
-#: lostandfound/templates/report_render.html:103
+#: lostandfound/templates/report_render.html:110
 msgid "Last seen"
 msgstr "Ostatnio widziane"
 
 #: lostandfound/templates/report/index.html:46
-#: lostandfound/templates/report_render.html:107
+#: lostandfound/templates/report_render.html:114
 msgid "common.at.location"
 msgstr "w"
 
-#: lostandfound/templates/report_render.html:132
+#: lostandfound/templates/report_render.html:139
 msgid "View details"
 msgstr "Więcej"
 
@@ -462,7 +490,7 @@ msgid "Enter your password to delete your account"
 msgstr "Wpisz swoje hasło, aby usunąć konto"
 
 #: lostandfound/templates/account/delete.html:28
-#: lostandfound/templates/report/edit.html:127
+#: lostandfound/templates/report/edit.html:128
 msgid "Back"
 msgstr "Wstecz"
 
@@ -571,12 +599,13 @@ msgid ""
 "If an account with the provided email address exists, you have been sent "
 "a password reset link. Also check your spam folder"
 msgstr ""
-"Jeżeli konto z podanym adresem e-mail istnieje, zostanie wysłany link do "
-"resetowania hasła. Sprawdź również folder ze spamem"
 
 #: lostandfound/templates/pwreset/index.html:28
 msgid "The reset token is incorrect, has been used, or has expired"
-msgstr "Link do resetowania hasła jest niepoprawny, został już użyty, albo wygasł"
+msgstr ""
+ "Link do resetowania hasła jest "
+ "niepoprawny, został już użyty, albo "
+ "wygasł"
 
 #: lostandfound/templates/report/edit.html:14
 #: lostandfound/templates/report/index.html:78
@@ -593,7 +622,7 @@ msgstr "przez"
 msgid "posted"
 msgstr "utworzono"
 
-#: lostandfound/templates/report/edit.html:125
+#: lostandfound/templates/report/edit.html:126
 msgid "Save"
 msgstr "Zapisz"
 
@@ -631,8 +660,11 @@ msgid ""
 "Enter the code sent to the provided address. Also check your spam folder."
 " The code is valid for 30 minutes"
 msgstr ""
-"Wpisz kod wysłany na podany adres e-mail. Sprawdź również folder ze "
-"spamem. Kod jest ważny przez 30 minut"
+ "Wpisz kod wysłany na podany adres "
+ "e-mail. Sprawdź również folder ze "
+ "spamem. Kod jest ważny przez 30 "
+ "minut"
+
 
 #: lostandfound/templates/verification/check.html:20
 msgid "Verification code"
@@ -643,9 +675,11 @@ msgid "Submit"
 msgstr "Zatwierdź"
 
 #: lostandfound/templates/verification/check.html:25
-#, fuzzy
 msgid "The entered code is incorrect or it has expired"
-msgstr "Link do resetowania hasła jest niepoprawny, został już użyty, albo wygasł"
+msgstr ""
+ "Link do resetowania hasła jest "
+ "niepoprawny, został już użyty, albo "
+ "wygasł"
 
 #: lostandfound/templates/verification/check.html:29
 msgid "Message didn't arrive"
@@ -671,64 +705,17 @@ msgid ""
 "This address is only used to verify your account and must be part of the "
 "%(domain)s domain"
 msgstr ""
-"Ten adres e-mail zostanie użyty wyłącznie do weryfikacji Twojego konta i "
-"musi być w domenie %(domain)s"
+ "Ten adres e-mail zostanie użyty "
+ "wyłącznie do weryfikacji Twojego konta i"
+ " musi być w domenie %(domain)s"
+
 
 #: lostandfound/templates/verification/index.html:29
 msgid "Verify"
 msgstr "Weryfikuj"
 
 #: lostandfound/templates/verification/index.html:31
-#, fuzzy
 msgid ""
 "The entered email address doesn't belong to the appropriate\n"
 "                    domain"
 msgstr "Wpisany adres e-mail nie jest w odpowiedniej domenie"
-
-#~ msgid ""
-#~ "\n"
-#~ "Account details:\n"
-#~ "E-mail: $email\n"
-#~ "Name: $name"
-#~ msgstr ""
-
-#~ msgid " Choose which matches are displayed in the table"
-#~ msgstr ""
-
-#~ msgid " Choose the column by which the match list is sorted"
-#~ msgstr ""
-
-#~ msgid "User"
-#~ msgstr ""
-
-#~ msgid "Your LostAndFound code is $otp"
-#~ msgstr "Twój kod LostAndFound to $otp"
-
-#~ msgid ""
-#~ "Use the following code to verify your LostAndFound account: \n"
-#~ "**$otp**\n"
-#~ "\n"
-#~ "The code is valid for **30 minutes**."
-#~ msgstr ""
-#~ "Użyj tego kodu aby zweryfikować swoje konto LostAndFound: \n"
-#~ "**$otp**\n"
-#~ "\n"
-#~ "Kod jest ważny przez **30 minut**."
-
-#~ msgid "Your LostAndFound password reset link"
-#~ msgstr "Twój link do resetowania hasła"
-
-#~ msgid ""
-#~ "Use the following link to reset your LostAndFound account password:\n"
-#~ "$link\n"
-#~ "\n"
-#~ "The link is single-use only and valid for **30 minutes**."
-#~ msgstr ""
-#~ "Użyj tego linku aby zresetować hasło na swoim koncie LostAndFound:\n"
-#~ "$link\n"
-#~ "\n"
-#~ "Link jest jednorazowy i ważny przez **30 minut**."
-
-#~ msgid "You can use Markdown."
-#~ msgstr "Możesz używać Markdown."
-

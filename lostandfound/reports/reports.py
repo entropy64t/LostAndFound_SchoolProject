@@ -11,14 +11,20 @@ from lostandfound.models import (
     Category,
     Colour,
     Grade,
+    all_grades,
     Location,
     Report,
     get_category,
+    all_categories,
     get_colour,
+    all_colours,
     get_location,
+    all_locations,
     get_report,
+    User,
+    get_user,
+    all_users
 )
-from lostandfound.user import User, get_user
 from lostandfound.utility.scoring import (
     all_sorted,
     sort_by_score,
@@ -83,18 +89,16 @@ def new():
         db.session.commit()
         update_scoring_of_report(report)
 
-        return redirect(url_for("reports.all"))
+        return redirect(url_for("reports.report_details", report_id=report.id))
 
     if not current_user.account_verified or not current_user.is_authenticated:
         return redirect(url_for("index"))
 
-    locations_from_db = Location.query.order_by(Location.id).all()
-    colours_from_db = Colour.query.order_by(Colour.id).all()
-    categories_from_db = Category.query.order_by(Category.id).all()
-    grades_from_db = Grade.query.order_by(Grade.id).all()
-    verified_users = db.session.scalars(
-        select(User).filter_by(account_verified=True).order_by(User.grade)
-    ).all()
+    locations_from_db = all_locations()
+    colours_from_db = all_colours()
+    categories_from_db = all_categories()
+    grades_from_db = all_grades()
+    verified_users = all_users(True)
 
     return render_template(
         "new.html",
@@ -136,14 +140,14 @@ def render_reports(query: Query, template: str, view_all: bool = True):
         query = query.filter_by(category=selected_item)
     if selected_type in ("lost", "found"):
         query = query.filter_by(report_type=selected_type)
-    if selected_owner == "me":
-        query = query.filter_by(item_owner=current_user.id)
-    reports = query.order_by(desc(Report.creation_date)).all()
+    if (selected_owner is not None) and (selected_owner != "") and (get_user(selected_owner) is not None):
+        query = query.filter_by(item_owner=int(selected_owner))
+    reports = db.session.scalars(query.order_by(desc(Report.creation_date))).all()
 
+    verified_users = all_users(True)
     return render_template(
         template,
         reports=reports,
-        authors=authors,
         categories=categories,
         colours=colours,
         selected_colour=selected_colour,
@@ -151,14 +155,10 @@ def render_reports(query: Query, template: str, view_all: bool = True):
         selected_type=selected_type,
         selected_owner=selected_owner,
         selected_text=selected_text,
-        locations=locations,
         view_all=view_all,
-        get_category=get_category,
-        get_colour=get_colour,
-        get_location=get_location,
-        get_user=get_user,
         filter=True,
         org_timezone=org_timezone,
+        user_list=verified_users
     )
 
 
@@ -166,7 +166,7 @@ def render_reports(query: Query, template: str, view_all: bool = True):
 @login_required
 def all():
     report_type = request.args.get("type", "").lower()
-    query = Report.query
+    query = select(Report)
     if report_type in ("lost", "found"):
         query = query.filter_by(report_type=report_type)
     return render_reports(query, "all.html")
@@ -176,7 +176,7 @@ def all():
 @login_required
 def lost():
     return render_reports(
-        Report.query.filter_by(report_type="lost"), "lost.html", view_all=False
+        select(Report).filter_by(report_type="lost"), "lost.html", view_all=False
     )
 
 
@@ -184,7 +184,7 @@ def lost():
 @login_required
 def your_reports():
     return render_reports(
-        Report.query.filter_by(author=current_user.id), "your_reports.html"
+        select(Report).filter_by(author=current_user.id), "your_reports.html"
     )
 
 
@@ -192,7 +192,7 @@ def your_reports():
 @login_required
 def found():
     return render_reports(
-        Report.query.filter_by(report_type="found"), "found.html", view_all=False
+        select(Report).filter_by(report_type="found"), "found.html", view_all=False
     )
 
 
@@ -205,34 +205,26 @@ def report_details(report_id):
     report = get_report(report_id)
     title = report.title
     report_type = report.report_type
-    author = get_user(report.author).public_name() if report.author else "not set"
+    author = report.author_obj.public_name() if report.author else "not set"
     creation_date = report.creation_date.astimezone(org_timezone).strftime(
         "%Y-%m-%d %H:%M"
     )
-    category = get_category(report.category)
-    colour = get_colour(report.colour)
-    colour_value = (
-        get_colour(report.colour).colour_hex_value or get_colour(report.colour).name
-        if report.colour
-        else ""
-    )
+    category = report.category_obj
+    colour = report.colour_obj
+    colour_value = report.colour_obj.colour_hex_value or report.colour_obj.name if report.colour else ""
     description = parse_markdown(report.description)
 
     last_seen_dt: datetime = report.last_seen
     last_seen = last_seen_dt.strftime("%Y-%m-%d %H:%M") if last_seen_dt else ""
-    last_seen_location = (
-        get_location(report.last_seen_location).location_string()
-        if report.last_seen_location
-        else ""
-    )
+    last_seen_location = report.last_seen_location_obj.location_string() if report.last_seen_location else ""
 
     item_owner = ""
     pickup_location = ""
     if report_type == "found":
         if report.item_owner:
-            item_owner = get_user(report.item_owner).public_name()
+            item_owner = report.item_owner_obj.public_name()
         if report.pickup_location:
-            pickup_location = get_location(report.pickup_location).location_string()
+            pickup_location = report.pickup_location_obj.location_string()
 
     authors = {user.id: user.public_name() for user in User.query.all()}
     locations = {
@@ -254,17 +246,11 @@ def report_details(report_id):
         last_seen_location=last_seen_location,
         item_owner=item_owner,
         pickup_location=pickup_location,
-        author_object=get_user(report.author),
+        author_object=report.author_obj,
         report_id=report_id,
         reports=[pair[0] for pair in score_pairs],
-        authors=authors,
-        locations=locations,
         filter=False,
         scores={pair[0]: int(pair[1]) for pair in score_pairs},
-        get_category=get_category,
-        get_colour=get_colour,
-        get_location=get_location,
-        get_user=get_user,
         org_timezone=org_timezone,
     )
 
@@ -277,11 +263,7 @@ def edit_report(report_id):
 
     report = get_report(report_id)
     if request.method == "POST":
-        if (
-            not current_user.account_verified
-            or not current_user.is_authenticated
-            or get_user(report.author) != current_user
-        ):
+        if not current_user.account_verified or not current_user.is_authenticated or report.author_obj != current_user:
             return redirect(url_for("index"))
 
         title = request.form["title"]
@@ -319,33 +301,29 @@ def edit_report(report_id):
         update_scoring_of_report(report)
         return redirect(url_for("reports.report_details", report_id=report_id))
 
-    if get_user(report.author) != current_user:
+    if report.author_obj != current_user:
         return redirect(url_for("reports.report_details", report_id=report_id))
 
     title = report.title
     report_type = report.report_type
-    author = get_user(report.author).public_name() if report.author else "unknown"
+    author = report.author_obj.public_name() if report.author else "unknown"
     creation_date = report.creation_date.astimezone(org_timezone).strftime(
         "%Y-%m-%d %H:%M"
     )
-    category = get_category(report.category).id if report.category else ""
-    colour = get_colour(report.colour).id if report.colour else ""
+    category = report.category if report.category else ""
+    colour = report.colour if report.colour else ""
     description = report.description
     last_seen_dt: datetime = report.last_seen
     last_seen = last_seen_dt.strftime("%Y-%m-%dT%H:%M") if last_seen_dt else ""
-    last_seen_location = (
-        get_location(report.last_seen_location).id if report.last_seen_location else ""
-    )
+    last_seen_location = report.last_seen_location if report.last_seen_location else ""
     item_owner = report.item_owner if report.report_type != "lost" else ""
     pickup_location = report.pickup_location if report.report_type != "lost" else ""
 
-    locations_from_db = Location.query.order_by(Location.id).all()
-    colours_from_db = Colour.query.order_by(Colour.id).all()
-    categories_from_db = Category.query.order_by(Category.id).all()
-    grades_from_db = Grade.query.order_by(Grade.id).all()
-    verified_users = db.session.scalars(
-        select(User).filter_by(account_verified=True).order_by(User.grade)
-    ).all()
+    locations_from_db = all_locations()
+    colours_from_db = all_colours()
+    categories_from_db = all_categories()
+    grades_from_db = all_grades()
+    verified_users = all_users(True)
 
     return render_template(
         "report/edit.html",
@@ -376,7 +354,7 @@ def delete_report(report_id):
         return redirect(url_for("index"))
     if request.method == "POST":
         report = get_report(report_id)
-        if get_user(report.author) != current_user:
+        if report.author_obj != current_user:
             return redirect(url_for("reports.report_details", report_id=report_id))
         db.session.delete(report)
         db.session.commit()

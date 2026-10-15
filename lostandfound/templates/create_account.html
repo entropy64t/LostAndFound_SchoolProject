@@ -4,7 +4,7 @@
 <head>
     {% include "common_head.html" %}
     <link rel="stylesheet" href="{{ url_for('static', filename='auth.css') }}">
-    <title>Create account - Lost&Found</title>
+    <title>Create account - Lost&amp;Found</title>
 </head>
 
 <body>
@@ -44,10 +44,10 @@
                         <select name="grade">
                             <option value="">-- Select --</option>
                             {% for elm in grade_list %}
-                            {% if elm['id'] | string == request.args.get('grade') | string %}
-                            <option selected="selected" value="{{ elm['id'] }}">{{ elm['name'] }}</option>
+                            {% if elm.id | string == request.args.get('grade') | string %}
+                            <option selected="selected" value="{{ elm.id }}">{{ elm.name }}</option>
                             {% else %}
-                            <option value="{{ elm['id'] }}">{{ elm['name'] }}</option>
+                            <option value="{{ elm.id }}">{{ elm.name }}</option>
                             {% endif %}
                             {% endfor %}
                         </select>

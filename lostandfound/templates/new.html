@@ -4,7 +4,7 @@
 <head>
     {% include "common_head.html" %}
     <link rel="stylesheet" href="{{ url_for('static', filename='report_list.css')}}">
-    <title>New report - Lost&Found</title>
+    <title>New report - Lost&amp;Found</title>
 </head>
 
 <body>
@@ -66,7 +66,7 @@
                     {% for color in colour_list %}
                     <label class="filter-chip-option">
                         <input type="radio" name="item-color" value="{{ color.id }}" required>
-                        <span class="filter-color-circle" style="background-color: {{ color.name }};"
+                        <span class="filter-color-circle" style="background-color: {{ color.colour_hex_value }};"
                             title="{{ color.localized_name() }}"></span>
                         <span class="filter-chip-name">{{ color.localized_name() }}</span>
                     </label>
@@ -107,6 +107,7 @@
                     <div class="field-label">{{ lang("Filter by grade") }}</div>
                     <select name="item_owner_grade" id="item_owner_grade">
                         <option value="">-- Select --</option>
+                        <option value="None">-- {{ lang("No grade") }} --</option>
                         {% for grade in grade_list %}
                         <option value="{{ grade.id }}">{{ grade.name }}</option>
                         {% endfor %}
@@ -129,7 +130,7 @@
                 <select name="pickup_location">
                     <option value="" selected>-- Select --</option>
                     {% for loc in location_list %}
-                    <option value="{{ loc['id'] }}">
+                    <option value="{{ loc.id }}">
                         {{ loc.location_string() }}
                     </option>
                     {% endfor %}

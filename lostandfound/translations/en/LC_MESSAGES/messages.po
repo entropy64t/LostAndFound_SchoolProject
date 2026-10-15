@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-13 21:41+0200\n"
+"POT-Creation-Date: 2026-10-15 07:39+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -18,6 +18,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
 
+#: lostandfound/models.py:75
+msgid "level"
+msgstr ""
+
 #: lostandfound/email/email_config.py:18
 msgid "email.otp.subject"
 msgstr "Your LostAndFound code is $otp"
@@ -25,10 +29,11 @@ msgstr "Your LostAndFound code is $otp"
 #: lostandfound/email/email_config.py:22
 msgid "email.otp.content"
 msgstr ""
-"Use the following code to verify your LostAndFound account: \n"
-"**$otp**\n"
-"\n"
-"The code is valid for **30 minutes**."
+ "Use the following code to verify your LostAndFound account: \n"
+ "**$otp**\n"
+ "\n"
+ "The code is valid for **30 minutes**."
+
 
 #: lostandfound/email/email_config.py:26
 msgid "email.pwreset.subject"
@@ -37,18 +42,20 @@ msgstr "Your LostAndFound password reset link"
 #: lostandfound/email/email_config.py:30
 msgid "email.pwreset.content"
 msgstr ""
-"Use the following link to reset your LostAndFound account password:\n"
-"$link\n"
-"\n"
-"The link is single-use only and valid for **30 minutes**."
+ "Use the following link to reset your LostAndFound account password:\n"
+ "$link\n"
+ "\n"
+ "The link is single-use only and valid for **30 minutes**."
+
 
 #: lostandfound/email/email_config.py:34
 msgid "email.footer"
 msgstr ""
-"\n"
-"Account details:\n"
-"Email: $email\n"
-"Name: $name"
+ "\n"
+ "Account details:\n"
+ "Email: $email\n"
+ "Name: $name"
+
 
 #: lostandfound/templates/all.html:14
 msgid "All items"
@@ -145,26 +152,42 @@ msgstr ""
 #: lostandfound/templates/index.html:28
 msgid "index.instructions"
 msgstr ""
-"<p>If you have lost or found something, tap the <code>+</code> at the top"
-" to create a report. <strong>Items you have borrowed shall be marked "
-"<code>found</code>.</strong> In case you can't be easily reached by "
-"school email, please include contact details in the report "
-"description.</p><p>Browse reports to find ones of opposite type matching "
-"your item. Alternatively, use one of the two buttons above to view a list"
-" of automatically generated report pairs. These are also displayed on the"
-" details page of a report.</p><p>Once you have found a report which you "
-"believe describes an item you have lost/found/borrowed, message the "
-"report author privately (using the contact details from the description, "
-"if provided) and arrange for pickup. When the case is resolved, both "
-"sides should delete the corresponding reports on their ends.</p>"
+ "<p>If you have lost or found "
+ "something, tap the <code>+</code> at the"
+ " top to create a report. "
+ "<strong>Items you have borrowed shall be"
+ " marked <code>found</code>.</strong> In case "
+ "you can't be easily reached by "
+ "school email, please include contact "
+ "details in the report "
+ "description.</p><p>Browse reports to find ones"
+ " of opposite type matching your item."
+ " Alternatively, use one of the two"
+ " buttons above to view a list "
+ "of automatically generated report pairs. "
+ "These are also displayed on the "
+ "details page of a report.</p><p>Once you"
+ " have found a report which you "
+ "believe describes an item you have "
+ "lost/found/borrowed, message the report author"
+ " privately (using the contact details "
+ "from the description, if provided) and"
+ " arrange for pickup. When the case"
+ " is resolved, both sides should "
+ "delete the corresponding reports on "
+ "their ends.</p>"
+
 
 #: lostandfound/templates/index.html:30
 msgid "index.contact"
 msgstr ""
-"<p>For reporting issues or suggesting new features, open an issue on <a "
-"style='color: var(--primary);' target='_blank' "
-"href='https://github.com/entropy64t/LostAndFound_SchoolProject'>GitHub</a>."
-" To give feedback or for support, contact"
+ "<p>For reporting issues or suggesting "
+ "new features, open an issue on <a"
+ " style='color: var(--primary);' target='_blank' "
+ "href='https://github.com/entropy64t/LostAndFound_SchoolProject'>GitHub</a>."
+ " To give feedback or for support, "
+ "contact"
+
 
 #: lostandfound/templates/account/delete.html:24
 #: lostandfound/templates/login.html:30
@@ -221,7 +244,7 @@ msgstr ""
 
 #: lostandfound/templates/matches.html:41
 #: lostandfound/templates/matches.html:65
-#: lostandfound/templates/report_render.html:79
+#: lostandfound/templates/report_render.html:86
 msgid "Score"
 msgstr ""
 
@@ -230,7 +253,7 @@ msgid "Creation date"
 msgstr ""
 
 #: lostandfound/templates/matches.html:50
-#: lostandfound/templates/report_render.html:54
+#: lostandfound/templates/report_render.html:61
 msgid "Apply"
 msgstr ""
 
@@ -306,10 +329,12 @@ msgstr ""
 #: lostandfound/templates/new.html:20
 msgid "index.short_instructions"
 msgstr ""
-"<strong>Items you have borrowed shall be marked "
-"<code>found</code>.</strong> In case you can't be easily reached by "
-"school email, please include contact details in the report "
-"description.</p"
+ "<strong>Items you have borrowed shall be"
+ " marked <code>found</code>.</strong> In case "
+ "you can't be easily reached by "
+ "school email, please include contact "
+ "details in the report description."
+
 
 #: lostandfound/templates/new.html:27
 #: lostandfound/templates/report/edit.html:19
@@ -337,12 +362,12 @@ msgstr ""
 msgid "colour.unknown"
 msgstr "Other / unknown"
 
-#: lostandfound/templates/new.html:84 lostandfound/templates/new.html:176
+#: lostandfound/templates/new.html:84 lostandfound/templates/new.html:177
 #: lostandfound/templates/report/edit.html:60
 msgid "Last seen on"
 msgstr ""
 
-#: lostandfound/templates/new.html:90 lostandfound/templates/new.html:177
+#: lostandfound/templates/new.html:90 lostandfound/templates/new.html:178
 #: lostandfound/templates/report/edit.html:66
 msgid "Lost in"
 msgstr ""
@@ -351,7 +376,7 @@ msgstr ""
 #: lostandfound/templates/report/edit.html:80
 #: lostandfound/templates/report/index.html:53
 #: lostandfound/templates/report_render.html:47
-#: lostandfound/templates/report_render.html:115
+#: lostandfound/templates/report_render.html:122
 msgid "Suspected owner"
 msgstr ""
 
@@ -360,37 +385,41 @@ msgstr ""
 msgid "Filter by grade"
 msgstr ""
 
-#: lostandfound/templates/new.html:115
-#: lostandfound/templates/report/edit.html:92
+#: lostandfound/templates/new.html:110
+#: lostandfound/templates/report/edit.html:87
+msgid "No grade"
+msgstr ""
+
+#: lostandfound/templates/new.html:116
+#: lostandfound/templates/report/edit.html:93
 msgid "Owner"
 msgstr ""
 
-#: lostandfound/templates/new.html:128
-#: lostandfound/templates/report/edit.html:105
+#: lostandfound/templates/new.html:129
+#: lostandfound/templates/report/edit.html:106
 msgid "Retrieve found item at"
 msgstr ""
 
-#: lostandfound/templates/new.html:140
-#: lostandfound/templates/report/edit.html:118
+#: lostandfound/templates/new.html:141
+#: lostandfound/templates/report/edit.html:119
 msgid "Description"
 msgstr ""
 
-#: lostandfound/templates/new.html:142
-#: lostandfound/templates/report/edit.html:120
-#, fuzzy
+#: lostandfound/templates/new.html:143
+#: lostandfound/templates/report/edit.html:121
 msgid "You can use"
-msgstr "You can use Markdown in the description."
+msgstr ""
 
-#: lostandfound/templates/new.html:146
+#: lostandfound/templates/new.html:147
 msgid "Create"
 msgstr ""
 
-#: lostandfound/templates/new.html:184
+#: lostandfound/templates/new.html:185
 #: lostandfound/templates/report/edit.html:60
 msgid "Found on"
 msgstr ""
 
-#: lostandfound/templates/new.html:185
+#: lostandfound/templates/new.html:186
 #: lostandfound/templates/report/edit.html:66
 msgid "Found in"
 msgstr ""
@@ -401,7 +430,7 @@ msgstr ""
 
 #: lostandfound/templates/report/index.html:35
 #: lostandfound/templates/report_render.html:9
-#: lostandfound/templates/report_render.html:94
+#: lostandfound/templates/report_render.html:101
 msgid "Colour"
 msgstr ""
 
@@ -413,30 +442,30 @@ msgstr ""
 msgid "You"
 msgstr ""
 
-#: lostandfound/templates/report_render.html:72
+#: lostandfound/templates/report_render.html:79
 msgid "By"
 msgstr ""
 
-#: lostandfound/templates/report_render.html:74
+#: lostandfound/templates/report_render.html:81
 msgid "Posted"
 msgstr ""
 
 #: lostandfound/templates/report/index.html:29
-#: lostandfound/templates/report_render.html:87
+#: lostandfound/templates/report_render.html:94
 msgid "Category"
 msgstr ""
 
 #: lostandfound/templates/report/index.html:43
-#: lostandfound/templates/report_render.html:103
+#: lostandfound/templates/report_render.html:110
 msgid "Last seen"
 msgstr ""
 
 #: lostandfound/templates/report/index.html:46
-#: lostandfound/templates/report_render.html:107
+#: lostandfound/templates/report_render.html:114
 msgid "common.at.location"
 msgstr "at"
 
-#: lostandfound/templates/report_render.html:132
+#: lostandfound/templates/report_render.html:139
 msgid "View details"
 msgstr ""
 
@@ -460,7 +489,7 @@ msgid "Enter your password to delete your account"
 msgstr ""
 
 #: lostandfound/templates/account/delete.html:28
-#: lostandfound/templates/report/edit.html:127
+#: lostandfound/templates/report/edit.html:128
 msgid "Back"
 msgstr ""
 
@@ -589,7 +618,7 @@ msgstr ""
 msgid "posted"
 msgstr ""
 
-#: lostandfound/templates/report/edit.html:125
+#: lostandfound/templates/report/edit.html:126
 msgid "Save"
 msgstr ""
 
@@ -674,19 +703,3 @@ msgid ""
 "The entered email address doesn't belong to the appropriate\n"
 "                    domain"
 msgstr ""
-
-#~ msgid "The entered email address doesn't belong to the appropriate domain"
-#~ msgstr ""
-
-#~ msgid "User"
-#~ msgstr ""
-
-#~ msgid "Show instructions"
-#~ msgstr ""
-
-#~ msgid "Your LostAndFound password reset link"
-#~ msgstr "email.pwreset.subject"
-
-#~ msgid "You can use Markdown."
-#~ msgstr "You can use Markdown in the description."
-

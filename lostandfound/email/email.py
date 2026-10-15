@@ -4,7 +4,7 @@ from email.message import EmailMessage
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-from lostandfound.user import User
+from lostandfound.models import User
 
 from ..config import EMAIL_WHITELIST, USER_EMAIL_DOMAIN, FALLBACK_SENDER_ADDRESS, FALLBACK_SENDER_PASSWORD
 from .email_config import (

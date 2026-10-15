@@ -5,15 +5,14 @@ from flask import (
     render_template,
     request,
     session,
-    url_for,
+    url_for
 )
 from flask_login import current_user, login_required
 from sqlalchemy import func, select
 
 from lostandfound import db, login
 from lostandfound.email.email_config import CONTACT_ADDRESS
-from lostandfound.models import Report
-from lostandfound.user import get_user
+from lostandfound.models import Report, get_user
 
 
 @login_required

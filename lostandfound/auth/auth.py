@@ -8,8 +8,7 @@ from flask_login import current_user, login_required, login_user, logout_user
 from lostandfound import db
 from lostandfound.config import USER_EMAIL_DOMAIN
 from lostandfound.email.email import send_otp, send_pwreset, verify_domain
-from lostandfound.models import Grade
-from lostandfound.user import create_user, find_by_email
+from lostandfound.models import User, create_user, find_by_email, Grade, all_grades, get_user, find_by_email, create_user, all_users, Report, get_report, all_matches
 
 from . import auth_bp
 
@@ -156,7 +155,7 @@ def create_account():
 
         return redirect(next_url or url_for("index"))
 
-    grades_from_db = Grade.query.all()
+    grades_from_db = all_grades()
     return render_template("create_account.html", grade_list=grades_from_db)
 
 

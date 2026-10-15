@@ -47,7 +47,14 @@
         {{ lang("Suspected owner") }}:
         <select name="item_owner">
             <option value="">{{ lang("Anybody") }}</option>
-            <option value="me" {% if selected_owner=="me" %}selected{% endif %}>{{ lang("You") }}</option>
+            <option value="{{ current_user.id }}" {% if (selected_owner | int)==current_user.id %}selected{% endif %}>{{ current_user.display_name }} ({{lang("You") }})</option>
+           {% for user in user_list %}
+            {% if user.id != current_user.id %}
+            <option value="{{ user.id }}" {% if (selected_owner | int)==user.id %}selected{% endif %}>
+                {{ user.public_name() }}
+            </option>
+            {% endif %}
+            {% endfor %}
         </select>
     </label>
     {% endif %}
@@ -70,7 +77,7 @@
 
         <div class="report-metadata">
             <span class="meta-item"><span style="font-weight: 700;">{{ lang("By") }}:</span>
-                {{ authors[report.author]}}</span>
+                {{ report.author_obj.public_name() }}</span>
             <span class="meta-item"><span style="font-weight: 700;">{{ lang("Posted") }}:</span> {{
                 report.creation_date.astimezone(org_timezone).strftime('%Y-%m-%d
                 %H:%M')
@@ -85,7 +92,7 @@
             {% if report.category %}
             <div class="{% if report.colour %}detail-item{% else %}detail-item-wide{% endif %}">
                 <span style="font-weight: 700;">{{ lang("Category") }}:</span> {{
-                get_category(report.category).localized_name() }}
+                report.category_obj.localized_name() }}
             </div>
             {% endif %}
 
@@ -93,8 +100,8 @@
             <div class="detail-item">
                 <span style="font-weight: 700;">{{ lang("Colour") }}:</span>
                 <div class="color-swatch"
-                    style="background-color: {{ get_colour(report.colour).colour_hex_value or get_colour(report.colour).name }};"
-                    title="{{ get_colour(report.colour).localized_name() }}"></div>
+                    style="background-color: {{ report.colour_obj.colour_hex_value or report.colour_obj.name }};"
+                    title="{{ report.colour_obj.localized_name() }}"></div>
             </div>
             {% endif %}
 
@@ -105,7 +112,7 @@
                     %}<span class="last-seen-value" style="display: inline-block;"> {{
                         report.last_seen.strftime('%Y-%m-%d %H:%M') }}</span>{% endif %}{% if report.last_seen_location
                     %}<span style="display: inline-block;"> {{ lang("common.at.location") }} {{
-                        locations[report.last_seen_location] }}</span>{% endif
+                        report.last_seen_location_obj.location_string() }}</span>{% endif
                     %}</div>
             </div>
             {% endif %}
@@ -113,7 +120,7 @@
             {% if report.item_owner %}
             <div class="detail-item-wide">
                 <span style="font-weight: 700;">{{ lang("Suspected owner") }}:</span> {{
-                get_user(report.item_owner).public_name() }}
+                report.item_owner_obj.public_name() }}
             </div>
             {% endif %}
         </div>

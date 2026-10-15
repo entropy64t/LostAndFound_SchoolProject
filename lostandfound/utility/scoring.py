@@ -5,11 +5,11 @@ from coloraide import Color
 from flask import Flask, current_app
 from flask_login import current_user
 from rapidfuzz import fuzz
-from sqlalchemy import delete, or_
+from sqlalchemy import delete, select, or_
 
 from lostandfound import timezone as org_timezone
 from lostandfound import db
-from lostandfound.models import Colour, Match, Report, get_location, get_report, get_colour
+from lostandfound.models import Grade, Category, Colour, Location, User, Report, Match, all_reports, get_location, get_colour
 
 _MAX_DELTA_E_VALUE = 20
 
@@ -81,8 +81,8 @@ def score_against(target: Report, items: list[Report]) -> dict[Report, int]:
 # TODO remove the type ignores
 
 
-def scoring_service(root: Report, report_list: list[Report], app: Flask):
-    with app.app_context():
+def scoring_service(ctx, root: Report, report_list: list[Report], app: Flask):
+    with ctx:
         scoring_result = score_against(root, report_list)
 
         db.session.execute(
@@ -113,53 +113,35 @@ def scoring_service(root: Report, report_list: list[Report], app: Flask):
 
 
 def update_scoring_of_report(root: Report):
-    report_list = Report.query.all()
-    thread = threading.Thread(
-        target=scoring_service,
-        daemon=True,
-        args=(root, report_list, current_app._get_current_object()),  # type: ignore
-    )
+    report_list = all_reports()
+    thread = threading.Thread(target=scoring_service, daemon=True, args=(current_app.app_context(), root, report_list, current_app._get_current_object()))
     thread.start()
 
 
 def sort_by_score(target: Report) -> list[tuple[Report, int]]:
     if target.report_type == "lost":
-        matches = Match.query.filter_by(lost_item=target.id).all()
-        unsorted_pairs = {
-            get_report(match.found_item): match.score for match in matches
-        }
+        matches = db.session.scalars(select(Match).filter_by(lost_item=target.id).order_by(Match.score.desc())).all()
+        sorted_pairs = [(mat.found_item_obj, mat.score) for mat in matches]
     else:
-        matches = Match.query.filter_by(found_item=target.id).all()
-        unsorted_pairs = {get_report(match.lost_item): match.score for match in matches}
+        matches = db.session.scalars(select(Match).filter_by(found_item=target.id).order_by(Match.score.desc())).all()
+        sorted_pairs = [(mat.lost_item_obj, mat.score) for mat in matches]
 
-    return sorted(unsorted_pairs.items(), key=lambda item: item[1], reverse=True)
+    return sorted_pairs
 
 
 def all_sorted(
     filter_by_user: bool, by_creation_date: bool
 ) -> list[tuple[Report, Report, int, str]]:
-    matches = Match.query.all()
+    match_query = select(Match)
     if filter_by_user:
-        for match in list(matches):
-            if (
-                get_report(match.lost_item).author != current_user.id
-                and get_report(match.found_item).author != current_user.id
-            ):
-                matches.remove(match)
-
-    unsorted_pairs = [
-        (
-            match.lost_item,
-            match.found_item,
-            match.score,
-            match.creation_date.astimezone(org_timezone).strftime("%Y-%m-%d %H:%M"),
-        )
-        for match in matches
-    ]
+        match_query = match_query.filter(or_(Match.lost_item_obj.has(Report.author == current_user.id), Match.found_item_obj.has(Report.author == current_user.id)))
 
     if by_creation_date:
-        sorted_pairs = sorted(unsorted_pairs, key=lambda item: item[2], reverse=True)
-        return sorted(sorted_pairs, key=lambda item: item[3], reverse=True)
+        match_query = match_query.order_by(Match.creation_date.desc(), Match.score.desc())
+    else:
+        match_query = match_query.order_by(Match.score.desc(), Match.creation_date.desc())
 
-    sorted_pairs = sorted(unsorted_pairs, key=lambda item: item[3], reverse=True)
-    return sorted(sorted_pairs, key=lambda item: item[2], reverse=True)
+    matches = db.session.scalars(match_query).all()
+
+    sorted_pairs = [(mat.lost_item, mat.found_item, mat.score, mat.creation_date.astimezone(org_timezone).strftime('%Y-%m-%d %H:%M')) for mat in matches]
+    return sorted_pairs
