@@ -81,6 +81,19 @@ INSERT INTO public.locations (id, building_level, name) VALUES (56, 2, '31');
 INSERT INTO public.locations (id, building_level, name) VALUES (57, 2, '28');
 INSERT INTO public.locations (id, building_level, name) VALUES (58, 2, '27');
 INSERT INTO public.locations (id, building_level, name) VALUES (59, 2, 'hallway');
+INSERT INTO public.locations (id, building_level, name) VALUES (60, 3, '41');
+INSERT INTO public.locations (id, building_level, name) VALUES (61, 3, '42');
+INSERT INTO public.locations (id, building_level, name) VALUES (62, 3, '43');
+INSERT INTO public.locations (id, building_level, name) VALUES (63, 3, 'historycy');
+INSERT INTO public.locations (id, building_level, name) VALUES (64, 3, '44');
+INSERT INTO public.locations (id, building_level, name) VALUES (65, 3, '45');
+INSERT INTO public.locations (id, building_level, name) VALUES (66, 3, '46');
+INSERT INTO public.locations (id, building_level, name) VALUES (67, 3, '47');
+INSERT INTO public.locations (id, building_level, name) VALUES (68, 3, 'poloniści');
+INSERT INTO public.locations (id, building_level, name) VALUES (69, 3, '48');
+INSERT INTO public.locations (id, building_level, name) VALUES (70, 3, 'giermaniści');
+INSERT INTO public.locations (id, building_level, name) VALUES (71, 3, '49');
+INSERT INTO public.locations (id, building_level, name) VALUES (72, 3, 'hallway');
 
 
 --
